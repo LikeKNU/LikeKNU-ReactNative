@@ -5,7 +5,7 @@ import React from 'react';
 const TabLayout = () => {
   return (
     <Tabs>
-      <Tabs.Screen name="main" options={{
+      <Tabs.Screen name="index" options={{
         headerShown: false,
         tabBarIcon: ({ color }) => <HomeIcon fill={color} />
       }} />

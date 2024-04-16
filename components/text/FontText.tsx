@@ -28,7 +28,6 @@ const FontText: React.FC<CustomTextProps> = ({ style, ...props }) => {
         return fontName.regular;
     }
   };
-  console.log(getFont());
 
   return (
     <Text style={[{ fontFamily: getFont() }, style]} {...props} />
