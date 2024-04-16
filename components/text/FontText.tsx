@@ -1,9 +1,9 @@
 import { CustomTextProps } from '@/components/text/TextProps';
 import { fontName } from '@/constants/Fonts';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Text } from 'react-native';
 
-const FontText: React.FC<CustomTextProps> = ({ style, ...props }) => {
+const FontText: FunctionComponent<CustomTextProps> = ({ style, ...props }) => {
   const getFont = () => {
     switch (style?.fontWeight) {
       case '100':

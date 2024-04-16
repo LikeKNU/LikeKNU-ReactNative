@@ -1,4 +1,4 @@
-export const choenan = '#2C8E9A';
+export const cheonan = '#2C8E9A';
 export const singwan = '#E85239';
 export const yesan = '#E2981E';
 
@@ -7,9 +7,9 @@ export default {
     text: '#000',
     background: '#fff',
     container: '',
-    tint: choenan,
+    tint: cheonan,
     tabIconDefault: '#ccc',
-    tabIconSelected: choenan,
+    tabIconSelected: cheonan,
   },
   dark: {
     text: '#fff',

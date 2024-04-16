@@ -19,6 +19,7 @@ const AppLayout = () => {
   if (!fontsLoaded && !fontError) {
     return null;
   }
+
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
       <Stack>
