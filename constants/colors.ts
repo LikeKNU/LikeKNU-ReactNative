@@ -4,18 +4,17 @@ export const yesan = '#E2981E';
 
 export default {
   light: {
-    text: '#000',
-    background: '#fff',
-    container: '',
-    tint: cheonan,
-    tabIconDefault: '#ccc',
-    tabIconSelected: cheonan,
+    text: '#403E3F',
+    background: '#F3F4F6',
+    container: '#FFFFFF',
+    lightGray: '#F5F5F5',
+    darkGray: '#B0B9C2'
   },
   dark: {
-    text: '#fff',
-    background: '#000',
-    tint: singwan,
-    tabIconDefault: '#ccc',
-    tabIconSelected: singwan,
+    text: '#FFFFFF',
+    background: '#101012',
+    container: '#18171D',
+    lightGray: '#62626E',
+    darkGray: '#2C2C36'
   },
 };
