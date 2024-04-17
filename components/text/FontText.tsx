@@ -1,7 +1,10 @@
-import { CustomTextProps } from '@/components/text/TextProps';
-import { fontName } from '@/constants/Fonts';
+import { fontName } from '@/constants/fonts';
 import React, { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { Text, TextProps, TextStyle } from 'react-native';
+
+interface CustomTextProps extends TextProps {
+  style?: TextStyle;
+}
 
 const FontText: FunctionComponent<CustomTextProps> = ({ style, ...props }) => {
   const getFont = () => {
