@@ -1,13 +1,13 @@
-import axios from 'axios';
+import { APIResponse } from '@/types/response';
+import axios, { AxiosResponse } from 'axios';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
-console.log(API_URL);
 
-const http = axios.create({
+const instance = axios.create({
   baseURL: API_URL,
 });
 
-http.interceptors.response.use(
+instance.interceptors.response.use(
   (res) => res,
   (error) => {
     console.error(
@@ -16,7 +16,7 @@ http.interceptors.response.use(
   },
 );
 
-http.interceptors.request.use(
+instance.interceptors.request.use(
   (config) => config,
   (error) => {
     console.error(
@@ -24,5 +24,15 @@ http.interceptors.request.use(
     );
   },
 );
+
+export const extractBodyFromResponse = (response: AxiosResponse<APIResponse<any>>) => {
+  return response.data.data.body;
+};
+
+const http = {
+  get: <T>(uri: string) => {
+    return instance.get<APIResponse<T>>(uri);
+  },
+};
 
 export default http;

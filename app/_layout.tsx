@@ -43,12 +43,6 @@ const AppLayout = () => {
     <SafeAreaProvider onLayout={onLayoutRootView}>
       <SWRConfig value={{
         provider: () => new Map(),
-        isOnline() {
-          return true;
-        },
-        isVisible() {
-          return true;
-        },
         initFocus(callback) {
           return handleInitFocus(callback);
         }
