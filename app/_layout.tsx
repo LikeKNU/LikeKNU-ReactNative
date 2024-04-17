@@ -1,6 +1,8 @@
+import ThemeContextProvider, { useTheme } from '@/common/components/ThemeContext';
+import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import { AppState } from 'react-native';
@@ -23,7 +25,7 @@ const AppLayout = () => {
     return null;
   }
 
-  function handleInitFocus(callback: VoidFunction) {
+  const handleInitFocus = (callback: VoidFunction) => {
     let currentState = AppState.currentState;
 
     const onAppStateChange = (nextState: AppStateStatus) => {
@@ -37,7 +39,7 @@ const AppLayout = () => {
     return () => {
       subscription.remove();
     };
-  }
+  };
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
@@ -47,12 +49,27 @@ const AppLayout = () => {
           return handleInitFocus(callback);
         }
       }}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <ThemeContextProvider>
+          <Content />
+        </ThemeContextProvider>
       </SWRConfig>
     </SafeAreaProvider>
   );
 };
 
 export default AppLayout;
+
+const Content = () => {
+  const { theme } = useTheme();
+  const pathname = usePathname();
+  console.log(pathname);
+
+  return (
+    <Stack screenOptions={{
+      headerShown: false,
+      contentStyle: { backgroundColor: colors[theme][pathname === '/' ? 'background' : 'container'] }
+    }}>
+      <Stack.Screen name="(tabs)" />
+    </Stack>
+  );
+};

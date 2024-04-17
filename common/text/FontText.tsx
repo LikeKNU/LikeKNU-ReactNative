@@ -3,12 +3,23 @@ import React, { FunctionComponent } from 'react';
 import { Text, TextProps, TextStyle } from 'react-native';
 
 interface CustomTextProps extends TextProps {
-  style?: TextStyle;
+  fontWeight?:
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900'
+  style?: TextStyle | TextStyle[];
 }
 
-const FontText: FunctionComponent<CustomTextProps> = ({ style, ...props }) => {
+const FontText: FunctionComponent<CustomTextProps> = ({ fontWeight, style, ...props }) => {
   const getFont = () => {
-    switch (style?.fontWeight) {
+    switch (fontWeight) {
       case '100':
         return fontName.thin;
       case '200':

@@ -2,7 +2,7 @@ export const cheonan = '#2C8E9A';
 export const singwan = '#E85239';
 export const yesan = '#E2981E';
 
-export default {
+const colors = {
   light: {
     text: '#403E3F',
     background: '#F3F4F6',
@@ -18,3 +18,5 @@ export default {
     darkGray: '#2C2C36'
   },
 };
+
+export default colors;
