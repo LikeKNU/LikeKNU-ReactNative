@@ -1,7 +1,3 @@
-export const cheonan = '#2C8E9A';
-export const singwan = '#E85239';
-export const yesan = '#E2981E';
-
 const colors = {
   light: {
     text: '#403E3F',
@@ -20,3 +16,9 @@ const colors = {
 };
 
 export default colors;
+
+export const campusColors = {
+  cheonan: '#2C8E9A',
+  singwan: '#E85239',
+  yesan: '#E2981E'
+}

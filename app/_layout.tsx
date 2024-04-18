@@ -62,7 +62,6 @@ export default AppLayout;
 const Content = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <Stack screenOptions={{

@@ -1,30 +1,38 @@
 'use client';
 
-import { useSchedules } from '@/api/test';
+import HomeHeader from '@/app/home/components/HomeHeader';
 import CardContainer from '@/common/components/CardContainer';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 const Home = () => {
   const { theme } = useTheme();
-  const { data: schedules } = useSchedules();
 
   return (
     <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].background }}>
-      <CardContainer title="안뇽" />
+      <HomeHeader />
+      <ScrollView
+        contentContainerStyle={{ paddingVertical: 10 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={{ marginTop: 10 }}>
+          <CardContainer title="하이" style={{ height: 200 }} />
+        </View>
+        <View style={{ marginTop: 10 }}>
+          <CardContainer title="하이" style={{ height: 200 }} />
+        </View>
+        <View style={{ marginTop: 10 }}>
+          <CardContainer title="하이" style={{ height: 200 }} />
+        </View>
+        <View style={{ marginTop: 10 }}>
+          <CardContainer title="하이" style={{ height: 200 }} />
+        </View>
+      </ScrollView>
     </PageLayout>
   );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  container: {},
-  title: {
-    fontSize: 32,
-    textAlign: 'center'
-  }
-});
