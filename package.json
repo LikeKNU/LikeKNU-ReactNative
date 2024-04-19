@@ -24,7 +24,9 @@
     "react-native-screens": "~3.29.0",
     "react-native-svg": "14.1.0",
     "react-native-web": "~0.19.6",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "expo-haptics": "~12.8.1",
+    "expo-application": "~5.8.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
