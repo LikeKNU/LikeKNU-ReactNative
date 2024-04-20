@@ -17,7 +17,7 @@ const BackHeader = ({ title }: BackHeaderProps) => {
     <View style={styles.container}>
       <View style={styles.backIcon}>
         <Pressable onPress={() => router.back()}>
-          <ArrowLeftIcon width={30} height={30} fill={colors[theme].text} />
+          <ArrowLeftIcon width={24} height={24} fill={colors[theme].text} />
         </Pressable>
       </View>
       <FontText fontWeight="600" style={[styles.title, { color: colors[theme].text }]}>{title}</FontText>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
 
-    paddingVertical: 10,
+    paddingVertical: 16,
     paddingHorizontal: 10
   },
   title: {

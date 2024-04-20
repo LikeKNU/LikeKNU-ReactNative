@@ -15,7 +15,7 @@ const HomeAnnouncement = () => {
   return (
     <View style={styles.container}>
       <Pressable onPress={() => router.navigate('/announcement')}>
-        <CardContainer title="공지사항" style={styles.cardContainer}>
+        <CardContainer title="공지사항">
           <FlatList
             scrollEnabled={false}
             data={data}
@@ -26,8 +26,8 @@ const HomeAnnouncement = () => {
                   params: { url: item.announcementUrl }
                 })}>
                   <FontText
-                    fontWeight="300"
-                    style={[styles.body, { color: colors[theme].text }]}
+                    fontWeight="400"
+                    style={[styles.content, { color: colors[theme].text }]}
                     numberOfLines={1}
                   >
                     {item.announcementTitle}
@@ -47,8 +47,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10
   },
-  cardContainer: {},
-  body: {
+  content: {
     fontSize: 13,
     marginBottom: 4
   }
