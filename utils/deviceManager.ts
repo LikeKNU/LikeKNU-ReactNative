@@ -50,9 +50,6 @@ const useInitializeDevice = () => {
           campus: campus.toUpperCase(),
           favoriteCafeteria: storedFavoriteCafeteria
         });
-
-        console.log('완료!');
-
       } catch (err) {
         setError(err);
       } finally {
