@@ -33,6 +33,9 @@ const http = {
   get: <T>(uri: string) => {
     return instance.get<APIResponse<T>>(uri);
   },
+  getWithParams: <T>(uri: string, params: any) => {
+    return instance.get<APIResponse<T>>(uri, { params: params })
+  },
 };
 
 export default http;

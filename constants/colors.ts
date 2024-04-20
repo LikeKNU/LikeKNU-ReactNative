@@ -1,6 +1,6 @@
 const colors = {
   light: {
-    text: '#403E3F',
+    text: '#181F29',
     background: '#F3F4F6',
     container: '#FFFFFF',
     lightGray: '#F5F5F5',

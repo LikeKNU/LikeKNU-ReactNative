@@ -2,18 +2,21 @@ import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { View } from 'react-native';
 
-const Announcement = () => {
+interface AnnouncementViewProps {
+  url: string;
+}
+
+const AnnouncementView = ({ url }: AnnouncementViewProps) => {
   const { theme } = useTheme();
 
   return (
     <PageLayout edges={['top']}>
-      <View>
-        <FontText fontWeight="700" style={{ fontSize: 28, color: colors[theme].text }}>공지사항</FontText>
-      </View>
+      <FontText style={{ color: colors[theme].text }}>
+        {url}
+      </FontText>
     </PageLayout>
   );
 };
 
-export default Announcement;
+export default AnnouncementView;

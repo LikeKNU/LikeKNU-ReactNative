@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   campus: {
-    fontSize: 32,
+    fontSize: 30,
     marginLeft: -6
   },
   content: {

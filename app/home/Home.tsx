@@ -1,12 +1,12 @@
 'use client';
 
+import HomeAnnouncement from '@/app/home/components/HomeAnnouncement';
 import HomeHeader from '@/app/home/components/HomeHeader';
-import CardContainer from '@/common/components/CardContainer';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 const Home = () => {
   const { theme } = useTheme();
@@ -18,18 +18,10 @@ const Home = () => {
         contentContainerStyle={{ paddingVertical: 10 }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={{ marginTop: 10 }}>
-          <CardContainer title="하이" style={{ height: 200 }} />
-        </View>
-        <View style={{ marginTop: 10 }}>
-          <CardContainer title="하이" style={{ height: 200 }} />
-        </View>
-        <View style={{ marginTop: 10 }}>
-          <CardContainer title="하이" style={{ height: 200 }} />
-        </View>
-        <View style={{ marginTop: 10 }}>
-          <CardContainer title="하이" style={{ height: 200 }} />
-        </View>
+        <HomeAnnouncement />
+        <HomeAnnouncement />
+        <HomeAnnouncement />
+        <HomeAnnouncement />
       </ScrollView>
     </PageLayout>
   );

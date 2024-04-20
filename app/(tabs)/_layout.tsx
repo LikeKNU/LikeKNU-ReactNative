@@ -44,7 +44,7 @@ const TabLayout = () => {
         ),
         tabBarLabel: ({ color }) => (
           <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 14 }}>홈</FontText>
+            <FontText fontWeight="500" style={{ color: color, fontSize: 13 }}>홈</FontText>
           </View>
         )
       }} />
@@ -56,7 +56,7 @@ const TabLayout = () => {
         ),
         tabBarLabel: ({ color }) => (
           <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 14 }}>공지사항</FontText>
+            <FontText fontWeight="500" style={{ color: color, fontSize: 13 }}>공지사항</FontText>
           </View>
         )
       }} />
@@ -68,7 +68,7 @@ const TabLayout = () => {
         ),
         tabBarLabel: ({ color }) => (
           <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 14 }}>버스</FontText>
+            <FontText fontWeight="500" style={{ color: color, fontSize: 13 }}>버스</FontText>
           </View>
         )
       }} />
@@ -80,7 +80,7 @@ const TabLayout = () => {
         ),
         tabBarLabel: ({ color }) => (
           <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 14 }}>식단</FontText>
+            <FontText fontWeight="500" style={{ color: color, fontSize: 13 }}>식단</FontText>
           </View>
         )
       }} />
@@ -92,7 +92,7 @@ const TabLayout = () => {
         ),
         tabBarLabel: ({ color }) => (
           <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 14 }}>더보기</FontText>
+            <FontText fontWeight="500" style={{ color: color, fontSize: 13 }}>더보기</FontText>
           </View>
         )
       }} />

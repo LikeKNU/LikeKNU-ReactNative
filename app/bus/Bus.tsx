@@ -8,7 +8,7 @@ const Bus = () => {
   const { theme } = useTheme();
 
   return (
-    <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].container }}>
+    <PageLayout edges={['top']}>
       <View>
         <FontText fontWeight="700" style={{ fontSize: 28, color: colors[theme].text }}>버스</FontText>
       </View>

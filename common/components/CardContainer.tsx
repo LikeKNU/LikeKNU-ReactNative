@@ -13,7 +13,8 @@ const CardContainer = ({ children, title, style, ...props }: CardContainerProps)
 
   return (
     <View style={[styles.container, { backgroundColor: colors[theme].container }, style]} {...props}>
-      <FontText fontWeight="800" style={[styles.title, { color: colors[theme].text }]}>{title}</FontText>
+      <FontText fontWeight="700" style={[styles.title, { color: colors[theme].text }]}>{title}</FontText>
+      {children}
     </View>
   );
 };
@@ -24,8 +25,10 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     borderRadius: 20,
+    minHeight: 130
   },
   title: {
-    fontSize: 24
+    fontSize: 22,
+    marginBottom: 16
   }
 });
