@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {},
   body: {
-    fontSize: 16,
+    fontSize: 13,
     marginBottom: 4
   }
 });

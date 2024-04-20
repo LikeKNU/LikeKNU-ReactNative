@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     minHeight: 130
   },
   title: {
-    fontSize: 22,
+    fontSize: 18,
     marginBottom: 16
   }
 });

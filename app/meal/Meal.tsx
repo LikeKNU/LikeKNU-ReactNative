@@ -10,7 +10,7 @@ const Meal = () => {
   return (
     <PageLayout edges={['top']}>
       <View>
-        <FontText fontWeight="700" style={{ fontSize: 28, color: colors[theme].text }}>식단</FontText>
+        <FontText fontWeight="700" style={{ fontSize: 24, color: colors[theme].text }}>식단</FontText>
       </View>
     </PageLayout>
   );
