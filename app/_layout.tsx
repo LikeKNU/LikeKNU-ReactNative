@@ -1,10 +1,11 @@
 import ThemeContextProvider, { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
+import useInitializeDevice from '@/utils/deviceManager';
 import { useFonts } from 'expo-font';
 import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { AppState } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppStateStatus } from 'react-native/Libraries/AppState/AppState';
@@ -16,7 +17,7 @@ const AppLayout = () => {
   const [fontsLoaded, fontError] = useFonts(Fonts);
 
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
+    if ((fontsLoaded || fontError)) {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
@@ -62,6 +63,7 @@ export default AppLayout;
 const Content = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
+  const { isLoading, error } = useInitializeDevice();
 
   return (
     <Stack screenOptions={{

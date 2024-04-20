@@ -11,7 +11,7 @@ instance.interceptors.response.use(
   (res) => res,
   (error) => {
     console.error(
-      `${error.config.method.toUpperCase()}:${error.config.url} Error : TIME(${new Date()})`,
+      `${error.config.method.toUpperCase()}:${error.config.url} Error : TIME(${new Date()})\n\n${error}`,
     );
   },
 );
@@ -35,6 +35,12 @@ const http = {
   },
   getWithParams: <T>(uri: string, params: any) => {
     return instance.get<APIResponse<T>>(uri, { params: params })
+  },
+  post: <T, D>(uri: string, data?: D) => {
+    return instance.post<APIResponse<T>, D>(uri, data);
+  },
+  postWithParams: <T, D>(uri: string, data?: D, params?: any) => {
+    return instance.post<APIResponse<T>, D>(uri, data, { params: params });
   },
 };
 

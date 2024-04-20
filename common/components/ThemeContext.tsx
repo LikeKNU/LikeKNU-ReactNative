@@ -2,7 +2,7 @@ import { getData } from '@/utils/storageManager';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { useColorScheme } from 'react-native';
 
-type ThemeType = 'light' | 'dark';
+export type ThemeType = 'light' | 'dark';
 
 export interface ThemeContextProviderProps {
   theme: ThemeType;
