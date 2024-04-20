@@ -1,5 +1,5 @@
 import AssignmentIcon from '@/assets/icons/assignment.svg'
-import BusFrontIcon from '@/assets/icons/bus_front.svg'
+import BusFrontIcon from '@/assets/icons/bus-front.svg'
 import HomeIcon from '@/assets/icons/home.svg'
 import RestaurantIcon from '@/assets/icons/restaurant.svg'
 import ThreeDotsIcon from '@/assets/icons/three-dots.svg'

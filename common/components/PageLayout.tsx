@@ -14,7 +14,6 @@ const PageLayout = ({ children, style, ...props }: DefaultContainerProps) => {
     container: {
       height: '100%',
       width: '100%',
-      paddingHorizontal: 20,
       flexDirection: 'column',
 
       backgroundColor: colors[theme].container

@@ -1,0 +1,49 @@
+import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
+import { useTheme } from '@/common/components/ThemeContext';
+import FontText from '@/common/text/FontText';
+import colors from '@/constants/colors';
+import { useRouter } from 'expo-router';
+import { Pressable, StyleSheet, View } from 'react-native';
+
+interface BackHeaderProps {
+  title?: string;
+}
+
+const BackHeader = ({ title }: BackHeaderProps) => {
+  const { theme } = useTheme();
+  const router = useRouter();
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.backIcon}>
+        <Pressable onPress={() => router.back()}>
+          <ArrowLeftIcon width={30} height={30} fill={colors[theme].text} />
+        </Pressable>
+      </View>
+      <FontText fontWeight="600" style={[styles.title, { color: colors[theme].text }]}>{title}</FontText>
+      <View style={{ flex: 1 }} />
+    </View>
+  );
+};
+
+export default BackHeader;
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+
+    paddingVertical: 10,
+    paddingHorizontal: 10
+  },
+  title: {
+    flex: 1,
+    fontSize: 20,
+    textAlign: 'center'
+  },
+  backIcon: {
+    flex: 1,
+    flexDirection: 'row'
+  }
+});

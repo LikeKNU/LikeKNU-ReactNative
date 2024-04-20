@@ -1,7 +1,8 @@
+import BackHeader from '@/common/components/BackHeader';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/components/ThemeContext';
-import FontText from '@/common/text/FontText';
-import colors from '@/constants/colors';
+import { StyleSheet } from 'react-native';
+import WebView from 'react-native-webview';
 
 interface AnnouncementViewProps {
   url: string;
@@ -12,11 +13,20 @@ const AnnouncementView = ({ url }: AnnouncementViewProps) => {
 
   return (
     <PageLayout edges={['top']}>
-      <FontText style={{ color: colors[theme].text }}>
-        {url}
-      </FontText>
+      <BackHeader title="공지사항" />
+      <WebView
+        style={styles.container}
+        source={{ uri: url }}
+        showsVerticalScrollIndicator={false}
+      />
     </PageLayout>
   );
 };
 
 export default AnnouncementView;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});

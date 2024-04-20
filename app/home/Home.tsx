@@ -6,7 +6,7 @@ import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
 const Home = () => {
   const { theme } = useTheme();
@@ -15,7 +15,7 @@ const Home = () => {
     <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].background }}>
       <HomeHeader />
       <ScrollView
-        contentContainerStyle={{ paddingVertical: 10 }}
+        contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
         <HomeAnnouncement />
@@ -28,3 +28,10 @@ const Home = () => {
 };
 
 export default Home;
+
+const styles = StyleSheet.create({
+  scrollView: {
+    paddingVertical: 10,
+    paddingHorizontal: 20
+  }
+});

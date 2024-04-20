@@ -10,8 +10,8 @@ const HomeHeader = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        {theme === 'light' ? <GrayIconLight width={38} height={38} /> : <GrayIconDark width={38} height={38} />}
+      <View style={styles.title}>
+        {theme === 'light' ? <GrayIconLight width={34} height={34} /> : <GrayIconDark width={34} height={34} />}
         <FontText fontWeight="700" style={[styles.campus, { color: campusColors['cheonan'] }]}>{'천안캠'}</FontText>
       </View>
     </View>
@@ -26,11 +26,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
 
-    paddingVertical: 10
+    paddingVertical: 10,
+    paddingHorizontal: 20
+  },
+  title: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   campus: {
     fontSize: 24,
-    marginLeft: -6
+    marginLeft: -4
   },
   content: {
     fontSize: 22
