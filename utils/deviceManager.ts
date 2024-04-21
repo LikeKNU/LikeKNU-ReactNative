@@ -1,5 +1,6 @@
 import { ThemeType, useTheme } from '@/common/components/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
+import { campusName } from '@/constants/campus';
 import http from '@/utils/http';
 import { getData, storeData } from '@/utils/storageManager';
 import * as Application from 'expo-application';
@@ -47,7 +48,7 @@ const useInitializeDevice = () => {
           // platform: Platform.OS,
           userAgent: Platform.OS,
           themeColor: theme,
-          campus: campus.toUpperCase(),
+          campus: campusName[campus].name,
           favoriteCafeteria: storedFavoriteCafeteria
         });
       } catch (err) {

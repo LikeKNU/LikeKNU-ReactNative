@@ -1,4 +1,4 @@
-export const campus = {
+export const campusName = {
   singwan: {
     name: '신관캠',
     value: 'singwan'

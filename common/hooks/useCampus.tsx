@@ -1,5 +1,5 @@
 import { Campuses } from '@/constants/campus';
-import { getData } from '@/utils/storageManager';
+import { getData, storeData } from '@/utils/storageManager';
 import { useEffect, useState } from 'react';
 
 const useCampus = () => {
@@ -10,6 +10,9 @@ const useCampus = () => {
       const storedCampus = await getData('campus');
       if (isCampus(storedCampus)) {
         setCampus(storedCampus);
+      } else {
+        await storeData('campus', Campuses.SINGWAN);
+        setCampus(Campuses.SINGWAN);
       }
     };
 
