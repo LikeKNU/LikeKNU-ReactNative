@@ -19,10 +19,9 @@ const CityBusItem: FC<{ arrivalBus: BusArrivalProps }> = ({ arrivalBus }) => {
     <View style={styles.container}>
       <BusFrontIcon width={22} height={22} fill={`#${arrivalBus.busColor}`} />
       <FontText fontWeight="700" style={styles.busNumber}>{arrivalBus.busNumber}</FontText>
-      {/*<View style={[styles.remainingTime, { backgroundColor: colors[theme].gray300 }]}>*/}
-      <FontText fontWeight="300"
-                style={{ fontSize: 14, color: colors.red, marginLeft: 12 }}>{arrivalBus.remainingTime}</FontText>
-      {/*</View>*/}
+      <FontText fontWeight="300" style={{ fontSize: 14, color: colors.red, marginLeft: 12 }}>
+        {arrivalBus.remainingTime}
+      </FontText>
     </View>
   );
 };

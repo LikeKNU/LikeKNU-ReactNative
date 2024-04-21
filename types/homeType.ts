@@ -11,3 +11,10 @@ export interface HomeBusProps extends BusArrivalProps {
   origin: string;
   destination: string;
 }
+
+export interface HomeMealProps {
+  cafeteriaId: string;
+  cafeteriaName: string;
+  mealType: '아침' | '점심' | '저녁';
+  menus: string | null;
+}

@@ -1,10 +1,11 @@
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
+import { ReactNode } from 'react';
 import { StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
 
 interface CardContainerProps extends ViewProps {
-  title: string;
+  title: string | ReactNode;
   style?: ViewStyle;
 }
 
@@ -13,7 +14,11 @@ const CardContainer = ({ children, title, style, ...props }: CardContainerProps)
 
   return (
     <View style={[styles.container, { backgroundColor: colors[theme].container }, style]} {...props}>
-      <FontText fontWeight="700" style={styles.title}>{title}</FontText>
+      {typeof title === 'string' ? (
+        <FontText fontWeight="700" style={styles.title}>{title}</FontText>
+      ) : (
+        title
+      )}
       {children}
     </View>
   );

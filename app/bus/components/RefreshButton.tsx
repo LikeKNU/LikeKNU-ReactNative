@@ -47,13 +47,16 @@ const RefreshButton = ({ mutate }: BusRefreshProps) => {
     animationRef.current.start();
 
     mutate().then(() => {
-      animationRef.current?.stop();
-      rotateAnimation.setValue(0);
-      setRefreshTime(intervalTime);
+      setTimeout(() => {
+        animationRef.current?.stop();
+        rotateAnimation.setValue(0);
+        setRefreshTime(intervalTime);
+      }, 700);
     }).catch(err => {
-      console.error('Error during data mutation:', err);
-      animationRef.current?.stop();
-      rotateAnimation.setValue(0);
+      setTimeout(() => {
+        animationRef.current?.stop();
+        rotateAnimation.setValue(0);
+      }, 700);
     });
   };
 
@@ -68,7 +71,7 @@ const RefreshButton = ({ mutate }: BusRefreshProps) => {
       onPress={handleRefresh}
     >
       <Animated.View style={{ transform: [{ rotate }] }}>
-        <ArrowClockwiseIcon width={36} height={36} fill={colors[theme].gray100} />
+        <ArrowClockwiseIcon width={36} height={36} fill={colors[theme].gray200} />
       </Animated.View>
       <FontText fontWeight="600" style={[styles.refreshTime, { color: colors[theme].gray100 }]}>{refreshTime}</FontText>
     </Pressable>

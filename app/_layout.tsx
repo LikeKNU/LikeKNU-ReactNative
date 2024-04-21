@@ -63,7 +63,7 @@ export default AppLayout;
 const Content = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
-  const { isLoading, error } = useInitializeDevice();
+  // const { isLoading, error } = useInitializeDevice();
 
   return (
     <Stack screenOptions={{
