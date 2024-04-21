@@ -1,18 +1,26 @@
+import BellIcon from '@/assets/icons/bell.svg';
 import GrayIconDark from '@/assets/icons/gray-icon-dark.svg'
 import GrayIconLight from '@/assets/icons/gray-icon-light.svg'
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import { campusColors } from '@/constants/colors';
-import { StyleSheet, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 const HomeHeader = () => {
   const { theme } = useTheme();
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
       <View style={styles.title}>
         {theme === 'light' ? <GrayIconLight width={34} height={34} /> : <GrayIconDark width={34} height={34} />}
         <FontText fontWeight="700" style={[styles.campus, { color: campusColors['cheonan'] }]}>{'천안캠'}</FontText>
+      </View>
+      <View style={styles.menuIcons}>
+        <Pressable onPress={() => router.push('/notification')}>
+          <BellIcon width={28} height={28} />
+        </Pressable>
       </View>
     </View>
   );
@@ -39,5 +47,12 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 22
+  },
+  menuIcons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+
+    paddingHorizontal: 4
   }
 });
