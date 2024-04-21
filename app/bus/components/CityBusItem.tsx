@@ -3,10 +3,9 @@ import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { BusArrivalProps } from '@/types/busType';
-import { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-const CityBusItem: FC<{ arrivalBus: BusArrivalProps }> = ({ arrivalBus }) => {
+const CityBusItem = ({ arrivalBus }: { arrivalBus: BusArrivalProps }) => {
   const { theme } = useTheme();
 
   if (!arrivalBus.busNumber) {
@@ -19,7 +18,7 @@ const CityBusItem: FC<{ arrivalBus: BusArrivalProps }> = ({ arrivalBus }) => {
     <View style={styles.container}>
       <BusFrontIcon width={22} height={22} fill={`#${arrivalBus.busColor}`} />
       <FontText fontWeight="700" style={styles.busNumber}>{arrivalBus.busNumber}</FontText>
-      <FontText fontWeight="300" style={{ fontSize: 14, color: colors.red, marginLeft: 12 }}>
+      <FontText fontWeight="400" style={[styles.remainingTime, { color: colors.red }]}>
         {arrivalBus.remainingTime}
       </FontText>
     </View>
@@ -38,11 +37,10 @@ const styles = StyleSheet.create({
   },
   busNumber: {
     fontSize: 16,
-    marginLeft: 2
+    width: 36
   },
   remainingTime: {
-    padding: 6,
-    borderRadius: 6,
+    fontSize: 14,
     marginLeft: 12
   },
   emptyMessage: {

@@ -1,4 +1,4 @@
-import { HomeAnnouncementProps, HomeBusProps, HomeMealProps } from '@/types/homeType';
+import { HomeAnnouncementProps, HomeBusProps, HomeCalendarProps, HomeMealProps } from '@/types/homeType';
 import http, { extractBodyFromResponse } from '@/utils/http';
 import useSWR from 'swr';
 
@@ -29,4 +29,13 @@ const getHomeMeals = async (uri: string) => {
 
 export const useHomeMeal = () => {
   return useSWR('/api/main/menu', getHomeMeals);
+};
+
+const getHomeCalendar = async (uri: string) => {
+  const response = await http.get<HomeCalendarProps[]>(uri);
+  return extractBodyFromResponse<HomeCalendarProps[]>(response) ?? [];
+};
+
+export const useHomeCalendar = () => {
+  return useSWR('/api/main/schedule', getHomeCalendar);
 };

@@ -14,7 +14,6 @@ const SwiperComponent = ({ children }: PropsWithChildren) => {
       index={0}
       showsButtons={false}
       activeDotColor={campusColors[campus] || '#000'}
-      height={200}
       dotStyle={{ marginBottom: -20 }}
       dotColor={colors[theme].gray300}
       activeDotStyle={{ marginBottom: -20 }}

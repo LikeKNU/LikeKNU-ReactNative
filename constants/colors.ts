@@ -15,7 +15,7 @@ const colors = {
     gray200: '#62626E',
     gray300: '#2C2C36'
   },
-  red: '#F04452',
+  red: 'rgba(240,68,82,0.9)',
   blue: '#3182F7'
 };
 

@@ -1,4 +1,5 @@
 import { BusArrivalProps } from '@/types/busType';
+import { CalendarProps } from '@/types/calendarType';
 
 export interface HomeAnnouncementProps {
   announcementId: string;
@@ -17,4 +18,8 @@ export interface HomeMealProps {
   cafeteriaName: string;
   mealType: '아침' | '점심' | '저녁';
   menus: string | null;
+}
+
+export interface HomeCalendarProps extends CalendarProps {
+  today: boolean;
 }

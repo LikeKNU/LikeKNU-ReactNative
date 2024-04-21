@@ -6,11 +6,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-export interface HomeMealItemProps {
-  meal: HomeMealProps;
-}
-
-const HomeMealItem = ({ meal }: HomeMealItemProps) => {
+const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
   const { theme } = useTheme();
   const router = useRouter();
 
@@ -33,7 +29,7 @@ const HomeMealItem = ({ meal }: HomeMealItemProps) => {
           <FontText fontWeight="500" style={styles.menus}>
             {displayedMenus}
           </FontText>
-        ) : <FontText fontWeight="400" style={{ marginTop: 10, fontSize: 12, color: colors[theme].gray200 }}>
+        ) : <FontText fontWeight="400" style={[styles.emptyMessage, { color: colors[theme].gray200 }]}>
           등록된 메뉴가 없어요
         </FontText>}
       </View>
@@ -47,7 +43,8 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginBottom: 10
   },
   title: {
     fontSize: 18
@@ -57,8 +54,10 @@ const styles = StyleSheet.create({
     marginRight: 4
   },
   menus: {
-    marginTop: 10,
     fontSize: 12,
     lineHeight: 18
+  },
+  emptyMessage: {
+    fontSize: 12
   }
 });

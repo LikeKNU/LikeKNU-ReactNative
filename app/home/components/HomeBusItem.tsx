@@ -1,10 +1,10 @@
 import CityBusItem from '@/app/bus/components/CityBusItem';
 import CityBusRoute from '@/app/bus/components/CityBusRoute';
 import { HomeBusProps } from '@/types/homeType';
-import React, { FC } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-const HomeBusItem: FC<{ bus: HomeBusProps }> = ({ bus }) => {
+const HomeBusItem = ({ bus }: { bus: HomeBusProps }) => {
   return (
     <View style={styles.container}>
       <CityBusRoute origin={bus.origin} destination={bus.destination} />
