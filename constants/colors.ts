@@ -3,16 +3,20 @@ const colors = {
     text: '#181F29',
     background: '#F3F4F6',
     container: '#FFFFFF',
-    lightGray: '#F5F5F5',
-    darkGray: '#B0B9C2'
+    gray100: '#6C7887',
+    gray200: '#B0B9C2',
+    gray300: '#F3F4F6'
   },
   dark: {
     text: '#FFFFFF',
     background: '#101012',
     container: '#18171D',
-    lightGray: '#62626E',
-    darkGray: '#2C2C36'
+    gray100: '#A1A0A6',
+    gray200: '#62626E',
+    gray300: '#2C2C36'
   },
+  red: '#F04452',
+  blue: '#3182F7'
 };
 
 export default colors;

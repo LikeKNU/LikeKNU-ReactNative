@@ -1,6 +1,7 @@
 'use client';
 
 import HomeAnnouncement from '@/app/home/components/HomeAnnouncement';
+import HomeBus from '@/app/home/components/HomeBus';
 import HomeHeader from '@/app/home/components/HomeHeader';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/components/ThemeContext';
@@ -19,9 +20,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
       >
         <HomeAnnouncement />
-        <HomeAnnouncement />
-        <HomeAnnouncement />
-        <HomeAnnouncement />
+        <HomeBus />
       </ScrollView>
     </PageLayout>
   );

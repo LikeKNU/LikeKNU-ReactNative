@@ -13,7 +13,7 @@ const CardContainer = ({ children, title, style, ...props }: CardContainerProps)
 
   return (
     <View style={[styles.container, { backgroundColor: colors[theme].container }, style]} {...props}>
-      <FontText fontWeight="700" style={[styles.title, { color: colors[theme].text }]}>{title}</FontText>
+      <FontText fontWeight="700" style={styles.title}>{title}</FontText>
       {children}
     </View>
   );

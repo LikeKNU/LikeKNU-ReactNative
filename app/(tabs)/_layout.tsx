@@ -20,11 +20,11 @@ const TabLayout = () => {
       borderTopWidth: 0.5,
       borderLeftWidth: 0.5,
       borderRightWidth: 0.5,
-      borderLeftColor: colors[theme][theme === 'light' ? 'lightGray' : 'darkGray'],
-      borderRightColor: colors[theme][theme === 'light' ? 'lightGray' : 'darkGray'],
-      borderTopColor: colors[theme][theme === 'light' ? 'lightGray' : 'darkGray'],
+      borderLeftColor: colors[theme].gray300,
+      borderRightColor: colors[theme].gray300,
+      borderTopColor: colors[theme].gray300,
       borderTopRightRadius: 25,
-      borderTopLeftRadius: 25,
+      borderTopLeftRadius: 25
     }
   });
 
@@ -34,7 +34,7 @@ const TabLayout = () => {
       headerShown: false,
       tabBarIconStyle: { marginBottom: -10 },
       tabBarActiveTintColor: colors[theme].text,
-      tabBarInactiveTintColor: colors[theme][theme === 'light' ? 'darkGray' : 'lightGray']
+      tabBarInactiveTintColor: colors[theme].gray200
     }}>
       <Tabs.Screen name="index" options={{
         tabBarIcon: ({ color }) => (

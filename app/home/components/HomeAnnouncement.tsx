@@ -2,7 +2,6 @@ import { useHomeAnnouncements } from '@/api/home';
 import CardContainer from '@/common/components/CardContainer';
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
-import colors from '@/constants/colors';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
@@ -27,7 +26,7 @@ const HomeAnnouncement = () => {
                 })}>
                   <FontText
                     fontWeight="400"
-                    style={[styles.content, { color: colors[theme].text }]}
+                    style={styles.content}
                     numberOfLines={1}
                   >
                     {item.announcementTitle}

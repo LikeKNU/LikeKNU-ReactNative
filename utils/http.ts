@@ -25,7 +25,7 @@ instance.interceptors.request.use(
   },
 );
 
-export const extractBodyFromResponse = (response: AxiosResponse<APIResponse<any>>) => {
+export const extractBodyFromResponse = <T>(response: AxiosResponse<APIResponse<T>>) => {
   return response.data.data.body;
 };
 

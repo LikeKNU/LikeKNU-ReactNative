@@ -20,7 +20,7 @@ const BackHeader = ({ title }: BackHeaderProps) => {
           <ArrowLeftIcon width={24} height={24} fill={colors[theme].text} />
         </Pressable>
       </View>
-      <FontText fontWeight="600" style={[styles.title, { color: colors[theme].text }]}>{title}</FontText>
+      <FontText fontWeight="600" style={styles.title}>{title}</FontText>
       <View style={{ flex: 1 }} />
     </View>
   );

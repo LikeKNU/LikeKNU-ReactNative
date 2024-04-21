@@ -1,3 +1,5 @@
+import { useTheme } from '@/common/components/ThemeContext';
+import colors from '@/constants/colors';
 import { fontName } from '@/constants/fonts';
 import React, { FunctionComponent } from 'react';
 import { Text, TextProps, TextStyle } from 'react-native';
@@ -18,6 +20,8 @@ interface CustomTextProps extends TextProps {
 }
 
 const FontText: FunctionComponent<CustomTextProps> = ({ fontWeight, style, ...props }) => {
+  const { theme } = useTheme();
+
   const getFont = () => {
     switch (fontWeight) {
       case '100':
@@ -44,7 +48,7 @@ const FontText: FunctionComponent<CustomTextProps> = ({ fontWeight, style, ...pr
   };
 
   return (
-    <Text allowFontScaling={false} style={[{ fontFamily: getFont() }, style]} {...props} />
+    <Text allowFontScaling={false} style={[{ fontFamily: getFont(), color: colors[theme].text }, style]} {...props} />
   );
 };
 
