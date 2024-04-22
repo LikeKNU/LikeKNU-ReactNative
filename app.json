@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "LikeKNU-ReactNative",
-    "slug": "LikeKNU-ReactNative",
+    "slug": "like-knu",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

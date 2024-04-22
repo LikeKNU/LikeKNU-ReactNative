@@ -17,26 +17,28 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
     : words;
 
   return (
-    <Pressable onPress={() => router.navigate({ pathname: '/meal', params: { cafeteriaId: meal.cafeteriaId } })}>
-      <View key={meal.cafeteriaId}>
-        <View style={styles.titleContainer}>
-          <FontText fontWeight="700" style={styles.title}>{meal.cafeteriaName}</FontText>
-          <FontText fontWeight="700" style={[styles.subtitle, { color: colors[theme].gray200 }]}>
-            {meal.mealType}
-          </FontText>
-        </View>
-        {displayedMenus ? (
-          <FlatList
-            scrollEnabled={false}
-            data={displayedMenus}
-            renderItem={({ item }) =>
-              <FontText fontWeight="500" style={styles.menus}>{item}</FontText>
-            }
-          />
-        ) : <FontText fontWeight="400" style={[styles.emptyMessage, { color: colors[theme].gray200 }]}>
-          등록된 메뉴가 없어요
-        </FontText>}
+    <Pressable
+      style={{ height: 176 }}
+      key={meal.cafeteriaId}
+      onPress={() => router.navigate({ pathname: '/meal', params: { cafeteriaId: meal.cafeteriaId } })}
+    >
+      <View style={styles.titleContainer}>
+        <FontText fontWeight="700" style={styles.title}>{meal.cafeteriaName}</FontText>
+        <FontText fontWeight="700" style={[styles.subtitle, { color: colors[theme].gray200 }]}>
+          {meal.mealType}
+        </FontText>
       </View>
+      {displayedMenus.length > 0 ? (
+        <FlatList
+          scrollEnabled={false}
+          data={displayedMenus}
+          renderItem={({ item }) =>
+            <FontText style={styles.menus} numberOfLines={1}>{item}</FontText>
+          }
+        />
+      ) : <FontText style={[styles.emptyMessage, { color: colors[theme].gray200 }]} numberOfLines={1}>
+        등록된 메뉴가 없어요
+      </FontText>}
     </Pressable>
   );
 };

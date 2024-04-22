@@ -9,7 +9,7 @@ const CityBusItem = ({ arrivalBus }: { arrivalBus: BusArrivalProps }) => {
   const { theme } = useTheme();
 
   if (!arrivalBus.busNumber) {
-    return <FontText fontWeight="400" style={[styles.emptyMessage, { color: colors[theme].gray100 }]}>
+    return <FontText style={[styles.emptyMessage, { color: colors[theme].gray100 }]}>
       30분 안으로 오는 버스가 없어요
     </FontText>
   }
@@ -18,7 +18,7 @@ const CityBusItem = ({ arrivalBus }: { arrivalBus: BusArrivalProps }) => {
     <View style={styles.container}>
       <BusFrontIcon width={22} height={22} fill={`#${arrivalBus.busColor}`} />
       <FontText fontWeight="700" style={styles.busNumber}>{arrivalBus.busNumber}</FontText>
-      <FontText fontWeight="400" style={[styles.remainingTime, { color: colors.red }]}>
+      <FontText style={[styles.remainingTime, { color: colors.red }]}>
         {arrivalBus.remainingTime}
       </FontText>
     </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     marginLeft: 12
   },
   emptyMessage: {
-    fontSize: 14,
+    fontSize: 13,
 
     paddingVertical: 10,
     marginBottom: 6

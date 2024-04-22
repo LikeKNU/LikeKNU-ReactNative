@@ -14,10 +14,10 @@ const CityBusRoute = ({ origin, destination }: CityBusRouteProps) => {
 
   return (
     <View style={styles.container}>
-      <FontText fontWeight="400" style={styles.name}>{origin}</FontText>
+      <FontText style={styles.name}>{origin}</FontText>
       <CaretRightIcon style={styles.icon} width={16} height={16}
                       fill={colors[theme].gray200} />
-      <FontText fontWeight="400" style={styles.name}>{destination}</FontText>
+      <FontText style={styles.name}>{destination}</FontText>
     </View>
   );
 };
