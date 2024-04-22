@@ -4,7 +4,7 @@ import FontText from '@/common/text/FontText';
 import { HomeAnnouncementProps } from '@/types/homeType';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { FlatList, Pressable, StyleSheet, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet } from 'react-native';
 
 const HomeAnnouncement = () => {
   const { data, isLoading, error } = useHomeAnnouncements();
@@ -26,26 +26,21 @@ const HomeAnnouncement = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <Pressable onPress={() => router.navigate('/announcement')}>
-        <CardContainer title="공지사항">
-          <FlatList
-            scrollEnabled={false}
-            data={data}
-            renderItem={renderItem}
-          />
-        </CardContainer>
-      </Pressable>
-    </View>
+    <Pressable onPress={() => router.navigate('/announcement')}>
+      <CardContainer title="공지사항">
+        <FlatList
+          scrollEnabled={false}
+          data={data}
+          renderItem={renderItem}
+        />
+      </CardContainer>
+    </Pressable>
   );
 };
 
 export default HomeAnnouncement;
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 10
-  },
   content: {
     fontSize: 13,
     marginBottom: 4

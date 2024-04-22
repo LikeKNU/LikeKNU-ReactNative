@@ -22,7 +22,6 @@ const ThemeContextProvider = ({ children }: PropsWithChildren) => {
         setTheme(systemTheme ?? 'light');
       } else {
         setTheme((storedTheme as ThemeType) ?? 'light');
-        console.log(storedTheme as ThemeType);
       }
     };
     loadTheme();

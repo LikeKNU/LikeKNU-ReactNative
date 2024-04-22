@@ -48,7 +48,7 @@ const useInitializeDevice = () => {
           // platform: Platform.OS,
           userAgent: Platform.OS,
           themeColor: theme,
-          campus: campusName[campus].name,
+          campus: campusName[campus].value,
           favoriteCafeteria: storedFavoriteCafeteria
         });
       } catch (err) {

@@ -1,18 +1,28 @@
 import PageLayout from '@/common/components/PageLayout';
-import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 const Bus = () => {
-  const { theme } = useTheme();
-
   return (
     <PageLayout edges={['top']}>
-      <View>
-        <FontText fontWeight="700" style={{ fontSize: 24 }}>버스</FontText>
+      <View style={styles.header}>
+        <FontText fontWeight="700" style={styles.title}>버스</FontText>
       </View>
     </PageLayout>
   );
 };
 
 export default Bus;
+
+const styles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+
+    paddingVertical: 10,
+    paddingHorizontal: 20
+  },
+  title: {
+    fontSize: 24
+  }
+});

@@ -11,24 +11,22 @@ const HomeBus = () => {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      <Pressable onPress={() => router.navigate('/bus')}>
-        <CardContainer title="버스" style={{ paddingBottom: 4 }}>
-          <View style={{ flexDirection: 'row' }}>
-            <FlatList
-              scrollEnabled={false}
-              data={data}
-              renderItem={
-                ({ item }) => <HomeBusItem bus={item} />
-              }
-            />
-            <View style={{ justifyContent: 'flex-end', paddingBottom: 10 }}>
-              <RefreshButton mutate={mutate} />
-            </View>
+    <Pressable style={styles.container} onPress={() => router.navigate('/bus')}>
+      <CardContainer title="버스" style={{ paddingBottom: 4 }}>
+        <View style={{ flexDirection: 'row' }}>
+          <FlatList
+            scrollEnabled={false}
+            data={data}
+            renderItem={
+              ({ item }) => <HomeBusItem bus={item} />
+            }
+          />
+          <View style={{ justifyContent: 'flex-end', paddingBottom: 10 }}>
+            <RefreshButton mutate={mutate} />
           </View>
-        </CardContainer>
-      </Pressable>
-    </View>
+        </View>
+      </CardContainer>
+    </Pressable>
   );
 };
 

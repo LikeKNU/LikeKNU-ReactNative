@@ -1,15 +1,15 @@
 export const campusName = {
   singwan: {
     name: '신관캠',
-    value: 'singwan'
+    value: 'SINGWAN'
   },
   cheonan: {
     name: '천안캠',
-    value: 'cheonan'
+    value: 'CHEONAN'
   },
   yesan: {
     name: '예산캠',
-    value: 'yesan'
+    value: 'YESAN'
   }
 };
 

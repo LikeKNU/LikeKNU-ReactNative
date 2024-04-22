@@ -4,7 +4,7 @@ import colors from '@/constants/colors';
 import { HomeMealProps } from '@/types/homeType';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
   const { theme } = useTheme();
@@ -13,8 +13,8 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
   const maxWordsToShow = 7;
   const words = meal.menus ? meal.menus.split(' ') : [];
   const displayedMenus = words.length > maxWordsToShow
-    ? words.slice(0, maxWordsToShow).join('\n') + '\n...'
-    : words.join('\n');
+    ? [...words.slice(0, maxWordsToShow), '...']
+    : words;
 
   return (
     <Pressable onPress={() => router.navigate({ pathname: '/meal', params: { cafeteriaId: meal.cafeteriaId } })}>
@@ -26,9 +26,13 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
           </FontText>
         </View>
         {displayedMenus ? (
-          <FontText fontWeight="500" style={styles.menus}>
-            {displayedMenus}
-          </FontText>
+          <FlatList
+            scrollEnabled={false}
+            data={displayedMenus}
+            renderItem={({ item }) =>
+              <FontText fontWeight="500" style={styles.menus}>{item}</FontText>
+            }
+          />
         ) : <FontText fontWeight="400" style={[styles.emptyMessage, { color: colors[theme].gray200 }]}>
           등록된 메뉴가 없어요
         </FontText>}
