@@ -2,7 +2,7 @@ import { ThemeType, useTheme } from '@/common/components/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
 import { campusName } from '@/constants/campus';
 import http from '@/utils/http';
-import { getData, storeData } from '@/utils/storageManager';
+import { getData, storeData } from '@/utils/storage';
 import * as Application from 'expo-application';
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';

@@ -1,7 +1,7 @@
 import ThemeContextProvider, { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
-import useInitializeDevice from '@/utils/deviceManager';
+import useInitializeDevice from '@/utils/device';
 import { useFonts } from 'expo-font';
 import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -63,7 +63,7 @@ export default AppLayout;
 const Content = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
-  const { isLoading, error } = useInitializeDevice();
+  useInitializeDevice();
 
   return (
     <Stack screenOptions={{

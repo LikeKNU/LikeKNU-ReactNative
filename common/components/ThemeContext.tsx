@@ -1,4 +1,4 @@
-import { getData } from '@/utils/storageManager';
+import { getData } from '@/utils/storage';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { useColorScheme } from 'react-native';
 
@@ -27,10 +27,7 @@ const ThemeContextProvider = ({ children }: PropsWithChildren) => {
     loadTheme();
   }, [systemTheme]);
 
-  const contextValue = {
-    theme,
-    setTheme,
-  };
+  const contextValue = { theme, setTheme };
 
   return (
     <ThemeContext.Provider value={contextValue}>

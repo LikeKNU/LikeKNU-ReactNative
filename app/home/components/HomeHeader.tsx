@@ -2,7 +2,9 @@ import BellIcon from '@/assets/icons/bell.svg';
 import GrayIconDark from '@/assets/icons/gray-icon-dark.svg'
 import GrayIconLight from '@/assets/icons/gray-icon-light.svg'
 import { useTheme } from '@/common/components/ThemeContext';
+import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
+import { campusName } from '@/constants/campus';
 import { campusColors } from '@/constants/colors';
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
@@ -10,12 +12,15 @@ import { Pressable, StyleSheet, View } from 'react-native';
 const HomeHeader = () => {
   const { theme } = useTheme();
   const router = useRouter();
+  const { campus } = useCampus();
 
   return (
     <View style={styles.container}>
       <View style={styles.title}>
         {theme === 'light' ? <GrayIconLight width={34} height={34} /> : <GrayIconDark width={34} height={34} />}
-        <FontText fontWeight="700" style={[styles.campus, { color: campusColors['cheonan'] }]}>{'천안캠'}</FontText>
+        <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
+          {campusName[campus].name}
+        </FontText>
       </View>
       <View style={styles.menuIcons}>
         <Pressable onPress={() => router.push('/notification')}>

@@ -1,5 +1,5 @@
 import { Campuses } from '@/constants/campus';
-import { getData, storeData } from '@/utils/storageManager';
+import { getData, storeData } from '@/utils/storage';
 import { useEffect, useState } from 'react';
 
 const useCampus = () => {
@@ -26,4 +26,4 @@ export default useCampus;
 
 const isCampus = (value: any): value is Campuses => {
   return Object.values(Campuses).includes(value);
-}
+};

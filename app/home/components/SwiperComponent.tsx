@@ -13,7 +13,7 @@ const SwiperComponent = ({ children }: PropsWithChildren) => {
     <Swiper
       index={0}
       showsButtons={false}
-      activeDotColor={campusColors[campus] || '#000'}
+      activeDotColor={campusColors[campus]}
       dotStyle={{ marginBottom: -20 }}
       dotColor={colors[theme].gray300}
       activeDotStyle={{ marginBottom: -20 }}
