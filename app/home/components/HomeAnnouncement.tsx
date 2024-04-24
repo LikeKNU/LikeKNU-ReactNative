@@ -32,6 +32,7 @@ const HomeAnnouncement = () => {
           scrollEnabled={false}
           data={data}
           renderItem={renderItem}
+          keyExtractor={(item) => item.announcementId}
         />
       </CardContainer>
     </Pressable>

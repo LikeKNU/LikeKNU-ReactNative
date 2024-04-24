@@ -1,7 +1,7 @@
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { CalendarProps } from '@/types/calendarType';
+import { CalendarProps } from '@/types/calendarTypes';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 

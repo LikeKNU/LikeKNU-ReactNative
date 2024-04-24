@@ -1,5 +1,5 @@
-import { BusArrivalProps } from '@/types/busType';
-import { CalendarProps } from '@/types/calendarType';
+import { BusArrivalProps } from '@/types/busTypes';
+import { CalendarProps } from '@/types/calendarTypes';
 
 export interface HomeAnnouncementProps {
   announcementId: string;

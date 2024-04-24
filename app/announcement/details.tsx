@@ -1,10 +1,10 @@
-import AnnouncementView from '@/app/announcement/components/AnnouncementView';
+import WebViewPage from '@/common/WebViewPage';
 import { useLocalSearchParams } from 'expo-router';
 
 const AnnouncementDetailsPage = () => {
   const { url } = useLocalSearchParams<{ url: string }>();
 
-  return <AnnouncementView url={url ?? ''} />
+  return <WebViewPage title="공지사항" url={url} />
 };
 
 export default AnnouncementDetailsPage;

@@ -1,4 +1,3 @@
-import { useHomeCalendar } from '@/api/home';
 import CalendarItem from '@/app/calendar/components/CalendarItem';
 import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
 import CardContainer from '@/common/components/CardContainer';
@@ -34,6 +33,7 @@ const HomeCalendar = () => {
               data={data}
               renderItem={
                 ({ item }) => <CalendarItem item={item} />}
+              keyExtractor={(item) => item.scheduleId}
             />
           ) : (
             <View>

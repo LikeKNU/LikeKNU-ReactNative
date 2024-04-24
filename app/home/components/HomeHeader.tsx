@@ -1,6 +1,7 @@
 import BellIcon from '@/assets/icons/bell.svg';
 import GrayIconDark from '@/assets/icons/gray-icon-dark.svg'
 import GrayIconLight from '@/assets/icons/gray-icon-light.svg'
+import TabHeader from '@/common/components/TabHeader';
 import { useTheme } from '@/common/components/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
@@ -15,7 +16,7 @@ const HomeHeader = () => {
   const { campus } = useCampus();
 
   return (
-    <View style={styles.container}>
+    <TabHeader>
       <View style={styles.title}>
         {theme === 'light' ? <GrayIconLight width={34} height={34} /> : <GrayIconDark width={34} height={34} />}
         {campus && <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
@@ -27,21 +28,13 @@ const HomeHeader = () => {
           <BellIcon width={28} height={28} />
         </Pressable>
       </View>
-    </View>
+    </TabHeader>
   );
 };
 
 export default HomeHeader;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-
-    paddingVertical: 10,
-    paddingHorizontal: 20
-  },
   title: {
     flexDirection: 'row',
     alignItems: 'center'

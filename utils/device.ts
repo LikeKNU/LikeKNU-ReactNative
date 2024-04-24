@@ -24,37 +24,39 @@ const useInitializeDevice = () => {
 
   useEffect(() => {
     const initializeDevice = async () => {
-      try {
-        let deviceUniqueId: string | null = null;
+      if (campus) {
+        try {
+          let deviceUniqueId: string | null = null;
 
-        if (Platform.OS === 'ios') {
-          deviceUniqueId = await Application.getIosIdForVendorAsync();
-        } else if (Platform.OS === 'android') {
-          deviceUniqueId = Application.getAndroidId();
+          if (Platform.OS === 'ios') {
+            deviceUniqueId = await Application.getIosIdForVendorAsync();
+          } else if (Platform.OS === 'android') {
+            deviceUniqueId = Application.getAndroidId();
+          }
+
+          if (!deviceUniqueId) {
+            throw new Error('Device ID is null');
+          }
+
+          const storedDeviceId = await getData('deviceId');
+          if (!storedDeviceId || storedDeviceId !== deviceUniqueId) {
+            await storeData('deviceId', deviceUniqueId);
+          }
+          const storedFavoriteCafeteria = await getData('favoriteCafeteria');
+
+          await http.post<any, DeviceRegistrationProps>('/api/devices', {
+            deviceId: deviceUniqueId,
+            // platform: Platform.OS,
+            userAgent: Platform.OS,
+            themeColor: theme,
+            campus: campusName[campus].value,
+            favoriteCafeteria: storedFavoriteCafeteria
+          });
+        } catch (err) {
+          setError(err);
+        } finally {
+          setIsLoading(false);
         }
-
-        if (!deviceUniqueId) {
-          throw new Error('Device ID is null');
-        }
-
-        const storedDeviceId = await getData('deviceId');
-        if (!storedDeviceId || storedDeviceId !== deviceUniqueId) {
-          await storeData('deviceId', deviceUniqueId);
-        }
-        const storedFavoriteCafeteria = await getData('favoriteCafeteria');
-
-        await http.post<any, DeviceRegistrationProps>('/api/devices', {
-          deviceId: deviceUniqueId,
-          // platform: Platform.OS,
-          userAgent: Platform.OS,
-          themeColor: theme,
-          campus: campusName[campus].value,
-          favoriteCafeteria: storedFavoriteCafeteria
-        });
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
       }
     };
 

@@ -20,6 +20,7 @@ const HomeBus = () => {
             renderItem={
               ({ item }) => <HomeBusItem bus={item} />
             }
+            keyExtractor={(item) => item.routeId}
           />
           <View style={{ justifyContent: 'flex-end', paddingBottom: 10 }}>
             <RefreshButton mutate={mutate} />

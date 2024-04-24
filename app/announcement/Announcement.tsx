@@ -1,13 +1,18 @@
+import { useAnnouncements } from '@/api/announcement';
 import PageLayout from '@/common/components/PageLayout';
+import TabHeader from '@/common/components/TabHeader';
 import FontText from '@/common/text/FontText';
-import { StyleSheet, View } from 'react-native';
+import { Categories } from '@/constants/announcement';
+import { StyleSheet } from 'react-native';
 
 const Announcement = () => {
+  const { data, isLoading, error } = useAnnouncements(Categories.STUDENT_NEWS);
+
   return (
     <PageLayout edges={['top']}>
-      <View style={styles.header}>
+      <TabHeader>
         <FontText fontWeight="700" style={styles.title}>공지사항</FontText>
-      </View>
+      </TabHeader>
     </PageLayout>
   );
 };
@@ -15,13 +20,6 @@ const Announcement = () => {
 export default Announcement;
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-
-    paddingVertical: 10,
-    paddingHorizontal: 20
-  },
   title: {
     fontSize: 24
   }

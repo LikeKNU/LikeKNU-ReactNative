@@ -35,6 +35,7 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
           renderItem={({ item }) =>
             <FontText style={styles.menus} numberOfLines={1}>{item}</FontText>
           }
+          keyExtractor={(item) => item}
         />
       ) : <FontText style={[styles.emptyMessage, { color: colors[theme].gray200 }]} numberOfLines={1}>
         등록된 메뉴가 없어요

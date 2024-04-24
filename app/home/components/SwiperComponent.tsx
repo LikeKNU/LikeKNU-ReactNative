@@ -8,12 +8,13 @@ import Swiper from 'react-native-swiper';
 const SwiperComponent = ({ children }: PropsWithChildren) => {
   const { theme } = useTheme();
   const { campus } = useCampus();
+  console.log(campus);
 
   return (
     <Swiper
       index={0}
       showsButtons={false}
-      activeDotColor={campusColors[campus]}
+      activeDotColor={campus ? campusColors[campus] : colors[theme].text}
       dotStyle={{ marginBottom: -20 }}
       dotColor={colors[theme].gray300}
       activeDotStyle={{ marginBottom: -20 }}

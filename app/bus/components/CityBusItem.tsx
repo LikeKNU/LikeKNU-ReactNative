@@ -2,7 +2,7 @@ import BusFrontIcon from '@/assets/icons/bus-front.svg';
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { BusArrivalProps } from '@/types/busType';
+import { BusArrivalProps } from '@/types/busTypes';
 import { StyleSheet, View } from 'react-native';
 
 const CityBusItem = ({ arrivalBus }: { arrivalBus: BusArrivalProps }) => {
