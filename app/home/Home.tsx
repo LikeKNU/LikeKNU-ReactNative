@@ -1,5 +1,3 @@
-'use client';
-
 import HomeAnnouncement from '@/app/home/components/HomeAnnouncement';
 import HomeBus from '@/app/home/components/HomeBus';
 import HomeCalendar from '@/app/home/components/HomeCalendar';

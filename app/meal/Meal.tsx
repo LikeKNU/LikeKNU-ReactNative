@@ -17,6 +17,6 @@ export default Meal;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 24
+    fontSize: 22
   }
 });

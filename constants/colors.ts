@@ -5,7 +5,8 @@ const colors = {
     container: '#FFFFFF',
     gray100: '#6C7887',
     gray200: '#B0B9C2',
-    gray300: '#F3F4F6'
+    gray300: '#F3F4F6',
+    press: '#F2F3F5'
   },
   dark: {
     text: '#FFFFFF',
@@ -13,7 +14,8 @@ const colors = {
     container: '#18171D',
     gray100: '#A1A0A6',
     gray200: '#62626E',
-    gray300: '#2C2C36'
+    gray300: '#2C2C36',
+    press: '#202028'
   },
   red: 'rgba(240,68,82,0.9)',
   blue: '#3182F7'

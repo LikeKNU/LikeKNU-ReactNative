@@ -8,7 +8,6 @@ import Swiper from 'react-native-swiper';
 const SwiperComponent = ({ children }: PropsWithChildren) => {
   const { theme } = useTheme();
   const { campus } = useCampus();
-  console.log(campus);
 
   return (
     <Swiper
