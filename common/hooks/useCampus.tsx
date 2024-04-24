@@ -3,7 +3,7 @@ import { getData, storeData } from '@/utils/storage';
 import { useEffect, useState } from 'react';
 
 const useCampus = () => {
-  const [campus, setCampus] = useState<Campuses>(Campuses.SINGWAN);
+  const [campus, setCampus] = useState<Campuses | null>(null);
 
   useEffect(() => {
     const fetchCampus = async () => {

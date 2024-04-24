@@ -18,9 +18,9 @@ const HomeHeader = () => {
     <View style={styles.container}>
       <View style={styles.title}>
         {theme === 'light' ? <GrayIconLight width={34} height={34} /> : <GrayIconDark width={34} height={34} />}
-        <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
+        {campus && <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
           {campusName[campus].name}
-        </FontText>
+        </FontText>}
       </View>
       <View style={styles.menuIcons}>
         <Pressable onPress={() => router.push('/notification')}>

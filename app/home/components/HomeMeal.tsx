@@ -13,7 +13,8 @@ const HomeMeal = () => {
       <CardContainer title={<View />} style={{ height: 232 }}>
         {!isLoading &&
           <SwiperComponent>
-            {data && data.map((meal) => <HomeMealItem meal={meal} key={meal.cafeteriaId} />)}
+            {data ? data.map((meal) => <HomeMealItem meal={meal} key={meal.cafeteriaId} />)
+              : <View></View>}
           </SwiperComponent>
         }
       </CardContainer>
