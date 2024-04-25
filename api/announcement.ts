@@ -1,11 +1,10 @@
 import useCampus from '@/common/hooks/useCampus';
-import { Categories } from '@/constants/announcement';
 import { campusName } from '@/constants/campus';
 import { AnnouncementProps } from '@/types/announcementType';
 import http, { extractBodyFromResponse } from '@/utils/http';
 import useSWRInfinite from 'swr/infinite';
 
-export const useAnnouncements = (category: Categories) => {
+export const useAnnouncements = (category: string) => {
   const { campus } = useCampus();
   const getKey = (index: number, previousPageData: any) => {
     if (previousPageData && !previousPageData.length) {

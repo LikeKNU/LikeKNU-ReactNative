@@ -1,6 +1,6 @@
 const colors = {
   light: {
-    text: '#181F29',
+    contrast: '#181F29',
     background: '#F3F4F6',
     container: '#FFFFFF',
     gray100: '#6C7887',
@@ -9,7 +9,7 @@ const colors = {
     press: '#F2F3F5'
   },
   dark: {
-    text: '#FFFFFF',
+    contrast: '#FFFFFF',
     background: '#101012',
     container: '#18171D',
     gray100: '#A1A0A6',

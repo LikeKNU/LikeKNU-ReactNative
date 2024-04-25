@@ -1,18 +1,22 @@
 import { useAnnouncements } from '@/api/announcement';
-import AnnouncementItem from '@/app/announcement/components/AnnouncementItem';
 import SearchIcon from '@/assets/icons/search.svg';
+import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
 import { useTheme } from '@/common/components/ThemeContext';
+import TopTabs from '@/common/components/TopTabs';
 import FontText from '@/common/text/FontText';
-import { Categories } from '@/constants/announcement';
+import { categories } from '@/constants/announcement';
 import colors from '@/constants/colors';
+import { Category } from '@/types/announcementType';
 import { useRouter } from 'expo-router';
-import { ActivityIndicator, FlatList, Pressable, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { Pressable, StyleSheet } from 'react-native';
 
 const Announcement = () => {
+  const [category, setCategory] = useState<Category>(categories.STUDENT_NEWS);
   const { data, size, setSize, isLoading, error, isValidating } =
-    useAnnouncements(Categories.INTERNSHIP);
+    useAnnouncements(category.value);
   const { theme } = useTheme();
   const router = useRouter();
   const announcements = data ? data.flatMap(value => value) : [];
@@ -23,27 +27,27 @@ const Announcement = () => {
     }
   };
 
+  const handleChangeCategory = (category: Category) => {
+    setCategory(category);
+  };
+
   return (
     <PageLayout edges={['top']}>
       <TabHeader>
         <FontText fontWeight="700" style={styles.title}>공지사항</FontText>
-        <Pressable style={{ marginRight: 4 }} onPress={() => router.push('/announcement/search')}>
-          <SearchIcon width={22} height={22} fill={colors[theme].gray100} />
+        <Pressable style={{ marginRight: 6 }} onPress={() => router.push('/announcement/search')}>
+          <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
         </Pressable>
       </TabHeader>
-      <FlatList
-        contentContainerStyle={styles.contents}
+      <TopTabs<Category>
+        handleTabPress={handleChangeCategory}
+        activeTab={category}
+        tabItems={Object.values(categories).map(value => value)}
+      />
+      <InfiniteScrollView
         data={announcements}
-        renderItem={({ item }) => <AnnouncementItem
-          body={item.announcementTitle}
-          date={item.announcementDate}
-          subtitle={item.announcementTag}
-          url={item.announcementUrl}
-        />}
-        keyExtractor={(item) => item.announcementId}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={() => isValidating ? <ActivityIndicator color={colors[theme].gray100} /> : null}
+        handleEndReached={loadMore}
+        isValidating={isValidating}
       />
     </PageLayout>
   );
@@ -60,7 +64,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22
   },
-  contents: {
-    paddingHorizontal: 4
+  tabs: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    paddingHorizontal: 20,
+    borderBottomWidth: 0.3
   }
 });

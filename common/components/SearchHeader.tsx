@@ -37,12 +37,12 @@ const SearchHeader = ({ handleSubmit }: SearchHeaderProps) => {
     <View style={styles.container}>
       <View style={styles.backIcon}>
         <Pressable onPress={() => router.back()}>
-          <ArrowLeftIcon width={24} height={24} fill={colors[theme].text} />
+          <ArrowLeftIcon width={24} height={24} fill={colors[theme].contrast} />
         </Pressable>
       </View>
       <TextInput
         ref={inputRef}
-        style={[styles.textInput, { backgroundColor: colors[theme].container, color: colors[theme].text }]}
+        style={[styles.textInput, { backgroundColor: colors[theme].container, color: colors[theme].contrast }]}
         onChangeText={handleChangeText}
         value={keyword}
         placeholder="검색어를 입력하세요"

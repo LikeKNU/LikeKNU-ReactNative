@@ -33,7 +33,7 @@ const TabLayout = () => {
       tabBarStyle: styles.tabBar,
       headerShown: false,
       tabBarIconStyle: { marginBottom: -8 },
-      tabBarActiveTintColor: colors[theme].text,
+      tabBarActiveTintColor: colors[theme].contrast,
       tabBarInactiveTintColor: colors[theme].gray200
     }}>
       <Tabs.Screen name="index" options={{
