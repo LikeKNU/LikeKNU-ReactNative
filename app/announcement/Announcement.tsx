@@ -12,9 +12,10 @@ import { ActivityIndicator, FlatList, Pressable, StyleSheet } from 'react-native
 
 const Announcement = () => {
   const { data, size, setSize, isLoading, error, isValidating } =
-    useAnnouncements(Categories.STUDENT_NEWS);
+    useAnnouncements(Categories.INTERNSHIP);
   const { theme } = useTheme();
   const router = useRouter();
+  const announcements = data ? data.flatMap(value => value) : [];
 
   const loadMore = () => {
     if (!isValidating && !isLoading) {
@@ -32,7 +33,7 @@ const Announcement = () => {
       </TabHeader>
       <FlatList
         contentContainerStyle={styles.contents}
-        data={data?.flatMap(value => value)}
+        data={announcements}
         renderItem={({ item }) => <AnnouncementItem
           body={item.announcementTitle}
           date={item.announcementDate}
@@ -42,7 +43,7 @@ const Announcement = () => {
         keyExtractor={(item) => item.announcementId}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
-        ListFooterComponent={() => isValidating ? <ActivityIndicator /> : null}
+        ListFooterComponent={() => isValidating ? <ActivityIndicator color={colors[theme].gray100} /> : null}
       />
     </PageLayout>
   );

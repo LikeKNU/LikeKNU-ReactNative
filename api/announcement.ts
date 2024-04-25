@@ -21,5 +21,5 @@ export const useAnnouncements = (category: Categories) => {
     return extractBodyFromResponse<AnnouncementProps[]>(response) ?? [];
   };
 
-  return useSWRInfinite(getKey, getAnnouncements, { initialSize: 1 });
+  return useSWRInfinite(getKey, getAnnouncements, { initialSize: 1, revalidateFirstPage: false });
 };
