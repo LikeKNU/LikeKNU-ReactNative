@@ -8,12 +8,19 @@ import FontText from '@/common/text/FontText';
 import { Categories } from '@/constants/announcement';
 import colors from '@/constants/colors';
 import { useRouter } from 'expo-router';
-import { FlatList, Pressable, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, StyleSheet } from 'react-native';
 
 const Announcement = () => {
-  const { data, isLoading, error } = useAnnouncements(Categories.STUDENT_NEWS);
+  const { data, size, setSize, isLoading, error, isValidating } =
+    useAnnouncements(Categories.STUDENT_NEWS);
   const { theme } = useTheme();
   const router = useRouter();
+
+  const loadMore = () => {
+    if (!isValidating && !isLoading) {
+      setSize(size + 1);
+    }
+  };
 
   return (
     <PageLayout edges={['top']}>
@@ -25,7 +32,7 @@ const Announcement = () => {
       </TabHeader>
       <FlatList
         contentContainerStyle={styles.contents}
-        data={data}
+        data={data?.flatMap(value => value)}
         renderItem={({ item }) => <AnnouncementItem
           body={item.announcementTitle}
           date={item.announcementDate}
@@ -33,6 +40,9 @@ const Announcement = () => {
           url={item.announcementUrl}
         />}
         keyExtractor={(item) => item.announcementId}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={() => isValidating ? <ActivityIndicator /> : null}
       />
     </PageLayout>
   );

@@ -6,7 +6,11 @@ import { useRouter } from 'expo-router';
 import { useRef, useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-const SearchHeader = () => {
+interface SearchHeaderProps {
+  handleSubmit: (keyword: string) => void
+}
+
+const SearchHeader = ({ handleSubmit }: SearchHeaderProps) => {
   const { theme } = useTheme();
   const router = useRouter();
   const [keyword, setKeyword] = useState<string>('');
@@ -26,13 +30,7 @@ const SearchHeader = () => {
   const clearText = () => {
     setKeyword('');
     setIsFillText(false);
-  };
-
-  const handleSubmit = () => {
-    if (keyword.length === 0) {
-      return;
-    }
-    console.log(`search keyword: ${keyword}`);
+    inputRef.current?.focus();
   };
 
   return (
@@ -51,7 +49,7 @@ const SearchHeader = () => {
         keyboardAppearance={theme}
         allowFontScaling={false}
         returnKeyType={'search'}
-        onSubmitEditing={handleSubmit}
+        onSubmitEditing={() => handleSubmit(keyword)}
         autoFocus={true}
       />
       {isFillText && <Pressable style={{ paddingHorizontal: 4 }} onPress={clearText}>
