@@ -18,7 +18,7 @@ const SearchHeader = ({ handleSubmit }: SearchHeaderProps) => {
   const inputRef = useRef<TextInput>(null);
 
   const handleChangeText = (text: string) => {
-    text = text.replace(/\s/g, '');
+    // text = text.replace(/\s/g, '');
     if (text.length > 0) {
       setIsFillText(true);
     } else {

@@ -10,16 +10,24 @@ import { categories } from '@/constants/announcement';
 import colors from '@/constants/colors';
 import { Category } from '@/types/announcementType';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { useRef, useState } from 'react';
+import { FlatList, Pressable, StyleSheet } from 'react-native';
 
 const Announcement = () => {
   const [category, setCategory] = useState<Category>(categories.STUDENT_NEWS);
-  const { data, size, setSize, isLoading, error, isValidating } =
-    useAnnouncements(category.value);
+  const {
+    data,
+    size,
+    setSize,
+    isLoading,
+    error,
+    isValidating
+  } = useAnnouncements(category.value);
   const { theme } = useTheme();
   const router = useRouter();
-  const announcements = data ? data.flatMap(value => value) : [];
+  // const announcements = data ? data.flatMap(value => value) : [];
+  const announcements = data ? [...new Set(data.flatMap(value => value).map(item => JSON.stringify(item)))].map(json => JSON.parse(json)) : [];
+  const scrollViewRef = useRef<FlatList>(null);
 
   const loadMore = () => {
     if (!isValidating && !isLoading) {
@@ -48,6 +56,7 @@ const Announcement = () => {
         data={announcements}
         handleEndReached={loadMore}
         isValidating={isValidating}
+        resetDependency={category}
       />
     </PageLayout>
   );

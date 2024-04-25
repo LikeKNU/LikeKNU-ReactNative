@@ -1,21 +1,40 @@
+import { useAnnouncementsSearch } from '@/api/announcement';
+import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
 import SearchHeader from '@/common/components/SearchHeader';
-import FontText from '@/common/text/FontText';
-import { FlatList, Keyboard, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet } from 'react-native';
 
 const AnnouncementSearch = () => {
+  const [keyword, setKeyword] = useState<string>('');
+  const {
+    data,
+    size,
+    setSize,
+    isLoading,
+    error,
+    isValidating
+  } = useAnnouncementsSearch(keyword);
+  // const announcements = data ? data.flatMap(value => value) : [];
+  const announcements = data ? [...new Set(data.flatMap(value => value).map(item => JSON.stringify(item)))].map(json => JSON.parse(json)) : [];
+
+  const loadMore = () => {
+    if (!isValidating && !isLoading) {
+      setSize(size + 1);
+    }
+  };
+
   const handleSubmit = (keyword: string) => {
-    // TODO search keyword
+    setKeyword(keyword);
   };
 
   return (
     <PageLayout edges={['top']}>
       <SearchHeader handleSubmit={handleSubmit} />
-      <FlatList
-        contentContainerStyle={styles.content}
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]}
-        renderItem={({ item }) => <FontText style={{ paddingVertical: 20 }}>{item}</FontText>}
-        onTouchStart={Keyboard.dismiss}
+      <InfiniteScrollView
+        data={announcements}
+        handleEndReached={loadMore}
+        isValidating={isValidating}
       />
     </PageLayout>
   );

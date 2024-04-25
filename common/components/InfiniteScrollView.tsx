@@ -1,18 +1,24 @@
 import AnnouncementItem from '@/app/announcement/components/AnnouncementItem';
 import { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
-import React, { useRef } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet } from 'react-native';
+import { Category } from '@/types/announcementType';
+import React, { useEffect, useRef } from 'react';
+import { ActivityIndicator, FlatList, Keyboard, StyleSheet } from 'react-native';
 
 interface InfiniteScrollViewProps {
   data: any[],
   handleEndReached: () => void,
-  isValidating: boolean
+  isValidating: boolean,
+  resetDependency?: Category
 }
 
-const InfiniteScrollView = ({ data, handleEndReached, isValidating }: InfiniteScrollViewProps) => {
+const InfiniteScrollView = ({ data, handleEndReached, isValidating, resetDependency }: InfiniteScrollViewProps) => {
   const { theme } = useTheme();
   const contentRef = useRef<FlatList>(null);
+
+  useEffect(() => {
+    scrollOnTop();
+  }, [resetDependency]);
 
   const scrollOnTop = () => {
     if (contentRef.current) {
@@ -32,12 +38,10 @@ const InfiniteScrollView = ({ data, handleEndReached, isValidating }: InfiniteSc
         url={item.announcementUrl}
       />}
       keyExtractor={(item) => item.announcementId}
-      onEndReached={() => {
-        handleEndReached();
-        scrollOnTop();
-      }}
+      onEndReached={handleEndReached}
       onEndReachedThreshold={0.5}
       ListFooterComponent={() => isValidating ? <ActivityIndicator color={colors[theme].gray100} /> : null}
+      onTouchStart={Keyboard.dismiss}
     />
   );
 };
