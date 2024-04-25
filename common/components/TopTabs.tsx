@@ -18,7 +18,7 @@ const TopTabs = <T extends TopTabItemProps>({ handleTabPress, activeTab, tabItem
   const { theme } = useTheme();
 
   return (
-    <View style={[styles.tabs, { borderBottomColor: colors[theme].gray200 }]}>
+    <View style={[styles.tabs, { borderBottomColor: colors[theme].gray300 }]}>
       {tabItems.map(item => (
         <Pressable
           key={item.value}
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
 
     paddingHorizontal: 20,
-    borderBottomWidth: 0.3
+    borderBottomWidth: 0.6
   }
 });

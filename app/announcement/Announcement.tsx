@@ -8,10 +8,11 @@ import TopTabs from '@/common/components/TopTabs';
 import FontText from '@/common/text/FontText';
 import { categories } from '@/constants/announcement';
 import colors from '@/constants/colors';
-import { Category } from '@/types/announcementType';
+import { AnnouncementProps, Category } from '@/types/announcementType';
+import { flatMapRemoveDuplicate } from '@/utils/data';
 import { useRouter } from 'expo-router';
-import { useRef, useState } from 'react';
-import { FlatList, Pressable, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { Pressable, StyleSheet } from 'react-native';
 
 const Announcement = () => {
   const [category, setCategory] = useState<Category>(categories.STUDENT_NEWS);
@@ -25,9 +26,7 @@ const Announcement = () => {
   } = useAnnouncements(category.value);
   const { theme } = useTheme();
   const router = useRouter();
-  // const announcements = data ? data.flatMap(value => value) : [];
-  const announcements = data ? [...new Set(data.flatMap(value => value).map(item => JSON.stringify(item)))].map(json => JSON.parse(json)) : [];
-  const scrollViewRef = useRef<FlatList>(null);
+  const announcements = flatMapRemoveDuplicate<AnnouncementProps[]>(data);
 
   const loadMore = () => {
     if (!isValidating && !isLoading) {
@@ -35,8 +34,8 @@ const Announcement = () => {
     }
   };
 
-  const handleChangeCategory = (category: Category) => {
-    setCategory(category);
+  const handleChangeCategory = (changeCategory: Category) => {
+    setCategory(changeCategory);
   };
 
   return (

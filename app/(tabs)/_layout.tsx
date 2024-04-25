@@ -24,7 +24,9 @@ const TabLayout = () => {
       borderRightColor: colors[theme].gray300,
       borderTopColor: colors[theme].gray300,
       borderTopRightRadius: 25,
-      borderTopLeftRadius: 25
+      borderTopLeftRadius: 25,
+
+      paddingHorizontal: 10
     }
   });
 

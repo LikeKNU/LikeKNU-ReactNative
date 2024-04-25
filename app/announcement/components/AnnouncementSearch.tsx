@@ -2,10 +2,16 @@ import { useAnnouncementsSearch } from '@/api/announcement';
 import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
 import SearchHeader from '@/common/components/SearchHeader';
+import { useTheme } from '@/common/components/ThemeContext';
+import FontText from '@/common/text/FontText';
+import colors from '@/constants/colors';
+import { AnnouncementProps } from '@/types/announcementType';
+import { flatMapRemoveDuplicate } from '@/utils/data';
 import { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 
 const AnnouncementSearch = () => {
+  const { theme } = useTheme();
   const [keyword, setKeyword] = useState<string>('');
   const {
     data,
@@ -15,8 +21,7 @@ const AnnouncementSearch = () => {
     error,
     isValidating
   } = useAnnouncementsSearch(keyword);
-  // const announcements = data ? data.flatMap(value => value) : [];
-  const announcements = data ? [...new Set(data.flatMap(value => value).map(item => JSON.stringify(item)))].map(json => JSON.parse(json)) : [];
+  const announcements = flatMapRemoveDuplicate<AnnouncementProps[]>(data);
 
   const loadMore = () => {
     if (!isValidating && !isLoading) {
@@ -31,11 +36,21 @@ const AnnouncementSearch = () => {
   return (
     <PageLayout edges={['top']}>
       <SearchHeader handleSubmit={handleSubmit} />
-      <InfiniteScrollView
-        data={announcements}
-        handleEndReached={loadMore}
-        isValidating={isValidating}
-      />
+      {announcements.length !== 0 || isValidating ?
+        <InfiniteScrollView
+          data={announcements}
+          handleEndReached={loadMore}
+          isValidating={isValidating}
+        /> :
+        <KeyboardAvoidingView
+          onTouchStart={Keyboard.dismiss}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <FontText fontWeight="500" style={[styles.emptyMessage, { color: colors[theme].gray100 }]}>검색 결과가
+            없어요</FontText>
+        </KeyboardAvoidingView>
+      }
     </PageLayout>
   );
 };
@@ -43,5 +58,5 @@ const AnnouncementSearch = () => {
 export default AnnouncementSearch;
 
 const styles = StyleSheet.create({
-  content: {}
+  emptyMessage: { fontSize: 15 }
 });
