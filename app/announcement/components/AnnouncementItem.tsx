@@ -22,7 +22,7 @@ const AnnouncementItem = ({ subtitle, date, body, url }: ListItemProps) => {
 
   const handlePressIn = () => {
     Animated.spring(scale, {
-      toValue: 0.97,
+      toValue: 0.95,
       useNativeDriver: true
     }).start();
   };
@@ -37,7 +37,7 @@ const AnnouncementItem = ({ subtitle, date, body, url }: ListItemProps) => {
   const animatedStyle = {
     transform: [{ scale }],
     backgroundColor: scale.interpolate({
-      inputRange: [0.97, 1],
+      inputRange: [0.95, 1],
       outputRange: [colors[theme].press, colors[theme].container]
     }),
     borderRadius: 12,
@@ -53,7 +53,7 @@ const AnnouncementItem = ({ subtitle, date, body, url }: ListItemProps) => {
                  })}
                  onPressIn={handlePressIn}
                  onPressOut={handlePressOut}>
-        <FontText fontWeight="400" style={[{ color: colors[theme].text }, styles.body]}>{body}</FontText>
+        <FontText fontWeight="500" style={[{ color: colors[theme].text }, styles.body]}>{body}</FontText>
         <View style={styles.additionalContainer}>
           <FontText style={[{ color: colors[theme].gray100 }, styles.additional]}>{subtitle + ' | ' + date}</FontText>
           {isToday && <DotIcon fill={colors.red} width={12} height={12} />}
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 13
   },
   body: {
-    fontSize: 14
+    fontSize: 15
   },
   additionalContainer: {
     flexDirection: 'row',
