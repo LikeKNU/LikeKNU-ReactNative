@@ -35,7 +35,7 @@ const AnnouncementItem = ({ subtitle, date, body, url }: ListItemProps) => {
       <FontText fontWeight="500" style={[{ color: colors[theme].contrast }, styles.body]}>{body}</FontText>
       <View style={styles.additionalContainer}>
         <FontText style={[{ color: colors[theme].gray100 }, styles.additional]}>{subtitle + ' | ' + date}</FontText>
-        {isToday && <DotIcon fill={colors.red} width={12} height={12} />}
+        {isToday && <DotIcon fill={colors.red} width={14} height={14} />}
       </View>
     </AnimatedPressable>
   );
