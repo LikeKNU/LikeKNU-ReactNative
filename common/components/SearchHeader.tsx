@@ -18,7 +18,6 @@ const SearchHeader = ({ handleSubmit }: SearchHeaderProps) => {
   const inputRef = useRef<TextInput>(null);
 
   const handleChangeText = (text: string) => {
-    // text = text.replace(/\s/g, '');
     if (text.length > 0) {
       setIsFillText(true);
     } else {
@@ -43,6 +42,7 @@ const SearchHeader = ({ handleSubmit }: SearchHeaderProps) => {
       <TextInput
         ref={inputRef}
         style={[styles.textInput, { backgroundColor: colors[theme].container, color: colors[theme].contrast }]}
+        placeholderTextColor={colors[theme].gray200}
         onChangeText={handleChangeText}
         value={keyword}
         placeholder="검색어를 입력하세요"

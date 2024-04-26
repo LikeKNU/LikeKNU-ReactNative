@@ -47,8 +47,9 @@ const AnnouncementSearch = () => {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
         >
-          <FontText fontWeight="500" style={[styles.emptyMessage, { color: colors[theme].gray100 }]}>검색 결과가
-            없어요</FontText>
+          <FontText fontWeight="500" style={[styles.emptyMessage, { color: colors[theme].gray100 }]}>
+            검색 결과가 없어요
+          </FontText>
         </KeyboardAvoidingView>
       }
     </PageLayout>
