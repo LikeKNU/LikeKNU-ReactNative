@@ -9,7 +9,7 @@ import colors from '@/constants/colors';
 import * as Haptics from 'expo-haptics';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 const TabLayout = () => {
   const { theme } = useTheme();
@@ -23,79 +23,61 @@ const TabLayout = () => {
       borderLeftColor: colors[theme].gray300,
       borderRightColor: colors[theme].gray300,
       borderTopColor: colors[theme].gray300,
-      borderTopRightRadius: 25,
-      borderTopLeftRadius: 25,
+      borderTopRightRadius: Platform.OS !== 'web' ? 25 : 0,
+      borderTopLeftRadius: Platform.OS !== 'web' ? 25 : 0,
 
       paddingHorizontal: 10
     }
   });
 
   return (
-    <Tabs screenOptions={{
-      tabBarStyle: styles.tabBar,
-      headerShown: false,
-      tabBarIconStyle: { marginBottom: -8 },
-      tabBarActiveTintColor: colors[theme].contrast,
-      tabBarInactiveTintColor: colors[theme].gray200
-    }}>
+    <Tabs
+      screenListeners={{ tabPress: Platform.OS !== 'web' ? () => Haptics.selectionAsync() : undefined }}
+      screenOptions={{
+        tabBarStyle: styles.tabBar,
+        headerShown: false,
+        tabBarIconStyle: { marginBottom: -8 },
+        tabBarActiveTintColor: colors[theme].contrast,
+        tabBarInactiveTintColor: colors[theme].gray200
+      }}>
       <Tabs.Screen name="index" options={{
         tabBarIcon: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <HomeIcon fill={color} width={30} height={30} />
-          </View>
+          <HomeIcon fill={color} width={30} height={30} />
         ),
         tabBarLabel: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>홈</FontText>
-          </View>
+          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>홈</FontText>
         )
       }} />
       <Tabs.Screen name="announcement" options={{
         tabBarIcon: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <AssignmentIcon fill={color} width={26} height={26} />
-          </View>
+          <AssignmentIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>공지사항</FontText>
-          </View>
+          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>공지사항</FontText>
         )
       }} />
       <Tabs.Screen name="bus" options={{
         tabBarIcon: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <BusFrontIcon fill={color} width={26} height={26} />
-          </View>
+          <BusFrontIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>버스</FontText>
-          </View>
+          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>버스</FontText>
         )
       }} />
       <Tabs.Screen name="meal" options={{
         tabBarIcon: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <RestaurantIcon fill={color} width={26} height={26} />
-          </View>
+          <RestaurantIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>식단</FontText>
-          </View>
+          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>식단</FontText>
         )
       }} />
       <Tabs.Screen name="more" options={{
         tabBarIcon: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <ThreeDotsIcon fill={color} width={26} height={26} />
-          </View>
+          <ThreeDotsIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <View onTouchStart={() => Haptics.selectionAsync()}>
-            <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>더보기</FontText>
-          </View>
+          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>더보기</FontText>
         )
       }} />
     </Tabs>
