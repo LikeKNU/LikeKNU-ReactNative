@@ -2,8 +2,8 @@ import BackHeader from '@/common/components/BackHeader';
 import PageLayout from '@/common/components/PageLayout';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { BackHandler, Platform, StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
 
 interface AnnouncementViewProps {
@@ -14,18 +14,35 @@ interface AnnouncementViewProps {
 const WebViewPage = ({ url, title }: AnnouncementViewProps) => {
   const [progress, setProgress] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const webViewRef = useRef<WebView>(null);
+
+  const onAndroidBackPress = () => {
+    if (webViewRef.current) {
+      webViewRef.current.goBack();
+      return true;
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      const nativeEventSubscription =
+        BackHandler.addEventListener('hardwareBackPress', onAndroidBackPress);
+
+      return () => nativeEventSubscription.remove();
+    }
+  }, []);
 
   return (
     <PageLayout edges={['top']}>
       <BackHeader title={title} />
-      {/*<View style={styles.progressBarContainer}>*/}
       {!isLoaded && (
         <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />
       )}
-      {/*</View>*/}
       {
         url ? (
           <WebView
+            ref={webViewRef}
             source={{ uri: url }}
             onLoadProgress={({ nativeEvent }) => {
               setProgress(nativeEvent.progress);
@@ -36,6 +53,8 @@ const WebViewPage = ({ url, title }: AnnouncementViewProps) => {
             allowsBackForwardNavigationGestures={true}
             onLoadStart={() => setIsLoaded(false)}
             showsVerticalScrollIndicator={false}
+            setDisplayZoomControls={true}
+            setBuiltInZoomControls={true}
           />
         ) : (
           <FontText fontWeight="500" style={styles.notFoundMessage}>

@@ -24,6 +24,7 @@ const CityBus = () => {
     <>
       <SectionList
         style={{ paddingHorizontal: 20 }}
+        contentContainerStyle={{ paddingBottom: 30 }}
         sections={sectionsData}
         renderItem={({ item }) => <ArrivalCityBusItem arrivalCityBus={item} />}
         renderSectionHeader={({ section: { title } }) => (
