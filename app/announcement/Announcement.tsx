@@ -13,6 +13,7 @@ import { flatMapRemoveDuplicate } from '@/utils/data';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
+import { mutate } from 'swr';
 
 const Announcement = () => {
   const [category, setCategory] = useState<Category>(categories.STUDENT_NEWS);
@@ -22,7 +23,8 @@ const Announcement = () => {
     setSize,
     isLoading,
     error,
-    isValidating
+    isValidating,
+    mutate
   } = useAnnouncements(category.value);
   const { theme } = useTheme();
   const router = useRouter();
@@ -55,6 +57,8 @@ const Announcement = () => {
         data={announcements}
         handleEndReached={loadMore}
         isValidating={isValidating}
+        isLoading={isLoading}
+        mutate={mutate}
         resetDependency={category}
       />
     </PageLayout>

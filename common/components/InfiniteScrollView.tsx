@@ -2,16 +2,25 @@ import AnnouncementItem from '@/app/announcement/components/AnnouncementItem';
 import { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
 import React, { useEffect, useRef } from 'react';
-import { ActivityIndicator, FlatList, Keyboard, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, Keyboard, RefreshControl, StyleSheet, View } from 'react-native';
 
 interface InfiniteScrollViewProps {
-  data: any[],
-  handleEndReached: () => void,
-  isValidating: boolean,
+  data: any[];
+  handleEndReached: () => void;
+  isValidating: boolean;
+  isLoading: boolean;
   resetDependency?: any;
+  mutate?: any;
 }
 
-const InfiniteScrollView = ({ data, handleEndReached, isValidating, resetDependency }: InfiniteScrollViewProps) => {
+const InfiniteScrollView = ({
+                              data,
+                              handleEndReached,
+                              isValidating,
+                              resetDependency,
+                              isLoading,
+                              mutate
+                            }: InfiniteScrollViewProps) => {
   const { theme } = useTheme();
   const contentRef = useRef<FlatList>(null);
 
@@ -45,6 +54,12 @@ const InfiniteScrollView = ({ data, handleEndReached, isValidating, resetDepende
       onEndReachedThreshold={0.5}
       ListFooterComponent={() => isValidating ? activityIndicator : null}
       onTouchStart={Keyboard.dismiss}
+      refreshControl={
+        <RefreshControl
+          refreshing={isLoading}
+          onRefresh={mutate}
+        />
+      }
     />
   );
 };

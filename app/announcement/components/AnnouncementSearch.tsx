@@ -19,7 +19,8 @@ const AnnouncementSearch = () => {
     setSize,
     isLoading,
     error,
-    isValidating
+    isValidating,
+    mutate
   } = useAnnouncementsSearch(keyword);
   const announcements = flatMapRemoveDuplicate<AnnouncementProps[]>(data);
 
@@ -41,6 +42,8 @@ const AnnouncementSearch = () => {
           data={announcements}
           handleEndReached={loadMore}
           isValidating={isValidating}
+          isLoading={isLoading}
+          mutate={mutate}
         /> :
         <KeyboardAvoidingView
           onTouchStart={Keyboard.dismiss}

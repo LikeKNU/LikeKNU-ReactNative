@@ -23,12 +23,10 @@ const TopTabs = <T extends TopTabItemProps>({ handleTabPress, activeTab, tabItem
         <Pressable
           key={item.value}
           onPress={() => handleTabPress(item)}
-          style={{
+          style={[styles.tabItem, {
             borderBottomWidth: activeTab === item ? 2 : 0,
             borderBottomColor: colors[theme].contrast,
-            padding: 10,
-            marginHorizontal: 6
-          }}>
+          }]}>
           <FontText
             fontWeight={activeTab === item ? '600' : '500'}
             style={{
@@ -48,9 +46,14 @@ const styles = StyleSheet.create({
   tabs: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
 
     paddingHorizontal: 20,
     borderBottomWidth: 0.6
+  },
+  tabItem: {
+    padding: 10,
+    width: 100,
+    alignItems: 'center'
   }
 });
