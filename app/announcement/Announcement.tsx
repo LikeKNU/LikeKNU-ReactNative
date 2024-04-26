@@ -8,15 +8,15 @@ import TopTabs from '@/common/components/TopTabs';
 import FontText from '@/common/text/FontText';
 import { categories } from '@/constants/announcement';
 import colors from '@/constants/colors';
-import { AnnouncementProps, Category } from '@/types/announcementType';
+import { AnnouncementProps } from '@/types/announcementType';
+import { TabType } from '@/types/common';
 import { flatMapRemoveDuplicate } from '@/utils/data';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import { mutate } from 'swr';
 
 const Announcement = () => {
-  const [category, setCategory] = useState<Category>(categories.STUDENT_NEWS);
+  const [category, setCategory] = useState<TabType>(categories.STUDENT_NEWS);
   const {
     data,
     size,
@@ -36,7 +36,7 @@ const Announcement = () => {
     }
   };
 
-  const handleChangeCategory = (changeCategory: Category) => {
+  const handleChangeCategory = (changeCategory: TabType) => {
     setCategory(changeCategory);
   };
 
@@ -48,7 +48,7 @@ const Announcement = () => {
           <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
         </Pressable>
       </TabHeader>
-      <TopTabs<Category>
+      <TopTabs
         handleTabPress={handleChangeCategory}
         activeTab={category}
         tabItems={Object.values(categories).map(value => value)}

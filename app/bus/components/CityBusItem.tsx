@@ -30,10 +30,7 @@ export default CityBusItem;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
-
-    paddingVertical: 6,
-    marginBottom: 6
+    alignItems: 'center'
   },
   busNumber: {
     fontSize: 16,
@@ -44,9 +41,6 @@ const styles = StyleSheet.create({
     marginLeft: 12
   },
   emptyMessage: {
-    fontSize: 13,
-
-    paddingVertical: 10,
-    marginBottom: 6
+    fontSize: 13
   }
 });

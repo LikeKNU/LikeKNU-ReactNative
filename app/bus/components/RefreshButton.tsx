@@ -2,22 +2,25 @@ import ArrowClockwiseIcon from '@/assets/icons/arrow-clockwise.svg';
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { HomeBusProps } from '@/types/homeType';
+import { usePathname } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet } from 'react-native';
+import { Animated, Pressable, StyleSheet, ViewStyle } from 'react-native';
 
 type MutateFunction<Data> = (data?: Data | Promise<Data>, shouldRevalidate?: boolean) => Promise<Data | undefined>;
 
 interface BusRefreshProps {
-  mutate: MutateFunction<HomeBusProps[]>;
+  mutate: any;
+  focusPathname: string;
+  style?: ViewStyle;
 }
 
-const RefreshButton = ({ mutate }: BusRefreshProps) => {
+const RefreshButton = ({ mutate, focusPathname, style }: BusRefreshProps) => {
   const intervalTime = 15;
   const { theme } = useTheme();
   const [refreshTime, setRefreshTime] = useState(intervalTime);
   const rotateAnimation = useRef(new Animated.Value(0)).current;
   const animationRef = useRef<Animated.CompositeAnimation | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -26,15 +29,25 @@ const RefreshButton = ({ mutate }: BusRefreshProps) => {
           handleRefresh();
           return 0;
         }
+
         return prevState - 1;
       });
     }, 1000);
 
+    if (pathname !== focusPathname) {
+      clearInterval(timer);
+      animationRef.current?.stop();
+      setRefreshTime(intervalTime);
+      return;
+    }
+
+    mutate();
+
     return () => {
       clearInterval(timer);
       animationRef.current?.stop();
-    }
-  }, []);
+    };
+  }, [pathname]);
 
   const handleRefresh = () => {
     animationRef.current = Animated.loop(
@@ -52,11 +65,6 @@ const RefreshButton = ({ mutate }: BusRefreshProps) => {
         rotateAnimation.setValue(0);
         setRefreshTime(intervalTime);
       }, 700);
-    }).catch(err => {
-      setTimeout(() => {
-        animationRef.current?.stop();
-        rotateAnimation.setValue(0);
-      }, 700);
     });
   };
 
@@ -67,7 +75,7 @@ const RefreshButton = ({ mutate }: BusRefreshProps) => {
 
   return (
     <Pressable
-      style={[styles.container, { backgroundColor: colors[theme].gray300 }]}
+      style={[styles.container, { backgroundColor: colors[theme].gray300 }, style]}
       onPress={handleRefresh}
     >
       <Animated.View style={{ transform: [{ rotate }] }}>

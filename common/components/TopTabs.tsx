@@ -1,6 +1,7 @@
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
+import { TabType } from '@/types/common';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 export interface TopTabItemProps {
@@ -8,13 +9,13 @@ export interface TopTabItemProps {
   name: string;
 }
 
-export interface TopTabsProps<T extends TopTabItemProps> {
-  handleTabPress: (tab: T) => void;
-  activeTab: T;
-  tabItems: T[];
+export interface TopTabsProps {
+  handleTabPress: (tab: TabType) => void;
+  activeTab: TabType;
+  tabItems: TabType[];
 }
 
-const TopTabs = <T extends TopTabItemProps>({ handleTabPress, activeTab, tabItems }: TopTabsProps<T>) => {
+const TopTabs = ({ handleTabPress, activeTab, tabItems }: TopTabsProps) => {
   const { theme } = useTheme();
 
   return (

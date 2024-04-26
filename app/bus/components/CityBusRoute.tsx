@@ -2,12 +2,8 @@ import CaretRightIcon from '@/assets/icons/caret-right.svg'
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
+import { CityBusRouteProps } from '@/types/busTypes';
 import { StyleSheet, View } from 'react-native';
-
-export interface CityBusRouteProps {
-  origin: string;
-  destination: string;
-}
 
 const CityBusRoute = ({ origin, destination }: CityBusRouteProps) => {
   const { theme } = useTheme();
@@ -30,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   name: {
-    fontSize: 13
+    fontSize: 14
   },
   icon: {
     marginHorizontal: 8
