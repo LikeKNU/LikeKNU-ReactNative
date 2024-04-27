@@ -1,4 +1,5 @@
 import CityBus from '@/app/bus/components/CityBus';
+import BottomSheetExample from '@/common/components/BottomSheetExample';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
 import TopTabs from '@/common/components/TopTabs';
@@ -26,6 +27,7 @@ const Bus = () => {
         tabItems={Object.values(buses).map(value => value)}
       />
       {busType === buses.CITY_BUS && <CityBus />}
+      {busType === buses.SHUTTLE_BUS && <BottomSheetExample />}
     </PageLayout>
   );
 };

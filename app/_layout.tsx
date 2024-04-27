@@ -7,6 +7,7 @@ import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback } from 'react';
 import { AppState } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppStateStatus } from 'react-native/Libraries/AppState/AppState';
 import { SWRConfig } from 'swr';
@@ -43,18 +44,20 @@ const AppLayout = () => {
   };
 
   return (
-    <SafeAreaProvider onLayout={onLayoutRootView}>
-      <SWRConfig value={{
-        provider: () => new Map(),
-        initFocus(callback) {
-          return handleInitFocus(callback);
-        }
-      }}>
-        <ThemeContextProvider>
-          <Content />
-        </ThemeContextProvider>
-      </SWRConfig>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider onLayout={onLayoutRootView}>
+        <SWRConfig value={{
+          provider: () => new Map(),
+          initFocus(callback) {
+            return handleInitFocus(callback);
+          }
+        }}>
+          <ThemeContextProvider>
+            <Content />
+          </ThemeContextProvider>
+        </SWRConfig>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 };
 
