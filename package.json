@@ -32,7 +32,8 @@
     "react-native-webview": "13.6.4",
     "swr": "^2.2.5",
     "react-native-reanimated": "~3.6.2",
-    "react-native-gesture-handler": "~2.14.0"
+    "react-native-gesture-handler": "~2.14.0",
+    "react-native-pager-view": "6.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

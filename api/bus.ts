@@ -28,5 +28,5 @@ export const useCityBuses = () => {
     await incomingMutate();
   };
 
-  return {outgoingData, incomingData, mutate}
+  return { outgoingData, incomingData, mutate }
 };

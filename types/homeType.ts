@@ -1,5 +1,6 @@
 import { BusArrivalProps } from '@/types/busTypes';
 import { CalendarProps } from '@/types/calendarTypes';
+import { MealType } from '@/types/mealTypes';
 
 export interface HomeAnnouncementProps {
   announcementId: string;
@@ -16,7 +17,7 @@ export interface HomeBusProps extends BusArrivalProps {
 export interface HomeMealProps {
   cafeteriaId: string;
   cafeteriaName: string;
-  mealType: '아침' | '점심' | '저녁';
+  mealType: MealType;
   menus: string | null;
 }
 

@@ -1,0 +1,17 @@
+export type MealType = '아침' | '점심' | '저녁';
+
+export type CafeteriaType = '소담' | '늘솜' | '은행사/비전' | '드림' | '학생식당' | '직원식당' | '생활관식당';
+
+export interface MealProps {
+  cafeteriaId: string;
+  cafeteriaName: CafeteriaType;
+  date: string;
+  meals: MenuProps[];
+}
+
+export interface MenuProps {
+  menuId: string | null;
+  mealType: MealType;
+  operatingTime: string;
+  menus: string | null;
+}
