@@ -4,7 +4,6 @@ import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
 import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
-import colors from '@/constants/colors';
 import { cafeterias, Cafeterias } from '@/constants/meal';
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -59,7 +58,6 @@ const styles = StyleSheet.create({
   },
   page: {
     alignItems: 'center',
-    backgroundColor: colors.red,
     paddingHorizontal: 20,
     paddingVertical: 20
   }

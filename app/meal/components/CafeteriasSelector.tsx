@@ -23,7 +23,7 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
           key={cafeteria}
           style={[styles.cafeteriaButton, {
             backgroundColor: activeIndex === index ? campusColors[campus!] : colors[theme].gray300,
-            shadowColor: colors[theme].contrast,
+            shadowColor: colors[theme].background,
           }]}
           onPress={() => handleOnPress(index)}
         >
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 14,
 
+    shadowOpacity: 1,
     shadowRadius: 12,
     shadowOffset: { width: 2, height: 2 },
 
