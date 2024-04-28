@@ -5,7 +5,7 @@ import { MealProps } from '@/types/mealTypes';
 import http, { extractBodyFromResponse } from '@/utils/http';
 import useSWR from 'swr';
 
-export const useMeals = (cafeteria?: Cafeterias) => {
+export const useMeals = (cafeteria: Cafeterias) => {
   const { campus } = useCampus();
   const getMeals = async (uri: string, campus: Campuses | null, cafeteria: Cafeterias) => {
     if (campus) {

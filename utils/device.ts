@@ -1,5 +1,6 @@
 import { ThemeType, useTheme } from '@/common/components/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
+import useFavoriteCafeteria from '@/common/hooks/useFavoriteCafeteria';
 import { campusName } from '@/constants/campus';
 import http from '@/utils/http';
 import { getData, storeData } from '@/utils/storage';
@@ -21,6 +22,7 @@ const useInitializeDevice = () => {
   const [error, setError] = useState<any>(null);
   const { theme } = useTheme();
   const { campus } = useCampus();
+  const { favoriteCafeteria } = useFavoriteCafeteria();
 
   useEffect(() => {
     const initializeDevice = async () => {
@@ -42,15 +44,13 @@ const useInitializeDevice = () => {
           if (!storedDeviceId || storedDeviceId !== deviceUniqueId) {
             await storeData('deviceId', deviceUniqueId);
           }
-          const storedFavoriteCafeteria = await getData('favoriteCafeteria');
-
           await http.post<any, DeviceRegistrationProps>('/api/devices', {
             deviceId: deviceUniqueId,
             // platform: Platform.OS,
             userAgent: Platform.OS,
             themeColor: theme,
             campus: campusName[campus].value,
-            favoriteCafeteria: storedFavoriteCafeteria
+            favoriteCafeteria: favoriteCafeteria
           });
         } catch (err) {
           setError(err);

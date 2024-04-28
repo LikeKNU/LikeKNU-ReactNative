@@ -3,10 +3,10 @@ import HomeMealItem from '@/app/home/components/HomeMealItem';
 import CardContainer from '@/common/components/CardContainer';
 import { useTheme } from '@/common/components/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
+import useFavoriteCafeteria from '@/common/hooks/useFavoriteCafeteria';
 import colors, { campusColors } from '@/constants/colors';
 import { HomeMealProps } from '@/types/homeType';
 import { sortPinElementTop } from '@/utils/data';
-import { getData } from '@/utils/storage';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -16,17 +16,14 @@ const HomeMeal = () => {
   const { campus } = useCampus();
   const { data, isLoading, error } = useHomeMeal();
   const [meals, setMeals] = useState<HomeMealProps[]>([]);
-
-  const setMealList = async () => {
-    const favoriteCafeteria = await getData('favoriteCafeteria');
-    if (favoriteCafeteria && data) {
-      setMeals(sortPinElementTop(data, meal => meal.cafeteriaName === favoriteCafeteria));
-    }
-  };
+  const { favoriteCafeteria } = useFavoriteCafeteria();
 
   useEffect(() => {
-    setMealList();
-  }, [data]);
+    if (data) {
+      favoriteCafeteria ? setMeals(sortPinElementTop(data, meal => meal.cafeteriaName === favoriteCafeteria))
+        : setMeals(data);
+    }
+  }, [data, favoriteCafeteria]);
 
   return (
     <View style={{ flex: 1, marginRight: 5 }}>

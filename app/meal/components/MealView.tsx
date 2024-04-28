@@ -12,8 +12,8 @@ import { FlatList, Pressable, StyleSheet, useWindowDimensions, View } from 'reac
 
 const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: {
   cafeteria: Cafeterias;
-  handleChangeFavorite: (cafeteria: Cafeterias) => Promise<void>;
-  favoriteCafeteria?: string;
+  handleChangeFavorite: (cafeteria: Cafeterias) => void;
+  favoriteCafeteria: string | null;
 }) => {
   const { theme } = useTheme();
   const { data, isLoading } = useMeals(cafeteria);
