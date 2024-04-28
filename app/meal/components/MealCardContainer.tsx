@@ -6,13 +6,12 @@ import { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
 import { MenuProps } from '@/types/mealTypes';
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, View } from 'react-native';
 import { LayoutChangeEvent } from 'react-native/Libraries/Types/CoreEventTypes';
 
 const MealCardContainer = ({ menu }: { menu: MenuProps }) => {
   const { theme } = useTheme();
   const [expanded, setExpanded] = useState<boolean>(true);
-  const { width } = useWindowDimensions();
   const animatedHeight = useRef(new Animated.Value(1)).current;
   const [contentHeight, setContentHeight] = useState<number>(56);
 
@@ -44,7 +43,6 @@ const MealCardContainer = ({ menu }: { menu: MenuProps }) => {
   return (
     <Animated.View style={[styles.container, {
       backgroundColor: colors[theme].gray300,
-      width: width - 40,
       height: interpolatedHeight
     }]}>
       <Pressable style={styles.pressable} onPress={handleOnPress}>
@@ -63,7 +61,6 @@ export default MealCardContainer;
 
 const styles = StyleSheet.create({
   container: {
-    // height: 56,
     borderRadius: 26,
     paddingVertical: 16,
     paddingHorizontal: 20,

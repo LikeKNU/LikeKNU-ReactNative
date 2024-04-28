@@ -40,8 +40,8 @@ const Meal = () => {
         onIndexChanged={setActiveIndex}
         showsPagination={false}
       >
-        {cafeteriaList.map((value, index) => (
-          <View key={index} style={styles.page}>
+        {cafeteriaList.map(value => (
+          <View key={value} style={styles.page}>
             <MealView cafeteria={value} />
           </View>
         ))}
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
   },
   page: {
     alignItems: 'center',
-    paddingHorizontal: 20,
-    height: '100%'
+    paddingHorizontal: 20
   }
 });

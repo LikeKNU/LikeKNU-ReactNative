@@ -23,6 +23,7 @@ export default MenusItem;
 
 const styles = StyleSheet.create({
   menus: {
-    fontSize: 15
+    fontSize: 15,
+    marginBottom: 2
   }
 });
