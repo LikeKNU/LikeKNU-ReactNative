@@ -17,7 +17,7 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
   const { campus } = useCampus();
 
   return (
-    <View style={{ flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10 }}>
+    <View style={styles.container}>
       {cafeteriaList.map((cafeteria, index) =>
         <Pressable
           key={cafeteria}
@@ -39,6 +39,11 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
 export default CafeteriasSelector;
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    paddingVertical: 20
+  },
   cafeteriaButton: {
     paddingVertical: 6,
     paddingHorizontal: 12,

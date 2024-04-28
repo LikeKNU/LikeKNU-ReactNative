@@ -14,7 +14,11 @@ const MealView = ({ cafeteria }: { cafeteria: Cafeterias }) => {
 
   if (meals.length === 0) {
     return (
-        <FontText fontWeight="500" style={{color: colors[theme].gray100, marginTop: 10}}>운영하지 않는 날이에요</FontText>
+      <View style={{ justifyContent: 'center', height: '100%' }}>
+        <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>
+          운영하지 않는 날이에요
+        </FontText>
+      </View>
     );
   }
 
@@ -22,6 +26,7 @@ const MealView = ({ cafeteria }: { cafeteria: Cafeterias }) => {
     <FlatList
       data={meals}
       renderItem={({ item }) => <MealCardContainer menu={item} />}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

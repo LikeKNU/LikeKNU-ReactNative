@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   page: {
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 20
+    height: '100%'
   }
 });
