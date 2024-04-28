@@ -17,8 +17,24 @@ const colors = {
     gray300: '#2C2C36',
     press: '#202028'
   },
-  red: 'rgba(240,68,82,0.9)',
-  blue: '#3182F7'
+
+  red: '#F04452',
+  blue: '#3182F7',
+
+  operationStatus: {
+    prepare: {
+      background: '#F2E5D4',
+      text: '#F0A349'
+    },
+    operate: {
+      background: '#D6E1F5',
+      text: '#5C91EF'
+    },
+    end: {
+      background: '#F2DADA',
+      text: '#E46D6F'
+    }
+  }
 };
 
 export default colors;

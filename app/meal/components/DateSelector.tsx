@@ -11,6 +11,8 @@ interface DateSelectorProps {
 
 const DateSelector = ({ handleChangeDate, active }: DateSelectorProps) => {
   const { theme } = useTheme();
+  const currentDate = new Date();
+  const day = ['일', '월', '화', '수', '목', '금', '토'];
 
   const DateButton = ({ index, name }: { index: number, name: string }) => {
     return (
@@ -29,8 +31,8 @@ const DateSelector = ({ handleChangeDate, active }: DateSelectorProps) => {
 
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-      <DateButton index={0}  name={'오늘 (월)'}/>
-      <DateButton index={1}  name={'내일 (화)'}/>
+      <DateButton index={0} name={`오늘 (${day[currentDate.getDay()]})`} />
+      <DateButton index={1} name={`내일 (${day[(currentDate.getDay() + 1) % 7]})`} />
     </View>
   );
 };

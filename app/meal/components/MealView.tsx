@@ -6,42 +6,47 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { MenuProps } from '@/types/mealTypes';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
 
 const MealView = ({ cafeteria }: { cafeteria: Cafeterias }) => {
   const { theme } = useTheme();
   const { data, isLoading } = useMeals(cafeteria);
   const { width } = useWindowDimensions();
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-  const todayMeals: MenuProps[] = data ? data[0].meals : [];
-  const tomorrowMeals: MenuProps[] = data ? data[1].meals : [];
+  const [dateIndex, setDateIndex] = useState<number>(0);
+  const [meals, setMeals] = useState<MenuProps[]>([]);
+
+  useEffect(() => {
+    setMeals(data ? data[dateIndex].meals : []);
+  }, [data, dateIndex]);
 
   const handleChangeDate = (index: number) => {
-    setActiveIndex(index);
+    setDateIndex(index);
   };
 
-  const getMeals = () => {
-    return activeIndex === 0 ? todayMeals : tomorrowMeals;
+  const CardList = ({ meals }: { meals: MenuProps[] }) => {
+    return (
+      <FlatList
+        data={meals}
+        renderItem={({ item }) => <MealCardContainer menu={item} isToday={dateIndex === 0} />}
+        showsVerticalScrollIndicator={false}
+      />
+    );
   };
 
   return (
     <View style={[styles.container, { width: width - 40 }]}>
       <DateSelector
-        active={activeIndex}
+        active={dateIndex}
         handleChangeDate={handleChangeDate}
       />
-      {getMeals().length === 0 ?
+      {meals.length === 0 ?
         <View style={styles.emptyMessage}>
           <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>
             운영하지 않는 날이에요
           </FontText>
         </View>
-        : <FlatList
-          data={getMeals()}
-          renderItem={({ item }) => <MealCardContainer menu={item} />}
-          showsVerticalScrollIndicator={false}
-        />}
+        : <CardList meals={meals} />}
     </View>
   );
 };

@@ -4,17 +4,19 @@ import OperatingTimeItem from '@/app/meal/components/OperatingTimeItem';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg';
 import { useTheme } from '@/common/components/ThemeContext';
 import colors from '@/constants/colors';
-import { MenuProps } from '@/types/mealTypes';
+import { OperatingStatus } from '@/constants/meal';
+import { MenuProps, OperatingType } from '@/types/mealTypes';
+import { determineTimeStatus } from '@/utils/date';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
 import { LayoutChangeEvent } from 'react-native/Libraries/Types/CoreEventTypes';
 
-const MealCardContainer = ({ menu }: { menu: MenuProps }) => {
+const MealCardContainer = ({ menu, isToday }: { menu: MenuProps, isToday: boolean }) => {
+  const operatingStatus = isToday ? determineTimeStatus(menu.operatingTime) : OperatingStatus.PREPARE as OperatingType;
   const { theme } = useTheme();
-  const [expanded, setExpanded] = useState<boolean>(true);
-  const animatedHeight = useRef(new Animated.Value(1)).current;
+  const [expanded, setExpanded] = useState<boolean>(operatingStatus !== OperatingStatus.END);
+  const animatedHeight = useRef(new Animated.Value(operatingStatus !== OperatingStatus.END ? 1 : 0)).current;
   const [contentHeight, setContentHeight] = useState<number>(56);
-
 
   useEffect(() => {
     Animated.timing(animatedHeight, {
@@ -48,7 +50,7 @@ const MealCardContainer = ({ menu }: { menu: MenuProps }) => {
       <Pressable style={styles.pressable} onPress={handleOnPress}>
         <View style={styles.header}>
           <MealTypeItem mealType={menu.mealType} />
-          <OperatingTimeItem operatingTime={menu.operatingTime} />
+          <OperatingTimeItem operatingTime={menu.operatingTime} isToday={isToday} />
         </View>
         <ArrowDownIcon width={24} height={24} fill={colors[theme].gray200} />
       </Pressable>

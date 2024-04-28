@@ -1,3 +1,5 @@
+import { OperatingType } from '@/types/mealTypes';
+
 export enum Cafeterias {
   SODAM = '소담',
   NEULSOM = '늘솜',
@@ -13,3 +15,9 @@ export const cafeterias = {
   cheonan: [Cafeterias.STUDENT, Cafeterias.EMPLOYEE, Cafeterias.DORMITORY],
   yesan: [Cafeterias.STUDENT, Cafeterias.EMPLOYEE]
 };
+
+export const OperatingStatus = {
+  PREPARE: { value: 'prepare', name: '준비중' },
+  OPERATE: { value: 'operate', name: '운영중' },
+  END: { value: 'end', name: '운영종료' }
+}

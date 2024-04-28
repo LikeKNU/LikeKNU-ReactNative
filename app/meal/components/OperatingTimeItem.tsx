@@ -1,10 +1,26 @@
 import FontText from '@/common/text/FontText';
+import colors from '@/constants/colors';
+import { OperatingStatus } from '@/constants/meal';
+import { OperatingType } from '@/types/mealTypes';
+import { determineTimeStatus } from '@/utils/date';
 import { StyleSheet, View } from 'react-native';
 
-const OperatingTimeItem = ({ operatingTime }: { operatingTime: string }) => {
+export interface OperatingTimeProps {
+  operatingTime: string;
+  isToday?: boolean;
+}
+
+const OperatingTimeItem = ({ operatingTime, isToday }: OperatingTimeProps) => {
+  const operatingStatus = isToday ? determineTimeStatus(operatingTime) : OperatingStatus.PREPARE as OperatingType;
+  const backgroundColor = colors.operationStatus[operatingStatus.value].background;
+  const textColor = colors.operationStatus[operatingStatus.value].text;
+  const operatingName = operatingStatus.name;
+
   return (
-    <View style={styles.operatingTimeContainer}>
-      <FontText fontWeight="700" style={styles.operatingTime}>{`운영중 ${operatingTime}`}</FontText>
+    <View
+      style={[styles.operatingTimeContainer, { backgroundColor: backgroundColor }]}>
+      <FontText fontWeight="700"
+                style={[styles.operatingTime, { color: textColor }]}>{`${operatingName} ${operatingTime}`}</FontText>
     </View>
   );
 };
@@ -17,11 +33,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     marginLeft: 6,
 
-    borderRadius: 20,
-    backgroundColor: '#D6E1F5'
+    borderRadius: 20
   },
   operatingTime: {
-    color: '#5C91EF',
     fontSize: 12
   }
 });
