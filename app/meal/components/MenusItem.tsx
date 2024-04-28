@@ -8,13 +8,35 @@ export interface MenusItemProps {
 }
 
 const MenusItem = ({ menus, onLayout }: MenusItemProps) => {
-  const menuList: string[] = menus ? menus.split(' ') : [];
+  let leftMenu: string[];
+  let rightMenu: string[];
+
+  if (menus && menus.includes('B코너')) {
+    const menuCorner = menus.split('B코너');
+    menuCorner[1] = 'B코너'.concat(menuCorner[1]);
+
+    leftMenu = menuCorner[0].split(' ');
+    rightMenu = menuCorner[1].split(' ');
+  } else {
+    const menuList: string[] = menus ? menus.split(' ') : [];
+    const centerPoint = Math.ceil(menuList.length / 2);
+
+    leftMenu = menuList.slice(0, centerPoint);
+    rightMenu = menuList.slice(centerPoint);
+  }
 
   return (
-    <View onLayout={onLayout}>
-      {menuList.map(value =>
-        <FontText key={value} fontWeight="500" style={styles.menus}>{value}</FontText>
-      )}
+    <View onLayout={onLayout} style={{ flexDirection: 'row' }}>
+      <View style={{ flex: 1 }}>
+        {leftMenu.map(value =>
+          <FontText key={value} fontWeight="500" style={styles.menus} numberOfLines={1}>{value}</FontText>
+        )}
+      </View>
+      <View style={{ flex: 1 }}>
+        {rightMenu.map(value =>
+          <FontText key={value} fontWeight="500" style={styles.menus} numberOfLines={1}>{value}</FontText>
+        )}
+      </View>
     </View>
   );
 };
