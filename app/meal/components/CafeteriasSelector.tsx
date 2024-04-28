@@ -7,8 +7,8 @@ import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 interface CafeteriasItemProps {
-  cafeteriaList: Cafeterias[],
-  activeIndex: number,
+  cafeteriaList: Cafeterias[];
+  activeIndex: number;
   handleOnPress: (index: number) => void;
 }
 

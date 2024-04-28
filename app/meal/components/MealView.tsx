@@ -1,15 +1,20 @@
 import { useMeals } from '@/api/meal';
 import DateSelector from '@/app/meal/components/DateSelector';
 import MealCardContainer from '@/app/meal/components/MealCardContainer';
+import PinAngleIcon from '@/assets/icons/pin-angle.svg';
 import { useTheme } from '@/common/components/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { MenuProps } from '@/types/mealTypes';
 import { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
 
-const MealView = ({ cafeteria }: { cafeteria: Cafeterias }) => {
+const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: {
+  cafeteria: Cafeterias;
+  handleChangeFavorite: (cafeteria: Cafeterias) => Promise<void>;
+  favoriteCafeteria?: string;
+}) => {
   const { theme } = useTheme();
   const { data, isLoading } = useMeals(cafeteria);
   const { width } = useWindowDimensions();
@@ -36,10 +41,16 @@ const MealView = ({ cafeteria }: { cafeteria: Cafeterias }) => {
 
   return (
     <View style={[styles.container, { width: width - 40 }]}>
-      <DateSelector
-        active={dateIndex}
-        handleChangeDate={handleChangeDate}
-      />
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <DateSelector
+          active={dateIndex}
+          handleChangeDate={handleChangeDate}
+        />
+        <Pressable style={{ padding: 4 }} onPress={() => handleChangeFavorite(cafeteria)}>
+          <PinAngleIcon width={26} height={26}
+                        fill={favoriteCafeteria === cafeteria ? colors.red : colors[theme].gray200} />
+        </Pressable>
+      </View>
       {meals.length === 0 ?
         <View style={styles.emptyMessage}>
           <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>

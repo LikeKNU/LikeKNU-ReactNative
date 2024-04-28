@@ -5,6 +5,8 @@ import TabHeader from '@/common/components/TabHeader';
 import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
 import { cafeterias, Cafeterias } from '@/constants/meal';
+import { sortPinElementTop } from '@/utils/data';
+import { getData, storeData } from '@/utils/storage';
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -13,7 +15,29 @@ const Meal = () => {
   const { campus } = useCampus();
   const swiperRef = useRef<Swiper>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const cafeteriaList: Cafeterias[] = campus ? cafeterias[campus] : [];
+  const [favorite, setFavorite] = useState<string>();
+  const [cafeteriaList, setCafeteriaList] = useState<Cafeterias[]>([]);
+
+  const getFavoriteCafeteria = async () => {
+    const favorite = await getData('favoriteCafeteria');
+    if (favorite) {
+      setFavorite(favorite);
+    }
+  };
+
+  useEffect(() => {
+    getFavoriteCafeteria();
+    setCafeteriaList(campus ? cafeterias[campus] : []);
+  }, [campus]);
+
+  useEffect(() => {
+    if (favorite) {
+      setActiveIndex(0);
+
+      const sorted = sortPinElementTop<Cafeterias>(cafeteriaList, cafeteria => cafeteria === favorite);
+      setCafeteriaList(sorted);
+    }
+  }, [favorite]);
 
   useEffect(() => {
     swiperRef.current?.scrollTo(activeIndex);
@@ -21,6 +45,11 @@ const Meal = () => {
 
   const changeCafeteria = (index: number) => {
     setActiveIndex(index);
+  };
+
+  const setFavoriteCafeteria = async (cafeteria: Cafeterias) => {
+    setFavorite(cafeteria);
+    await storeData('favoriteCafeteria', cafeteria);
   };
 
   return (
@@ -42,7 +71,7 @@ const Meal = () => {
       >
         {cafeteriaList.map(value => (
           <View key={value} style={styles.page}>
-            <MealView cafeteria={value} />
+            <MealView cafeteria={value} favoriteCafeteria={favorite} handleChangeFavorite={setFavoriteCafeteria} />
           </View>
         ))}
       </Swiper>

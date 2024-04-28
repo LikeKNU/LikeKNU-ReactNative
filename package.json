@@ -24,16 +24,17 @@
     "expo-system-ui": "~2.9.4",
     "react": "18.2.0",
     "react-native": "0.73.6",
+    "react-native-draggable-flatlist": "^4.0.1",
+    "react-native-gesture-handler": "~2.14.0",
+    "react-native-pager-view": "6.2.3",
+    "react-native-reanimated": "~3.6.2",
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
     "react-native-svg": "14.1.0",
     "react-native-swiper": "^1.6.0-rc.3",
     "react-native-web": "~0.19.6",
     "react-native-webview": "13.6.4",
-    "swr": "^2.2.5",
-    "react-native-reanimated": "~3.6.2",
-    "react-native-gesture-handler": "~2.14.0",
-    "react-native-pager-view": "6.2.3"
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
