@@ -10,11 +10,13 @@ import { MenuProps } from '@/types/mealTypes';
 import { useEffect, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
 
-const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: {
+export interface MealViewProps {
   cafeteria: Cafeterias;
   handleChangeFavorite: (cafeteria: Cafeterias) => void;
   favoriteCafeteria: string | null;
-}) => {
+}
+
+const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: MealViewProps) => {
   const { theme } = useTheme();
   const { data, isLoading } = useMeals(cafeteria);
   const { width } = useWindowDimensions();
@@ -29,7 +31,7 @@ const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: {
     setDateIndex(index);
   };
 
-  const CardList = ({ meals }: { meals: MenuProps[] }) => {
+  const MealItemList = ({ meals }: { meals: MenuProps[] }) => {
     return (
       <FlatList
         data={meals}
@@ -57,7 +59,7 @@ const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: {
             운영하지 않는 날이에요
           </FontText>
         </View>
-        : <CardList meals={meals} />}
+        : <MealItemList meals={meals} />}
     </View>
   );
 };

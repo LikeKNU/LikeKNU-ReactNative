@@ -6,8 +6,6 @@ import { usePathname } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, StyleSheet, ViewStyle } from 'react-native';
 
-type MutateFunction<Data> = (data?: Data | Promise<Data>, shouldRevalidate?: boolean) => Promise<Data | undefined>;
-
 interface BusRefreshProps {
   mutate: any;
   focusPathname: string;
@@ -15,7 +13,7 @@ interface BusRefreshProps {
 }
 
 const RefreshButton = ({ mutate, focusPathname, style }: BusRefreshProps) => {
-  const intervalTime = 15;
+  const intervalTime = 20;
   const { theme } = useTheme();
   const [refreshTime, setRefreshTime] = useState(intervalTime);
   const rotateAnimation = useRef(new Animated.Value(0)).current;
@@ -71,7 +69,7 @@ const RefreshButton = ({ mutate, focusPathname, style }: BusRefreshProps) => {
   const rotate = rotateAnimation.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg']
-  })
+  });
 
   return (
     <Pressable

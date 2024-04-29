@@ -1,14 +1,20 @@
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { BottomSheetModal, BottomSheetModalProvider, BottomSheetView } from '@gorhom/bottom-sheet';
+import {
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+  BottomSheetModal,
+  BottomSheetModalProvider,
+  BottomSheetView
+} from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { Button, FlatList, StyleSheet, View } from 'react-native';
 
 const BottomSheetExample = () => {
   const { theme } = useTheme();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ['40%'], []);
 
   const handlePresentModalPress = useCallback(() => {
     bottomSheetRef.current?.present();
@@ -17,6 +23,15 @@ const BottomSheetExample = () => {
   const handleSheetChanges = useCallback((index: number) => {
     console.log('handleSheetChanges', index);
   }, []);
+
+  const renderBackdrop = useCallback((props: BottomSheetBackdropProps) => (
+    <BottomSheetBackdrop
+      {...props}
+      appearsOnIndex={0}
+      disappearsOnIndex={-1}
+      opacity={0.5}
+    />
+  ), []);
 
   return (
     <BottomSheetModalProvider>
@@ -35,6 +50,7 @@ const BottomSheetExample = () => {
           onChange={handleSheetChanges}
           backgroundStyle={{ backgroundColor: colors[theme].container }}
           handleIndicatorStyle={{ backgroundColor: colors[theme].gray100 }}
+          backdropComponent={renderBackdrop}
         >
           <BottomSheetView
             style={[styles.contentContainer]}
