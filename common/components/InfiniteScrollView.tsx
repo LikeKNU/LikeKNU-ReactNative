@@ -1,5 +1,5 @@
 import AnnouncementItem from '@/app/announcement/components/AnnouncementItem';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import React, { useEffect, useRef } from 'react';
 import { ActivityIndicator, FlatList, Keyboard, RefreshControl, StyleSheet, View } from 'react-native';

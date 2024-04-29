@@ -2,7 +2,7 @@ import { useHomeCalendar } from '@/api/home';
 import CalendarItem from '@/app/calendar/components/CalendarItem';
 import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
 import CardContainer from '@/common/components/CardContainer';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { useRouter } from 'expo-router';

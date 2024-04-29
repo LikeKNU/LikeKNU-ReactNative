@@ -1,5 +1,5 @@
 import CaretRightIcon from '@/assets/icons/caret-right.svg'
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { CityBusRouteProps } from '@/types/busTypes';

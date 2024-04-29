@@ -1,6 +1,6 @@
-import { ThemeType, useTheme } from '@/common/components/ThemeContext';
+import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
+import { ThemeType, useTheme } from '@/common/contexts/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
-import useFavoriteCafeteria from '@/common/hooks/useFavoriteCafeteria';
 import { campusName } from '@/constants/campus';
 import http from '@/utils/http';
 import { getData, storeData } from '@/utils/storage';
@@ -61,7 +61,7 @@ const useInitializeDevice = () => {
     };
 
     initializeDevice();
-  }, [theme, campus]);
+  }, [theme, campus, favoriteCafeteria]);
 
   return { isLoading, error }
 };

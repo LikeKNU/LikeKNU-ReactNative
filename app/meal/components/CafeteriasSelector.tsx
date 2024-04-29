@@ -1,4 +1,4 @@
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
 import colors, { campusColors } from '@/constants/colors';

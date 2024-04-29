@@ -1,4 +1,4 @@
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
 import colors, { campusColors } from '@/constants/colors';
 import React, { PropsWithChildren } from 'react';

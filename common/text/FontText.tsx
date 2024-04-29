@@ -1,4 +1,4 @@
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { fontName } from '@/constants/fonts';
 import React, { FunctionComponent } from 'react';

@@ -1,6 +1,6 @@
 import CityBusItem from '@/app/bus/components/CityBusItem';
 import CityBusRoute from '@/app/bus/components/CityBusRoute';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { BusArrivalProps, CityBusProps } from '@/types/busTypes';

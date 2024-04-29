@@ -1,5 +1,3 @@
-import { OperatingType } from '@/types/mealTypes';
-
 export enum Cafeterias {
   SODAM = '소담',
   NEULSOM = '늘솜',

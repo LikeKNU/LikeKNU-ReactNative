@@ -1,7 +1,7 @@
 import BreakfastIcon from '@/assets/icons/breakfast.svg';
 import DinnerIcon from '@/assets/icons/dinner.svg';
 import LunchIcon from '@/assets/icons/lunch.svg';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { MealType } from '@/types/mealTypes';

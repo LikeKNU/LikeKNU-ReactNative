@@ -2,7 +2,7 @@ import { useMeals } from '@/api/meal';
 import DateSelector from '@/app/meal/components/DateSelector';
 import MealCardContainer from '@/app/meal/components/MealCardContainer';
 import PinAngleIcon from '@/assets/icons/pin-angle.svg';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';

@@ -2,8 +2,8 @@ import CafeteriasSelector from '@/app/meal/components/CafeteriasSelector';
 import MealView from '@/app/meal/components/MealView';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
+import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
 import useCampus from '@/common/hooks/useCampus';
-import useFavoriteCafeteria from '@/common/hooks/useFavoriteCafeteria';
 import FontText from '@/common/text/FontText';
 import { cafeterias, Cafeterias } from '@/constants/meal';
 import { sortPinElementTop } from '@/utils/data';
@@ -22,7 +22,7 @@ const Meal = () => {
     setActiveIndex(0);
 
     if (campus) {
-      setCafeteriaList(favoriteCafeteria ? sortPinElementTop<Cafeterias>(cafeteriaList, cafeteria => cafeteria === favoriteCafeteria)
+      setCafeteriaList(favoriteCafeteria ? sortPinElementTop<Cafeterias>(cafeterias[campus], cafeteria => cafeteria === favoriteCafeteria)
         : cafeterias[campus]);
     }
   }, [favoriteCafeteria, campus]);

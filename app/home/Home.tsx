@@ -4,7 +4,7 @@ import HomeCalendar from '@/app/home/components/HomeCalendar';
 import HomeHeader from '@/app/home/components/HomeHeader';
 import HomeMeal from '@/app/home/components/HomeMeal';
 import PageLayout from '@/common/components/PageLayout';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';

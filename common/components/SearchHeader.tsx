@@ -1,6 +1,6 @@
 import ArrowLeftIcon from '@/assets/icons/arrow-left.svg';
 import XCircleIcon from '@/assets/icons/x-circle.svg';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { useRouter } from 'expo-router';
 import { useRef, useState } from 'react';

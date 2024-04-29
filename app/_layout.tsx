@@ -1,4 +1,5 @@
-import ThemeContextProvider, { useTheme } from '@/common/components/ThemeContext';
+import FavoriteContextProvider from '@/common/contexts/FavoriteContext';
+import ThemeContextProvider, { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
 import useInitializeDevice from '@/utils/device';
@@ -53,7 +54,9 @@ const AppLayout = () => {
           }
         }}>
           <ThemeContextProvider>
-            <Content />
+            <FavoriteContextProvider>
+              <Content />
+            </FavoriteContextProvider>
           </ThemeContextProvider>
         </SWRConfig>
       </SafeAreaProvider>

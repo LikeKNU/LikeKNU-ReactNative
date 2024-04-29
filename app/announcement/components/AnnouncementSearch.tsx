@@ -2,7 +2,7 @@ import { useAnnouncementsSearch } from '@/api/announcement';
 import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
 import SearchHeader from '@/common/components/SearchHeader';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';

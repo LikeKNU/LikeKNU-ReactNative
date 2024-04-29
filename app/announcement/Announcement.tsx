@@ -3,7 +3,7 @@ import SearchIcon from '@/assets/icons/search.svg';
 import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import TopTabs from '@/common/components/TopTabs';
 import FontText from '@/common/text/FontText';
 import { categories } from '@/constants/announcement';

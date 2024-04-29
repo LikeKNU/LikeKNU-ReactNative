@@ -2,7 +2,7 @@ import MealTypeItem from '@/app/meal/components/MealTypeItem';
 import MenusItem from '@/app/meal/components/MenusItem';
 import OperatingTimeItem from '@/app/meal/components/OperatingTimeItem';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { OperatingStatus } from '@/constants/meal';
 import { MenuProps, OperatingType } from '@/types/mealTypes';

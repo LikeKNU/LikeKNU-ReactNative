@@ -1,7 +1,7 @@
 import { useCityBuses } from '@/api/bus';
 import ArrivalCityBusItem from '@/app/bus/components/ArrivalCityBusItem';
 import RefreshButton from '@/app/bus/components/RefreshButton';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { SectionList, StyleSheet, View } from 'react-native';

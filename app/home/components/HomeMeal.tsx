@@ -1,9 +1,9 @@
 import { useHomeMeal } from '@/api/home';
 import HomeMealItem from '@/app/home/components/HomeMealItem';
 import CardContainer from '@/common/components/CardContainer';
-import { useTheme } from '@/common/components/ThemeContext';
+import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import useCampus from '@/common/hooks/useCampus';
-import useFavoriteCafeteria from '@/common/hooks/useFavoriteCafeteria';
 import colors, { campusColors } from '@/constants/colors';
 import { HomeMealProps } from '@/types/homeType';
 import { sortPinElementTop } from '@/utils/data';
