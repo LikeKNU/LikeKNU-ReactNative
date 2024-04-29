@@ -22,7 +22,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#18171D"
         }
-      }
+      },
+      "bundleIdentifier": "com.woopaca.likeknu"
     },
     "android": {
       "adaptiveIcon": {
@@ -35,7 +36,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#18171D"
         }
-      }
+      },
+      "package": "com.woopaca.likeknu"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -43,6 +45,14 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "like-knu"
+    "scheme": "like-knu",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e7aa67eb-52b1-48f3-85b7-9faee242f8e8"
+      }
+    }
   }
 }
