@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
 import { LayoutChangeEvent } from 'react-native/Libraries/Types/CoreEventTypes';
 
-const MealCardContainer = ({ menu, isToday }: { menu: MenuProps, isToday: boolean }) => {
+const MealItem = ({ menu, isToday }: { menu: MenuProps, isToday: boolean }) => {
   const operatingStatus = isToday ? determineTimeStatus(menu.operatingTime) : OperatingStatus.PREPARE as OperatingType;
   const { theme } = useTheme();
   const [expanded, setExpanded] = useState<boolean>(operatingStatus !== OperatingStatus.END);
@@ -38,14 +38,14 @@ const MealCardContainer = ({ menu, isToday }: { menu: MenuProps, isToday: boolea
   };
 
   const interpolatedHeight = animatedHeight.interpolate({
-    inputRange: [0, 1],
-    outputRange: [56, contentHeight + 56 + 20]
+    inputRange: [0, 0.99, 1],
+    outputRange: [56, contentHeight + 56 + 20, 220]
   });
 
   return (
     <Animated.View style={[styles.container, {
       backgroundColor: colors[theme].gray300,
-      height: interpolatedHeight
+      maxHeight: interpolatedHeight
     }]}>
       <Pressable style={styles.pressable} onPress={handleOnPress}>
         <View style={styles.header}>
@@ -59,7 +59,7 @@ const MealCardContainer = ({ menu, isToday }: { menu: MenuProps, isToday: boolea
   );
 };
 
-export default MealCardContainer;
+export default MealItem;
 
 const styles = StyleSheet.create({
   container: {

@@ -7,6 +7,7 @@ import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
 import { cafeterias, Cafeterias } from '@/constants/meal';
 import { sortPinElementTop } from '@/utils/data';
+import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -17,6 +18,7 @@ const Meal = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [cafeteriaList, setCafeteriaList] = useState<Cafeterias[]>([]);
   const { favoriteCafeteria, changeFavoriteCafeteria } = useFavoriteCafeteria();
+  const { cafeteriaName: pressCafeteria } = useLocalSearchParams<{ cafeteriaName: Cafeterias }>();
 
   useEffect(() => {
     setActiveIndex(0);
@@ -30,6 +32,12 @@ const Meal = () => {
   useEffect(() => {
     swiperRef.current?.scrollTo(activeIndex);
   }, [activeIndex]);
+
+  useEffect(() => {
+    if (pressCafeteria) {
+      setActiveIndex(cafeteriaList.indexOf(pressCafeteria));
+    }
+  }, [pressCafeteria]);
 
   const changeCafeteria = (index: number) => {
     setActiveIndex(index);

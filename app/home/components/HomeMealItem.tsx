@@ -20,7 +20,7 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
     <Pressable
       style={{ height: 176 }}
       key={meal.cafeteriaId}
-      onPress={() => router.navigate({ pathname: '/meal', params: { cafeteriaId: meal.cafeteriaId } })}
+      onPress={() => router.navigate({ pathname: '/meal', params: { cafeteriaName: meal.cafeteriaName } })}
     >
       <View style={styles.titleContainer}>
         <FontText fontWeight="700" style={styles.title}>{meal.cafeteriaName}</FontText>
