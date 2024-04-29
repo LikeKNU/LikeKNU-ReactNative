@@ -1,4 +1,6 @@
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
+import colors from '@/constants/colors';
 import { StyleSheet, View } from 'react-native';
 import { LayoutChangeEvent } from 'react-native/Libraries/Types/CoreEventTypes';
 
@@ -8,6 +10,7 @@ export interface MenusItemProps {
 }
 
 const MenusItem = ({ menus, onLayout }: MenusItemProps) => {
+  const { theme } = useTheme();
   let leftMenu: string[];
   let rightMenu: string[];
 
@@ -27,16 +30,20 @@ const MenusItem = ({ menus, onLayout }: MenusItemProps) => {
 
   return (
     <View onLayout={onLayout} style={{ flexDirection: 'row' }}>
-      <View style={{ flex: 1 }}>
-        {leftMenu.map(value =>
-          <FontText key={value} fontWeight="500" style={styles.menus} numberOfLines={1}>{value}</FontText>
-        )}
-      </View>
-      <View style={{ flex: 1 }}>
-        {rightMenu.map(value =>
-          <FontText key={value} fontWeight="500" style={styles.menus} numberOfLines={1}>{value}</FontText>
-        )}
-      </View>
+      {menus ? <>
+          <View style={{ flex: 1 }}>
+            {leftMenu.map(value =>
+              <FontText key={value} fontWeight="500" style={styles.menus} numberOfLines={1}>{value}</FontText>
+            )}
+          </View>
+          <View style={{ flex: 1 }}>
+            {rightMenu.map(value =>
+              <FontText key={value} fontWeight="500" style={styles.menus} numberOfLines={1}>{value}</FontText>
+            )}
+          </View>
+        </> :
+        <FontText fontWeight="500" style={{ color: colors[theme].gray100, fontSize: 15 }}>등록된 메뉴가 없어요</FontText>
+      }
     </View>
   );
 };

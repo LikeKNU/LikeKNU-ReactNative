@@ -1,5 +1,5 @@
-import CityBusItem from '@/app/bus/components/CityBusItem';
-import CityBusRoute from '@/app/bus/components/CityBusRoute';
+import CityBusItem from '@/app/bus/components/cityBus/CityBusItem';
+import CityBusRoute from '@/app/bus/components/cityBus/CityBusRoute';
 import { HomeBusProps } from '@/types/homeType';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';

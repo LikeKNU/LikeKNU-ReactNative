@@ -19,7 +19,7 @@ const TagButton = ({ children, isActive, handleOnPress }: TagButtonProps) => {
     <Pressable
       style={[styles.container, {
         backgroundColor: isActive ? campusColors[campus!] : colors[theme].gray300,
-        shadowColor: colors[theme].gray300,
+        shadowColor: colors[theme].background
       }]}
       onPress={handleOnPress}
     >
@@ -32,12 +32,15 @@ export default TagButton;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 8,
+    paddingVertical: 6,
     paddingHorizontal: 12,
-    borderRadius: 16,
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
-    alignItems: 'center'
+    borderRadius: 14,
+
+    shadowOpacity: 1,
+    shadowRadius: 12,
+    shadowOffset: { width: 2, height: 2 },
+
+    alignItems: 'center',
+    marginRight: 10
   }
 });

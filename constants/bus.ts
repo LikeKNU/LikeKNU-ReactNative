@@ -7,3 +7,8 @@ export enum RouteType {
   INCOMING = 'incoming',
   OUTGOING = 'outgoing'
 }
+
+export const routeType = {
+  OUTGOING: { value: 'outgoing', name: '학교에서 출발' },
+  INCOMING: { value: 'incoming', name: '학교로 도착' }
+}

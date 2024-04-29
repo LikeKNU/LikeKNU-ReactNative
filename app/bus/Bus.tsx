@@ -1,18 +1,18 @@
-import CityBus from '@/app/bus/components/CityBus';
+import CityBus from '@/app/bus/components/cityBus/CityBus';
 import BottomSheetExample from '@/common/components/BottomSheetExample';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
 import TopTabs from '@/common/components/TopTabs';
 import FontText from '@/common/text/FontText';
 import { buses } from '@/constants/bus';
-import { TabType } from '@/types/common';
+import { ValueNameType } from '@/types/common';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 const Bus = () => {
-  const [busType, setBusType] = useState<TabType>(buses.CITY_BUS);
+  const [busType, setBusType] = useState<ValueNameType>(buses.CITY_BUS);
 
-  const handleChangeBusType = (changeBusType: TabType) => {
+  const handleChangeBusType = (changeBusType: ValueNameType) => {
     setBusType(changeBusType);
   };
 

@@ -43,7 +43,7 @@ const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: MealVi
 
   return (
     <View style={[styles.container, { width: width - 40 }]}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+      <View style={styles.pressableHeader}>
         <DateSelector
           active={dateIndex}
           handleChangeDate={handleChangeDate}
@@ -69,6 +69,11 @@ export default MealView;
 const styles = StyleSheet.create({
   container: {
     height: '100%'
+  },
+  pressableHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   emptyMessage: {
     flex: 1,

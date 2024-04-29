@@ -1,5 +1,5 @@
 import { useHomeBuses } from '@/api/home';
-import RefreshButton from '@/app/bus/components/RefreshButton';
+import RefreshButton from '@/app/bus/components/cityBus/RefreshButton';
 import HomeBusItem from '@/app/home/components/HomeBusItem';
 import CardContainer from '@/common/components/CardContainer';
 import { useRouter } from 'expo-router';

@@ -1,5 +1,5 @@
-import CityBusItem from '@/app/bus/components/CityBusItem';
-import CityBusRoute from '@/app/bus/components/CityBusRoute';
+import CityBusItem from '@/app/bus/components/cityBus/CityBusItem';
+import CityBusRoute from '@/app/bus/components/cityBus/CityBusRoute';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
@@ -31,7 +31,6 @@ const ArrivalCityBusItem = ({ arrivalCityBus }: ArrivalCityBusItemProps) => {
         renderItem={({ item }) => <View style={styles.cityBus}>
           <CityBusItem arrivalBus={item} />
         </View>}
-        keyExtractor={item => item.busNumber! + item.remainingTime}
       />
     </View>
   );

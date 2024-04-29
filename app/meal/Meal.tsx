@@ -5,6 +5,7 @@ import TabHeader from '@/common/components/TabHeader';
 import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
 import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
+import { routeType } from '@/constants/bus';
 import { cafeterias, Cafeterias } from '@/constants/meal';
 import { sortPinElementTop } from '@/utils/data';
 import { useLocalSearchParams } from 'expo-router';
@@ -60,9 +61,9 @@ const Meal = () => {
         onIndexChanged={setActiveIndex}
         showsPagination={false}
       >
-        {cafeteriaList.map(value => (
-          <View key={value} style={styles.page}>
-            <MealView cafeteria={value} favoriteCafeteria={favoriteCafeteria}
+        {cafeteriaList.map(cafeteria => (
+          <View key={cafeteria} style={styles.page}>
+            <MealView cafeteria={cafeteria} favoriteCafeteria={favoriteCafeteria}
                       handleChangeFavorite={changeFavoriteCafeteria} />
           </View>
         ))}

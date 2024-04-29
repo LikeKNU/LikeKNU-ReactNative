@@ -1,40 +1,37 @@
 import TagButton from '@/common/components/TagButton';
 import { useTheme } from '@/common/contexts/ThemeContext';
-import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
+import { routeType } from '@/constants/bus';
 import colors from '@/constants/colors';
-import { Cafeterias } from '@/constants/meal';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export interface CafeteriasItemProps {
-  cafeteriaList: Cafeterias[];
+export interface RouteTypeProps {
   activeIndex: number;
   handleOnPress: (index: number) => void;
 }
 
-const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: CafeteriasItemProps) => {
+const RouteTypeSelector = ({ activeIndex, handleOnPress }: RouteTypeProps) => {
   const { theme } = useTheme();
-  const { campus } = useCampus();
 
   return (
     <View style={styles.container}>
-      {cafeteriaList.map((cafeteria, index) =>
+      {Object.values(routeType).map((routeType, index) =>
         <TagButton
-          key={cafeteria}
+          key={routeType.value}
           isActive={activeIndex === index}
           handleOnPress={() => handleOnPress(index)}
         >
-          <FontText fontWeight="600" style={[styles.cafeteriaName, {
+          <FontText fontWeight="600" style={[styles.routeTypeName, {
             color: activeIndex === index ? colors[theme].gray300 : colors[theme].contrast
-          }]}>{cafeteria}</FontText>
+          }]}>{routeType.name}</FontText>
         </TagButton>
       )}
     </View>
   );
 };
 
-export default CafeteriasSelector;
+export default RouteTypeSelector;
 
 const styles = StyleSheet.create({
   container: {
@@ -42,7 +39,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 20
   },
-  cafeteriaName: {
+  routeTypeName: {
     fontSize: 16
   }
 });

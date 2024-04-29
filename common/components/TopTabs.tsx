@@ -1,18 +1,13 @@
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { TabType } from '@/types/common';
+import { ValueNameType } from '@/types/common';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-export interface TopTabItemProps {
-  value: string;
-  name: string;
-}
-
 export interface TopTabsProps {
-  handleTabPress: (tab: TabType) => void;
-  activeTab: TabType;
-  tabItems: TabType[];
+  handleTabPress: (tab: ValueNameType) => void;
+  activeTab: ValueNameType;
+  tabItems: ValueNameType[];
 }
 
 const TopTabs = ({ handleTabPress, activeTab, tabItems }: TopTabsProps) => {

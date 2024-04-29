@@ -9,14 +9,14 @@ import FontText from '@/common/text/FontText';
 import { categories } from '@/constants/announcement';
 import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';
-import { TabType } from '@/types/common';
+import { ValueNameType } from '@/types/common';
 import { flatMapRemoveDuplicate } from '@/utils/data';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
 const Announcement = () => {
-  const [category, setCategory] = useState<TabType>(categories.STUDENT_NEWS);
+  const [category, setCategory] = useState<ValueNameType>(categories.STUDENT_NEWS);
   const {
     data,
     size,
@@ -36,7 +36,7 @@ const Announcement = () => {
     }
   };
 
-  const handleChangeCategory = (changeCategory: TabType) => {
+  const handleChangeCategory = (changeCategory: ValueNameType) => {
     setCategory(changeCategory);
   };
 
