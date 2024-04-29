@@ -18,8 +18,7 @@ const CityBus = () => {
   }, [activeIndex]);
 
   const mutate = async () => {
-    await incomingMutate();
-    await outgoingMutate();
+    activeIndex === 0 ? await incomingMutate() : await outgoingMutate();
   };
 
   const changeRouteType = (index: number) => {
