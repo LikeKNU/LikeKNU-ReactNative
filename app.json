@@ -1,29 +1,33 @@
 {
   "expo": {
-    "name": "LikeKNU-ReactNative",
+    "name": "공주대처럼",
     "slug": "like-knu",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
       "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFFFF",
         "dark": {
           "image": "./assets/splash-dark.png",
           "resizeMode": "contain",
-          "backgroundColor": "#18171D"
+          "backgroundColor": "#101012"
         }
       },
-      "bundleIdentifier": "com.woopaca.likeknu"
+      "bundleIdentifier": "com.woopaca.likeknu",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true,
+          "NSAllowsArbitraryLoadsInWebContent": true
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -31,10 +35,13 @@
         "backgroundColor": "#ffffff"
       },
       "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFFFF",
         "dark": {
           "image": "./assets/splash-dark.png",
           "resizeMode": "contain",
-          "backgroundColor": "#18171D"
+          "backgroundColor": "#101012"
         }
       },
       "package": "com.woopaca.likeknu"
