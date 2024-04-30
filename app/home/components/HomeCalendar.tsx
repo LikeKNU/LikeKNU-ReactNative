@@ -36,7 +36,7 @@ const HomeCalendar = () => {
             />
           ) : (
             <View>
-              <FontText style={[styles.emptyMessage, { color: colors[theme].gray200 }]} numberOfLines={1}>
+              <FontText style={[styles.emptyMessage, { color: colors[theme].gray100 }]} numberOfLines={1}>
                 4주 이내에 일정이 없어요
               </FontText>
             </View>

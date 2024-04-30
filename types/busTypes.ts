@@ -13,3 +13,12 @@ export interface CityBusRouteProps {
   origin: string;
   destination: string;
 }
+
+export interface ShuttleRouteProps {
+  /*origin: string;
+  destination: string;
+  departureTime: string | null;*/
+  shuttleId: string;
+  shuttleName: string;
+  note: string | null;
+}

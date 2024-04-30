@@ -19,7 +19,7 @@ const OperatingTimeItem = ({ operatingTime, isToday }: OperatingTimeProps) => {
   return (
     <View
       style={[styles.operatingTimeContainer, { backgroundColor: backgroundColor }]}>
-      <FontText fontWeight="700"
+      <FontText fontWeight="600"
                 style={[styles.operatingTime, { color: textColor }]}>{`${operatingName} ${operatingTime}`}</FontText>
     </View>
   );

@@ -19,8 +19,10 @@ const AppLayout = () => {
   const [fontsLoaded, fontError] = useFonts(Fonts);
 
   const onLayoutRootView = useCallback(async () => {
-    if ((fontsLoaded || fontError)) {
-      await SplashScreen.hideAsync();
+    if (fontsLoaded || fontError) {
+      setTimeout(async () => {
+        await SplashScreen.hideAsync();
+      }, 1500);
     }
   }, [fontsLoaded, fontError]);
 

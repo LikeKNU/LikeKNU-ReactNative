@@ -42,7 +42,7 @@ const MenusItem = ({ menus, onLayout }: MenusItemProps) => {
             )}
           </View>
         </> :
-        <FontText fontWeight="500" style={{ color: colors[theme].gray100, fontSize: 15 }}>등록된 메뉴가 없어요</FontText>
+        <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>등록된 메뉴가 없어요</FontText>
       }
     </View>
   );
@@ -52,7 +52,6 @@ export default MenusItem;
 
 const styles = StyleSheet.create({
   menus: {
-    fontSize: 15,
     marginBottom: 2
   }
 });

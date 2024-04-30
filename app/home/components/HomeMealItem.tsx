@@ -37,7 +37,7 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
           }
           keyExtractor={(item) => item}
         />
-      ) : <FontText style={[styles.emptyMessage, { color: colors[theme].gray200 }]} numberOfLines={1}>
+      ) : <FontText style={[styles.emptyMessage, { color: colors[theme].gray100 }]} numberOfLines={1}>
         등록된 메뉴가 없어요
       </FontText>}
     </Pressable>

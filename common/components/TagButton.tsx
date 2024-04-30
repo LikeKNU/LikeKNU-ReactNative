@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 6,
     paddingHorizontal: 12,
-    borderRadius: 14,
+    borderRadius: 20,
 
     shadowOpacity: 1,
     shadowRadius: 12,

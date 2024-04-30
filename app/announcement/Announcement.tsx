@@ -1,10 +1,11 @@
 import { useAnnouncements } from '@/api/announcement';
 import SearchIcon from '@/assets/icons/search.svg';
+import AnimatedPressable from '@/common/components/AnimatedPressable';
 import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
-import { useTheme } from '@/common/contexts/ThemeContext';
 import TopTabs from '@/common/components/TopTabs';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import { categories } from '@/constants/announcement';
 import colors from '@/constants/colors';
@@ -13,7 +14,7 @@ import { ValueNameType } from '@/types/common';
 import { flatMapRemoveDuplicate } from '@/utils/data';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const Announcement = () => {
   const [category, setCategory] = useState<ValueNameType>(categories.STUDENT_NEWS);
@@ -44,9 +45,9 @@ const Announcement = () => {
     <PageLayout edges={['top']}>
       <TabHeader>
         <FontText fontWeight="700" style={styles.title}>공지사항</FontText>
-        <Pressable style={{ marginRight: 6 }} onPress={() => router.push('/announcement/search')}>
+        <AnimatedPressable style={{padding: 4}} animatedViewStyle={{borderRadius: 12, padding: 4, position: 'relative'}} onPress={() => router.push('/announcement/search')}>
           <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
-        </Pressable>
+        </AnimatedPressable>
       </TabHeader>
       <TopTabs
         handleTabPress={handleChangeCategory}

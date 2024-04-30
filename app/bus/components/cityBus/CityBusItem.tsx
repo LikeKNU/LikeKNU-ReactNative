@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     width: 36
   },
   remainingTime: {
-    fontSize: 14,
     marginLeft: 12
   },
   emptyMessage: {

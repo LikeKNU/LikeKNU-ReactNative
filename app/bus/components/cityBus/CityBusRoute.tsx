@@ -10,10 +10,10 @@ const CityBusRoute = ({ origin, destination }: CityBusRouteProps) => {
 
   return (
     <View style={styles.container}>
-      <FontText style={styles.name}>{origin}</FontText>
+      <FontText>{origin}</FontText>
       <CaretRightIcon style={styles.icon} width={16} height={16}
                       fill={colors[theme].gray200} />
-      <FontText style={styles.name}>{destination}</FontText>
+      <FontText>{destination}</FontText>
     </View>
   );
 };
@@ -24,9 +24,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  name: {
-    fontSize: 14
   },
   icon: {
     marginHorizontal: 8
