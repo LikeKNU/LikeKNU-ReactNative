@@ -1,5 +1,5 @@
-import { useTheme } from '@/common/contexts/ThemeContext';
 import { useCampus } from '@/common/contexts/CampusContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import colors, { campusColors } from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { PropsWithChildren } from 'react';
@@ -19,7 +19,7 @@ const TagButton = ({ children, isActive, handleOnPress }: TagButtonProps) => {
     <Pressable
       style={[styles.container, {
         backgroundColor: isActive ? campusColors[campus!] : colors[theme].gray300,
-        shadowColor: colors[theme].background
+        shadowColor: colors[theme].shadow
       }]}
       onPress={handleOnPress}
     >

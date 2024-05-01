@@ -17,12 +17,12 @@ const CampusSetting = () => {
     return (
       <Pressable style={[styles.campusButton, {
         backgroundColor: isSelected(campus) ? campusColors[campus] : colors[theme].gray300,
-        shadowColor: colors[theme].background
+        shadowColor: colors[theme].shadow
       }]}
                  onPress={() => changeCampus(campus)}>
         <FontText fontWeight="700"
                   style={{
-                    fontSize: 22,
+                    fontSize: 18,
                     color: isSelected(campus) ? colors[theme].container : campusColors[campus],
                     opacity: isSelected(campus) ? 1 : 0.5
                   }}>{campusName[campus].name}</FontText>
@@ -31,35 +31,30 @@ const CampusSetting = () => {
   };
 
   return (
-    <>
-      <FontText fontWeight="600" style={[styles.title, { color: colors[theme].gray100 }]}>캠퍼스</FontText>
-      <FlatList
-        contentContainerStyle={styles.buttonContainer}
-        data={Object.values(Campuses)}
-        renderItem={({ item }) => <CampusButton campus={item} />}
-        scrollEnabled={false}
-      />
-    </>
+    <FlatList
+      style={{ marginBottom: 20 }}
+      contentContainerStyle={styles.buttonContainer}
+      data={Object.values(Campuses)}
+      renderItem={({ item }) => <CampusButton campus={item} />}
+      scrollEnabled={false}
+    />
   );
 };
 
 export default CampusSetting;
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 18
-  },
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     padding: 10
   },
   campusButton: {
-    paddingVertical: 8,
+    paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 12,
-    shadowOffset: { width: 4, height: 4 },
+    shadowOffset: { width: 2, height: 2 },
     shadowRadius: 8,
     shadowOpacity: 1
   }

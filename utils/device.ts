@@ -1,6 +1,6 @@
+import { useCampus } from '@/common/contexts/CampusContext';
 import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
 import { ThemeType, useTheme } from '@/common/contexts/ThemeContext';
-import { useCampus } from '@/common/contexts/CampusContext';
 import { campusName } from '@/constants/campus';
 import http from '@/utils/http';
 import { getData, storeData } from '@/utils/storage';

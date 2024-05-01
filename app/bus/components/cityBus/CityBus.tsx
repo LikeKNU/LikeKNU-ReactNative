@@ -37,7 +37,7 @@ const CityBus = () => {
       >
         {Object.values(routeType).map(routeType => (
           <View key={routeType.value} style={styles.page}>
-            <CityBusView routeType={routeType} data={routeType.value === 'incoming' ? incomingData : outgoingData} />
+            <CityBusView data={routeType.value === 'incoming' ? incomingData : outgoingData} />
           </View>
         ))}
       </Swiper>

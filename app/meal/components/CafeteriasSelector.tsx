@@ -1,6 +1,6 @@
 import TagButton from '@/common/components/TagButton';
-import { useTheme } from '@/common/contexts/ThemeContext';
 import { useCampus } from '@/common/contexts/CampusContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';

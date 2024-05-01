@@ -1,5 +1,5 @@
-import { useTheme } from '@/common/contexts/ThemeContext';
 import { useCampus } from '@/common/contexts/CampusContext';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import colors, { campusColors } from '@/constants/colors';
 import React, { PropsWithChildren } from 'react';
 import Swiper from 'react-native-swiper';

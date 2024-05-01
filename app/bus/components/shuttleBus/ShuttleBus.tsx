@@ -10,12 +10,12 @@ import {
   BottomSheetModalProvider,
   BottomSheetView
 } from '@gorhom/bottom-sheet';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 
 const ShuttleBus = () => {
   const { theme } = useTheme();
-  const { data } = useShuttleRoutes();
+  const { data, isLoading, mutate } = useShuttleRoutes();
   const snapPoints = useMemo(() => ['40%', '70%'], []);
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const [shuttleId, setShuttleId] = useState<string>('');
@@ -43,6 +43,12 @@ const ShuttleBus = () => {
         renderItem={({ item }) => <ShuttleRouteListItem shuttleRoute={item} onPress={handleOnPress} />}
         keyExtractor={item => item.shuttleId}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoading}
+            onRefresh={mutate}
+          />
+        }
       />
       <BottomSheetModal
         ref={bottomSheetRef}
