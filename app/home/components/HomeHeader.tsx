@@ -7,13 +7,21 @@ import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
 import { campusName } from '@/constants/campus';
 import { campusColors } from '@/constants/colors';
+import * as Haptics from 'expo-haptics';
 import { useRouter } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
 
 const HomeHeader = () => {
   const { theme } = useTheme();
   const router = useRouter();
   const { campus } = useCampus();
+
+  const handleNotificationPress = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.selectionAsync();
+    }
+    router.push('/notification');
+  };
 
   return (
     <TabHeader>
@@ -24,7 +32,7 @@ const HomeHeader = () => {
         </FontText>}
       </View>
       <View style={styles.menuIcons}>
-        <Pressable onPress={() => router.push('/notification')}>
+        <Pressable onPress={handleNotificationPress}>
           <BellIcon width={28} height={28} />
         </Pressable>
       </View>

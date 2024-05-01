@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     paddingVertical: 10,
     paddingHorizontal: 14,
-    borderRadius: 10
+    borderRadius: 10,
+
+
   }
 });

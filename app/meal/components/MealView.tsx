@@ -2,13 +2,14 @@ import { useMeals } from '@/api/meal';
 import DateSelector from '@/app/meal/components/DateSelector';
 import MealItem from '@/app/meal/components/MealItem';
 import PinAngleIcon from '@/assets/icons/pin-angle.svg';
+import AnimatedPressable from '@/common/components/AnimatedPressable';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { MenuProps } from '@/types/mealTypes';
 import { useEffect, useState } from 'react';
-import { FlatList, Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
 
 export interface MealViewProps {
   cafeteria: Cafeterias;
@@ -48,10 +49,11 @@ const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: MealVi
           active={dateIndex}
           handleChangeDate={handleChangeDate}
         />
-        <Pressable style={{ padding: 4 }} onPress={() => handleChangeFavorite(cafeteria)}>
+        <AnimatedPressable style={{ padding: 4 }} animatedViewStyle={{ borderRadius: 8 }}
+                           onPress={() => handleChangeFavorite(cafeteria)}>
           <PinAngleIcon width={26} height={26}
                         fill={favoriteCafeteria === cafeteria ? colors.red : colors[theme].gray200} />
-        </Pressable>
+        </AnimatedPressable>
       </View>
       {meals.length === 0 ?
         <View style={styles.emptyMessage}>
