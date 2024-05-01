@@ -1,6 +1,4 @@
-import { useCityBuses } from '@/api/bus';
 import ArrivalCityBusItem from '@/app/bus/components/cityBus/ArrivalCityBusItem';
-import RefreshButton from '@/app/bus/components/cityBus/RefreshButton';
 import { CityBusProps } from '@/types/busTypes';
 import { ValueNameType } from '@/types/common';
 import React from 'react';

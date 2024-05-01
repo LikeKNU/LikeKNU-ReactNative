@@ -1,11 +1,11 @@
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { CalendarProps } from '@/types/calendarTypes';
+import { ScheduleProps } from '@/types/calendarTypes';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-const CalendarItem = ({ item }: { item: CalendarProps }) => {
+const CalendarItem = ({ item }: { item: ScheduleProps }) => {
   const { theme } = useTheme();
 
   return (
@@ -13,7 +13,7 @@ const CalendarItem = ({ item }: { item: CalendarProps }) => {
       <FontText fontWeight="500" style={[styles.date, { color: colors[theme].gray100 }]}>
         {item.scheduleDate}
       </FontText>
-      <FontText style={[styles.contents]}>{item.scheduleContents}</FontText>
+      <FontText fontWeight="500" style={[styles.contents]}>{item.scheduleContents}</FontText>
     </View>
   );
 };

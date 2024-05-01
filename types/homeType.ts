@@ -1,5 +1,5 @@
 import { BusArrivalProps } from '@/types/busTypes';
-import { CalendarProps } from '@/types/calendarTypes';
+import { ScheduleProps } from '@/types/calendarTypes';
 import { MealType } from '@/types/mealTypes';
 
 export interface HomeAnnouncementProps {
@@ -21,6 +21,6 @@ export interface HomeMealProps {
   menus: string | null;
 }
 
-export interface HomeCalendarProps extends CalendarProps {
+export interface HomeCalendarProps extends ScheduleProps {
   today: boolean;
 }

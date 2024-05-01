@@ -23,7 +23,7 @@ const HomeBus = () => {
             keyExtractor={(item) => item.routeId}
           />
           <View style={{ justifyContent: 'flex-end', paddingBottom: 10 }}>
-            <RefreshButton mutate={mutate}  focusPathname={'/'}/>
+            <RefreshButton mutate={mutate} focusPathname={'/'} />
           </View>
         </View>
       </CardContainer>

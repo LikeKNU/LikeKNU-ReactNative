@@ -3,7 +3,6 @@ import ThemeContextProvider, { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
 import useInitializeDevice from '@/utils/device';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { useFonts } from 'expo-font';
 import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -50,18 +49,18 @@ const AppLayout = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider onLayout={onLayoutRootView}>
-          <SWRConfig value={{
-            provider: () => new Map(),
-            initFocus(callback) {
-              return handleInitFocus(callback);
-            }
-          }}>
-            <ThemeContextProvider>
-              <FavoriteContextProvider>
-                <Content />
-              </FavoriteContextProvider>
-            </ThemeContextProvider>
-          </SWRConfig>
+        <SWRConfig value={{
+          provider: () => new Map(),
+          initFocus(callback) {
+            return handleInitFocus(callback);
+          }
+        }}>
+          <ThemeContextProvider>
+            <FavoriteContextProvider>
+              <Content />
+            </FavoriteContextProvider>
+          </ThemeContextProvider>
+        </SWRConfig>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

@@ -45,7 +45,9 @@ const Announcement = () => {
     <PageLayout edges={['top']}>
       <TabHeader>
         <FontText fontWeight="700" style={styles.title}>공지사항</FontText>
-        <AnimatedPressable style={{padding: 4}} animatedViewStyle={{borderRadius: 12, padding: 4, position: 'relative'}} onPress={() => router.push('/announcement/search')}>
+        <AnimatedPressable style={{ padding: 4 }}
+                           animatedViewStyle={{ borderRadius: 12, padding: 4, position: 'relative' }}
+                           onPress={() => router.push('/announcement/search')}>
           <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
         </AnimatedPressable>
       </TabHeader>
