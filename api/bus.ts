@@ -1,6 +1,6 @@
 import useCampus from '@/common/hooks/useCampus';
 import { Campuses, campusName } from '@/constants/campus';
-import { CityBusProps, ShuttleRouteProps } from '@/types/busTypes';
+import { CityBusProps, ShuttleBusProps, ShuttleRouteProps } from '@/types/busTypes';
 import { ValueNameType } from '@/types/common';
 import http, { extractBodyFromResponse } from '@/utils/http';
 import useSWR from 'swr';
@@ -27,4 +27,13 @@ export const useShuttleRoutes = () => {
   };
 
   return useSWR(['/api/buses/shuttle-bus/routes', campus], ([uri, campus]) => getShuttleRoutes(uri, campus));
+};
+
+export const useShuttleBuses = (shuttleId: string) => {
+  const getShuttleBuses = async (uri: string) => {
+    const response = await http.get<ShuttleBusProps[]>(uri);
+    return extractBodyFromResponse<ShuttleBusProps[]>(response) ?? [];
+  };
+
+  return useSWR(`/api/buses/shuttle-bus/${shuttleId}`, getShuttleBuses);
 };

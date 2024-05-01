@@ -7,13 +7,18 @@ import { ShuttleRouteProps } from '@/types/busTypes';
 import { StyleSheet, View } from 'react-native';
 
 export interface ShuttleRouteListItemProps {
-  shuttleRoute: ShuttleRouteProps;
+  shuttleRoute: ShuttleRouteProps,
+  onPress: (shuttleId: string) => void;
 }
 
-const ShuttleRouteListItem = ({ shuttleRoute }: ShuttleRouteListItemProps) => {
+const ShuttleRouteListItem = ({ shuttleRoute, onPress }: ShuttleRouteListItemProps) => {
   const { theme } = useTheme();
   const names = shuttleRoute.shuttleName.split(' → ');
   const departureTime = null;
+
+  const handleOnPress = () => {
+    onPress(shuttleRoute.shuttleId);
+  };
 
   return (
     <View style={[styles.container, { borderBottomColor: colors[theme].gray300 }]}>
@@ -24,7 +29,7 @@ const ShuttleRouteListItem = ({ shuttleRoute }: ShuttleRouteListItemProps) => {
           <FontText style={{ color: colors.red }}>{departureTime ?? '금일 종료'}</FontText>
         </View>
       </View>
-      <AnimatedButton>
+      <AnimatedButton onPress={handleOnPress}>
         <FontText fontWeight="600" style={{ color: colors[theme].gray100 }}>더보기</FontText>
       </AnimatedButton>
     </View>
@@ -38,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 10,
+    paddingVertical: 14,
 
     borderBottomWidth: 0.5
   },

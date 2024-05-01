@@ -9,7 +9,7 @@ import {
   BottomSheetView
 } from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef } from 'react';
-import { Button, FlatList, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 
 const BottomSheetExample = () => {
   const { theme } = useTheme();

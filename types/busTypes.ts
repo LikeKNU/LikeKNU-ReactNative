@@ -22,3 +22,14 @@ export interface ShuttleRouteProps {
   shuttleName: string;
   note: string | null;
 }
+
+export interface ShuttleBusProps {
+  busName: string;
+  isRunning: boolean;
+  times: ShuttleTimeProps[];
+}
+
+export interface ShuttleTimeProps {
+  arrivalStop: string;
+  arrivalTime: string;
+}
