@@ -16,15 +16,15 @@ const CampusSetting = () => {
   const CampusButton = ({ campus }: { campus: Campuses }) => {
     return (
       <Pressable style={[styles.campusButton, {
-        backgroundColor: isSelected(campus) ? campusColors[campus] : colors[theme].gray300,
+        backgroundColor: isSelected(campus) ? colors[theme].background : colors[theme].container,
         shadowColor: colors[theme].shadow
       }]}
                  onPress={() => changeCampus(campus)}>
         <FontText fontWeight="700"
                   style={{
                     fontSize: 18,
-                    color: isSelected(campus) ? colors[theme].container : campusColors[campus],
-                    opacity: isSelected(campus) ? 1 : 0.5
+                    color: campusColors[campus],
+                    opacity: isSelected(campus) ? 1 : 0.3
                   }}>{campusName[campus].name}</FontText>
       </Pressable>
     );

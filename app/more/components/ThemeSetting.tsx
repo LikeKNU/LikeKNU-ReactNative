@@ -10,7 +10,7 @@ const ThemeSetting = () => {
 
   const ThemeButton = ({ theme }: { theme: Themes }) => {
     return <Pressable
-      style={{ flexDirection: 'row', alignItems: 'center' }}
+      style={styles.button}
       onPress={() => changeUserTheme(theme)}
     >
       <FontText fontWeight="500" style={{ fontSize: 18 }}>{themeName[theme]}</FontText>
@@ -40,5 +40,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     padding: 20
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });
