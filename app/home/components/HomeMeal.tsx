@@ -3,7 +3,7 @@ import HomeMealItem from '@/app/home/components/HomeMealItem';
 import CardContainer from '@/common/components/CardContainer';
 import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
-import useCampus from '@/common/hooks/useCampus';
+import { useCampus } from '@/common/contexts/CampusContext';
 import colors, { campusColors } from '@/constants/colors';
 import { HomeMealProps } from '@/types/homeType';
 import { sortPinElementTop } from '@/utils/data';

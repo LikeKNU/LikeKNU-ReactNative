@@ -1,4 +1,4 @@
-import useCampus from '@/common/hooks/useCampus';
+import { useCampus } from '@/common/contexts/CampusContext';
 import { campusName } from '@/constants/campus';
 import { AnnouncementProps } from '@/types/announcementType';
 import http, { extractBodyFromResponse } from '@/utils/http';

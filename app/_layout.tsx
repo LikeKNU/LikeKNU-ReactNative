@@ -1,3 +1,4 @@
+import CampusContextProvider from '@/common/contexts/CampusContext';
 import FavoriteContextProvider from '@/common/contexts/FavoriteContext';
 import ThemeContextProvider, { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
@@ -56,9 +57,11 @@ const AppLayout = () => {
           }
         }}>
           <ThemeContextProvider>
-            <FavoriteContextProvider>
-              <Content />
-            </FavoriteContextProvider>
+            <CampusContextProvider>
+              <FavoriteContextProvider>
+                <Content />
+              </FavoriteContextProvider>
+            </CampusContextProvider>
           </ThemeContextProvider>
         </SWRConfig>
       </SafeAreaProvider>

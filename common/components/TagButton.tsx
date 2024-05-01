@@ -1,5 +1,5 @@
 import { useTheme } from '@/common/contexts/ThemeContext';
-import useCampus from '@/common/hooks/useCampus';
+import { useCampus } from '@/common/contexts/CampusContext';
 import colors, { campusColors } from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { PropsWithChildren } from 'react';
