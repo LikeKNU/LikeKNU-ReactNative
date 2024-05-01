@@ -16,9 +16,10 @@ import { FlatList, StyleSheet } from 'react-native';
 const ShuttleBus = () => {
   const { theme } = useTheme();
   const { data } = useShuttleRoutes();
-  const snapPoints = useMemo(() => ['70%'], []);
+  const snapPoints = useMemo(() => ['40%', '70%'], []);
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const [shuttleId, setShuttleId] = useState<string>('');
+  const [index, setIndex] = useState<number>(-1);
 
   const handleOnPress = (shuttleId: string) => {
     setShuttleId(shuttleId);
@@ -49,9 +50,10 @@ const ShuttleBus = () => {
         backgroundStyle={{ backgroundColor: colors[theme].container }}
         handleIndicatorStyle={{ backgroundColor: colors[theme].gray200 }}
         backdropComponent={renderBackdrop}
+        onChange={index => setIndex(index)}
       >
-        <BottomSheetView style={[styles.contentContainer]}>
-          <ShuttleBusView shuttleId={shuttleId} />
+        <BottomSheetView style={styles.contentContainer}>
+          <ShuttleBusView shuttleId={shuttleId} bottomSheetIndex={index} />
         </BottomSheetView>
       </BottomSheetModal>
     </BottomSheetModalProvider>
@@ -67,6 +69,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     alignItems: 'center',
     paddingVertical: 10,
-    paddingHorizontal: 20
+    paddingHorizontal: 40
   }
 });

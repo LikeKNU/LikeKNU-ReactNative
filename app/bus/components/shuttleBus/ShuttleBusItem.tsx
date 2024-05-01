@@ -1,7 +1,7 @@
-import ShuttleTimeItem from '@/app/bus/components/shuttleBus/ShuttleTimeItem';
+import ShuttleTimeView from '@/app/bus/components/shuttleBus/ShuttleTimeView';
 import FontText from '@/common/text/FontText';
 import { ShuttleBusProps } from '@/types/busTypes';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 interface ShuttleBusItemProps {
   shuttleBus: ShuttleBusProps;
@@ -10,10 +10,17 @@ interface ShuttleBusItemProps {
 const ShuttleBusItem = ({ shuttleBus }: ShuttleBusItemProps) => {
   return (
     <View>
-      <FontText fontWeight="500" style={{ fontSize: 16, marginBottom: 10 }}>{shuttleBus.busName}</FontText>
-      <ShuttleTimeItem shuttleTimes={shuttleBus.times} />
+      <FontText fontWeight="500" style={styles.busName}>{shuttleBus.busName}</FontText>
+      <ShuttleTimeView shuttleTimes={shuttleBus.times} isRunning={shuttleBus.isRunning} />
     </View>
   );
 };
 
 export default ShuttleBusItem;
+
+const styles = StyleSheet.create({
+  busName: {
+    fontSize: 16,
+    marginBottom: 10
+  }
+});
