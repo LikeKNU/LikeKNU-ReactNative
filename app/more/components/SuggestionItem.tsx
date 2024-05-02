@@ -140,6 +140,7 @@ export default SuggestionItem;
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    marginTop: 10,
     borderRadius: 18,
     alignItems: 'center'
   },

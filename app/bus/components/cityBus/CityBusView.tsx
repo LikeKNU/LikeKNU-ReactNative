@@ -7,8 +7,9 @@ const CityBusView = ({ data }: { data?: CityBusProps[] }) => {
   const { width } = useWindowDimensions();
 
   return (
-    <View style={[styles.container, { width: width - 40 }]}>
+    <View style={[styles.container, { width: '100%' }]}>
       <FlatList
+        contentContainerStyle={{paddingBottom: 30}}
         data={data}
         renderItem={({ item }) => <ArrivalCityBusItem arrivalCityBus={item} />}
         showsVerticalScrollIndicator={false}
