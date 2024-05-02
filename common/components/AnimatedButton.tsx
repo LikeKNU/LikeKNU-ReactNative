@@ -7,9 +7,10 @@ interface AnimatedButtonProps extends PropsWithChildren {
   onPress?: () => void;
   style?: ViewStyle | ViewStyle[];
   animatedViewStyle?: ViewStyle;
+  disabled?: boolean;
 }
 
-const AnimatedButton = ({ onPress, style, animatedViewStyle, children }: AnimatedButtonProps) => {
+const AnimatedButton = ({ onPress, style, animatedViewStyle, disabled = false, children }: AnimatedButtonProps) => {
   const { theme } = useTheme();
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -32,7 +33,7 @@ const AnimatedButton = ({ onPress, style, animatedViewStyle, children }: Animate
   };
 
   return (
-    <Animated.View style={[animatedStyle, animatedViewStyle]}>
+    <Animated.View style={[!disabled && animatedStyle, animatedViewStyle]}>
       <Pressable
         style={[styles.buttonContainer, { backgroundColor: colors[theme].gray300 }, style]}
         onPress={onPress}

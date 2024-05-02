@@ -26,7 +26,7 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
           handleOnPress={() => handleOnPress(index)}
         >
           <FontText fontWeight="600" style={[styles.cafeteriaName, {
-            color: activeIndex === index ? colors[theme].gray300 : colors[theme].contrast
+            color: activeIndex === index ? 'white' : colors[theme].contrast
           }]}>{cafeteria}</FontText>
         </TagButton>
       )}
