@@ -1,5 +1,4 @@
 import TagButton from '@/common/components/TagButton';
-import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
@@ -15,7 +14,6 @@ export interface CafeteriasItemProps {
 
 const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: CafeteriasItemProps) => {
   const { theme } = useTheme();
-  const { campus } = useCampus();
 
   return (
     <View style={styles.container}>
