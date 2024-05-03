@@ -19,7 +19,7 @@ export interface MealViewProps {
 
 const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: MealViewProps) => {
   const { theme } = useTheme();
-  const { data, isLoading } = useMeals(cafeteria);
+  const { data } = useMeals(cafeteria);
   const { width } = useWindowDimensions();
   const [dateIndex, setDateIndex] = useState<number>(0);
   const [meals, setMeals] = useState<MenuProps[]>([]);

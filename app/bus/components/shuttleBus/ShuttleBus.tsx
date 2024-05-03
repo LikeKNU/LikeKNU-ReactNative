@@ -10,16 +10,15 @@ import {
   BottomSheetModalProvider,
   BottomSheetView
 } from '@gorhom/bottom-sheet';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 
 const ShuttleBus = () => {
   const { theme } = useTheme();
-  const { data } = useShuttleRoutes();
-  const snapPoints = useMemo(() => ['40%', '70%'], []);
+  const { data, isLoading, mutate } = useShuttleRoutes();
+  const snapPoints = useMemo(() => ['70%'], []);
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const [shuttleId, setShuttleId] = useState<string>('');
-  const [index, setIndex] = useState<number>(-1);
 
   const handleOnPress = (shuttleId: string) => {
     setShuttleId(shuttleId);
@@ -43,6 +42,12 @@ const ShuttleBus = () => {
         renderItem={({ item }) => <ShuttleRouteListItem shuttleRoute={item} onPress={handleOnPress} />}
         keyExtractor={item => item.shuttleId}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoading}
+            onRefresh={mutate}
+          />
+        }
       />
       <BottomSheetModal
         ref={bottomSheetRef}
@@ -50,10 +55,9 @@ const ShuttleBus = () => {
         backgroundStyle={{ backgroundColor: colors[theme].container }}
         handleIndicatorStyle={{ backgroundColor: colors[theme].gray200 }}
         backdropComponent={renderBackdrop}
-        onChange={index => setIndex(index)}
       >
         <BottomSheetView style={styles.contentContainer}>
-          <ShuttleBusView shuttleId={shuttleId} bottomSheetIndex={index} />
+          <ShuttleBusView shuttleId={shuttleId} />
         </BottomSheetView>
       </BottomSheetModal>
     </BottomSheetModalProvider>

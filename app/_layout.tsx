@@ -1,3 +1,4 @@
+import CampusContextProvider from '@/common/contexts/CampusContext';
 import FavoriteContextProvider from '@/common/contexts/FavoriteContext';
 import ThemeContextProvider, { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
@@ -9,6 +10,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback } from 'react';
 import { AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppStateStatus } from 'react-native/Libraries/AppState/AppState';
 import { SWRConfig } from 'swr';
@@ -55,11 +57,15 @@ const AppLayout = () => {
             return handleInitFocus(callback);
           }
         }}>
-          <ThemeContextProvider>
-            <FavoriteContextProvider>
-              <Content />
-            </FavoriteContextProvider>
-          </ThemeContextProvider>
+          <RootSiblingParent>
+            <ThemeContextProvider>
+              <CampusContextProvider>
+                <FavoriteContextProvider>
+                  <Content />
+                </FavoriteContextProvider>
+              </CampusContextProvider>
+            </ThemeContextProvider>
+          </RootSiblingParent>
         </SWRConfig>
       </SafeAreaProvider>
     </GestureHandlerRootView>

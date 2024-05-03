@@ -1,7 +1,8 @@
+import { useCampus } from '@/common/contexts/CampusContext';
 import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
-import { ThemeType, useTheme } from '@/common/contexts/ThemeContext';
-import useCampus from '@/common/hooks/useCampus';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import { campusName } from '@/constants/campus';
+import { UserThemeType } from '@/types/common';
 import http from '@/utils/http';
 import { getData, storeData } from '@/utils/storage';
 import * as Application from 'expo-application';
@@ -13,14 +14,14 @@ export interface DeviceRegistrationProps {
   // platform: 'ios' | 'android' | 'macos' | 'windows' | 'web';
   userAgent: 'ios' | 'android' | 'macos' | 'windows' | 'web';
   campus: string;
-  themeColor: ThemeType;
+  themeColor: UserThemeType;
   favoriteCafeteria: string | null | undefined;
 }
 
 const useInitializeDevice = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
-  const { theme } = useTheme();
+  const { userTheme } = useTheme();
   const { campus } = useCampus();
   const { favoriteCafeteria } = useFavoriteCafeteria();
 
@@ -48,7 +49,7 @@ const useInitializeDevice = () => {
             deviceId: deviceUniqueId,
             // platform: Platform.OS,
             userAgent: Platform.OS,
-            themeColor: theme,
+            themeColor: userTheme,
             campus: campusName[campus].value,
             favoriteCafeteria: favoriteCafeteria
           });
@@ -61,7 +62,7 @@ const useInitializeDevice = () => {
     };
 
     initializeDevice();
-  }, [theme, campus, favoriteCafeteria]);
+  }, [userTheme, campus, favoriteCafeteria]);
 
   return { isLoading, error }
 };

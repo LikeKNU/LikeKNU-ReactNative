@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   busNumber: {
     fontSize: 16,
-    width: 36
+    width: 48
   },
   remainingTime: {
     marginLeft: 12

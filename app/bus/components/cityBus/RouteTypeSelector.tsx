@@ -23,7 +23,7 @@ const RouteTypeSelector = ({ activeIndex, handleOnPress }: RouteTypeProps) => {
           handleOnPress={() => handleOnPress(index)}
         >
           <FontText fontWeight="600" style={[styles.routeTypeName, {
-            color: activeIndex === index ? colors[theme].gray300 : colors[theme].contrast
+            color: activeIndex === index ? 'white' : colors[theme].contrast
           }]}>{routeType.name}</FontText>
         </TagButton>
       )}

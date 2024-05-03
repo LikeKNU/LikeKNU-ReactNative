@@ -2,8 +2,8 @@ import BellIcon from '@/assets/icons/bell.svg';
 import GrayIconDark from '@/assets/icons/gray-icon-dark.svg'
 import GrayIconLight from '@/assets/icons/gray-icon-light.svg'
 import TabHeader from '@/common/components/TabHeader';
+import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
-import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
 import { campusName } from '@/constants/campus';
 import { campusColors } from '@/constants/colors';

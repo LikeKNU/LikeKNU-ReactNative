@@ -48,7 +48,8 @@ const FontText: FunctionComponent<CustomTextProps> = ({ fontWeight, style, ...pr
   };
 
   return (
-    <Text allowFontScaling={false} style={[{ fontFamily: getFont(), color: colors[theme].contrast }, style]} {...props} />
+    <Text allowFontScaling={false}
+          style={[{ fontFamily: getFont(), color: colors[theme].contrast }, style]} {...props} />
   );
 };
 

@@ -1,21 +1,19 @@
 import ArrivalCityBusItem from '@/app/bus/components/cityBus/ArrivalCityBusItem';
 import { CityBusProps } from '@/types/busTypes';
-import { ValueNameType } from '@/types/common';
 import React from 'react';
 import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
 
-const CityBusView = ({ routeType, data }: { routeType: ValueNameType, data?: CityBusProps[] }) => {
-  // const { data, mutate } = useCityBuses(routeType);
+const CityBusView = ({ data }: { data?: CityBusProps[] }) => {
   const { width } = useWindowDimensions();
 
   return (
-    <View style={[styles.container, { width: width - 40 }]}>
+    <View style={[styles.container, { width: '100%' }]}>
       <FlatList
+        contentContainerStyle={{paddingBottom: 30}}
         data={data}
         renderItem={({ item }) => <ArrivalCityBusItem arrivalCityBus={item} />}
         showsVerticalScrollIndicator={false}
       />
-      {/*<RefreshButton mutate={mutate} focusPathname={'/bus'} style={styles.refreshButton} />*/}
     </View>
   );
 };

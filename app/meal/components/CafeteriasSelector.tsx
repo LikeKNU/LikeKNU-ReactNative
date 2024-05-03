@@ -1,6 +1,6 @@
 import TagButton from '@/common/components/TagButton';
+import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
-import useCampus from '@/common/hooks/useCampus';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
@@ -26,7 +26,7 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
           handleOnPress={() => handleOnPress(index)}
         >
           <FontText fontWeight="600" style={[styles.cafeteriaName, {
-            color: activeIndex === index ? colors[theme].gray300 : colors[theme].contrast
+            color: activeIndex === index ? 'white' : colors[theme].contrast
           }]}>{cafeteria}</FontText>
         </TagButton>
       )}

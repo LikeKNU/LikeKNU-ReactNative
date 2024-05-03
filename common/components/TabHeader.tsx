@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const TabHeader = ({ children }: PropsWithChildren) => {

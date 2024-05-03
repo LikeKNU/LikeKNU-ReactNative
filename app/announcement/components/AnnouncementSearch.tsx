@@ -18,7 +18,6 @@ const AnnouncementSearch = () => {
     size,
     setSize,
     isLoading,
-    error,
     isValidating,
     mutate
   } = useAnnouncementsSearch(keyword);

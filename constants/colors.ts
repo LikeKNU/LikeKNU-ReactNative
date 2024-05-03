@@ -6,7 +6,8 @@ const colors = {
     gray100: '#6C7887',
     gray200: '#B0B9C2',
     gray300: '#F3F4F6',
-    press: '#F2F3F5'
+    press: '#F2F3F5',
+    shadow: '#F4F5F7'
   },
   dark: {
     contrast: '#FFFFFF',
@@ -15,7 +16,8 @@ const colors = {
     gray100: '#A1A0A6',
     gray200: '#62626E',
     gray300: '#2C2C36',
-    press: '#202028'
+    press: '#202028',
+    shadow: '#111113'
   },
 
   red: '#F04452',

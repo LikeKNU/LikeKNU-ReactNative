@@ -1,4 +1,4 @@
-import useCampus from '@/common/hooks/useCampus';
+import { useCampus } from '@/common/contexts/CampusContext';
 import { Campuses, campusName } from '@/constants/campus';
 import { CityBusProps, ShuttleBusProps, ShuttleRouteProps } from '@/types/busTypes';
 import { ValueNameType } from '@/types/common';
