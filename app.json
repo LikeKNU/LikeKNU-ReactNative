@@ -10,6 +10,7 @@
       "**/*"
     ],
     "ios": {
+      "buildNumber": "1.0.0",
       "supportsTablet": true,
       "splash": {
         "image": "./assets/splash.png",
@@ -32,7 +33,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#FFFFFF"
       },
       "splash": {
         "image": "./assets/splash.png",
@@ -44,7 +45,7 @@
           "backgroundColor": "#101012"
         }
       },
-      "package": "com.woopaca.likeknu"
+      "package": "ac.knu.likeknu"
     },
     "web": {
       "favicon": "./assets/favicon.png"

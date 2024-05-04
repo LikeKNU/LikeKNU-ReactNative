@@ -16,6 +16,23 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "woopaca.dev@gmail.com",
+        "ascAppId": "6499512208",
+        "appleTeamId": "2SZ37SNL34",
+        "sku": "com.woopaca.likeknu",
+        "language": "ko_KR",
+        "companyName": "지찬우",
+        "appName": "공주대처럼 - 공주대학교 학생들의 필수 앱",
+        "ascApiKeyPath": "secrets/ios/AuthKey_C8ZZJLN8TD.p8",
+        "ascApiKeyIssuerId": "c556adc7-8a21-4a13-8001-ebf8127920f5",
+        "ascApiKeyId": "C8ZZJLN8TD"
+      },
+      "android": {
+        "serviceAccountKeyPath": "secrets/android/likeknu-422310-adf55e9cc1bf.json",
+        "track": "internal"
+      }
+    }
   }
 }
