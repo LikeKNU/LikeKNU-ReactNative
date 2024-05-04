@@ -8,7 +8,7 @@ import { StyleSheet, View } from 'react-native';
 
 export interface ShuttleRouteListItemProps {
   shuttleRoute: ShuttleRouteProps,
-  onPress: (shuttleId: string) => void;
+  onPress: (shuttleId: string, note: string | null) => void;
 }
 
 const ShuttleRouteListItem = ({ shuttleRoute, onPress }: ShuttleRouteListItemProps) => {
@@ -17,7 +17,7 @@ const ShuttleRouteListItem = ({ shuttleRoute, onPress }: ShuttleRouteListItemPro
   const departureTime = null;
 
   const handleOnPress = () => {
-    onPress(shuttleRoute.shuttleId);
+    onPress(shuttleRoute.shuttleId, shuttleRoute.note);
   };
 
   return (

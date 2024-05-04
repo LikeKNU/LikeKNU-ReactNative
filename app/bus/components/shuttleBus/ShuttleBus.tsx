@@ -19,9 +19,11 @@ const ShuttleBus = () => {
   const snapPoints = useMemo(() => ['70%'], []);
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const [shuttleId, setShuttleId] = useState<string>('');
+  const [note, setNote] = useState<string | null>(null);
 
-  const handleOnPress = (shuttleId: string) => {
+  const handleOnPress = (shuttleId: string, note: string | null) => {
     setShuttleId(shuttleId);
+    setNote(note);
     bottomSheetRef.current?.present();
   };
 
@@ -57,7 +59,7 @@ const ShuttleBus = () => {
         backdropComponent={renderBackdrop}
       >
         <BottomSheetView style={styles.contentContainer}>
-          <ShuttleBusView shuttleId={shuttleId} />
+          <ShuttleBusView shuttleId={shuttleId} note={note} />
         </BottomSheetView>
       </BottomSheetModal>
     </BottomSheetModalProvider>
