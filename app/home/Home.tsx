@@ -6,6 +6,7 @@ import HomeMeal from '@/app/home/components/HomeMeal';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
@@ -26,6 +27,7 @@ const Home = () => {
           <HomeCalendar />
         </View>
       </ScrollView>
+      <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
     </PageLayout>
   );
 };
