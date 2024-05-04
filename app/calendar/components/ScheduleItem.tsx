@@ -24,7 +24,7 @@ export default ScheduleItem;
 const styles = StyleSheet.create({
   container: {
     borderLeftWidth: 2,
-    paddingLeft: 10,
+    paddingLeft: 16,
     paddingVertical: 6,
     marginLeft: 10
   }
