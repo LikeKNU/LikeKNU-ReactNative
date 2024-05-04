@@ -4,7 +4,7 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 
 export interface CafeteriasItemProps {
   cafeteriaList: Cafeterias[];
@@ -17,17 +17,21 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
 
   return (
     <View style={styles.container}>
-      {cafeteriaList.map((cafeteria, index) =>
-        <TagButton
-          key={cafeteria}
-          isActive={activeIndex === index}
-          handleOnPress={() => handleOnPress(index)}
-        >
-          <FontText fontWeight="600" style={[styles.cafeteriaName, {
-            color: activeIndex === index ? 'white' : colors[theme].contrast
-          }]}>{cafeteria}</FontText>
-        </TagButton>
-      )}
+      <FlatList
+        data={cafeteriaList}
+        renderItem={({ item: cafeteria, index }) =>
+          <TagButton
+            key={cafeteria}
+            isActive={activeIndex === index}
+            handleOnPress={() => handleOnPress(index)}
+          >
+            <FontText fontWeight="600" style={[styles.cafeteriaName, {
+              color: activeIndex === index ? 'white' : colors[theme].contrast
+            }]}>{cafeteria}</FontText>
+          </TagButton>
+        }
+        horizontal={true}
+      />
     </View>
   );
 };

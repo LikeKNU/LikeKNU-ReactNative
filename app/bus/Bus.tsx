@@ -27,7 +27,6 @@ const Bus = () => {
         tabItems={Object.values(buses).map(value => value)}
       />
       {busType === buses.CITY_BUS && <CityBus />}
-      {/*{busType === buses.SHUTTLE_BUS && <BottomSheetExample />}*/}
       {busType === buses.SHUTTLE_BUS && <ShuttleBus />}
     </PageLayout>
   );

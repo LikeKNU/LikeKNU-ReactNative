@@ -34,10 +34,10 @@ const Meal = () => {
   }, [activeIndex]);
 
   useEffect(() => {
-    if (pressCafeteria) {
+    if (pressCafeteria && cafeteriaList.length !== 0) {
       setActiveIndex(cafeteriaList.indexOf(pressCafeteria));
     }
-  }, [pressCafeteria]);
+  }, [pressCafeteria, cafeteriaList]);
 
   const changeCafeteria = (index: number) => {
     setActiveIndex(index);
