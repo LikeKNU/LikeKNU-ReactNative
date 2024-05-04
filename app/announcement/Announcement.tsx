@@ -1,4 +1,5 @@
 import { useAnnouncements } from '@/api/announcement';
+import BookmarkIcon from '@/assets/icons/bookmark-fill.svg';
 import SearchIcon from '@/assets/icons/search.svg';
 import AnimatedPressable from '@/common/components/AnimatedPressable';
 import InfiniteScrollView from '@/common/components/InfiniteScrollView';
@@ -14,7 +15,7 @@ import { ValueNameType } from '@/types/common';
 import { flatMapRemoveDuplicate } from '@/utils/data';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 const Announcement = () => {
   const [category, setCategory] = useState<ValueNameType>(categories.STUDENT_NEWS);
@@ -45,11 +46,18 @@ const Announcement = () => {
     <PageLayout edges={['top']}>
       <TabHeader>
         <FontText fontWeight="700" style={styles.title}>공지사항</FontText>
-        <AnimatedPressable style={{ padding: 4 }}
-                           animatedViewStyle={{ borderRadius: 8, padding: 4 }}
-                           onPress={() => router.push('/announcement/search')}>
-          <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
-        </AnimatedPressable>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <AnimatedPressable style={styles.bookmarkPressable}
+                             animatedViewStyle={styles.animatedPressable}
+                             onPress={() => router.push('/announcement/bookmark')}>
+            <BookmarkIcon width={20} height={20} fill={colors[theme].gray200} />
+          </AnimatedPressable>
+          <AnimatedPressable style={styles.searchPressable}
+                             animatedViewStyle={styles.animatedPressable}
+                             onPress={() => router.push('/announcement/search')}>
+            <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
+          </AnimatedPressable>
+        </View>
       </TabHeader>
       <TopTabs
         handleTabPress={handleChangeCategory}
@@ -86,5 +94,17 @@ const styles = StyleSheet.create({
 
     paddingHorizontal: 20,
     borderBottomWidth: 0.3
+  },
+  bookmarkPressable: {
+    padding: 4,
+    marginRight: 2
+  },
+  searchPressable: {
+    padding: 4,
+    marginLeft: 2
+  },
+  animatedPressable: {
+    borderRadius: 8,
+    padding: 4
   }
 });

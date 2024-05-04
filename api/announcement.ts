@@ -1,6 +1,7 @@
 import { useCampus } from '@/common/contexts/CampusContext';
 import { campusName } from '@/constants/campus';
 import { AnnouncementProps } from '@/types/announcementType';
+import { useDeviceId } from '@/utils/device';
 import http, { extractBodyFromResponse } from '@/utils/http';
 import useSWRInfinite from 'swr/infinite';
 
@@ -41,6 +42,25 @@ export const useAnnouncementsSearch = (keyword: string) => {
   };
 
   return useSWRInfinite(getKey, searchAnnouncements, { initialSize: 1, revalidateFirstPage: false });
+};
+
+export const useBookmarkAnnouncements = () => {
+  const { deviceId } = useDeviceId();
+  const getKey = (index: number, previousPageData: any) => {
+    if (previousPageData && !previousPageData.length) {
+      return null;
+    }
+    if (deviceId) {
+      return `/api/devices/${deviceId}/bookmarks?page=${index + 1}`;
+    }
+  };
+
+  const getBookmarkAnnouncements = async (uri: string) => {
+    const response = await http.get<AnnouncementProps[]>(uri);
+    return extractBodyFromResponse<AnnouncementProps[]>(response) ?? [];
+  };
+
+  return useSWRInfinite(getKey, getBookmarkAnnouncements, { initialSize: 1, revalidateFirstPage: false });
 };
 
 export const addBookmark = async (announcementId: string, deviceId: string) => {
