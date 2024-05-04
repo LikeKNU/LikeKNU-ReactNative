@@ -25,12 +25,12 @@ const HomeHeader = () => {
 
   return (
     <TabHeader>
-      <View style={styles.title}>
+      <Pressable style={styles.title} onPress={() => router.navigate('/more')}>
         {theme === 'light' ? <GrayIconLight width={34} height={34} /> : <GrayIconDark width={34} height={34} />}
         {campus && <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
           {campusName[campus].name}
         </FontText>}
-      </View>
+      </Pressable>
       <View style={styles.menuIcons}>
         <Pressable onPress={handleNotificationPress}>
           <BellIcon width={28} height={28} />
