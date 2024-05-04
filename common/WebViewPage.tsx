@@ -1,3 +1,4 @@
+import BookmarkItem from '@/app/announcement/components/BookmarkItem';
 import BackHeader from '@/common/components/BackHeader';
 import PageLayout from '@/common/components/PageLayout';
 import FontText from '@/common/text/FontText';
@@ -7,11 +8,13 @@ import { BackHandler, Platform, StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
 
 interface AnnouncementViewProps {
+  id: string;
   title: string;
   url?: string | null;
+  isBookmarked: boolean;
 }
 
-const WebViewPage = ({ url, title }: AnnouncementViewProps) => {
+const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) => {
   const [progress, setProgress] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const webViewRef = useRef<WebView>(null);
@@ -35,7 +38,10 @@ const WebViewPage = ({ url, title }: AnnouncementViewProps) => {
 
   return (
     <PageLayout edges={['top']}>
-      <BackHeader title={title} />
+      <BackHeader
+        title={title}
+        button={<BookmarkItem announcementId={id} isBookmarked={isBookmarked} />}
+      />
       {!isLoaded && (
         <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />
       )}

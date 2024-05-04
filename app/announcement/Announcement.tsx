@@ -13,8 +13,8 @@ import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';
 import { ValueNameType } from '@/types/common';
 import { flatMapRemoveDuplicate } from '@/utils/data';
-import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { usePathname, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const Announcement = () => {
@@ -24,13 +24,19 @@ const Announcement = () => {
     size,
     setSize,
     isLoading,
-    error,
     isValidating,
     mutate
   } = useAnnouncements(category.value);
   const { theme } = useTheme();
   const router = useRouter();
   const announcements = flatMapRemoveDuplicate<AnnouncementProps[]>(data);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === '/announcement') {
+      mutate();
+    }
+  }, [pathname]);
 
   const loadMore = () => {
     if (!isValidating && !isLoading) {

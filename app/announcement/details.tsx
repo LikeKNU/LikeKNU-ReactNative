@@ -2,9 +2,10 @@ import WebViewPage from '@/common/WebViewPage';
 import { useLocalSearchParams } from 'expo-router';
 
 const AnnouncementDetailsPage = () => {
-  const { url } = useLocalSearchParams<{ url: string }>();
+  const { url, id, isBookmark } = useLocalSearchParams<{ url: string; id: string; isBookmark: string; }>();
+  const isBookmarked = isBookmark === 'true';
 
-  return <WebViewPage title="공지사항" url={url} />
+  return <WebViewPage title="공지사항" url={url} id={id!} isBookmarked={isBookmarked} />
 };
 
 export default AnnouncementDetailsPage;

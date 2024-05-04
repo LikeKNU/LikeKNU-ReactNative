@@ -6,7 +6,13 @@ import { useDeviceId } from '@/utils/device';
 import { useEffect, useState } from 'react';
 import { Pressable } from 'react-native';
 
-const BookmarkItem = ({ announcementId, isBookmarked }: { announcementId: string, isBookmarked: boolean }) => {
+export interface BookmarkItemProps {
+  announcementId: string;
+  isBookmarked: boolean;
+  handleChange?: (isBookmark: boolean) => void;
+}
+
+const BookmarkItem = ({ announcementId, isBookmarked, handleChange }: BookmarkItemProps) => {
   const { theme } = useTheme();
   const { deviceId } = useDeviceId();
   const [isBookmark, setIsBookmark] = useState<boolean>(false);
@@ -21,6 +27,10 @@ const BookmarkItem = ({ announcementId, isBookmarked }: { announcementId: string
       removeBookmark(announcementId, deviceId!);
     } else {
       addBookmark(announcementId, deviceId!);
+    }
+
+    if (handleChange) {
+      handleChange(!isBookmark);
     }
 
     setIsBookmark(!isBookmark);

@@ -17,8 +17,16 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
   const handlePress = () => {
     router.push({
       pathname: '/announcement/details',
-      params: { url: announcement.announcementUrl }
+      params: {
+        url: announcement.announcementUrl,
+        id: announcement.announcementId,
+        isBookmark: announcement.isBookmarked
+      }
     });
+  };
+
+  const handleChangeBookmark = (isBookmark: boolean) => {
+    announcement.isBookmarked = isBookmark;
   };
 
   return (
@@ -39,7 +47,11 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
         </View>
       </View>
       <View style={{ flex: 1, alignItems: 'flex-end' }}>
-        <BookmarkItem announcementId={announcement.announcementId} isBookmarked={announcement.isBookmarked} />
+        <BookmarkItem
+          announcementId={announcement.announcementId}
+          isBookmarked={announcement.isBookmarked}
+          handleChange={handleChangeBookmark}
+        />
       </View>
     </AnimatedPressable>
   );
