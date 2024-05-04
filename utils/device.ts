@@ -23,30 +23,23 @@ const useInitializeDevice = () => {
   const [error, setError] = useState<any>(null);
   const { userTheme } = useTheme();
   const { campus } = useCampus();
+  const { deviceId } = useDeviceId();
   const { favoriteCafeteria } = useFavoriteCafeteria();
 
   useEffect(() => {
     const initializeDevice = async () => {
       if (campus) {
         try {
-          let deviceUniqueId: string | null = null;
-
-          if (Platform.OS === 'ios') {
-            deviceUniqueId = await Application.getIosIdForVendorAsync();
-          } else if (Platform.OS === 'android') {
-            deviceUniqueId = Application.getAndroidId();
-          }
-
-          if (!deviceUniqueId) {
+          if (!deviceId) {
             throw new Error('Device ID is null');
           }
 
           const storedDeviceId = await getData('deviceId');
-          if (!storedDeviceId || storedDeviceId !== deviceUniqueId) {
-            await storeData('deviceId', deviceUniqueId);
+          if (!storedDeviceId || storedDeviceId !== deviceId) {
+            await storeData('deviceId', deviceId);
           }
           await http.post<any, DeviceRegistrationProps>('/api/devices', {
-            deviceId: deviceUniqueId,
+            deviceId: deviceId,
             // platform: Platform.OS,
             userAgent: Platform.OS,
             themeColor: userTheme,
@@ -68,3 +61,23 @@ const useInitializeDevice = () => {
 };
 
 export default useInitializeDevice;
+
+export const useDeviceId = () => {
+  const [deviceId, setDeviceId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchDeviceId = async () => {
+      if (Platform.OS === 'ios') {
+        const iosId = await Application.getIosIdForVendorAsync();
+        setDeviceId(iosId);
+      } else if (Platform.OS === 'android') {
+        const androidId = Application.getAndroidId();
+        setDeviceId(androidId);
+      }
+    };
+
+    fetchDeviceId();
+  }, []);
+
+  return { deviceId };
+};

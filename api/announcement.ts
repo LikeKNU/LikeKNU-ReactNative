@@ -42,3 +42,13 @@ export const useAnnouncementsSearch = (keyword: string) => {
 
   return useSWRInfinite(getKey, searchAnnouncements, { initialSize: 1, revalidateFirstPage: false });
 };
+
+export const addBookmark = async (announcementId: string, deviceId: string) => {
+  const response = await http.post<string, any>(`/api/devices/${deviceId}/bookmarks`, { announcementId: announcementId });
+  return extractBodyFromResponse<string>(response);
+};
+
+export const removeBookmark = async (announcementId: string, deviceId: string) => {
+  const response = await http.delete<string>(`/api/devices/${deviceId}/bookmarks/${announcementId}`);
+  return extractBodyFromResponse<string>(response);
+};

@@ -43,12 +43,7 @@ const InfiniteScrollView = ({
       ref={contentRef}
       contentContainerStyle={styles.contents}
       data={data}
-      renderItem={({ item }) => <AnnouncementItem
-        body={item.announcementTitle}
-        date={item.announcementDate}
-        subtitle={item.announcementTag}
-        url={item.announcementUrl}
-      />}
+      renderItem={({ item }) => <AnnouncementItem announcement={item} />}
       keyExtractor={(item) => item.announcementId}
       onEndReached={handleEndReached}
       onEndReachedThreshold={0.5}
