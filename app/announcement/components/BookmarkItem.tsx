@@ -19,6 +19,7 @@ const BookmarkItem = ({ announcementId, isBookmarked, handleChange }: BookmarkIt
   const fill = isBookmark ? colors.blue : colors[theme].gray300;
 
   useEffect(() => {
+    console.log('isBookmarked useEffect');
     setIsBookmark(isBookmarked);
   }, [isBookmarked]);
 

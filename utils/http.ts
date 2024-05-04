@@ -29,6 +29,10 @@ export const extractBodyFromResponse = <T>(response: AxiosResponse<APIResponse<T
   return response.data.data.body;
 };
 
+export const extractMessageFromResponse = (response: AxiosResponse<APIResponse<any>>) => {
+  return response.data.message;
+};
+
 const http = {
   get: <T>(uri: string) => {
     return instance.get<APIResponse<T>>(uri);

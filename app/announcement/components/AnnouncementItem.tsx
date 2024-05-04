@@ -7,12 +7,20 @@ import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';
 import { getCurrentDate } from '@/utils/date';
 import { useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps }) => {
   const { theme } = useTheme();
   const router = useRouter();
   const isToday = announcement.announcementDate === getCurrentDate();
+  const [isBookmark, setIsBookmark] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (announcement) {
+      setIsBookmark(announcement.isBookmarked);
+    }
+  }, [announcement]);
 
   const handlePress = () => {
     router.push({
@@ -20,13 +28,13 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
       params: {
         url: announcement.announcementUrl,
         id: announcement.announcementId,
-        isBookmark: announcement.isBookmarked
+        isBookmark: isBookmark
       }
     });
   };
 
   const handleChangeBookmark = (isBookmark: boolean) => {
-    announcement.isBookmarked = isBookmark;
+    setIsBookmark(isBookmark);
   };
 
   return (
@@ -49,7 +57,7 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
       <View style={{ flex: 1, alignItems: 'flex-end' }}>
         <BookmarkItem
           announcementId={announcement.announcementId}
-          isBookmarked={announcement.isBookmarked}
+          isBookmarked={isBookmark}
           handleChange={handleChangeBookmark}
         />
       </View>

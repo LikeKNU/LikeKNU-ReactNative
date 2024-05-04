@@ -2,17 +2,18 @@ import { useCampus } from '@/common/contexts/CampusContext';
 import { campusName } from '@/constants/campus';
 import { AnnouncementProps } from '@/types/announcementType';
 import { useDeviceId } from '@/utils/device';
-import http, { extractBodyFromResponse } from '@/utils/http';
+import http, { extractBodyFromResponse, extractMessageFromResponse } from '@/utils/http';
 import useSWRInfinite from 'swr/infinite';
 
 export const useAnnouncements = (category: string) => {
   const { campus } = useCampus();
+  const { deviceId } = useDeviceId();
   const getKey = (index: number, previousPageData: any) => {
     if (previousPageData && !previousPageData.length) {
       return null;
     }
-    if (campus) {
-      return `/api/announcements/${category}?campus=${campusName[campus].value}&page=${index + 1}`;
+    if (campus && deviceId) {
+      return `/api/announcements/${category}?campus=${campusName[campus].value}&page=${index + 1}&deviceId=${deviceId}`;
     }
   };
 
@@ -65,10 +66,10 @@ export const useBookmarkAnnouncements = () => {
 
 export const addBookmark = async (announcementId: string, deviceId: string) => {
   const response = await http.post<string, any>(`/api/devices/${deviceId}/bookmarks`, { announcementId: announcementId });
-  return extractBodyFromResponse<string>(response);
+  return extractMessageFromResponse(response);
 };
 
 export const removeBookmark = async (announcementId: string, deviceId: string) => {
   const response = await http.delete<string>(`/api/devices/${deviceId}/bookmarks/${announcementId}`);
-  return extractBodyFromResponse<string>(response);
+  return extractMessageFromResponse(response);
 };
