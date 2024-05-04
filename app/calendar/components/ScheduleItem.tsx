@@ -13,8 +13,9 @@ const ScheduleItem = ({ schedule }: ScheduleItemProps) => {
 
   return (
     <View style={[styles.container, { borderLeftColor: colors[theme].contrast }]}>
-      <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>{schedule.scheduleDate}</FontText>
-      <FontText fontWeight="500" style={{ fontSize: 15 }}>{schedule.scheduleContents}</FontText>
+      <FontText fontWeight="500"
+                style={[styles.date, { color: colors[theme].gray100 }]}>{schedule.scheduleDate}</FontText>
+      <FontText fontWeight="500">{schedule.scheduleContents}</FontText>
     </View>
   );
 };
@@ -27,5 +28,8 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingVertical: 6,
     marginLeft: 10
+  },
+  date: {
+    fontSize: 13
   }
 });

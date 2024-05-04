@@ -44,7 +44,7 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
       animatedViewStyle={{ borderRadius: 12, paddingHorizontal: 20 }}
     >
       <View style={{ flex: 8 }}>
-        <FontText fontWeight="500" style={[{ color: colors[theme].contrast }, styles.body]}>
+        <FontText fontWeight="500" style={[styles.body, { color: colors[theme].contrast }]}>
           {announcement.announcementTitle}
         </FontText>
         <View style={styles.additionalContainer}>

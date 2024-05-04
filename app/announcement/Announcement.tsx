@@ -54,12 +54,12 @@ const Announcement = () => {
         <FontText fontWeight="700" style={styles.title}>공지사항</FontText>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <AnimatedPressable style={styles.bookmarkPressable}
-                             animatedViewStyle={styles.animatedPressable}
+                             animatedViewStyle={styles.bookmarkAnimatedPressable}
                              onPress={() => router.push('/announcement/bookmark')}>
             <BookmarkIcon width={20} height={20} fill={colors[theme].gray200} />
           </AnimatedPressable>
           <AnimatedPressable style={styles.searchPressable}
-                             animatedViewStyle={styles.animatedPressable}
+                             animatedViewStyle={styles.searchAnimatedPressable}
                              onPress={() => router.push('/announcement/search')}>
             <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
           </AnimatedPressable>
@@ -102,15 +102,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3
   },
   bookmarkPressable: {
+    padding: 4
+  },
+  searchPressable: {
+    padding: 4
+  },
+  bookmarkAnimatedPressable: {
+    borderRadius: 8,
     padding: 4,
     marginRight: 2
   },
-  searchPressable: {
+  searchAnimatedPressable: {
+    borderRadius: 8,
     padding: 4,
     marginLeft: 2
-  },
-  animatedPressable: {
-    borderRadius: 8,
-    padding: 4
   }
 });
