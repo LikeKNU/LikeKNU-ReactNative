@@ -24,7 +24,7 @@ const AppLayout = () => {
     if (fontsLoaded || fontError) {
       setTimeout(async () => {
         await SplashScreen.hideAsync();
-      }, 1500);
+      }, 1000);
     }
   }, [fontsLoaded, fontError]);
 
