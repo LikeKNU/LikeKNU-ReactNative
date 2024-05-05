@@ -3,6 +3,7 @@ import { campusName } from '@/constants/campus';
 import { AnnouncementProps } from '@/types/announcementType';
 import { useDeviceId } from '@/utils/device';
 import http, { extractBodyFromResponse, extractMessageFromResponse } from '@/utils/http';
+import useSWR from 'swr';
 import useSWRInfinite from 'swr/infinite';
 
 export const useAnnouncements = (category: string) => {
@@ -32,7 +33,6 @@ export const useAnnouncementsSearch = (keyword: string) => {
       return null;
     }
     if (campus) {
-      // TODO change to search api
       return `/api/announcements?campus=${campusName[campus].value}&page=${index + 1}&keyword=${keyword}`;
     }
   };
@@ -47,29 +47,22 @@ export const useAnnouncementsSearch = (keyword: string) => {
 
 export const useBookmarkAnnouncements = () => {
   const { deviceId } = useDeviceId();
-  const getKey = (index: number, previousPageData: any) => {
-    if (previousPageData && !previousPageData.length) {
-      return null;
-    }
+  const getBookmarkAnnouncements = async (uri: string, deviceId: string | null) => {
     if (deviceId) {
-      return `/api/devices/${deviceId}/bookmarks?page=${index + 1}`;
+      const response = await http.get<AnnouncementProps[]>(`${uri}/${deviceId}`);
+      return extractBodyFromResponse<AnnouncementProps[]>(response) ?? [];
     }
   };
 
-  const getBookmarkAnnouncements = async (uri: string) => {
-    const response = await http.get<AnnouncementProps[]>(uri);
-    return extractBodyFromResponse<AnnouncementProps[]>(response) ?? [];
-  };
-
-  return useSWRInfinite(getKey, getBookmarkAnnouncements, { initialSize: 1, revalidateFirstPage: false });
+  return useSWR(['/api/bookmarks', deviceId], ([uri, deviceId]) => getBookmarkAnnouncements(uri, deviceId));
 };
 
 export const addBookmark = async (announcementId: string, deviceId: string) => {
-  const response = await http.post<string, any>(`/api/devices/${deviceId}/bookmarks`, { announcementId: announcementId });
+  const response = await http.post<string, any>(`/api/bookmarks/${deviceId}`, { announcementId: announcementId });
   return extractMessageFromResponse(response);
 };
 
 export const removeBookmark = async (announcementId: string, deviceId: string) => {
-  const response = await http.delete<string>(`/api/devices/${deviceId}/bookmarks/${announcementId}`);
+  const response = await http.delete<string>(`/api/bookmarks/${deviceId}/${announcementId}`);
   return extractMessageFromResponse(response);
 };
