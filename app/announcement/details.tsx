@@ -1,4 +1,4 @@
-import WebViewPage from '@/common/WebViewPage';
+import WebViewPage from '@/app/announcement/components/WebViewPage';
 import { useLocalSearchParams } from 'expo-router';
 
 const AnnouncementDetailsPage = () => {

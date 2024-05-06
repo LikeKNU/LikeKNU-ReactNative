@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
   circleGraphics: {
     borderWidth: 3,
     borderRadius: 7,
-    width: 14,
-    height: 14
+    width: 15,
+    height: 15
   },
   stopName: {
     marginLeft: 6
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   lineGraphics: {
     height: 16,
     width: 3,
-    marginLeft: 5,
-    marginVertical: -2
+    marginLeft: 6,
+    marginVertical: -3
   }
 });

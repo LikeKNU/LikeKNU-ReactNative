@@ -28,12 +28,13 @@ export const useAnnouncements = (category: string) => {
 
 export const useAnnouncementsSearch = (keyword: string) => {
   const { campus } = useCampus();
+  const { deviceId } = useDeviceId();
   const getKey = (index: number, previousPageData: any) => {
     if (previousPageData && !previousPageData.length) {
       return null;
     }
-    if (campus) {
-      return `/api/announcements?campus=${campusName[campus].value}&page=${index + 1}&keyword=${keyword}`;
+    if (campus && deviceId) {
+      return `/api/announcements?campus=${campusName[campus].value}&page=${index + 1}&keyword=${keyword}&deviceId=${deviceId}`;
     }
   };
 

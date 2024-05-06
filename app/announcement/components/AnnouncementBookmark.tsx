@@ -11,11 +11,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 
 const AnnouncementBookmark = () => {
   const { theme } = useTheme();
-  const {
-    data,
-    isValidating,
-    mutate
-  } = useBookmarkAnnouncements();
+  const { data, isValidating, mutate } = useBookmarkAnnouncements();
   const pathname = usePathname();
 
   useEffect(() => {
