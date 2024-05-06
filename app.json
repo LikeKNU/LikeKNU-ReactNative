@@ -29,8 +29,7 @@
           "NSAllowsArbitraryLoadsInWebContent": true
         },
         "ITSAppUsesNonExemptEncryption": false
-      },
-      "googleServicesFile": "./secrets/ios/GoogleService-Info.plist"
+      }
     },
     "android": {
       "versionCode": 4,
@@ -48,8 +47,7 @@
           "backgroundColor": "#101012"
         }
       },
-      "package": "com.woopaca.likeknu",
-      "googleServicesFile": "./secrets/android/google-services.json"
+      "package": "com.woopaca.likeknu"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -82,7 +82,6 @@ const Content = () => {
   useInitializeDevice();
 
   useEffect(() => {
-    console.log(pathname);
     analytics().logScreenView({
       screen_name: pathname,
       screen_class: pathname

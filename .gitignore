@@ -37,3 +37,6 @@ yarn-error.*
 .idea/
 
 secrets/
+
+*.ipa
+*.abb
