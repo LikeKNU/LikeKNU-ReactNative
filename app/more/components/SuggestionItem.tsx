@@ -1,7 +1,9 @@
+import { sendSuggestion } from '@/api/suggestion';
 import MailIcon from '@/assets/icons/mail.svg';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
+import { useDeviceId } from '@/utils/device';
 import { useRef, useState } from 'react';
 import { Alert, Keyboard, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import Toast from 'react-native-root-toast';
@@ -12,6 +14,7 @@ interface SuggestionItemProps {
 
 const SuggestionItem = ({ changeVisible }: SuggestionItemProps) => {
   const { theme } = useTheme();
+  const { deviceId } = useDeviceId();
   const [content, setContent] = useState<string>('');
   const [isFillText, setIsFillText] = useState<boolean>(false);
   const [keyboardVisible, setKeyboardVisible] = useState<boolean>(false);
@@ -61,6 +64,10 @@ const SuggestionItem = ({ changeVisible }: SuggestionItemProps) => {
     } else {
       setIsFillText(false);
     }
+
+    if (text.length > 500) {
+      return;
+    }
     setContent(text);
   };
 
@@ -71,7 +78,10 @@ const SuggestionItem = ({ changeVisible }: SuggestionItemProps) => {
   };
 
   const handleSubmit = () => {
-    // TODO Submit suggestions
+    if (deviceId) {
+      sendSuggestion(deviceId, content);
+    }
+
     Toast.show('개발자에게 잘 전달했어요! 😊', {
       duration: Toast.durations.LONG,
       backgroundColor: colors[theme].gray300,
@@ -114,6 +124,7 @@ const SuggestionItem = ({ changeVisible }: SuggestionItemProps) => {
         onChangeText={handleChangeText}
         textAlignVertical={'top'}
         numberOfLines={5}
+        maxLength={500}
       />
       <View style={{ flexDirection: 'row', paddingVertical: 10 }}>
         {!keyboardVisible && <Pressable

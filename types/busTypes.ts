@@ -21,6 +21,7 @@ export interface ShuttleRouteProps {
   shuttleId: string;
   shuttleName: string;
   note: string | null;
+  nextDepartureTime: string;
 }
 
 export interface ShuttleBusProps {

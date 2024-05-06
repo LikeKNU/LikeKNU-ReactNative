@@ -14,7 +14,7 @@ export interface ShuttleRouteListItemProps {
 const ShuttleRouteListItem = ({ shuttleRoute, onPress }: ShuttleRouteListItemProps) => {
   const { theme } = useTheme();
   const names = shuttleRoute.shuttleName.split(' → ');
-  const departureTime = null;
+  const departureTime = shuttleRoute.nextDepartureTime;
 
   const handleOnPress = () => {
     onPress(shuttleRoute.shuttleId, shuttleRoute.note);
