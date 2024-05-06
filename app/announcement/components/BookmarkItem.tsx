@@ -23,10 +23,12 @@ const BookmarkItem = ({ announcementId, isBookmarked, handleChange }: BookmarkIt
   }, [isBookmarked]);
 
   const changeBookmark = () => {
-    if (isBookmark) {
-      removeBookmark(announcementId, deviceId!);
-    } else {
-      addBookmark(announcementId, deviceId!);
+    if (announcementId) {
+      if (isBookmark) {
+        removeBookmark(announcementId, deviceId!);
+      } else {
+        addBookmark(announcementId, deviceId!);
+      }
     }
 
     if (handleChange) {
