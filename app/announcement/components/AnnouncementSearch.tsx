@@ -7,7 +7,8 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';
 import { flatMapRemoveDuplicate } from '@/utils/data';
-import { useState } from 'react';
+import { usePathname } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 
 const AnnouncementSearch = () => {
@@ -22,6 +23,13 @@ const AnnouncementSearch = () => {
     mutate
   } = useAnnouncementsSearch(keyword);
   const announcements = flatMapRemoveDuplicate<AnnouncementProps[]>(data);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === '/announcement/search') {
+      mutate();
+    }
+  }, [pathname]);
 
   const loadMore = () => {
     if (!isValidating && !isLoading) {
@@ -38,6 +46,7 @@ const AnnouncementSearch = () => {
       <SearchHeader handleSubmit={handleSubmit} />
       {announcements.length !== 0 || isValidating ?
         <InfiniteScrollView
+          resetDependency={keyword}
           data={announcements}
           handleEndReached={loadMore}
           isValidating={isValidating}

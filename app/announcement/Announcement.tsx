@@ -36,7 +36,7 @@ const Announcement = () => {
     if (pathname === '/announcement') {
       mutate();
     }
-  }, [pathname, category]);
+  }, [pathname]);
 
   const loadMore = () => {
     if (!isValidating && !isLoading) {
