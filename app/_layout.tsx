@@ -4,10 +4,11 @@ import ThemeContextProvider, { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
 import useInitializeDevice from '@/utils/device';
+import analytics from '@react-native-firebase/analytics';
 import { useFonts } from 'expo-font';
 import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { RootSiblingParent } from 'react-native-root-siblings';
@@ -79,6 +80,14 @@ const Content = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
   useInitializeDevice();
+
+  useEffect(() => {
+    console.log(pathname);
+    analytics().logScreenView({
+      screen_name: pathname,
+      screen_class: pathname
+    });
+  }, [pathname]);
 
   return (
     <Stack screenOptions={{
