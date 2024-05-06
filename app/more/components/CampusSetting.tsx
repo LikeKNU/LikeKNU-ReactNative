@@ -16,7 +16,7 @@ const CampusSetting = () => {
   const CampusButton = ({ campus }: { campus: Campuses }) => {
     return (
       <Pressable style={[styles.campusButton, {
-        backgroundColor: isSelected(campus) ? colors[theme].background : colors[theme].container,
+        backgroundColor: isSelected(campus) ? colors[theme].container : colors[theme].background,
         shadowColor: colors[theme].shadow
       }]}
                  onPress={() => changeCampus(campus)}>
