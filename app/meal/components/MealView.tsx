@@ -8,7 +8,8 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { MenuProps } from '@/types/mealTypes';
-import { useEffect, useState } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
 
 export interface MealViewProps {
@@ -23,6 +24,10 @@ const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: MealVi
   const { width } = useWindowDimensions();
   const [dateIndex, setDateIndex] = useState<number>(0);
   const [meals, setMeals] = useState<MenuProps[]>([]);
+
+  useFocusEffect(useCallback(() => {
+    setDateIndex(0);
+  }, []));
 
   useEffect(() => {
     setMeals(data ? data[dateIndex].meals : []);

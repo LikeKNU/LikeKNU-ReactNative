@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   container: {
     borderLeftWidth: 2,
     paddingLeft: 16,
-    paddingVertical: 6,
+    paddingVertical: 8,
     marginLeft: 10
   },
   date: {

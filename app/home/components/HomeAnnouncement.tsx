@@ -15,11 +15,7 @@ const HomeAnnouncement = () => {
       pathname: '/announcement/details',
       params: { url: item.announcementUrl }
     })}>
-      <FontText
-        fontWeight="400"
-        style={styles.content}
-        numberOfLines={1}
-      >
+      <FontText style={styles.content} numberOfLines={1}>
         {item.announcementTitle}
       </FontText>
     </Pressable>

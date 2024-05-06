@@ -32,7 +32,6 @@ export default ShuttleTimeView;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 30,
     paddingHorizontal: 2
   }
 });

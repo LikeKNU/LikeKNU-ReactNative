@@ -39,7 +39,7 @@ const MealItem = ({ menu, isToday }: { menu: MenuProps, isToday: boolean }) => {
 
   const interpolatedHeight = animatedHeight.interpolate({
     inputRange: [0, 0.99, 1],
-    outputRange: [56, contentHeight + 56 + 20, 220]
+    outputRange: [52, contentHeight + 52 + 20, 220]
   });
 
   return (
@@ -64,7 +64,7 @@ export default MealItem;
 const styles = StyleSheet.create({
   container: {
     borderRadius: 26,
-    paddingVertical: 16,
+    paddingVertical: 14,
     paddingHorizontal: 20,
 
     marginBottom: 10,
