@@ -6,13 +6,15 @@ import { UserThemeType } from '@/types/common';
 import http from '@/utils/http';
 import { getData, storeData } from '@/utils/storage';
 import * as Application from 'expo-application';
+import * as Device from 'expo-device';
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
 export interface DeviceRegistrationProps {
   deviceId: string;
-  // platform: 'ios' | 'android' | 'macos' | 'windows' | 'web';
-  userAgent: 'ios' | 'android' | 'macos' | 'windows' | 'web';
+  platform: 'ios' | 'android' | 'macos' | 'windows' | 'web';
+  modelName: string | null;
+  osVersion: string | null;
   campus: string;
   themeColor: UserThemeType;
   favoriteCafeteria: string | null | undefined;
@@ -25,6 +27,8 @@ const useInitializeDevice = () => {
   const { campus } = useCampus();
   const { deviceId } = useDeviceId();
   const { favoriteCafeteria } = useFavoriteCafeteria();
+  const modelName = Device.modelName;
+  const osVersion = Device.osVersion;
 
   useEffect(() => {
     const initializeDevice = async () => {
@@ -40,8 +44,9 @@ const useInitializeDevice = () => {
           }
           await http.post<any, DeviceRegistrationProps>('/api/devices', {
             deviceId: deviceId,
-            // platform: Platform.OS,
-            userAgent: Platform.OS,
+            platform: Platform.OS,
+            modelName: modelName,
+            osVersion: osVersion,
             themeColor: userTheme,
             campus: campusName[campus].value,
             favoriteCafeteria: favoriteCafeteria
