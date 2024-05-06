@@ -95,7 +95,6 @@ const SuggestionItem = ({ changeVisible }: SuggestionItemProps) => {
     setContent('');
     setIsFillText(false);
     inputRef.current?.clear();
-
   };
 
   return (

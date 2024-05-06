@@ -23,7 +23,7 @@ const ArrivalCityBusItem = ({ arrivalCityBus }: ArrivalCityBusItemProps) => {
     <View style={styles.container}>
       <View style={[styles.routeContainer, { backgroundColor: colors[theme].gray300 }]}>
         <CityBusRoute origin={arrivalCityBus.origin} destination={arrivalCityBus.destination} />
-        <FontText fontWeight="500" style={{ color: colors[theme].gray100, fontSize: 12 }}>{departure}</FontText>
+        <FontText fontWeight="600" style={{ color: colors[theme].gray100, fontSize: 12 }}>{departure}</FontText>
       </View>
       <FlatList
         style={{ paddingHorizontal: 10, marginTop: 6 }}

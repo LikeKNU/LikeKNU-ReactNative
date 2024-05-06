@@ -33,7 +33,7 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
           scrollEnabled={false}
           data={displayedMenus}
           renderItem={({ item }) =>
-            <FontText style={styles.menus} numberOfLines={1}>{item}</FontText>
+            <FontText fontWeight="500" style={styles.menus} numberOfLines={1}>{item}</FontText>
           }
           keyExtractor={(item) => item}
         />
