@@ -20,9 +20,9 @@ const ShuttleTimeItem = ({ arrivalStop, arrivalTime, isRunning, isLast }: Shuttl
       <View style={styles.container}>
         <View style={styles.stopContainer}>
           <View style={[styles.circleGraphics, { borderColor: color }]} />
-          <FontText fontWeight="500" style={styles.stopName}>{arrivalStop}</FontText>
+          <FontText fontWeight="500" style={[styles.time, { color: colors[theme].gray100 }]}>{arrivalTime}</FontText>
         </View>
-        <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>{arrivalTime}</FontText>
+        <FontText fontWeight="500">{arrivalStop}</FontText>
       </View>
       {!isLast && <View style={[styles.lineGraphics, { backgroundColor: color }]}></View>}
     </>
@@ -34,8 +34,7 @@ export default ShuttleTimeItem
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
+    alignItems: 'center'
   },
   stopContainer: {
     flexDirection: 'row',
@@ -47,7 +46,8 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15
   },
-  stopName: {
+  time: {
+    width: 46,
     marginLeft: 6
   },
   lineGraphics: {
