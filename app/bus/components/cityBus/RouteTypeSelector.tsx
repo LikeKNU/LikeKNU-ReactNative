@@ -30,6 +30,7 @@ const RouteTypeSelector = ({ activeIndex, handleOnPress }: RouteTypeProps) => {
           </TagButton>
         }
         horizontal={true}
+        scrollEnabled={false}
       />
     </View>
   );

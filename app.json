@@ -35,7 +35,7 @@
       }
     },
     "android": {
-      "versionCode": 11,
+      "versionCode": 17,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -50,7 +50,10 @@
           "backgroundColor": "#101012"
         }
       },
-      "package": "com.woopaca.likeknu"
+      "package": "ac.knu.likeknu",
+      "permissions": [
+        "com.google.android.gms.permission.AD_ID"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

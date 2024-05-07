@@ -32,7 +32,7 @@ const TabLayout = () => {
 
   return (
     <Tabs
-      screenListeners={{ tabPress: Platform.OS !== 'web' ? () => Haptics.selectionAsync() : undefined }}
+      screenListeners={{ tabPress: Platform.OS !== 'web' && Platform.OS !== 'android' ? () => Haptics.selectionAsync() : undefined }}
       screenOptions={{
         tabBarStyle: styles.tabBar,
         headerShown: false,
