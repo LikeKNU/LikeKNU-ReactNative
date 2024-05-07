@@ -10,4 +10,4 @@ export default ({ config }) => {
       googleServicesFile: process.env.GOOGLE_SERVICE_INFO_PLIST
     }
   };
-}
+};
