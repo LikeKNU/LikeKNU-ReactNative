@@ -10,7 +10,7 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "8",
+      "buildNumber": "11",
       "supportsTablet": true,
       "splash": {
         "image": "./assets/splash.png",

@@ -40,3 +40,6 @@ secrets/
 
 *.ipa
 *.abb
+
+ios/
+android/

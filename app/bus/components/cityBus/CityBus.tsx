@@ -10,15 +10,15 @@ import Swiper from 'react-native-swiper';
 const CityBus = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const swiperRef = useRef<Swiper>(null);
-  const { data: incomingData, mutate: incomingMutate } = useCityBuses(routeType.INCOMING);
   const { data: outgoingData, mutate: outgoingMutate } = useCityBuses(routeType.OUTGOING);
+  const { data: incomingData, mutate: incomingMutate } = useCityBuses(routeType.INCOMING);
 
   useEffect(() => {
     swiperRef.current?.scrollTo(activeIndex);
   }, [activeIndex]);
 
   const mutate = async () => {
-    activeIndex === 0 ? await incomingMutate() : await outgoingMutate();
+    activeIndex === 0 ? await outgoingMutate() : await incomingMutate();
   };
 
   const changeRouteType = (index: number) => {
