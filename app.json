@@ -10,7 +10,7 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "2",
+      "buildNumber": "3",
       "splash": {
         "image": "./assets/splash.png",
         "resizeMode": "contain",
@@ -35,7 +35,7 @@
       }
     },
     "android": {
-      "versionCode": 4,
+      "versionCode": 11,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

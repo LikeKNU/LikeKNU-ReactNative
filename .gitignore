@@ -39,7 +39,7 @@ yarn-error.*
 secrets/
 
 *.ipa
-*.abb
+*.aab
 
 ios/
 android/
