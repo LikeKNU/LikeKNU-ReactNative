@@ -31,6 +31,7 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
           </TagButton>
         }
         horizontal={true}
+        scrollEnabled={false}
       />
     </View>
   );
