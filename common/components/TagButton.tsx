@@ -3,7 +3,7 @@ import { useTheme } from '@/common/contexts/ThemeContext';
 import colors, { campusColors } from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { PropsWithChildren } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Platform, Pressable, StyleSheet } from 'react-native';
 
 export interface TagButtonProps extends PropsWithChildren {
   isActive: boolean;

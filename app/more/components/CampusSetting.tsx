@@ -3,7 +3,7 @@ import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import { Campuses, campusName } from '@/constants/campus';
 import colors, { campusColors } from '@/constants/colors';
-import { FlatList, Pressable, StyleSheet } from 'react-native';
+import { FlatList, Platform, Pressable, StyleSheet } from 'react-native';
 
 const CampusSetting = () => {
   const { theme } = useTheme();
@@ -17,7 +17,8 @@ const CampusSetting = () => {
     return (
       <Pressable style={[styles.campusButton, {
         backgroundColor: isSelected(campus) ? colors[theme].container : colors[theme].background,
-        shadowColor: colors[theme].shadow
+        shadowColor: Platform.OS === 'ios' ? colors[theme].shadow : colors[theme].elevation,
+        elevation: 6
       }]}
                  onPress={() => changeCampus(campus)}>
         <FontText fontWeight="700"

@@ -8,7 +8,7 @@ import { OperatingStatus } from '@/constants/meal';
 import { MenuProps, OperatingType } from '@/types/mealTypes';
 import { determineTimeStatus } from '@/utils/date';
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet, View } from 'react-native';
+import { Animated, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { LayoutChangeEvent } from 'react-native/Libraries/Types/CoreEventTypes';
 
 const MealItem = ({ menu, isToday }: { menu: MenuProps, isToday: boolean }) => {
@@ -37,9 +37,10 @@ const MealItem = ({ menu, isToday }: { menu: MenuProps, isToday: boolean }) => {
     }
   };
 
+  const closedHeight = Platform.OS === 'ios' ? 52 : 53;
   const interpolatedHeight = animatedHeight.interpolate({
     inputRange: [0, 0.99, 1],
-    outputRange: [52, contentHeight + 52 + 20, 220]
+    outputRange: [closedHeight, contentHeight + closedHeight + 16, 220]
   });
 
   return (
