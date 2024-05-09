@@ -1,5 +1,5 @@
 export const themeName = {
-  auto: '시스템',
+  auto: '자동',
   light: '라이트',
   dark: '다크'
 };

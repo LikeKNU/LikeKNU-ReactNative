@@ -45,7 +45,7 @@ const TabLayout = () => {
           <HomeIcon fill={color} width={30} height={30} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>홈</FontText>
+          <FontText style={{ color: color, fontSize: 10, marginBottom: 2 }}>홈</FontText>
         )
       }} />
       <Tabs.Screen name="announcement" options={{
@@ -53,7 +53,7 @@ const TabLayout = () => {
           <AssignmentIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>공지사항</FontText>
+          <FontText style={{ color: color, fontSize: 10, marginBottom: 2 }}>공지사항</FontText>
         )
       }} />
       <Tabs.Screen name="bus" options={{
@@ -61,7 +61,7 @@ const TabLayout = () => {
           <BusFrontIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>버스</FontText>
+          <FontText style={{ color: color, fontSize: 10, marginBottom: 2 }}>버스</FontText>
         )
       }} />
       <Tabs.Screen name="meal" options={{
@@ -69,7 +69,7 @@ const TabLayout = () => {
           <RestaurantIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>식단</FontText>
+          <FontText style={{ color: color, fontSize: 10, marginBottom: 2 }}>식단</FontText>
         )
       }} />
       <Tabs.Screen name="more" options={{
@@ -77,7 +77,7 @@ const TabLayout = () => {
           <ThreeDotsIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="500" style={{ color: color, fontSize: 11, marginBottom: 2 }}>더보기</FontText>
+          <FontText style={{ color: color, fontSize: 10, marginBottom: 2 }}>더보기</FontText>
         )
       }} />
     </Tabs>
