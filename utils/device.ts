@@ -15,6 +15,7 @@ export interface DeviceRegistrationProps {
   platform: 'ios' | 'android' | 'macos' | 'windows' | 'web';
   modelName: string | null;
   osVersion: string | null;
+  appVersion: string | null;
   campus: string;
   themeColor: UserThemeType;
   favoriteCafeteria: string | null | undefined;
@@ -29,6 +30,8 @@ const useInitializeDevice = () => {
   const { favoriteCafeteria } = useFavoriteCafeteria();
   const modelName = Device.modelName;
   const osVersion = Device.osVersion;
+  const applicationVersion = Application.nativeApplicationVersion;
+  const buildVersion = Application.nativeBuildVersion;
 
   useEffect(() => {
     const initializeDevice = async () => {
@@ -47,6 +50,7 @@ const useInitializeDevice = () => {
             platform: Platform.OS,
             modelName: modelName,
             osVersion: osVersion,
+            appVersion: `${applicationVersion} (${buildVersion})`,
             themeColor: userTheme,
             campus: campusName[campus].value,
             favoriteCafeteria: favoriteCafeteria

@@ -30,18 +30,18 @@ const TabLayout = () => {
     },
     label: {
       fontSize: 10,
-      marginBottom: 6,
+      marginBottom: 4,
       marginLeft: 1
     }
   });
 
   return (
     <Tabs
-      screenListeners={{ tabPress: Platform.OS !== 'web' && Platform.OS !== 'android' ? () => Haptics.selectionAsync() : undefined }}
+      screenListeners={{ tabPress: Platform.OS === 'ios' ? () => Haptics.selectionAsync() : undefined }}
       screenOptions={{
         tabBarStyle: styles.tabBar,
         headerShown: false,
-        tabBarIconStyle: { marginTop: 10},
+        tabBarIconStyle: { marginTop: 8 },
         tabBarActiveTintColor: colors[theme].contrast,
         tabBarInactiveTintColor: colors[theme].gray200
       }}>
