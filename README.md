@@ -19,19 +19,13 @@
 
 #### App
 
-<img src="https://img.shields.io/badge/React Native-222222?style=flat&logo=React&logoColor=61DAFB" alt="#"/>
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white" alt="#"/>
-<img src="https://img.shields.io/badge/Expo-000020?style=flat&logo=Expo&logoColor=white" alt="#"/>
+<img src="https://img.shields.io/badge/React Native-222222?style=flat&logo=React&logoColor=61DAFB" alt="#"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white" alt="#"/> <img src="https://img.shields.io/badge/Expo-000020?style=flat&logo=Expo&logoColor=white" alt="#"/>
 
 #### Back-end
 
-<img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=SpringBoot&logoColor=white" alt="#"/>
-<img src="https://img.shields.io/badge/Hibernate-59666C?style=flat&logo=Hibernate&logoColor=white" alt="#"/>
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white" alt="#"/>
+<img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=SpringBoot&logoColor=white" alt="#"/> <img src="https://img.shields.io/badge/Hibernate-59666C?style=flat&logo=Hibernate&logoColor=white" alt="#"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white" alt="#"/>
 <br>
-<img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=flat&logo=RabbitMQ&logoColor=white" alt="#"/>
-<img src="https://img.shields.io/badge/Redis-DC382D?style=flat&logo=Redis&logoColor=white" alt="#"/>
-<img src="https://img.shields.io/badge/OpenAI-412991?style=flat&logo=OpenAI&logoColor=white" alt="#"/>
+<img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=flat&logo=RabbitMQ&logoColor=white" alt="#"/> <img src="https://img.shields.io/badge/Redis-DC382D?style=flat&logo=Redis&logoColor=white" alt="#"/> <img src="https://img.shields.io/badge/OpenAI-412991?style=flat&logo=OpenAI&logoColor=white" alt="#"/>
 
 ### 📱 소개
 
