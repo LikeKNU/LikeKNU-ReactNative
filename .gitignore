@@ -35,3 +35,11 @@ yarn-error.*
 *.tsbuildinfo
 
 .idea/
+
+secrets/
+
+*.ipa
+*.aab
+
+ios/
+android/
