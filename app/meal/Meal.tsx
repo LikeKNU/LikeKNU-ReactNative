@@ -18,7 +18,6 @@ const Meal = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [cafeteriaList, setCafeteriaList] = useState<Cafeterias[]>([]);
   const { favoriteCafeteria, changeFavoriteCafeteria } = useFavoriteCafeteria();
-  const { cafeteriaName: pressCafeteria } = useLocalSearchParams<{ cafeteriaName: Cafeterias }>();
 
   useEffect(() => {
     setActiveIndex(0);
@@ -32,12 +31,6 @@ const Meal = () => {
   useEffect(() => {
     swiperRef.current?.scrollTo(activeIndex);
   }, [activeIndex]);
-
-  useEffect(() => {
-    if (pressCafeteria && cafeteriaList.length !== 0) {
-      setActiveIndex(cafeteriaList.indexOf(pressCafeteria));
-    }
-  }, [pressCafeteria, cafeteriaList]);
 
   const changeCafeteria = (index: number) => {
     setActiveIndex(index);
