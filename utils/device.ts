@@ -24,7 +24,7 @@ export interface DeviceRegistrationProps {
 const useInitializeDevice = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
-  const { userTheme } = useTheme();
+  const { theme } = useTheme();
   const { campus } = useCampus();
   const { deviceId } = useDeviceId();
   const { favoriteCafeteria } = useFavoriteCafeteria();
@@ -51,7 +51,7 @@ const useInitializeDevice = () => {
             modelName: modelName,
             osVersion: osVersion,
             appVersion: `${applicationVersion} (${buildVersion})`,
-            themeColor: userTheme,
+            themeColor: theme,
             campus: campusName[campus].value,
             favoriteCafeteria: favoriteCafeteria
           });
@@ -64,7 +64,7 @@ const useInitializeDevice = () => {
     };
 
     initializeDevice();
-  }, [userTheme, campus, favoriteCafeteria]);
+  }, [theme, campus, favoriteCafeteria]);
 
   return { isLoading, error }
 };
