@@ -45,6 +45,7 @@ const useInitializeDevice = () => {
           if (!storedDeviceId || storedDeviceId !== deviceId) {
             await storeData('deviceId', deviceId);
           }
+
           await http.post<any, DeviceRegistrationProps>('/api/devices', {
             deviceId: deviceId,
             platform: Platform.OS,

@@ -9,6 +9,7 @@ import {
   BottomSheetModal,
   BottomSheetModalProvider
 } from '@gorhom/bottom-sheet';
+import analytics from '@react-native-firebase/analytics';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 
@@ -21,6 +22,11 @@ const ShuttleBus = () => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   const handleOnPress = (shuttleId: string, note: string | null) => {
+    analytics().logSelectContent({
+      content_type: 'select_shuttle',
+      item_id: `${shuttleId}`
+    });
+
     setShuttleId(shuttleId);
     setNote(note);
     bottomSheetRef.current?.present();

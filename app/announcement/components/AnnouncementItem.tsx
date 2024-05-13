@@ -6,6 +6,7 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';
 import { getCurrentDate } from '@/utils/date';
+import analytics from '@react-native-firebase/analytics';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -23,6 +24,11 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
   }, [announcement]);
 
   const handlePress = () => {
+    analytics().logSelectContent({
+      content_type: 'select_announcement',
+      item_id: `${announcement.announcementId}`
+    });
+
     router.push({
       pathname: '/announcement/details',
       params: {

@@ -5,9 +5,10 @@ import TabHeader from '@/common/components/TabHeader';
 import { useCampus } from '@/common/contexts/CampusContext';
 import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
 import FontText from '@/common/text/FontText';
+import { campusName } from '@/constants/campus';
 import { cafeterias, Cafeterias } from '@/constants/meal';
 import { sortPinElementTop } from '@/utils/data';
-import { useLocalSearchParams } from 'expo-router';
+import analytics from '@react-native-firebase/analytics';
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -30,6 +31,13 @@ const Meal = () => {
 
   useEffect(() => {
     swiperRef.current?.scrollTo(activeIndex);
+    const selectCafeteria = cafeteriaList[activeIndex];
+    if (campus && selectCafeteria) {
+      analytics().logSelectContent({
+        content_type: 'cafeteria',
+        item_id: `${campusName[campus].name} ${selectCafeteria}`
+      });
+    }
   }, [activeIndex]);
 
   const changeCafeteria = (index: number) => {

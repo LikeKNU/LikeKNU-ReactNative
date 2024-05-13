@@ -35,7 +35,7 @@ const SearchHeader = ({ handleSubmit }: SearchHeaderProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.backIcon}>
-        <Pressable onPress={() => router.back()}>
+        <Pressable style={styles.backPressable} onPress={() => router.back()}>
           <ArrowLeftIcon width={24} height={24} fill={colors[theme].contrast} />
         </Pressable>
       </View>
@@ -69,6 +69,10 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 10
   },
+  backPressable: {
+    paddingVertical: 2,
+    paddingRight: 20
+  },
   backIcon: {
     flexDirection: 'row'
   },
@@ -76,6 +80,6 @@ const styles = StyleSheet.create({
     flex: 10,
     fontSize: 18,
     fontWeight: '600',
-    paddingHorizontal: 20
+    paddingRight: 20
   }
 });

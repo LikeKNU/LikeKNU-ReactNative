@@ -39,7 +39,7 @@ const BookmarkItem = ({ announcementId, isBookmarked, handleChange }: BookmarkIt
   };
 
   return (
-    <Pressable onPress={changeBookmark}>
+    <Pressable style={{padding: 4}} onPress={changeBookmark}>
       <BookmarkIcon width={24} height={24} fill={fill} />
     </Pressable>
   );
