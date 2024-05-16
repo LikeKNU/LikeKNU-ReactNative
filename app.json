@@ -32,7 +32,8 @@
         "CFBundleLocalizations": [
           "ko"
         ]
-      }
+      },
+      "appStoreUrl": "https://apps.apple.com/kr/app/%EA%B3%B5%EC%A3%BC%EB%8C%80%EC%B2%98%EB%9F%BC/id6499512208"
     },
     "android": {
       "versionCode": 26,
@@ -50,7 +51,8 @@
           "backgroundColor": "#101012"
         }
       },
-      "package": "ac.knu.likeknu"
+      "package": "ac.knu.likeknu",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=ac.knu.likeknu"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -7,6 +7,7 @@ import http from '@/utils/http';
 import { getData, storeData } from '@/utils/storage';
 import * as Application from 'expo-application';
 import * as Device from 'expo-device';
+import * as StoreReview from 'expo-store-review';
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
@@ -45,6 +46,12 @@ const useInitializeDevice = () => {
           if (!storedDeviceId || storedDeviceId !== deviceId) {
             await storeData('deviceId', deviceId);
           }
+
+          const launchCount = await getData('launchCount');
+          if (launchCount === '3' && await StoreReview.hasAction()) {
+            StoreReview.requestReview();
+          }
+          await storeData('launchCount', launchCount ? `${parseInt(launchCount, 10) + 1}` : '1');
 
           await http.post<any, DeviceRegistrationProps>('/api/devices', {
             deviceId: deviceId,
