@@ -58,6 +58,7 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      "expo-font",
       "expo-router",
       "@react-native-firebase/app",
       [
