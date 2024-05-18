@@ -42,11 +42,11 @@ const colors = {
         text: '#ECA450'
       },
       operate: {
-        background: '#18243F',
+        background: '#212A41',
         text: '#7BA1FF'
       },
       end: {
-        background: '#361818',
+        background: '#3D2121',
         text: '#EF7275'
       }
     }
