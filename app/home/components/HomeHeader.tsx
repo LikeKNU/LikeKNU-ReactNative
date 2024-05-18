@@ -17,7 +17,7 @@ const HomeHeader = () => {
   const { campus } = useCampus();
 
   const handleNotificationPress = () => {
-    if (Platform.OS !== 'web') {
+    if (Platform.OS === 'ios') {
       Haptics.selectionAsync();
     }
     router.push('/notification');

@@ -55,9 +55,7 @@ const AppLayout = () => {
         <SWRConfig value={{
           provider: () => new Map(),
           isVisible: () => true,
-          initFocus(callback) {
-            return handleInitFocus(callback);
-          }
+          initFocus: (callback) => handleInitFocus(callback)
         }}>
           <RootSiblingParent>
             <ThemeContextProvider>

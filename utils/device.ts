@@ -48,10 +48,16 @@ const useInitializeDevice = () => {
           }
 
           const launchCount = await getData('launchCount');
-          if (launchCount === '3' && await StoreReview.hasAction()) {
-            StoreReview.requestReview();
+          if (!launchCount) {
+            await storeData('launchCount', '0');
           }
-          await storeData('launchCount', launchCount ? `${parseInt(launchCount, 10) + 1}` : '1');
+
+          if (launchCount && parseInt(launchCount, 10) < 5) {
+            if (launchCount === '4' && await StoreReview.hasAction()) {
+              StoreReview.requestReview();
+            }
+            await storeData('launchCount', `${parseInt(launchCount, 10) + 1}`);
+          }
 
           await http.post<any, DeviceRegistrationProps>('/api/devices', {
             deviceId: deviceId,
