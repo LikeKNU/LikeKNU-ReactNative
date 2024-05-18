@@ -57,7 +57,7 @@ const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: MealVi
         <AnimatedPressable style={{ padding: 4 }} animatedViewStyle={{ borderRadius: 8 }}
                            onPress={() => handleChangeFavorite(cafeteria)}>
           <PinAngleIcon width={26} height={26}
-                        fill={favoriteCafeteria === cafeteria ? colors.red : colors[theme].gray200} />
+                        fill={favoriteCafeteria === cafeteria ? colors[theme].red : colors[theme].gray200} />
         </AnimatedPressable>
       </View>
       {meals.length === 0 ?

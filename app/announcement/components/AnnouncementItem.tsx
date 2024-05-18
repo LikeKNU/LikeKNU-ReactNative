@@ -57,7 +57,7 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
           <FontText style={[{ color: colors[theme].gray100 }, styles.additional]}>
             {announcement.announcementTag + ' | ' + announcement.announcementDate}
           </FontText>
-          {isToday && <DotIcon fill={colors.red} width={14} height={14} />}
+          {isToday && <DotIcon fill={colors[theme].red} width={14} height={14} />}
         </View>
       </View>
       <View style={{ flex: 1, alignItems: 'flex-end' }}>

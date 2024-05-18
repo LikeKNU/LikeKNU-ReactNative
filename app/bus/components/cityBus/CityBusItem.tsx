@@ -16,9 +16,9 @@ const CityBusItem = ({ arrivalBus }: { arrivalBus: BusArrivalProps }) => {
 
   return (
     <View style={styles.container}>
-      <BusFrontIcon width={22} height={22} fill={`#${arrivalBus.busColor}`} />
+      <BusFrontIcon width={22} height={22} fill={`#${arrivalBus.busColor}`} opacity={theme === 'dark' ? 0.9 : 1} />
       <FontText fontWeight="700" style={styles.busNumber}>{arrivalBus.busNumber}</FontText>
-      <FontText style={[styles.remainingTime, { color: colors.red }]}>
+      <FontText style={[styles.remainingTime, { color: colors[theme].red }]}>
         {arrivalBus.remainingTime}
       </FontText>
     </View>

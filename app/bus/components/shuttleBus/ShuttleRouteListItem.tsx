@@ -26,7 +26,7 @@ const ShuttleRouteListItem = ({ shuttleRoute, onPress }: ShuttleRouteListItemPro
         <ShuttleRoute origin={names[0]} destination={names[1]} />
         <View style={styles.departureTimeContainer}>
           <FontText style={{ color: colors[theme].gray100 }}>{'다음 출발: '}</FontText>
-          <FontText style={{ color: colors.red }}>{departureTime ?? '금일 종료'}</FontText>
+          <FontText style={{ color: colors[theme].red }}>{departureTime ?? '금일 종료'}</FontText>
         </View>
       </View>
       <AnimatedButton onPress={handleOnPress}>

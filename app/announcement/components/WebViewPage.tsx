@@ -1,6 +1,7 @@
 import BookmarkItem from '@/app/announcement/components/BookmarkItem';
 import BackHeader from '@/common/components/BackHeader';
 import PageLayout from '@/common/components/PageLayout';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { usePathname, useRouter } from 'expo-router';
@@ -17,6 +18,7 @@ interface AnnouncementViewProps {
 }
 
 const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) => {
+  const { theme } = useTheme();
   const [progress, setProgress] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [navigationState, setNavigationState] = useState<WebViewNativeEvent>();
@@ -74,7 +76,7 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
             onNavigationStateChange={setNavigationState}
           />
         ) : (
-          <FontText fontWeight="500" style={styles.notFoundMessage}>
+          <FontText fontWeight="500" style={[styles.notFoundMessage, {color: colors[theme].red}]}>
             404 NotFound
           </FontText>
         )
@@ -96,7 +98,6 @@ const styles = StyleSheet.create({
   },
   notFoundMessage: {
     textAlign: 'center',
-    color: colors.red,
     fontSize: 16
   }
 });

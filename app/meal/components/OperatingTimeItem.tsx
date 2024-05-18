@@ -1,3 +1,4 @@
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { OperatingStatus } from '@/constants/meal';
@@ -11,9 +12,10 @@ export interface OperatingTimeProps {
 }
 
 const OperatingTimeItem = ({ operatingTime, isToday }: OperatingTimeProps) => {
+  const { theme } = useTheme();
   const operatingStatus = isToday ? determineTimeStatus(operatingTime) : OperatingStatus.PREPARE as OperatingType;
-  const backgroundColor = colors.operationStatus[operatingStatus.value].background;
-  const textColor = colors.operationStatus[operatingStatus.value].text;
+  const backgroundColor = colors[theme].operationStatus[operatingStatus.value].background;
+  const textColor = colors[theme].operationStatus[operatingStatus.value].text;
   const operatingName = operatingStatus.name;
 
   return (
