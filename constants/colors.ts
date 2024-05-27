@@ -35,7 +35,7 @@ const colors = {
     press: '#202028',
     shadow: '#111113',
     elevation: '#000000',
-    red: '#e15155',
+    red: '#E15155',
     operationStatus: {
       prepare: {
         background: '#3D301E',

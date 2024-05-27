@@ -29,7 +29,7 @@ export default CardContainer;
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    borderRadius: 20,
+    borderRadius: 16,
     minHeight: 130
   },
   title: {
