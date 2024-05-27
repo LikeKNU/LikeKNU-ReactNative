@@ -71,6 +71,35 @@
             "enableProguardInReleaseBuilds": true
           }
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraMavenRepos": [
+              "https://repository.map.naver.com/archive/maven"
+            ]
+          }
+        }
+      ],
+      [
+        "@mj-studio/react-native-naver-map",
+        {
+          "client_id": "pe2k6cam8k",
+          "android": {
+            "ACCESS_FINE_LOCATION": true,
+            "ACCESS_COARSE_LOCATION": true,
+            "ACCESS_BACKGROUND_LOCATION": true
+          },
+          "ios": {
+            "NSLocationAlwaysAndWhenInUseUsageDescription": "",
+            "NSLocationWhenInUseUsageDescription": "",
+            "NSLocationTemporaryUsageDescriptionDictionary": {
+              "purposeKey": "{{ your purpose key }}",
+              "usageDescription": "{{ your location usage description }}"
+            }
+          }
+        }
       ]
     ],
     "scheme": "like-knu",

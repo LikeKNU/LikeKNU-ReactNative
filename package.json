@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.6.1",
+    "@mj-studio/react-native-naver-map": "^1.5.8",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-firebase/analytics": "^19.2.2",
     "@react-native-firebase/app": "^19.2.2",
