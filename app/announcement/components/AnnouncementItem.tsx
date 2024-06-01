@@ -34,7 +34,7 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
       params: {
         url: announcement.announcementUrl,
         id: announcement.announcementId,
-        isBookmark: isBookmark
+        isBookmark: String(isBookmark)
       }
     });
   };
