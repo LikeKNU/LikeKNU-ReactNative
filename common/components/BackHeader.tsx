@@ -19,7 +19,7 @@ const BackHeader = ({ title, button }: BackHeaderProps) => {
     <View style={styles.container}>
       <View style={styles.backIcon}>
         <Pressable style={styles.backPressable} onPress={() => router.back()}>
-          <ArrowLeftIcon width={24} height={24} fill={colors[theme].contrast} />
+          <ArrowLeftIcon width={24} height={24} fill={colors[theme].gray100} />
         </Pressable>
       </View>
       <FontText fontWeight="600" style={styles.title}>{title}</FontText>

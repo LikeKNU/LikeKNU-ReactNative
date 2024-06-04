@@ -56,12 +56,12 @@ const Announcement = () => {
           <AnimatedPressable style={styles.bookmarkPressable}
                              animatedViewStyle={styles.bookmarkAnimatedPressable}
                              onPress={() => router.push('/announcement/bookmark')}>
-            <BookmarkIcon width={20} height={20} fill={colors[theme].gray200} />
+            <BookmarkIcon width={22} height={22} fill={colors[theme].gray200} />
           </AnimatedPressable>
           <AnimatedPressable style={styles.searchPressable}
                              animatedViewStyle={styles.searchAnimatedPressable}
                              onPress={() => router.push('/announcement/search')}>
-            <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
+            <SearchIcon width={22} height={22} fill={colors[theme].gray200} />
           </AnimatedPressable>
         </View>
       </TabHeader>

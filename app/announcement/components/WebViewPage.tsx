@@ -60,8 +60,8 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
         title={title}
         button={
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Pressable style={{ padding: 4, marginRight: 4 }} onPress={openExternalBrowser}>
-              <ShareIcon width={24} height={24} fill={colors[theme].gray100} />
+            <Pressable style={{ padding: 4, marginRight: 8 }} onPress={openExternalBrowser}>
+              <ShareIcon width={26} height={26} fill={colors[theme].gray200} />
             </Pressable>
             <BookmarkItem announcementId={id} isBookmarked={isBookmarked} />
           </View>
