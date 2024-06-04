@@ -1,12 +1,14 @@
 import BookmarkItem from '@/app/announcement/components/BookmarkItem';
+import ShareIcon from '@/assets/icons/arrow-up-from-bracket.svg';
 import BackHeader from '@/common/components/BackHeader';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
+import * as Linking from 'expo-linking';
 import { usePathname, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, StyleSheet, View } from 'react-native';
+import { BackHandler, Platform, Pressable, StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
 import { WebViewNativeEvent } from 'react-native-webview/lib/WebViewTypes';
 
@@ -25,6 +27,10 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
   const webViewRef = useRef<WebView>(null);
   const router = useRouter();
   const pathname = usePathname();
+
+  const openExternalBrowser = () => {
+    Linking.openURL(url!);
+  }
 
   useEffect(() => {
     const onAndroidBackPress = () => {
@@ -52,7 +58,14 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
     <PageLayout edges={['top']}>
       <BackHeader
         title={title}
-        button={<BookmarkItem announcementId={id} isBookmarked={isBookmarked} />}
+        button={
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Pressable style={{ padding: 4, marginRight: 4 }} onPress={openExternalBrowser}>
+              <ShareIcon width={24} height={24} fill={colors[theme].gray100} />
+            </Pressable>
+            <BookmarkItem announcementId={id} isBookmarked={isBookmarked} />
+          </View>
+        }
       />
       {!isLoaded && (
         <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />
@@ -76,7 +89,7 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
             onNavigationStateChange={setNavigationState}
           />
         ) : (
-          <FontText fontWeight="500" style={[styles.notFoundMessage, {color: colors[theme].red}]}>
+          <FontText fontWeight="500" style={[styles.notFoundMessage, { color: colors[theme].red }]}>
             404 NotFound
           </FontText>
         )

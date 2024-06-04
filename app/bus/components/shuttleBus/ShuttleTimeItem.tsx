@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   circleGraphics: {
     borderWidth: 3,
-    borderRadius: 7,
+    borderRadius: 8,
     width: 15,
     height: 15
   },
