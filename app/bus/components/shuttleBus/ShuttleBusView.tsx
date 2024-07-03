@@ -20,7 +20,7 @@ const ShuttleBusView = ({ shuttleId, note/*, open, setOpen*/ }: ShuttleBusViewPr
 
   return (
     <>
-      {note && <FontText style={[styles.note, {color: colors[theme].red}]}>{note}</FontText>}
+      {note && <FontText style={[styles.note, { color: colors[theme].red }]}>{note}</FontText>}
       <BottomSheetFlatList
         contentContainerStyle={styles.contentContainer}
         data={data}
