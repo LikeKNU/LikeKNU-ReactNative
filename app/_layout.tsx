@@ -11,6 +11,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback, useEffect } from 'react';
 import { AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import mobileAds from 'react-native-google-mobile-ads';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppStateStatus } from 'react-native/Libraries/AppState/AppState';
@@ -80,9 +81,15 @@ const Content = () => {
   useInitializeDevice();
 
   useEffect(() => {
+    mobileAds()
+      .initialize()
+      .then(() => {
+      });
+
     analytics().logScreenView({
       screen_name: pathname,
       screen_class: pathname
+    }).then(() => {
     });
   }, [pathname]);
 

@@ -7,15 +7,24 @@ import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, { useRef } from 'react';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { BannerAd, BannerAdSize, TestIds, useForeground } from 'react-native-google-mobile-ads';
 
 const Home = () => {
   const { theme } = useTheme();
+  const bannerRef = useRef<BannerAd>(null);
+  const actualId = Platform.OS === 'ios' ? 'ca-app-pub-6039084449780821/9664125966' : 'ca-app-pub-6039084449780821/5818505440';
+  const unitId = __DEV__ ? TestIds.BANNER : actualId;
+
+  useForeground(() => {
+    Platform.OS === 'ios' && bannerRef.current?.load();
+  });
 
   return (
     <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].background }}>
       <HomeHeader />
+      <BannerAd ref={bannerRef} unitId={unitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
       <ScrollView
         contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}
