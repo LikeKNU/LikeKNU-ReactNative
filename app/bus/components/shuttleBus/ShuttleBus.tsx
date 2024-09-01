@@ -18,7 +18,7 @@ const ShuttleBus = () => {
   const { data, isLoading, mutate } = useShuttleRoutes();
   const [shuttleId, setShuttleId] = useState<string>('');
   const [note, setNote] = useState<string | null>(null);
-  const snapPoints = useMemo(() => ['70%'], []);
+  const snapPoints = useMemo(() => ['80%'], []);
   const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   const handleOnPress = (shuttleId: string, note: string | null) => {
