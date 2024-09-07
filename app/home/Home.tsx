@@ -14,7 +14,7 @@ import { BannerAd, BannerAdSize, TestIds, useForeground } from 'react-native-goo
 const Home = () => {
   const { theme } = useTheme();
   const bannerRef = useRef<BannerAd>(null);
-  const actualId = Platform.OS === 'ios' ? 'ca-app-pub-6039084449780821/9664125966' : 'ca-app-pub-6039084449780821/5818505440';
+  const actualId = Platform.OS === 'ios' ? 'ca-app-pub-2814557138984161/3868586761' : 'ca-app-pub-2814557138984161/1294394314';
   const unitId = __DEV__ ? TestIds.BANNER : actualId;
 
   useForeground(() => {
