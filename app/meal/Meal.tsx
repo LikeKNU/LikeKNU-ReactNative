@@ -65,8 +65,11 @@ const Meal = () => {
       >
         {cafeteriaList.map(cafeteria => (
           <View key={cafeteria} style={styles.page}>
-            <MealView cafeteria={cafeteria} favoriteCafeteria={favoriteCafeteria}
-                      handleChangeFavorite={changeFavoriteCafeteria} />
+            <MealView cafeteria={cafeteria}
+                      favoriteCafeteria={favoriteCafeteria}
+                      handleChangeFavorite={changeFavoriteCafeteria}
+                      isActive={cafeteria === cafeteriaList[activeIndex]}
+            />
           </View>
         ))}
       </Swiper>

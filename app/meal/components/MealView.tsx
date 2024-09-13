@@ -13,21 +13,29 @@ import { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
 
 export interface MealViewProps {
-  cafeteria: Cafeterias;
-  handleChangeFavorite: (cafeteria: Cafeterias) => void;
-  favoriteCafeteria: string | null;
+  cafeteria: Cafeterias,
+  handleChangeFavorite: (cafeteria: Cafeterias) => void,
+  favoriteCafeteria: string | null,
+  isActive: boolean
 }
 
-const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria }: MealViewProps) => {
+const MealView = ({ cafeteria, handleChangeFavorite, favoriteCafeteria, isActive }: MealViewProps) => {
   const { theme } = useTheme();
-  const { data } = useMeals(cafeteria);
   const { width } = useWindowDimensions();
   const [dateIndex, setDateIndex] = useState<number>(0);
   const [meals, setMeals] = useState<MenuProps[]>([]);
+  const [shouldFetch, setShouldFetch] = useState<boolean>(false);
+  const { data } = useMeals(cafeteria, { enabled: shouldFetch });
 
   useFocusEffect(useCallback(() => {
     setDateIndex(0);
   }, []));
+
+  useEffect(() => {
+    if (isActive && !shouldFetch) {
+      setShouldFetch(true);
+    }
+  }, [isActive]);
 
   useEffect(() => {
     setMeals(data ? data[dateIndex].meals : []);
