@@ -1,5 +1,6 @@
 import CafeteriasSelector from '@/app/meal/components/CafeteriasSelector';
 import MealView from '@/app/meal/components/MealView';
+import MealBannerAd from '@/common/ads/MealBannerAd';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
 import { useCampus } from '@/common/contexts/CampusContext';
@@ -49,6 +50,7 @@ const Meal = () => {
       <TabHeader>
         <FontText fontWeight="700" style={styles.title}>식단</FontText>
       </TabHeader>
+      <MealBannerAd />
       <CafeteriasSelector
         cafeteriaList={cafeteriaList}
         activeIndex={activeIndex}

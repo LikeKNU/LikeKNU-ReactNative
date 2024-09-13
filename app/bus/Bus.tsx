@@ -1,5 +1,6 @@
 import CityBus from '@/app/bus/components/cityBus/CityBus';
 import ShuttleBus from '@/app/bus/components/shuttleBus/ShuttleBus';
+import BusBannerAd from '@/common/ads/BusBannerAd';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
 import TopTabs from '@/common/components/TopTabs';
@@ -28,6 +29,7 @@ const Bus = () => {
         activeTab={busType}
         tabItems={Object.values(buses).map(value => value)}
       />
+      <BusBannerAd />
       {busType === buses.CITY_BUS && <CityBus />}
       {busType === buses.SHUTTLE_BUS && <ShuttleBus />}
     </PageLayout>

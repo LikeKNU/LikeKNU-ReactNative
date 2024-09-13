@@ -1,6 +1,7 @@
 import { useAnnouncements } from '@/api/announcement';
 import BookmarkIcon from '@/assets/icons/bookmark-fill.svg';
 import SearchIcon from '@/assets/icons/search.svg';
+import AnnouncementBannerAd from '@/common/ads/AnnouncementBannerAd';
 import AnimatedPressable from '@/common/components/AnimatedPressable';
 import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
@@ -70,6 +71,7 @@ const Announcement = () => {
         activeTab={category}
         tabItems={Object.values(categories).map(value => value)}
       />
+      <AnnouncementBannerAd />
       <InfiniteScrollView
         data={announcements}
         handleEndReached={loadMore}

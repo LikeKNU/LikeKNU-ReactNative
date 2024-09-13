@@ -3,28 +3,21 @@ import HomeBus from '@/app/home/components/HomeBus';
 import HomeCalendar from '@/app/home/components/HomeCalendar';
 import HomeHeader from '@/app/home/components/HomeHeader';
 import HomeMeal from '@/app/home/components/HomeMeal';
+import HomeBannerAd from '@/common/ads/HomeBannerAd';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { StatusBar } from 'expo-status-bar';
-import React, { useRef } from 'react';
-import { Platform, ScrollView, StyleSheet, View } from 'react-native';
-import { BannerAd, BannerAdSize, TestIds, useForeground } from 'react-native-google-mobile-ads';
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 const Home = () => {
   const { theme } = useTheme();
-  const bannerRef = useRef<BannerAd>(null);
-  const actualId = Platform.OS === 'ios' ? 'ca-app-pub-2814557138984161/3868586761' : 'ca-app-pub-2814557138984161/1294394314';
-  const unitId = __DEV__ ? TestIds.BANNER : actualId;
-
-  useForeground(() => {
-    Platform.OS === 'ios' && bannerRef.current?.load();
-  });
 
   return (
     <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].background }}>
       <HomeHeader />
-      <BannerAd ref={bannerRef} unitId={unitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
+      <HomeBannerAd />
       <ScrollView
         contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}
