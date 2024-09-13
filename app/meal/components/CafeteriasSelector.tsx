@@ -19,6 +19,7 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
     <View style={styles.container}>
       <FlatList
         data={cafeteriaList}
+        contentContainerStyle={{padding: 2}}
         renderItem={({ item: cafeteria, index }) =>
           <TagButton
             key={cafeteria}
