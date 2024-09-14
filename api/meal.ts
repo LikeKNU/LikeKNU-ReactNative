@@ -23,9 +23,5 @@ export const useMeals = (cafeteria: Cafeterias, options: UseMealsOptions = {}) =
 
   const shouldFetch = options.enabled !== false;
 
-  return useSWR(shouldFetch ? ['/api/menus', campus, cafeteria] : null, ([uri, campus, cafeteria]) => getMeals(uri, campus, cafeteria), {
-    ...options,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-  });
+  return useSWR(shouldFetch ? ['/api/menus', campus, cafeteria] : null, ([uri, campus, cafeteria]) => getMeals(uri, campus, cafeteria));
 };

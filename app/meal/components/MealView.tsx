@@ -7,8 +7,8 @@ import colors from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { MenuProps } from '@/types/mealTypes';
 import { useFocusEffect } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
-import { FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FlatList, RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
 
 export interface MealViewProps {
   cafeteria: Cafeterias,
@@ -21,7 +21,7 @@ const MealView = ({ cafeteria, isActive }: MealViewProps) => {
   const [dateIndex, setDateIndex] = useState<number>(0);
   const [meals, setMeals] = useState<MenuProps[]>([]);
   const [shouldFetch, setShouldFetch] = useState<boolean>(false);
-  const { data } = useMeals(cafeteria, { enabled: shouldFetch });
+  const { data, isLoading, mutate } = useMeals(cafeteria, { enabled: shouldFetch });
 
   useFocusEffect(useCallback(() => {
     setDateIndex(0);
@@ -47,6 +47,13 @@ const MealView = ({ cafeteria, isActive }: MealViewProps) => {
         data={meals}
         renderItem={({ item }) => <MealItem menu={item} isToday={dateIndex === 0} />}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            tintColor={colors[theme].gray100}
+            refreshing={isLoading}
+            onRefresh={mutate}
+          />
+        }
       />
     );
   };
