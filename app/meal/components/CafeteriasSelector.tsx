@@ -19,6 +19,7 @@ const CafeteriasSelector = ({ cafeteriaList, activeIndex, handleOnPress }: Cafet
     <View style={styles.container}>
       <FlatList
         data={cafeteriaList}
+        contentContainerStyle={{padding: 2}}
         renderItem={({ item: cafeteria, index }) =>
           <TagButton
             key={cafeteria}
@@ -42,8 +43,7 @@ export default CafeteriasSelector;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
-    paddingVertical: 20
+    flex: 1
   },
   cafeteriaName: {
     fontSize: 16

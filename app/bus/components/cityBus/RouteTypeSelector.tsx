@@ -18,6 +18,7 @@ const RouteTypeSelector = ({ activeIndex, handleOnPress }: RouteTypeProps) => {
     <View style={styles.container}>
       <FlatList
         data={Object.values(routeType)}
+        contentContainerStyle={{ padding: 2 }}
         renderItem={({ item: routeType, index }) =>
           <TagButton
             key={routeType.value}

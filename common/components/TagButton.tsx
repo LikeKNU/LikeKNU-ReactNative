@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
 
     shadowOpacity: 1,
-    shadowRadius: 12,
-    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 2,
+    shadowOffset: { width: 0, height: 0 },
 
     alignItems: 'center',
     marginRight: 10
