@@ -16,13 +16,6 @@ const HomeHeader = () => {
   const { campus } = useCampus();
   const { data: message } = useHomeMessage();
 
-  /*const handleNotificationPress = () => {
-    if (Platform.OS === 'ios') {
-      Haptics.selectionAsync();
-    }
-    router.push('/notification');
-  };*/
-
   return (
     <TabHeader>
       <Pressable style={styles.title} onPress={() => router.navigate('/more')}>
@@ -34,11 +27,6 @@ const HomeHeader = () => {
       <Pressable style={{ paddingHorizontal: 4, paddingVertical: 4 }}>
         <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>{message}</FontText>
       </Pressable>
-      {/*<View style={styles.menuIcons}>*/}
-      {/*  <Pressable onPress={handleNotificationPress}>*/}
-      {/*    <BellIcon width={28} height={28} />*/}
-      {/*  </Pressable>*/}
-      {/*</View>*/}
     </TabHeader>
   );
 };

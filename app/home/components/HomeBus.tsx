@@ -7,7 +7,7 @@ import React from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 const HomeBus = () => {
-  const { data, isLoading, error, mutate } = useHomeBuses();
+  const { data, mutate } = useHomeBuses();
   const router = useRouter();
 
   return (

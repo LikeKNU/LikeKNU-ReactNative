@@ -15,7 +15,7 @@ export interface BusArrivalProps {
   busNumber: string | null;
   remainingTime: string | null;
   busColor: string | null;
-  arrivalAt: string | null;
+  arrivalAt?: string | null;
 }
 
 export interface ShuttleRouteProps {

@@ -23,5 +23,3 @@ const SwiperComponent = ({ children }: PropsWithChildren) => {
 }
 
 export default SwiperComponent;
-
-// AppRegistry.registerComponent('like-knu', () => SwiperComponent);
