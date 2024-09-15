@@ -10,7 +10,7 @@ import React from 'react';
 import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 const HomeCalendar = () => {
-  const { data, isLoading, error } = useHomeCalendar();
+  const { data } = useHomeCalendar();
   const { theme } = useTheme();
   const router = useRouter();
 

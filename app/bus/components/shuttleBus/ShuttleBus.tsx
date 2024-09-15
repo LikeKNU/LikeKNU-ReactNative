@@ -1,6 +1,6 @@
 import { useShuttleRoutes } from '@/api/bus';
+import BusRouteListItem from '@/app/bus/components/BusRouteListItem';
 import ShuttleBusView from '@/app/bus/components/shuttleBus/ShuttleBusView';
-import ShuttleRouteListItem from '@/app/bus/components/shuttleBus/ShuttleRouteListItem';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import {
@@ -46,7 +46,13 @@ const ShuttleBus = () => {
       <FlatList
         contentContainerStyle={styles.container}
         data={data}
-        renderItem={({ item }) => <ShuttleRouteListItem shuttleRoute={item} onPress={handleOnPress} />}
+        renderItem={({ item }) =>
+          <BusRouteListItem
+            origin={item.origin}
+            destination={item.destination}
+            time={item.nextDepartureTime}
+            onPress={() => handleOnPress(item.shuttleId, item.note)}
+          />}
         keyExtractor={item => item.shuttleId}
         showsVerticalScrollIndicator={false}
         refreshControl={

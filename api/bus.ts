@@ -1,6 +1,6 @@
 import { useCampus } from '@/common/contexts/CampusContext';
 import { Campuses, campusName } from '@/constants/campus';
-import { CityBusProps, ShuttleBusProps, ShuttleRouteProps } from '@/types/busTypes';
+import { CityBusProps, CityBusRouteProps, ShuttleBusProps, ShuttleRouteProps } from '@/types/busTypes';
 import { ValueNameType } from '@/types/common';
 import http, { extractBodyFromResponse } from '@/utils/http';
 import useSWR from 'swr';
@@ -37,3 +37,24 @@ export const useShuttleBuses = (shuttleId: string) => {
 
   return useSWR(`/api/buses/shuttle-bus/${shuttleId}`, getShuttleBuses);
 };
+
+export const useCityBusRoutes = () => {
+  const { campus } = useCampus();
+  const getCityBusRoutes = async (uri: string, campus: Campuses | null) => {
+    if (campus) {
+      const response = await http.getWithParams<CityBusRouteProps[]>(uri, { campus: campusName[campus].value });
+      return extractBodyFromResponse<CityBusRouteProps[]>(response) ?? [];
+    }
+  };
+
+  return useSWR(['/api/buses/city-bus/routes', campus], ([uri, campus]) => getCityBusRoutes(uri, campus));
+};
+
+export const useCityBusArrivalTime = (routeId: string) => {
+  const getCityBusArrivalTime = async (uri: string) => {
+    const response = await http.get<CityBusProps>(uri);
+    return extractBodyFromResponse<CityBusProps>(response);
+  };
+
+  return useSWR(`/api/buses/city-bus/${routeId}/arrival-time`, getCityBusArrivalTime);
+}

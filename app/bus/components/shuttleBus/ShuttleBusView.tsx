@@ -10,17 +10,15 @@ import { StyleSheet } from 'react-native';
 export interface ShuttleBusViewProps {
   shuttleId: string,
   note: string | null,
-  /*open: boolean,
-  setOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void*/
 }
 
-const ShuttleBusView = ({ shuttleId, note/*, open, setOpen*/ }: ShuttleBusViewProps) => {
+const ShuttleBusView = ({ shuttleId, note }: ShuttleBusViewProps) => {
   const { theme } = useTheme();
   const { data } = useShuttleBuses(shuttleId);
 
   return (
     <>
-      {note && <FontText style={[styles.note, {color: colors[theme].red}]}>{note}</FontText>}
+      {note && <FontText style={[styles.note, { color: colors[theme].red }]}>{note}</FontText>}
       <BottomSheetFlatList
         contentContainerStyle={styles.contentContainer}
         data={data}
