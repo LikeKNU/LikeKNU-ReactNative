@@ -1,25 +1,27 @@
-export interface BusArrivalProps {
-  busNumber: string | null;
-  remainingTime: string | null;
-  busColor: string | null;
+export interface CityBusRouteProps {
+  routeId?: string;
+  origin: string;
+  destination: string;
+  nextArrivalTime?: string | null;
 }
 
 export interface CityBusProps extends CityBusRouteProps {
+  arrivalStop: string;
   departureStop: string;
   buses: BusArrivalProps[];
 }
 
-export interface CityBusRouteProps {
-  origin: string;
-  destination: string;
+export interface BusArrivalProps {
+  busNumber: string | null;
+  remainingTime: string | null;
+  busColor: string | null;
+  arrivalAt: string | null;
 }
 
 export interface ShuttleRouteProps {
-  /*origin: string;
-  destination: string;
-  departureTime: string | null;*/
   shuttleId: string;
-  shuttleName: string;
+  origin: string;
+  destination: string;
   note: string | null;
   nextDepartureTime: string;
 }
