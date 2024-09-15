@@ -1,6 +1,6 @@
 import { useCityBusArrivalTime } from '@/api/bus';
 import BusArrivalTimeListItem from '@/app/bus/timetable/components/BusArrivalTimeListItem';
-import CaretRightIcon from '@/assets/icons/caret-right.svg';
+import CaretDownIcon from '@/assets/icons/caret-down.svg';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
@@ -36,7 +36,7 @@ const BusTimetableView = ({ routeId }: BusTimetableProps) => {
           animated: true,
           viewPosition: 0.3
         })
-      }, 700);
+      }, 510);
     }
   }, [nextArrivalIndex]);
 
@@ -51,9 +51,15 @@ const BusTimetableView = ({ routeId }: BusTimetableProps) => {
   return (
     <>
       <View style={styles.header}>
-        <FontText fontWeight="700" style={styles.stopName}>{data && data.departureStop}</FontText>
-        <CaretRightIcon style={styles.icon} width={18} height={18} fill={colors[theme].gray200} />
-        <FontText fontWeight="700" style={styles.stopName}>{data && data.arrivalStop}</FontText>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <FontText fontWeight="700" style={styles.stopName}>{data && data.departureStop}</FontText>
+          <FontText style={styles.suffix}>정류장</FontText>
+        </View>
+        <CaretDownIcon style={styles.icon} width={18} height={18} fill={colors[theme].gray200} />
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <FontText fontWeight="700" style={styles.stopName}>{data && data.arrivalStop}</FontText>
+          <FontText style={styles.suffix}>정류장</FontText>
+        </View>
       </View>
       <BottomSheetFlatList
         ref={flatListRef}
@@ -76,9 +82,8 @@ export default BusTimetableView;
 
 const styles = StyleSheet.create({
   header: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    paddingBottom: 10
   },
   contentContainer: {
     paddingTop: 20,
@@ -89,6 +94,9 @@ const styles = StyleSheet.create({
     fontSize: 17
   },
   icon: {
-    marginHorizontal: 4
+    marginVertical: 4
+  },
+  suffix: {
+    marginLeft: 4
   }
 });

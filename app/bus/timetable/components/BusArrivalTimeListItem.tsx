@@ -1,12 +1,13 @@
 import BusFrontIcon from '@/assets/icons/bus-front.svg';
-import AnimatedPressable from '@/common/components/AnimatedPressable';
 import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors, { campusColors } from '@/constants/colors';
 import { BusArrivalProps } from '@/types/busTypes';
 import { hexToRgba } from '@/utils/color';
-import { StyleSheet, View } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { Animated, StyleSheet, View } from 'react-native';
+import AnimatedValue = Animated.AnimatedValue;
 
 interface BusArrivalTimeListItemProps {
   arrivalBus: BusArrivalProps;
@@ -16,6 +17,7 @@ interface BusArrivalTimeListItemProps {
 const BusArrivalTimeListItem = ({ arrivalBus, isNext }: BusArrivalTimeListItemProps) => {
   const { theme } = useTheme();
   const { campus } = useCampus();
+  const animatedBackgroundOpacity = useRef<AnimatedValue>(new Animated.Value(0)).current;
 
   const calculateTimeRemaining = (arrivalTime: string): string => {
     const now = new Date();
@@ -36,21 +38,64 @@ const BusArrivalTimeListItem = ({ arrivalBus, isNext }: BusArrivalTimeListItemPr
     }
   };
 
+  useEffect(() => {
+    if (isNext) {
+      const animation = Animated.sequence([
+        Animated.timing(animatedBackgroundOpacity, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animatedBackgroundOpacity, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+      ]);
+
+      const loopAnimation = Animated.loop(animation, { iterations: 2 });
+      loopAnimation.start();
+
+      return () => loopAnimation.stop();
+    }
+  }, [isNext, animatedBackgroundOpacity]);
+
+  const backgroundColor = animatedBackgroundOpacity.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['transparent', hexToRgba(campusColors[campus!], 0.2)],
+  });
+
   return (
-    <AnimatedPressable animatedViewStyle={{ borderRadius: 8 }}
-                       style={[styles.container, {
-                         borderBottomColor: colors[theme].gray300,
-                         backgroundColor: isNext ? hexToRgba(campusColors[campus!], 0.1) : 'transparent',
-                       }]}>
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          borderBottomColor: colors[theme].gray300,
+          backgroundColor: isNext ? (backgroundColor as any) : 'transparent',
+        },
+      ]}
+    >
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <BusFrontIcon width={22} height={22} fill={`#${arrivalBus.busColor}`} opacity={theme === 'dark' ? 0.9 : 1} />
-        <FontText fontWeight="700" style={styles.busNumber}>{arrivalBus.busNumber}</FontText>
+        <BusFrontIcon
+          width={22}
+          height={22}
+          fill={`#${arrivalBus.busColor}`}
+          opacity={theme === 'dark' ? 0.9 : 1}
+        />
+        <FontText fontWeight="700" style={styles.busNumber}>
+          {arrivalBus.busNumber}
+        </FontText>
         <FontText style={styles.arrivalTime}>{arrivalBus.arrivalAt?.slice(0, -3)}</FontText>
-        <FontText
-          style={[styles.remainingTime, { color: colors[theme].gray100 }]}>{calculateTimeRemaining(arrivalBus.arrivalAt!)}</FontText>
+        <FontText style={[styles.remainingTime, { color: colors[theme].gray100 }]}>
+          {calculateTimeRemaining(arrivalBus.arrivalAt!)}
+        </FontText>
       </View>
-      {isNext && <FontText fontWeight="600" style={{ color: colors[theme].red }}>다음 버스</FontText>}
-    </AnimatedPressable>
+      {isNext && (
+        <FontText fontWeight="600" style={{ color: colors[theme].red }}>
+          다음 버스
+        </FontText>
+      )}
+    </Animated.View>
   );
 };
 

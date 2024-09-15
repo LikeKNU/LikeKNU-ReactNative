@@ -7,7 +7,6 @@ import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import { routeType } from '@/constants/bus';
-import { Campuses } from '@/constants/campus';
 import colors from '@/constants/colors';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
@@ -39,12 +38,11 @@ const CityBus = () => {
     <>
       <View style={styles.header}>
         <RouteTypeSelector activeIndex={activeIndex} handleOnPress={changeRouteType} />
-        {campus === Campuses.YESAN &&
-          <Pressable style={{ flexDirection: 'row', alignItems: 'center', padding: 6 }}
-                     onPress={() => router.push('/bus/timetable')}>
-            <FontText fontWeight="600" style={{ color: colors[theme].gray100 }}>전체 시간표</FontText>
-            <ArrowRightIcon />
-          </Pressable>}
+        <Pressable style={{ flexDirection: 'row', alignItems: 'center', padding: 6 }}
+                   onPress={() => router.push('/bus/timetable')}>
+          <FontText fontWeight="600" style={{ color: colors[theme].gray100 }}>전체 시간표</FontText>
+          <ArrowRightIcon />
+        </Pressable>
       </View>
       <Swiper
         ref={swiperRef}

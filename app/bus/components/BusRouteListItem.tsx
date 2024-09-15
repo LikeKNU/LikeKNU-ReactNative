@@ -21,7 +21,7 @@ const BusRouteListItem = ({ onPress, origin, destination, time }: RouteListItemP
         <ShuttleRoute origin={origin} destination={destination} />
         <View style={styles.departureTimeContainer}>
           <FontText style={{ color: colors[theme].gray100 }}>{'다음 버스: '}</FontText>
-          <FontText style={{ color: colors[theme].red }}>{time ?? '금일 종료'}</FontText>
+          <FontText style={{ color: colors[theme].red }}>{time ?? '없음'}</FontText>
         </View>
       </View>
       <AnimatedButton onPress={onPress}>
