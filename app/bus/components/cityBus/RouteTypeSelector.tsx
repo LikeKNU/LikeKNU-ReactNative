@@ -42,8 +42,7 @@ export default RouteTypeSelector;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
-    paddingVertical: 20
+    flex: 1
   },
   routeTypeName: {
     fontSize: 16
