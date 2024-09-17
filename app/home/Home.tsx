@@ -19,7 +19,6 @@ const Home = () => {
   const [showNewFeature, setShowNewFeature] = useState<boolean>(true);
 
   const getMajorMinorVersion = (version: string): string => {
-    console.log(version);
     const parts = version.split('.');
     return parts.slice(0, 2).join('.');
   };
