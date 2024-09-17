@@ -65,7 +65,7 @@ const Meal = () => {
         <AnimatedPressable style={{ padding: 4 }} animatedViewStyle={{ borderRadius: 8 }}
                            onPress={() => changeFavoriteCafeteria(cafeteriaList[activeIndex])}>
           <PinAngleIcon width={26} height={26}
-                        fill={favoriteCafeteria === cafeteriaList[activeIndex] ? colors[theme].red : colors[theme].gray200} />
+                        fill={favoriteCafeteria === cafeteriaList[activeIndex] ? colors.light.red : colors[theme].gray200} />
         </AnimatedPressable>
       </View>
       <Swiper

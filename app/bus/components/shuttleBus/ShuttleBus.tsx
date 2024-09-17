@@ -57,6 +57,7 @@ const ShuttleBus = () => {
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
+            tintColor={colors[theme].gray100}
             refreshing={isLoading}
             onRefresh={mutate}
           />
