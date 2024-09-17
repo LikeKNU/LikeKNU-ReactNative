@@ -6,6 +6,7 @@ import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { CityBusRouteProps } from '@/types/busTypes';
+import { calculateTimeRemaining } from '@/utils/date';
 import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
@@ -37,7 +38,7 @@ const CityBusTimetablePage = () => {
   ), []);
 
   const busRouteListItem = useCallback((item: CityBusRouteProps) => {
-    const time = item.nextArrivalTime && item.nextArrivalTime.slice(0, -3);
+    const time = item.nextArrivalTime && calculateTimeRemaining(item.nextArrivalTime);
     return (
       <BusRouteListItem
         origin={item.origin}
@@ -60,6 +61,7 @@ const CityBusTimetablePage = () => {
           showsVerticalScrollIndicator={false}
           refreshControl={
             <RefreshControl
+              tintColor={colors[theme].gray100}
               refreshing={isLoading}
               onRefresh={mutate}
             />
