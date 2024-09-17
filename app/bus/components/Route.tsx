@@ -4,7 +4,7 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { StyleSheet, View } from 'react-native';
 
-const ShuttleRoute = ({ origin, destination }: { origin: string, destination: string }) => {
+const Route = ({ origin, destination }: { origin: string, destination: string }) => {
   const { theme } = useTheme();
 
   return (
@@ -16,7 +16,7 @@ const ShuttleRoute = ({ origin, destination }: { origin: string, destination: st
   );
 };
 
-export default ShuttleRoute;
+export default Route;
 
 const styles = StyleSheet.create({
   container: {

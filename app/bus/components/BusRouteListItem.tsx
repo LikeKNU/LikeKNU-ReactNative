@@ -1,4 +1,4 @@
-import ShuttleRoute from '@/app/bus/components/shuttleBus/ShuttleRoute';
+import Route from '@/app/bus/components/Route';
 import AnimatedButton from '@/common/components/AnimatedButton';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
@@ -18,14 +18,14 @@ const BusRouteListItem = ({ onPress, origin, destination, time }: RouteListItemP
   return (
     <View style={[styles.container, { borderBottomColor: colors[theme].gray300 }]}>
       <View>
-        <ShuttleRoute origin={origin} destination={destination} />
+        <Route origin={origin} destination={destination} />
         <View style={styles.departureTimeContainer}>
           <FontText style={{ color: colors[theme].gray100 }}>{'다음 버스: '}</FontText>
-          <FontText style={{ color: colors[theme].red }}>{time ?? '없음'}</FontText>
+          <FontText style={{ color: colors[theme].red }}>{(!time || time === '') ? '없음' : time}</FontText>
         </View>
       </View>
       <AnimatedButton onPress={onPress}>
-        <FontText fontWeight="600" style={{ color: colors[theme].gray100 }}>시간표</FontText>
+        <FontText fontWeight="600" style={{ color: colors[theme].gray100 }}>더보기</FontText>
       </AnimatedButton>
     </View>
   );
