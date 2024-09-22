@@ -30,7 +30,7 @@
     "expo-store-review": "~7.0.2",
     "expo-system-ui": "~3.0.7",
     "expo-tracking-transparency": "~4.0.2",
-    "expo-updates": "~0.25.24",
+    "expo-updates": "~0.25.25",
     "react": "18.2.0",
     "react-native": "0.74.5",
     "react-native-draggable-flatlist": "^4.0.1",
@@ -45,7 +45,8 @@
     "react-native-swiper": "^1.6.0",
     "react-native-web": "~0.19.6",
     "react-native-webview": "13.8.6",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "expo-notifications": "~0.28.17"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
