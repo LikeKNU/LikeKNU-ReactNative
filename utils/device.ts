@@ -4,6 +4,7 @@ import { useTheme } from '@/common/contexts/ThemeContext';
 import { campusName } from '@/constants/campus';
 import { UserThemeType } from '@/types/common';
 import http from '@/utils/http';
+import { getExpoPushToken } from '@/utils/pushNotifications';
 import { getData, storeData } from '@/utils/storage';
 import * as Application from 'expo-application';
 import * as Device from 'expo-device';
@@ -20,6 +21,7 @@ export interface DeviceRegistrationProps {
   campus: string;
   themeColor: UserThemeType;
   favoriteCafeteria: string | null | undefined;
+  expoPushToken: string | undefined;
 }
 
 const useInitializeDevice = () => {
@@ -59,6 +61,8 @@ const useInitializeDevice = () => {
             await storeData('launchCount', `${parseInt(launchCount, 10) + 1}`);
           }
 
+          const expoPushToken = await getExpoPushToken();
+
           await http.post<any, DeviceRegistrationProps>('/api/devices', {
             deviceId: deviceId,
             platform: Platform.OS,
@@ -67,7 +71,8 @@ const useInitializeDevice = () => {
             appVersion: `${applicationVersion} (${buildVersion})`,
             themeColor: theme,
             campus: campusName[campus].value,
-            favoriteCafeteria: favoriteCafeteria
+            favoriteCafeteria: favoriteCafeteria,
+            expoPushToken: expoPushToken
           });
         } catch (err) {
           setError(err);
