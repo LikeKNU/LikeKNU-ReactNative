@@ -105,10 +105,6 @@ const Content = () => {
       .then(() => {
       });
 
-    Notifications.dismissAllNotificationsAsync()
-      .then(() => {
-      });
-
     registerForPushNotificationsAsync()
       .then(token => setExpoPushToken(token ?? ''))
       .catch((error: any) => setExpoPushToken(`${error}`));

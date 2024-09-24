@@ -4,6 +4,7 @@ import HomeCalendar from '@/app/home/components/HomeCalendar';
 import HomeHeader from '@/app/home/components/HomeHeader';
 import HomeMeal from '@/app/home/components/HomeMeal';
 import HomeNewFeature from '@/app/home/components/HomeNewFeature';
+import HomeTaxiMate from '@/app/home/components/HomeTaxiMate';
 import HomeBannerAd from '@/common/ads/HomeBannerAd';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
@@ -50,6 +51,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
       >
         {showNewFeature && <HomeNewFeature />}
+        <HomeTaxiMate />
         <HomeAnnouncement />
         <HomeBus />
         <View style={{ flexDirection: 'row', marginTop: 10 }}>
