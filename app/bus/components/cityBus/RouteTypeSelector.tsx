@@ -18,6 +18,7 @@ const RouteTypeSelector = ({ activeIndex, handleOnPress }: RouteTypeProps) => {
     <View style={styles.container}>
       <FlatList
         data={Object.values(routeType)}
+        contentContainerStyle={{ padding: 2 }}
         renderItem={({ item: routeType, index }) =>
           <TagButton
             key={routeType.value}
@@ -41,8 +42,7 @@ export default RouteTypeSelector;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
-    paddingVertical: 20
+    flex: 1
   },
   routeTypeName: {
     fontSize: 16

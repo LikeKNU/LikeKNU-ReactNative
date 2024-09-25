@@ -47,7 +47,7 @@ const TabLayout = () => {
       }}>
       <Tabs.Screen name="index" options={{
         tabBarIcon: ({ color }) => (
-          <HomeIcon fill={color} width={30} height={30} />
+          <HomeIcon fill={color} width={29} height={29} />
         ),
         tabBarLabel: ({ color }) => (
           <FontText style={[styles.label, { color: color }]}>홈</FontText>

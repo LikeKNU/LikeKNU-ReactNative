@@ -44,4 +44,4 @@
 
 ### System Architecture
 
-![System Architecture](https://github.com/LikeKNU/.github/assets/69714701/0fe21330-7475-4d55-a4a7-f8bd8fec8cdd)
+![System Architecture](https://github.com/LikeKNU/LikeKNU/assets/69714701/c014ad62-fb3a-4fa6-a62a-c8b6f2d74d4c)

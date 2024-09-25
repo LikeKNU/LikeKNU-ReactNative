@@ -8,9 +8,11 @@ import analytics from '@react-native-firebase/analytics';
 import { useFonts } from 'expo-font';
 import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 import React, { useCallback, useEffect } from 'react';
 import { AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import mobileAds from 'react-native-google-mobile-ads';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppStateStatus } from 'react-native/Libraries/AppState/AppState';
@@ -55,9 +57,7 @@ const AppLayout = () => {
         <SWRConfig value={{
           provider: () => new Map(),
           isVisible: () => true,
-          initFocus(callback) {
-            return handleInitFocus(callback);
-          }
+          initFocus: (callback) => handleInitFocus(callback)
         }}>
           <RootSiblingParent>
             <ThemeContextProvider>
@@ -82,9 +82,19 @@ const Content = () => {
   useInitializeDevice();
 
   useEffect(() => {
+    requestTrackingPermissionsAsync()
+      .then(() => {
+      });
+
+    mobileAds()
+      .initialize()
+      .then(() => {
+      });
+
     analytics().logScreenView({
       screen_name: pathname,
       screen_class: pathname
+    }).then(() => {
     });
   }, [pathname]);
 

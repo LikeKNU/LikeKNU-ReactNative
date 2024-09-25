@@ -8,7 +8,22 @@ const colors = {
     gray300: '#F3F4F6',
     press: '#F2F3F5',
     shadow: '#F4F5F7',
-    elevation: '#848488'
+    elevation: '#848488',
+    red: '#EA4156',
+    operationStatus: {
+      prepare: {
+        background: '#F9ECDB',
+        text: '#F7982A'
+      },
+      operate: {
+        background: '#DDE8FC',
+        text: '#4283F6'
+      },
+      end: {
+        background: '#F9E1E1',
+        text: '#EA5659'
+      }
+    }
   },
   dark: {
     contrast: '#FFFFFF',
@@ -19,26 +34,25 @@ const colors = {
     gray300: '#2C2C36',
     press: '#202028',
     shadow: '#111113',
-    elevation: '#000000'
+    elevation: '#000000',
+    red: '#E15155',
+    operationStatus: {
+      prepare: {
+        background: '#3D301E',
+        text: '#ECA450'
+      },
+      operate: {
+        background: '#212A41',
+        text: '#7BA1FF'
+      },
+      end: {
+        background: '#3D2121',
+        text: '#EF7275'
+      }
+    }
   },
 
-  red: '#F04452',
-  blue: '#3182F7',
-
-  operationStatus: {
-    prepare: {
-      background: '#F2E5D4',
-      text: '#F0A349'
-    },
-    operate: {
-      background: '#D6E1F5',
-      text: '#5C91EF'
-    },
-    end: {
-      background: '#F2DADA',
-      text: '#E46D6F'
-    }
-  }
+  blue: '#3182F7'
 };
 
 export default colors;

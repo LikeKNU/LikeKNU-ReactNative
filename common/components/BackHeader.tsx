@@ -18,8 +18,8 @@ const BackHeader = ({ title, button }: BackHeaderProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.backIcon}>
-        <Pressable onPress={() => router.back()}>
-          <ArrowLeftIcon width={24} height={24} fill={colors[theme].contrast} />
+        <Pressable style={styles.backPressable} onPress={() => router.back()}>
+          <ArrowLeftIcon width={24} height={24} fill={colors[theme].gray100} />
         </Pressable>
       </View>
       <FontText fontWeight="600" style={styles.title}>{title}</FontText>
@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 20,
     textAlign: 'center'
+  },
+  backPressable: {
+    paddingVertical: 2,
+    paddingRight: 20
   },
   backIcon: {
     flex: 1,

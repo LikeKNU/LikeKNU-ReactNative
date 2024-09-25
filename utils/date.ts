@@ -25,3 +25,22 @@ export const determineTimeStatus = (timeRange: string): OperatingType => {
     return OperatingStatus.OPERATE as OperatingType;
   }
 };
+
+export const calculateTimeRemaining = (arrivalTime: string): string => {
+  const now = new Date();
+  const [hours, minutes] = arrivalTime.split(':').map(Number);
+  const arrival = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
+  if (arrival < now) {
+    return '';
+  }
+  const diffInMinutes = Math.round((arrival.getTime() - now.getTime()) / 60000);
+  if (diffInMinutes < 1) {
+    return '곧 도착';
+  } else if (diffInMinutes < 60) {
+    return `${diffInMinutes}분 후`;
+  } else {
+    const hours = Math.floor(diffInMinutes / 60);
+    const minutes = diffInMinutes % 60;
+    return `${hours}시간 ${minutes}분 후`;
+  }
+};

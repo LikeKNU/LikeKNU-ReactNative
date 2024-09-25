@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 12,
-    shadowOffset: { width: 2, height: 2 },
-    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 4,
     shadowOpacity: 1
   }
 });

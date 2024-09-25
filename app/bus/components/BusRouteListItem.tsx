@@ -1,42 +1,37 @@
-import ShuttleRoute from '@/app/bus/components/shuttleBus/ShuttleRoute';
+import Route from '@/app/bus/components/Route';
 import AnimatedButton from '@/common/components/AnimatedButton';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { ShuttleRouteProps } from '@/types/busTypes';
 import { StyleSheet, View } from 'react-native';
 
-export interface ShuttleRouteListItemProps {
-  shuttleRoute: ShuttleRouteProps,
-  onPress: (shuttleId: string, note: string | null) => void;
+interface RouteListItemProps {
+  onPress: () => void,
+  origin: string,
+  destination: string,
+  time: string | null
 }
 
-const ShuttleRouteListItem = ({ shuttleRoute, onPress }: ShuttleRouteListItemProps) => {
+const BusRouteListItem = ({ onPress, origin, destination, time }: RouteListItemProps) => {
   const { theme } = useTheme();
-  const names = shuttleRoute.shuttleName.split(' → ');
-  const departureTime = shuttleRoute.nextDepartureTime;
-
-  const handleOnPress = () => {
-    onPress(shuttleRoute.shuttleId, shuttleRoute.note);
-  };
 
   return (
     <View style={[styles.container, { borderBottomColor: colors[theme].gray300 }]}>
       <View>
-        <ShuttleRoute origin={names[0]} destination={names[1]} />
+        <Route origin={origin} destination={destination} />
         <View style={styles.departureTimeContainer}>
-          <FontText style={{ color: colors[theme].gray100 }}>{'다음 출발: '}</FontText>
-          <FontText style={{ color: colors.red }}>{departureTime ?? '금일 종료'}</FontText>
+          <FontText style={{ color: colors[theme].gray100 }}>{'다음 버스: '}</FontText>
+          <FontText style={{ color: colors[theme].red }}>{(!time || time === '') ? '없음' : time}</FontText>
         </View>
       </View>
-      <AnimatedButton onPress={handleOnPress}>
+      <AnimatedButton onPress={onPress}>
         <FontText fontWeight="600" style={{ color: colors[theme].gray100 }}>더보기</FontText>
       </AnimatedButton>
     </View>
   );
 };
 
-export default ShuttleRouteListItem;
+export default BusRouteListItem;
 
 const styles = StyleSheet.create({
   container: {

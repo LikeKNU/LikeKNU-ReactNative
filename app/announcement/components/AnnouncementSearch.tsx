@@ -7,6 +7,7 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';
 import { flatMapRemoveDuplicate } from '@/utils/data';
+import analytics from '@react-native-firebase/analytics';
 import { usePathname } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
@@ -38,6 +39,11 @@ const AnnouncementSearch = () => {
   };
 
   const handleSubmit = (keyword: string) => {
+    if (keyword.length !== 0) {
+      analytics().logSearch({
+        search_term: keyword
+      });
+    }
     setKeyword(keyword);
   };
 

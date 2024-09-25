@@ -16,7 +16,8 @@ const ArrivalCityBusItem = ({ arrivalCityBus }: ArrivalCityBusItemProps) => {
   const data: BusArrivalProps[] = arrivalCityBus.buses.length == 0 ? [{
     busNumber: null,
     busColor: null,
-    remainingTime: null
+    remainingTime: null,
+    arrivalAt: null
   }] : arrivalCityBus.buses;
 
   return (

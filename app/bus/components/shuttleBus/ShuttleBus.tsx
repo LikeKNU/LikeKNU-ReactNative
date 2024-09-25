@@ -1,6 +1,6 @@
 import { useShuttleRoutes } from '@/api/bus';
+import BusRouteListItem from '@/app/bus/components/BusRouteListItem';
 import ShuttleBusView from '@/app/bus/components/shuttleBus/ShuttleBusView';
-import ShuttleRouteListItem from '@/app/bus/components/shuttleBus/ShuttleRouteListItem';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import {
@@ -9,6 +9,7 @@ import {
   BottomSheetModal,
   BottomSheetModalProvider
 } from '@gorhom/bottom-sheet';
+import analytics from '@react-native-firebase/analytics';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 
@@ -17,10 +18,15 @@ const ShuttleBus = () => {
   const { data, isLoading, mutate } = useShuttleRoutes();
   const [shuttleId, setShuttleId] = useState<string>('');
   const [note, setNote] = useState<string | null>(null);
-  const snapPoints = useMemo(() => ['70%'], []);
+  const snapPoints = useMemo(() => ['80%'], []);
   const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   const handleOnPress = (shuttleId: string, note: string | null) => {
+    analytics().logSelectContent({
+      content_type: 'select_shuttle',
+      item_id: `${shuttleId}`
+    });
+
     setShuttleId(shuttleId);
     setNote(note);
     bottomSheetRef.current?.present();
@@ -40,11 +46,18 @@ const ShuttleBus = () => {
       <FlatList
         contentContainerStyle={styles.container}
         data={data}
-        renderItem={({ item }) => <ShuttleRouteListItem shuttleRoute={item} onPress={handleOnPress} />}
+        renderItem={({ item }) =>
+          <BusRouteListItem
+            origin={item.origin}
+            destination={item.destination}
+            time={item.nextDepartureTime}
+            onPress={() => handleOnPress(item.shuttleId, item.note)}
+          />}
         keyExtractor={item => item.shuttleId}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
+            tintColor={colors[theme].gray100}
             refreshing={isLoading}
             onRefresh={mutate}
           />

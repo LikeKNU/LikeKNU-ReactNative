@@ -1,5 +1,6 @@
 import { useShuttleBuses } from '@/api/bus';
 import ShuttleBusItem from '@/app/bus/components/shuttleBus/ShuttleBusItem';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
@@ -9,16 +10,15 @@ import { StyleSheet } from 'react-native';
 export interface ShuttleBusViewProps {
   shuttleId: string,
   note: string | null,
-  /*open: boolean,
-  setOpen: (value: (((prevState: boolean) => boolean) | boolean)) => void*/
 }
 
-const ShuttleBusView = ({ shuttleId, note/*, open, setOpen*/ }: ShuttleBusViewProps) => {
+const ShuttleBusView = ({ shuttleId, note }: ShuttleBusViewProps) => {
+  const { theme } = useTheme();
   const { data } = useShuttleBuses(shuttleId);
 
   return (
     <>
-      {note && <FontText style={styles.note}>{note}</FontText>}
+      {note && <FontText style={[styles.note, { color: colors[theme].red }]}>{note}</FontText>}
       <BottomSheetFlatList
         contentContainerStyle={styles.contentContainer}
         data={data}
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   },
   note: {
     textAlign: 'center',
-    color: colors.red,
     marginBottom: 10
   }
 });

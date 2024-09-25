@@ -7,7 +7,7 @@ import React from 'react';
 import { FlatList, Pressable, StyleSheet } from 'react-native';
 
 const HomeAnnouncement = () => {
-  const { data, isLoading, error } = useHomeAnnouncements();
+  const { data } = useHomeAnnouncements();
   const router = useRouter();
 
   const renderItem = ({ item }: { item: HomeAnnouncementProps }) => (

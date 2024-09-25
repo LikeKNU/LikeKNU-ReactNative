@@ -13,9 +13,15 @@ const ScheduleItem = ({ schedule }: ScheduleItemProps) => {
 
   return (
     <View style={[styles.container, { borderLeftColor: colors[theme].contrast }]}>
-      <FontText fontWeight="500"
-                style={[styles.date, { color: colors[theme].gray100 }]}>{schedule.scheduleDate}</FontText>
-      <FontText fontWeight="500">{schedule.scheduleContents}</FontText>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <FontText fontWeight="500"
+                  style={[styles.date, { color: colors[theme].gray100 }]}>
+          {schedule.scheduleDate}
+        </FontText>
+      </View>
+      <FontText fontWeight="500" style={{ color: schedule.isToday ? colors.blue : colors[theme].contrast }}>
+        {schedule.scheduleContents}
+      </FontText>
     </View>
   );
 };

@@ -3,9 +3,13 @@ import { Campuses, campusName } from '@/constants/campus';
 import { cafeterias, Cafeterias } from '@/constants/meal';
 import { MealProps } from '@/types/mealTypes';
 import http, { extractBodyFromResponse } from '@/utils/http';
-import useSWR from 'swr';
+import useSWR, { SWRConfiguration } from 'swr';
 
-export const useMeals = (cafeteria: Cafeterias) => {
+interface UseMealsOptions extends SWRConfiguration {
+  enabled?: boolean;
+}
+
+export const useMeals = (cafeteria: Cafeterias, options: UseMealsOptions = {}) => {
   const { campus } = useCampus();
   const getMeals = async (uri: string, campus: Campuses | null, cafeteria: Cafeterias) => {
     if (campus && cafeterias[campus].includes(cafeteria)) {
@@ -17,5 +21,7 @@ export const useMeals = (cafeteria: Cafeterias) => {
     }
   };
 
-  return useSWR(['/api/menus', campus, cafeteria], ([uri, campus, cafeteria]) => getMeals(uri, campus, cafeteria));
+  const shouldFetch = options.enabled !== false;
+
+  return useSWR(shouldFetch ? ['/api/menus', campus, cafeteria] : null, ([uri, campus, cafeteria]) => getMeals(uri, campus, cafeteria));
 };

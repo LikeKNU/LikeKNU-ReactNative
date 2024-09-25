@@ -7,6 +7,7 @@ import http from '@/utils/http';
 import { getData, storeData } from '@/utils/storage';
 import * as Application from 'expo-application';
 import * as Device from 'expo-device';
+import * as StoreReview from 'expo-store-review';
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
@@ -24,7 +25,7 @@ export interface DeviceRegistrationProps {
 const useInitializeDevice = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
-  const { userTheme } = useTheme();
+  const { theme } = useTheme();
   const { campus } = useCampus();
   const { deviceId } = useDeviceId();
   const { favoriteCafeteria } = useFavoriteCafeteria();
@@ -45,13 +46,26 @@ const useInitializeDevice = () => {
           if (!storedDeviceId || storedDeviceId !== deviceId) {
             await storeData('deviceId', deviceId);
           }
+
+          const launchCount = await getData('launchCount');
+          if (!launchCount) {
+            await storeData('launchCount', '0');
+          }
+
+          if (launchCount && parseInt(launchCount, 10) < 5) {
+            if (launchCount === '4' && await StoreReview.hasAction()) {
+              StoreReview.requestReview();
+            }
+            await storeData('launchCount', `${parseInt(launchCount, 10) + 1}`);
+          }
+
           await http.post<any, DeviceRegistrationProps>('/api/devices', {
             deviceId: deviceId,
             platform: Platform.OS,
             modelName: modelName,
             osVersion: osVersion,
             appVersion: `${applicationVersion} (${buildVersion})`,
-            themeColor: userTheme,
+            themeColor: theme,
             campus: campusName[campus].value,
             favoriteCafeteria: favoriteCafeteria
           });
@@ -64,7 +78,7 @@ const useInitializeDevice = () => {
     };
 
     initializeDevice();
-  }, [userTheme, campus, favoriteCafeteria]);
+  }, [theme, campus, favoriteCafeteria]);
 
   return { isLoading, error }
 };

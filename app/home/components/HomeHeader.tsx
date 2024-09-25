@@ -1,4 +1,4 @@
-import BellIcon from '@/assets/icons/bell.svg';
+import { useHomeMessage } from '@/api/home';
 import GrayIconDark from '@/assets/icons/gray-icon-dark.svg'
 import GrayIconLight from '@/assets/icons/gray-icon-light.svg'
 import TabHeader from '@/common/components/TabHeader';
@@ -6,22 +6,15 @@ import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import { campusName } from '@/constants/campus';
-import { campusColors } from '@/constants/colors';
-import * as Haptics from 'expo-haptics';
+import colors, { campusColors } from '@/constants/colors';
 import { useRouter } from 'expo-router';
-import { Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 
 const HomeHeader = () => {
   const { theme } = useTheme();
   const router = useRouter();
   const { campus } = useCampus();
-
-  const handleNotificationPress = () => {
-    if (Platform.OS !== 'web') {
-      Haptics.selectionAsync();
-    }
-    router.push('/notification');
-  };
+  const { data: message } = useHomeMessage();
 
   return (
     <TabHeader>
@@ -31,11 +24,9 @@ const HomeHeader = () => {
           {campusName[campus].name}
         </FontText>}
       </Pressable>
-      <View style={styles.menuIcons}>
-        <Pressable onPress={handleNotificationPress}>
-          <BellIcon width={28} height={28} />
-        </Pressable>
-      </View>
+      <Pressable style={{ paddingHorizontal: 4, paddingVertical: 4 }}>
+        <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>{message}</FontText>
+      </Pressable>
     </TabHeader>
   );
 };
@@ -49,10 +40,7 @@ const styles = StyleSheet.create({
   },
   campus: {
     fontSize: 24,
-    marginLeft: -4
-  },
-  content: {
-    fontSize: 22
+    marginLeft: -2
   },
   menuIcons: {
     flexDirection: 'row',

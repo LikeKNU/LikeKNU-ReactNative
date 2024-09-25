@@ -6,6 +6,7 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';
 import { getCurrentDate } from '@/utils/date';
+import analytics from '@react-native-firebase/analytics';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -23,12 +24,17 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
   }, [announcement]);
 
   const handlePress = () => {
+    analytics().logSelectContent({
+      content_type: 'select_announcement',
+      item_id: `${announcement.announcementId}`
+    });
+
     router.push({
       pathname: '/announcement/details',
       params: {
         url: announcement.announcementUrl,
         id: announcement.announcementId,
-        isBookmark: isBookmark
+        isBookmark: String(isBookmark)
       }
     });
   };
@@ -51,7 +57,7 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
           <FontText style={[{ color: colors[theme].gray100 }, styles.additional]}>
             {announcement.announcementTag + ' | ' + announcement.announcementDate}
           </FontText>
-          {isToday && <DotIcon fill={colors.red} width={14} height={14} />}
+          {isToday && <DotIcon fill={colors[theme].red} width={14} height={14} />}
         </View>
       </View>
       <View style={{ flex: 1, alignItems: 'flex-end' }}>

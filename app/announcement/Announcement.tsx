@@ -1,6 +1,7 @@
 import { useAnnouncements } from '@/api/announcement';
 import BookmarkIcon from '@/assets/icons/bookmark-fill.svg';
 import SearchIcon from '@/assets/icons/search.svg';
+import AnnouncementBannerAd from '@/common/ads/AnnouncementBannerAd';
 import AnimatedPressable from '@/common/components/AnimatedPressable';
 import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
@@ -56,12 +57,12 @@ const Announcement = () => {
           <AnimatedPressable style={styles.bookmarkPressable}
                              animatedViewStyle={styles.bookmarkAnimatedPressable}
                              onPress={() => router.push('/announcement/bookmark')}>
-            <BookmarkIcon width={20} height={20} fill={colors[theme].gray200} />
+            <BookmarkIcon width={22} height={22} fill={colors[theme].gray200} />
           </AnimatedPressable>
           <AnimatedPressable style={styles.searchPressable}
                              animatedViewStyle={styles.searchAnimatedPressable}
                              onPress={() => router.push('/announcement/search')}>
-            <SearchIcon width={20} height={20} fill={colors[theme].gray200} />
+            <SearchIcon width={22} height={22} fill={colors[theme].gray200} />
           </AnimatedPressable>
         </View>
       </TabHeader>
@@ -70,6 +71,7 @@ const Announcement = () => {
         activeTab={category}
         tabItems={Object.values(categories).map(value => value)}
       />
+      <AnnouncementBannerAd />
       <InfiniteScrollView
         data={announcements}
         handleEndReached={loadMore}
