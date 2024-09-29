@@ -2,7 +2,7 @@ import { APIResponse } from '@/types/response';
 import axios, { AxiosResponse } from 'axios';
 import { Platform } from 'react-native';
 
-const API_URL = Platform.OS === 'ios' ? process.env.EXPO_PUBLIC_API_URL : process.env.EXPO_PUBLIC_ANDROID_API_URL;
+export const API_URL = Platform.OS === 'ios' ? process.env.EXPO_PUBLIC_API_URL : process.env.EXPO_PUBLIC_ANDROID_API_URL;
 
 const instance = axios.create({
   baseURL: API_URL,

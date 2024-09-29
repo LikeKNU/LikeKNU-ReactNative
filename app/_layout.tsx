@@ -4,13 +4,15 @@ import ThemeContextProvider, { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
 import useInitializeDevice from '@/utils/device';
+import { API_URL } from '@/utils/http';
 import analytics from '@react-native-firebase/analytics';
+import * as Application from 'expo-application';
 import { useFonts } from 'expo-font';
 import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 import React, { useCallback, useEffect } from 'react';
-import { AppState } from 'react-native';
+import { Alert, AppState, Linking, Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import mobileAds from 'react-native-google-mobile-ads';
 import { RootSiblingParent } from 'react-native-root-siblings';
@@ -80,6 +82,40 @@ const Content = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
   useInitializeDevice();
+
+  const checkAppVersion = async () => {
+    const response = await fetch(`${API_URL}/api/versions`);
+    const version = await response.text();
+    const currentVersion = Application.nativeApplicationVersion;
+
+    if (version && currentVersion && version > currentVersion) {
+      Alert.alert(
+        '업데이트 ⬆️',
+        '앱을 새로운 버전으로 업데이트 해주세요!',
+        [
+          {
+            text: '나중에',
+            style: 'destructive'
+          },
+          {
+            text: '업데이트',
+            onPress: () => {
+              if (Platform.OS === 'ios') {
+                Linking.openURL('https://apps.apple.com/kr/app/id6499512208');
+              } else {
+                Linking.openURL('https://play.google.com/store/apps/details?id=ac.knu.likeknu&hl=ko');
+              }
+            }
+          }
+        ]
+      );
+    }
+  };
+
+  useEffect(() => {
+    checkAppVersion().then(() => {
+    });
+  }, []);
 
   useEffect(() => {
     requestTrackingPermissionsAsync()
