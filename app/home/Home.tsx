@@ -3,42 +3,71 @@ import HomeBus from '@/app/home/components/HomeBus';
 import HomeCalendar from '@/app/home/components/HomeCalendar';
 import HomeHeader from '@/app/home/components/HomeHeader';
 import HomeMeal from '@/app/home/components/HomeMeal';
-import HomeNewFeature from '@/app/home/components/HomeNewFeature';
+import HomeOpenChat from '@/app/home/components/HomeOpenChat';
+import HomeTaxiMate from '@/app/home/components/HomeTaxiMate';
 import HomeBannerAd from '@/common/ads/HomeBannerAd';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
-import { getData, storeData } from '@/utils/storage';
+import { API_URL } from '@/utils/http';
 import * as Application from 'expo-application';
+import * as Notifications from 'expo-notifications';
+import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Alert, Linking, Platform, ScrollView, StyleSheet, View } from 'react-native';
 
 const Home = () => {
   const { theme } = useTheme();
-  const [showNewFeature, setShowNewFeature] = useState<boolean>(true);
+  const router = useRouter();
+  const notificationResponseListener = useRef<Notifications.Subscription>();
 
-  const getMajorMinorVersion = (version: string): string => {
-    const parts = version.split('.');
-    return parts.slice(0, 2).join('.');
+  const checkAppVersion = async () => {
+    const response = await fetch(`${API_URL}/api/versions`);
+    const version = await response.text();
+    const currentVersion = Application.nativeApplicationVersion;
+
+    const [newMajor, newMinor] = version.split('.').map(Number);
+    const [currentMajor, currentMinor] = currentVersion!.split('.').map(Number);
+
+    if (version && currentVersion && (newMajor > currentMajor || newMinor > currentMinor)) {
+      Alert.alert(
+        '업데이트 ⬆️',
+        '앱을 새로운 버전으로 업데이트 해주세요!',
+        [
+          {
+            text: '나중에',
+            style: 'destructive'
+          },
+          {
+            text: '업데이트',
+            onPress: () => {
+              if (Platform.OS === 'ios') {
+                Linking.openURL('https://apps.apple.com/kr/app/id6499512208');
+              } else {
+                Linking.openURL('https://play.google.com/store/apps/details?id=ac.knu.likeknu&hl=ko');
+              }
+            }
+          }
+        ]
+      );
+    }
   };
 
   useEffect(() => {
-    const checkAppLaunchCount = async () => {
-      const appVersion = getMajorMinorVersion((Application.nativeApplicationVersion)!);
-      const APP_LAUNCH_COUNT_KEY = `APP_LAUNCH_COUNT_${appVersion}`;
+    checkAppVersion().then(() => {
+    });
 
-      const launchCount = await getData(APP_LAUNCH_COUNT_KEY);
-      const count = launchCount ? parseInt(launchCount, 10) : 0;
+    notificationResponseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      router.replace({
+        pathname: '/taxi-mate',
+        params: { chatId: response.notification.request.content.data.chatId }
+      });
+    });
 
-      if (count >= 2) {
-        setShowNewFeature(false);
-      }
-
-      await storeData(APP_LAUNCH_COUNT_KEY, (count + 1).toString());
-    }
-
-    checkAppLaunchCount().catch(err => console.error('Error reading/writing app launch count:', err));
+    return () => {
+      notificationResponseListener.current && Notifications.removeNotificationSubscription(notificationResponseListener.current);
+    };
   }, []);
 
   return (
@@ -49,10 +78,13 @@ const Home = () => {
         contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
-        {showNewFeature && <HomeNewFeature />}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          <HomeOpenChat />
+          <HomeTaxiMate />
+        </View>
         <HomeAnnouncement />
         <HomeBus />
-        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+        <View style={{ flexDirection: 'row', marginTop: 10, gap: 10 }}>
           <HomeMeal />
           <HomeCalendar />
         </View>
