@@ -1,11 +1,10 @@
 import TaxiMate from '@/app/taxi-mate/TaxiMate';
-import TaxiMatePreview from '@/app/taxi-mate/TaxiMatePreview';
 import * as Notifications from 'expo-notifications';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect } from 'react';
 
 const TaxiMatePage = () => {
-  const { chatId } = useLocalSearchParams<{ chatId: string }>();
+  const { partyId } = useLocalSearchParams<{ partyId: string }>();
 
   useEffect(() => {
     Notifications.dismissAllNotificationsAsync()
@@ -31,7 +30,7 @@ const TaxiMatePage = () => {
     };
   }, []);
 
-  return <TaxiMatePreview />
+  return <TaxiMate partyId={partyId} />
 };
 
 export default TaxiMatePage;

@@ -13,7 +13,7 @@ const HomeOpenChat = () => {
 
   return (
     <Pressable style={[styles.container, { backgroundColor: colors[theme].container, flex: 1 }]}
-               onPress={() => Linking.openURL('https://open.kakao.com/o/gep73mTg')}>
+               onPress={() => Linking.openURL('https://open.kakao.com/o/stp3zoyg')}>
       <View style={styles.box}>
         <View style={styles.titleContainer}>
           <ChatDotsIcon width={24} height={24} />

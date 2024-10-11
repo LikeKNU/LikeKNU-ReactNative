@@ -61,7 +61,7 @@ const Home = () => {
     notificationResponseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       router.replace({
         pathname: '/taxi-mate',
-        params: { chatId: response.notification.request.content.data.chatId }
+        params: { partyId: response.notification.request.content.data.partyId }
       });
     });
 

@@ -3,12 +3,16 @@ import colors from '@/constants/colors';
 import { registerForPushNotificationsAsync } from '@/utils/pushNotifications';
 import { usePathname, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform } from 'react-native';
+import { AppState, BackHandler, Platform } from 'react-native';
 import WebView from 'react-native-webview';
 import { WebViewNativeEvent } from 'react-native-webview/lib/WebViewTypes';
 import { WebViewMessageEvent } from 'react-native-webview/src/WebViewTypes';
 
-const TaxiMate = () => {
+interface TaxiMateProps {
+  partyId?: string
+}
+
+const TaxiMate = ({ partyId }: TaxiMateProps) => {
   const [navigationState, setNavigationState] = useState<WebViewNativeEvent>();
   const webViewRef = useRef<WebView>(null);
   const router = useRouter();
@@ -36,6 +40,18 @@ const TaxiMate = () => {
     }
   }, [navigationState?.canGoBack, pathname]);
 
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (nextAppState === 'active' && webViewRef.current) {
+        webViewRef.current.reload();
+      }
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
   const handleMessage = (event: WebViewMessageEvent) => {
     const { data } = event.nativeEvent;
     switch (data) {
@@ -48,9 +64,16 @@ const TaxiMate = () => {
           .then(token => {
             webViewRef.current?.injectJavaScript(`window.postMessage('${token}')`);
           });
+        break;
+      }
+      case 'chat': {
+        if (partyId) {
+          webViewRef.current?.injectJavaScript(`window.postMessage('${JSON.stringify({ partyId: partyId })}')`);
+        }
+        break;
       }
     }
-  }
+  };
 
   return (
     <PageLayout edges={['top', 'bottom']} style={{ backgroundColor: colors.light.container }}>
