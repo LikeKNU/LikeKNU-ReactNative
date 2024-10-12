@@ -79,7 +79,7 @@ const TaxiMate = ({ partyId }: TaxiMateProps) => {
     <PageLayout edges={['top', 'bottom']} style={{ backgroundColor: colors.light.container }}>
       <WebView
         ref={webViewRef}
-        source={{ uri: 'https://taxi-mate.like-knu.com' }}
+        source={{ uri: process.env.EXPO_PUBLIC_TAXI_MATE_URL }}
         onNavigationStateChange={setNavigationState}
         allowsBackForwardNavigationGestures={true}
         javaScriptEnabled={true}
