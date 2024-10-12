@@ -26,7 +26,7 @@ const HomeMeal = () => {
   }, [data, favoriteCafeteria]);
 
   return (
-    <View style={{ flex: 1, marginRight: 5 }}>
+    <View style={{ flex: 1 }}>
       <CardContainer title={<View />} style={{ height: 232 }}>
         {!isLoading &&
           <Swiper

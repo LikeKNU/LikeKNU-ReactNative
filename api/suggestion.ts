@@ -1,4 +1,3 @@
-import { useDeviceId } from '@/utils/device';
 import http, { extractMessageFromResponse } from '@/utils/http';
 
 export const sendSuggestion = async (deviceId: string, content: string) => {
