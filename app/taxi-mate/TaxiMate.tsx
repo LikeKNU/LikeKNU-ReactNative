@@ -1,9 +1,11 @@
 import PageLayout from '@/common/components/PageLayout';
 import colors from '@/constants/colors';
+import { TaxiMatePostMessageProps } from '@/types/taxiMate';
 import { registerForPushNotificationsAsync } from '@/utils/pushNotifications';
 import { usePathname, useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
-import { AppState, BackHandler, Platform } from 'react-native';
+import { BackHandler, Platform } from 'react-native';
 import WebView from 'react-native-webview';
 import { WebViewNativeEvent } from 'react-native-webview/lib/WebViewTypes';
 import { WebViewMessageEvent } from 'react-native-webview/src/WebViewTypes';
@@ -40,35 +42,35 @@ const TaxiMate = ({ partyId }: TaxiMateProps) => {
     }
   }, [navigationState?.canGoBack, pathname]);
 
-  useEffect(() => {
-    const subscription = AppState.addEventListener('change', nextAppState => {
-      if (nextAppState === 'active' && webViewRef.current) {
-        webViewRef.current.reload();
-      }
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, []);
-
   const handleMessage = (event: WebViewMessageEvent) => {
     const { data } = event.nativeEvent;
     switch (data) {
       case 'like_knu': {
-        router.back();
+        router.replace('/');
         break;
       }
       case 'push_notification': {
         registerForPushNotificationsAsync()
           .then(token => {
-            webViewRef.current?.injectJavaScript(`window.postMessage('${token}')`);
+            const pushNotificationToken: TaxiMatePostMessageProps = {
+              type: 'PUSH_NOTIFICATION',
+              data: {
+                token: token
+              }
+            };
+            webViewRef.current?.injectJavaScript(`window.postMessage('${JSON.stringify(pushNotificationToken)}')`);
           });
         break;
       }
       case 'chat': {
         if (partyId) {
-          webViewRef.current?.injectJavaScript(`window.postMessage('${JSON.stringify({ partyId: partyId })}')`);
+          const chatTouchMessage: TaxiMatePostMessageProps = {
+            type: 'CHAT',
+            data: {
+              partyId: partyId
+            }
+          };
+          webViewRef.current?.injectJavaScript(`window.postMessage('${JSON.stringify(chatTouchMessage)}')`);
         }
         break;
       }
@@ -77,6 +79,7 @@ const TaxiMate = ({ partyId }: TaxiMateProps) => {
 
   return (
     <PageLayout edges={['top', 'bottom']} style={{ backgroundColor: colors.light.container }}>
+      <StatusBar style={'dark'} />
       <WebView
         ref={webViewRef}
         source={{ uri: process.env.EXPO_PUBLIC_TAXI_MATE_URL }}

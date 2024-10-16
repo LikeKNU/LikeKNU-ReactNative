@@ -13,7 +13,7 @@ const HomeTaxiMate = () => {
 
   return (
     <Pressable style={[styles.container, { backgroundColor: colors[theme].container, flex: 1 }]}
-               onPress={() => router.navigate('/taxi-mate')}>
+               onPress={() => router.replace('/taxi-mate')}>
       <View style={styles.box}>
         <View style={styles.titleContainer}>
           <TaxiFrontIcon width={24} height={24} />
