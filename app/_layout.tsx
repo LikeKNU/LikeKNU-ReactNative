@@ -80,6 +80,10 @@ const AppLayout = () => {
 export default AppLayout;
 
 export async function checkForUpdates() {
+  if (__DEV__) {
+    return;
+  }
+
   const update = await Updates.checkForUpdateAsync();
 
   if (update.isAvailable) {
