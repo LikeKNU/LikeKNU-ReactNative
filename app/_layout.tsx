@@ -9,8 +9,9 @@ import { useFonts } from 'expo-font';
 import { Stack, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
+import * as Updates from 'expo-updates';
 import React, { useCallback, useEffect } from 'react';
-import { AppState } from 'react-native';
+import { Alert, AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import mobileAds from 'react-native-google-mobile-ads';
 import { RootSiblingParent } from 'react-native-root-siblings';
@@ -25,6 +26,8 @@ const AppLayout = () => {
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
+      await checkForUpdates();
+
       setTimeout(async () => {
         await SplashScreen.hideAsync();
       }, 1000);
@@ -75,6 +78,26 @@ const AppLayout = () => {
 };
 
 export default AppLayout;
+
+export async function checkForUpdates() {
+  const update = await Updates.checkForUpdateAsync();
+
+  if (update.isAvailable) {
+    await Updates.fetchUpdateAsync();
+    Alert.alert(
+      '업데이트 완료 ⬆️',
+      '앱을 재시작할게요!',
+      [
+        {
+          text: '확인',
+          onPress: async () => {
+            await Updates.reloadAsync();
+          }
+        }
+      ]
+    );
+  }
+}
 
 const Content = () => {
   const { theme } = useTheme();
