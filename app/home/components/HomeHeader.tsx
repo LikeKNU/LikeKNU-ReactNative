@@ -23,6 +23,7 @@ const HomeHeader = () => {
         {campus && <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
           {campusName[campus].name}
         </FontText>}
+        <FontText style={{marginLeft: 8, fontSize: 13, color: colors[theme].gray100}} fontWeight="600">👈 캠퍼스를 변경할 수 있어요!</FontText>
       </Pressable>
       <Pressable style={{ paddingHorizontal: 4, paddingVertical: 4 }}>
         <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>{message}</FontText>
