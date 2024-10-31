@@ -15,7 +15,7 @@ const HomeCalendar = () => {
   const router = useRouter();
 
   return (
-    <View style={{ flex: 1, marginLeft: 5 }}>
+    <View style={{ flex: 1 }}>
       <Pressable onPress={() => router.push('/calendar')}>
         <CardContainer
           title={

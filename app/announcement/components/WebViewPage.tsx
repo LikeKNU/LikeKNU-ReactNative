@@ -30,7 +30,7 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
 
   const openExternalBrowser = () => {
     Linking.openURL(url!);
-  }
+  };
 
   useEffect(() => {
     const onAndroidBackPress = () => {

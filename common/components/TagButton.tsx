@@ -3,7 +3,7 @@ import { useTheme } from '@/common/contexts/ThemeContext';
 import colors, { campusColors } from '@/constants/colors';
 import { Cafeterias } from '@/constants/meal';
 import { PropsWithChildren } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Platform, Pressable, StyleSheet } from 'react-native';
 
 export interface TagButtonProps extends PropsWithChildren {
   isActive: boolean;
@@ -19,7 +19,8 @@ const TagButton = ({ children, isActive, handleOnPress }: TagButtonProps) => {
     <Pressable
       style={[styles.container, {
         backgroundColor: isActive ? campusColors[campus!] : colors[theme].gray300,
-        shadowColor: colors[theme].shadow
+        shadowColor: Platform.OS === 'ios' ? colors[theme].shadow : colors[theme].elevation,
+        elevation: 6
       }]}
       onPress={handleOnPress}
     >
