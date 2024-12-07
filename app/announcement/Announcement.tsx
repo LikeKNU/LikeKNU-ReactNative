@@ -6,9 +6,9 @@ import AnimatedPressable from '@/common/components/AnimatedPressable';
 import InfiniteScrollView from '@/common/components/InfiniteScrollView';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
+import TabTitle from '@/common/components/TabTitle';
 import TopTabs from '@/common/components/TopTabs';
 import { useTheme } from '@/common/contexts/ThemeContext';
-import FontText from '@/common/text/FontText';
 import { categories } from '@/constants/announcement';
 import colors from '@/constants/colors';
 import { AnnouncementProps } from '@/types/announcementType';
@@ -52,7 +52,7 @@ const Announcement = () => {
   return (
     <PageLayout edges={['top']}>
       <TabHeader>
-        <FontText fontWeight="700" style={styles.title}>공지사항</FontText>
+        <TabTitle title="공지사항" />
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <AnimatedPressable style={styles.bookmarkPressable}
                              animatedViewStyle={styles.bookmarkAnimatedPressable}
@@ -91,9 +91,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
-  },
-  title: {
-    fontSize: 22
   },
   tabs: {
     flexDirection: 'row',

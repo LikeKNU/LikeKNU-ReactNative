@@ -3,13 +3,12 @@ import ShuttleBus from '@/app/bus/components/shuttleBus/ShuttleBus';
 import BusBannerAd from '@/common/ads/BusBannerAd';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
+import TabTitle from '@/common/components/TabTitle';
 import TopTabs from '@/common/components/TopTabs';
-import FontText from '@/common/text/FontText';
 import { buses } from '@/constants/bus';
 import { ValueNameType } from '@/types/common';
 import { usePathname } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
 
 const Bus = () => {
   const [busType, setBusType] = useState<ValueNameType>(buses.CITY_BUS);
@@ -22,7 +21,7 @@ const Bus = () => {
   return (
     <PageLayout edges={['top']}>
       <TabHeader>
-        <FontText fontWeight="700" style={styles.title}>버스</FontText>
+        <TabTitle title="버스" />
       </TabHeader>
       <TopTabs
         handleTabPress={setBusType}
@@ -37,9 +36,3 @@ const Bus = () => {
 };
 
 export default Bus;
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 22
-  }
-});

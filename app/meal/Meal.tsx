@@ -5,10 +5,10 @@ import MealBannerAd from '@/common/ads/MealBannerAd';
 import AnimatedPressable from '@/common/components/AnimatedPressable';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
+import TabTitle from '@/common/components/TabTitle';
 import { useCampus } from '@/common/contexts/CampusContext';
 import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
-import FontText from '@/common/text/FontText';
 import { campusName } from '@/constants/campus';
 import colors from '@/constants/colors';
 import { cafeterias, Cafeterias } from '@/constants/meal';
@@ -53,7 +53,7 @@ const Meal = () => {
   return (
     <PageLayout edges={['top']}>
       <TabHeader>
-        <FontText fontWeight="700" style={styles.title}>식단</FontText>
+        <TabTitle title="식단" />
       </TabHeader>
       <MealBannerAd />
       <View style={styles.header}>
@@ -88,9 +88,6 @@ const Meal = () => {
 export default Meal;
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 22
-  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
