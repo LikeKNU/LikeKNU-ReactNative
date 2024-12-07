@@ -3,13 +3,11 @@ import ChatDotsIcon from '@/assets/icons/chat-dots.svg';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { useRouter } from 'expo-router';
 import React from 'react';
 import { Linking, Pressable, StyleSheet, View } from 'react-native';
 
 const HomeOpenChat = () => {
   const { theme } = useTheme();
-  const router = useRouter();
 
   return (
     <Pressable style={[styles.container, { backgroundColor: colors[theme].container, flex: 1 }]}
@@ -17,7 +15,7 @@ const HomeOpenChat = () => {
       <View style={styles.box}>
         <View style={styles.titleContainer}>
           <ChatDotsIcon width={24} height={24} />
-          <FontText fontWeight="700" style={styles.title}>오픈채팅방</FontText>
+          <FontText fontWeight="700" style={styles.title}>문의/요청</FontText>
         </View>
         <ArrowRightIcon />
       </View>
