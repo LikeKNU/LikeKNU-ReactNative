@@ -128,7 +128,7 @@ const Content = () => {
   return (
     <Stack screenOptions={{
       headerShown: false,
-      contentStyle: { backgroundColor: colors[theme][pathname === '/' ? 'background' : 'container'] }
+      contentStyle: { backgroundColor: pathname === '/' ? colors.christmasGreen200 : colors[theme][pathname === '/' ? 'background' : 'container'] }
     }}>
       <Stack.Screen name="(tabs)" />
     </Stack>

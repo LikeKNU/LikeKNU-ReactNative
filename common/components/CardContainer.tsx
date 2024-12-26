@@ -13,9 +13,9 @@ const CardContainer = ({ children, title, style, ...props }: CardContainerProps)
   const { theme } = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: colors[theme].container }, style]} {...props}>
+    <View style={[styles.container, { backgroundColor: colors.christmasGreen100 }, style]} {...props}>
       {typeof title === 'string' ? (
-        <FontText fontWeight="700" style={styles.title}>{title}</FontText>
+        <FontText fontWeight="700" style={[styles.title, { color: colors.dark.contrast }]}>{title}</FontText>
       ) : (
         title
       )}

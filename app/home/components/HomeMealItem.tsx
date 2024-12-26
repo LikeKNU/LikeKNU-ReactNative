@@ -23,8 +23,9 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
       onPress={() => router.navigate({ pathname: '/meal', params: { cafeteriaName: meal.cafeteriaName } })}
     >
       <View style={styles.titleContainer}>
-        <FontText fontWeight="700" style={styles.title}>{meal.cafeteriaName}</FontText>
-        <FontText fontWeight="700" style={[styles.subtitle, { color: colors[theme].gray200 }]}>
+        <FontText fontWeight="700"
+                  style={[styles.title, { color: colors.dark.contrast }]}>{meal.cafeteriaName}</FontText>
+        <FontText fontWeight="700" style={[styles.subtitle, { color: colors.light.gray200 }]}>
           {meal.mealType}
         </FontText>
       </View>
@@ -33,11 +34,11 @@ const HomeMealItem = ({ meal }: { meal: HomeMealProps }) => {
           scrollEnabled={false}
           data={displayedMenus}
           renderItem={({ item }) =>
-            <FontText fontWeight="500" style={styles.menus} numberOfLines={1}>{item}</FontText>
+            <FontText fontWeight="500" style={[styles.menus, { color: colors.dark.contrast }]} numberOfLines={1}>{item}</FontText>
           }
           keyExtractor={(item) => item}
         />
-      ) : <FontText style={[styles.emptyMessage, { color: colors[theme].gray100 }]} numberOfLines={1}>
+      ) : <FontText style={[styles.emptyMessage, { color: colors.light.gray300 }]} numberOfLines={1}>
         등록된 메뉴가 없어요
       </FontText>}
     </Pressable>

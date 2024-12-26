@@ -1,10 +1,11 @@
 import { useHomeBuses } from '@/api/home';
+import ChristmasRefreshButton from '@/app/bus/components/cityBus/ChristmasRefreshButton';
 import RefreshButton from '@/app/bus/components/cityBus/RefreshButton';
 import HomeBusItem from '@/app/home/components/HomeBusItem';
 import CardContainer from '@/common/components/CardContainer';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { FlatList, Pressable, StyleSheet, View } from 'react-native';
+import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
 
 const HomeBus = () => {
   const { data, mutate } = useHomeBuses();
@@ -23,9 +24,11 @@ const HomeBus = () => {
             keyExtractor={(item) => item.routeId}
           />
           <View style={{ justifyContent: 'flex-end', paddingBottom: 10 }}>
-            <RefreshButton mutate={mutate} focusPathname={'/'} />
+            <ChristmasRefreshButton mutate={mutate} focusPathname={'/'} />
           </View>
         </View>
+        <Image source={require('@/assets/icons/bonfire.png')} style={{ width: 28, height: 28,  position: 'absolute', bottom: 0, right: 134}} />
+        <Image source={require('@/assets/icons/snowman.png')} style={{ width: 58, height: 58,  position: 'absolute', bottom: 0, right: 72}} />
       </CardContainer>
     </Pressable>
   );

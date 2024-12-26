@@ -10,11 +10,11 @@ const CalendarItem = ({ item }: { item: ScheduleProps }) => {
 
   return (
     <View style={styles.container}>
-      <FontText fontWeight="500" style={[styles.date, { color: colors[theme].gray100 }]}>
+      <FontText fontWeight="500" style={[styles.date, { color: colors.light.gray200 }]}>
         {item.scheduleDate}
       </FontText>
       <FontText fontWeight="500"
-                style={[styles.contents, { color: item.isToday ? colors.blue : colors[theme].contrast }]}>{item.scheduleContents}</FontText>
+                style={[styles.contents, { color: item.isToday ? colors.christmasRed300 : colors.dark.contrast }]}>{item.scheduleContents}</FontText>
     </View>
   );
 };

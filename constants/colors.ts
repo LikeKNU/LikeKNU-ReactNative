@@ -52,7 +52,14 @@ const colors = {
     }
   },
 
-  blue: '#3182F7'
+  blue: '#3182F7',
+
+  christmasGreen100: '#164F40',
+  christmasGreen200: '#2D6053',
+  christmasGreen300: '#367E6A',
+  christmasRed100: '#8D1B23',
+  christmasRed200: '#983139',
+  christmasRed300: '#d07278'
 };
 
 export default colors;

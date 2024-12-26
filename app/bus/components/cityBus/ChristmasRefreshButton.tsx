@@ -73,13 +73,13 @@ const RefreshButton = ({ mutate, focusPathname, style }: BusRefreshProps) => {
 
   return (
     <Pressable
-      style={[styles.container, { backgroundColor: colors[theme].gray300 }, style]}
+      style={[styles.container, { backgroundColor: colors.christmasGreen300 }, style]}
       onPress={handleRefresh}
     >
       <Animated.View style={{ transform: [{ rotate }] }}>
-        <ArrowClockwiseIcon width={36} height={36} fill={colors[theme].gray200} />
+        <ArrowClockwiseIcon width={36} height={36} fill={colors.light.gray200} />
       </Animated.View>
-      <FontText fontWeight="600" style={[styles.refreshTime, { color: colors[theme].gray100 }]}>{refreshTime}</FontText>
+      <FontText fontWeight="600" style={[styles.refreshTime, { color: colors.light.gray300 }]}>{refreshTime}</FontText>
     </Pressable>
   );
 };

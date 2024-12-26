@@ -15,14 +15,14 @@ const TabLayout = () => {
   const { theme } = useTheme();
   const styles = StyleSheet.create({
     tabBar: {
-      backgroundColor: colors[theme].container,
+      backgroundColor: colors.christmasGreen100,
 
       borderTopWidth: 0.5,
       borderLeftWidth: 0.5,
       borderRightWidth: 0.5,
-      borderLeftColor: colors[theme].gray300,
-      borderRightColor: colors[theme].gray300,
-      borderTopColor: colors[theme].gray300,
+      borderLeftColor: colors.christmasGreen200,
+      borderRightColor: colors.christmasGreen200,
+      borderTopColor: colors.christmasGreen200,
       borderTopRightRadius: Platform.OS !== 'web' ? 25 : 0,
       borderTopLeftRadius: Platform.OS !== 'web' ? 25 : 0,
 
@@ -42,8 +42,8 @@ const TabLayout = () => {
         tabBarStyle: styles.tabBar,
         headerShown: false,
         tabBarIconStyle: { marginTop: 8 },
-        tabBarActiveTintColor: colors[theme].contrast,
-        tabBarInactiveTintColor: colors[theme].gray200
+        tabBarActiveTintColor: colors.dark.contrast,
+        tabBarInactiveTintColor: colors.dark.gray100
       }}>
       <Tabs.Screen name="index" options={{
         tabBarIcon: ({ color }) => (

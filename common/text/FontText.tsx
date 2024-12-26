@@ -1,6 +1,7 @@
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { fontName } from '@/constants/fonts';
+import { usePathname } from 'expo-router';
 import React, { FunctionComponent } from 'react';
 import { Text, TextProps, TextStyle } from 'react-native';
 
@@ -21,6 +22,7 @@ interface CustomTextProps extends TextProps {
 
 const FontText: FunctionComponent<CustomTextProps> = ({ fontWeight, style, ...props }) => {
   const { theme } = useTheme();
+  const pathname = usePathname();
 
   const getFont = () => {
     switch (fontWeight) {

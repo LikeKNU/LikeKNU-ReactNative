@@ -20,7 +20,7 @@ const HomeCalendar = () => {
         <CardContainer
           title={
             <View style={styles.titleContainer}>
-              <FontText fontWeight="700" style={styles.title}>학사일정</FontText>
+              <FontText fontWeight="700" style={[styles.title, { color: colors.dark.contrast }]}>학사일정</FontText>
               <ArrowRightIcon />
             </View>
           }

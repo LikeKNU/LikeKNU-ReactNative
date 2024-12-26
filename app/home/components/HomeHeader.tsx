@@ -1,6 +1,4 @@
 import { useHomeMessage } from '@/api/home';
-import GrayIconDark from '@/assets/icons/gray-icon-dark.svg'
-import GrayIconLight from '@/assets/icons/gray-icon-light.svg'
 import TabHeader from '@/common/components/TabHeader';
 import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
@@ -8,7 +6,7 @@ import FontText from '@/common/text/FontText';
 import { campusName } from '@/constants/campus';
 import colors, { campusColors } from '@/constants/colors';
 import { useRouter } from 'expo-router';
-import { Pressable, StyleSheet } from 'react-native';
+import { Image, Pressable, StyleSheet } from 'react-native';
 
 const HomeHeader = () => {
   const { theme } = useTheme();
@@ -19,11 +17,14 @@ const HomeHeader = () => {
   return (
     <TabHeader>
       <Pressable style={styles.title} onPress={() => router.navigate('/more')}>
-        {theme === 'light' ? <GrayIconLight width={34} height={34} /> : <GrayIconDark width={34} height={34} />}
-        {campus && <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
+        {/*{theme === 'light' ? <GrayIconLight width={34} height={34} /> : <GrayIconDark width={34} height={34} />}*/}
+        <Image source={require('@/assets/icons/christmas-tree.png')}
+               style={{ width: 26, height: 26, marginRight: 6 }} />
+        {campus && <FontText fontWeight="700" style={[styles.campus, { color: colors.dark.contrast }]}>
           {campusName[campus].name}
         </FontText>}
-        <FontText style={{marginLeft: 8, fontSize: 13, color: colors[theme].gray100}} fontWeight="600">👈 캠퍼스를 변경할 수 있어요!</FontText>
+        <FontText style={{ marginLeft: 8, fontSize: 13, color: colors.light.gray200 }} fontWeight="600">👈 캠퍼스를 변경할 수
+          있어요!</FontText>
       </Pressable>
       <Pressable style={{ paddingHorizontal: 4, paddingVertical: 4 }}>
         <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>{message}</FontText>

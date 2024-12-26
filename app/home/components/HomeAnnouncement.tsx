@@ -1,6 +1,7 @@
 import { useHomeAnnouncements } from '@/api/home';
 import CardContainer from '@/common/components/CardContainer';
 import FontText from '@/common/text/FontText';
+import colors from '@/constants/colors';
 import { HomeAnnouncementProps } from '@/types/homeType';
 import { useRouter } from 'expo-router';
 import React from 'react';
@@ -15,7 +16,7 @@ const HomeAnnouncement = () => {
       pathname: '/announcement/details',
       params: { url: item.announcementUrl }
     })}>
-      <FontText style={styles.content} numberOfLines={1}>
+      <FontText style={[styles.content, {color: colors.dark.contrast}]} numberOfLines={1}>
         {item.announcementTitle}
       </FontText>
     </Pressable>

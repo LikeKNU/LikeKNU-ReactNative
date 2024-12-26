@@ -71,7 +71,7 @@ const Home = () => {
   }, []);
 
   return (
-    <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].background }}>
+    <PageLayout edges={['top']} style={{ backgroundColor: colors.christmasGreen200 }}>
       <HomeHeader />
       <HomeBannerAd />
       <ScrollView

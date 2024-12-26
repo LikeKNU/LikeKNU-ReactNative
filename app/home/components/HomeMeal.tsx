@@ -34,7 +34,7 @@ const HomeMeal = () => {
             showsButtons={false}
             activeDotColor={campus ? campusColors[campus] : colors[theme].contrast}
             dotStyle={{ marginBottom: -20 }}
-            dotColor={colors[theme].gray300}
+            dotColor={colors.light.gray200}
             activeDotStyle={{ marginBottom: -20 }}
           >
             {meals.map((meal) => <HomeMealItem meal={meal} key={meal.cafeteriaId} />)}
