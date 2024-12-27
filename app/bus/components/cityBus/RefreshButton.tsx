@@ -13,7 +13,7 @@ interface BusRefreshProps {
 }
 
 const RefreshButton = ({ mutate, focusPathname, style }: BusRefreshProps) => {
-  const intervalTime = 20;
+  const intervalTime = 30;
   const { theme } = useTheme();
   const [refreshTime, setRefreshTime] = useState(intervalTime);
   const rotateAnimation = useRef(new Animated.Value(0)).current;
