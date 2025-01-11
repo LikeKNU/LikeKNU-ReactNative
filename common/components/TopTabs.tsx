@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   tabItem: {
     padding: 10,
-    width: 100,
+    width: 80,
     alignItems: 'center'
   }
 });
