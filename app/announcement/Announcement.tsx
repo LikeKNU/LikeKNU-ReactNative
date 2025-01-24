@@ -92,14 +92,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
-  tabs: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-
-    paddingHorizontal: 20,
-    borderBottomWidth: 0.3
-  },
   bookmarkPressable: {
     padding: 4
   },

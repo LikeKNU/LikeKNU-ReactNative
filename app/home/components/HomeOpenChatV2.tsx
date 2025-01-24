@@ -1,4 +1,3 @@
-import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
 import ChatDotsIcon from '@/assets/icons/chat-dots.svg';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
@@ -6,42 +5,35 @@ import colors from '@/constants/colors';
 import React from 'react';
 import { Linking, Pressable, StyleSheet, View } from 'react-native';
 
-const HomeOpenChat = () => {
+const HomeOpenChatV2 = () => {
   const { theme } = useTheme();
 
   return (
-    <Pressable style={[styles.container, { backgroundColor: colors[theme].container, flex: 1 }]}
+    <Pressable style={[styles.container, { backgroundColor: colors[theme].container }]}
                onPress={() => Linking.openURL('https://open.kakao.com/o/stp3zoyg')}>
       <View style={styles.box}>
-        <View style={styles.titleContainer}>
-          <ChatDotsIcon width={24} height={24} />
-          <FontText fontWeight="700" style={styles.title}>문의/요청</FontText>
-        </View>
-        <ArrowRightIcon />
+        <ChatDotsIcon width={28} height={28} />
+        <FontText fontWeight="600" style={styles.title}>문의/요청</FontText>
       </View>
     </Pressable>
   );
 };
 
-export default HomeOpenChat;
+export default HomeOpenChatV2;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
-    paddingHorizontal: 16,
+    flex: 1,
+    height: 82,
+    justifyContent: 'center',
     borderRadius: 16,
     marginBottom: 10
   },
   box: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  titleContainer: {
-    flexDirection: 'row', alignItems: 'center',
-    gap: 6
+    gap: 4
   },
   title: {
-    fontSize: 18
+    fontSize: 13
   }
 });

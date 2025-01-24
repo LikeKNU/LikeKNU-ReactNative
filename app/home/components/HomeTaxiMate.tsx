@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flexDirection: 'row', alignItems: 'center',
-    gap: 4
+    gap: 6
   },
   title: {
     fontSize: 18

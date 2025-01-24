@@ -27,7 +27,7 @@ const TopTabs = ({ handleTabPress, activeTab, tabItems }: TopTabsProps) => {
             fontWeight={activeTab === item ? '600' : '500'}
             style={{
               color: activeTab === item ? colors[theme].contrast : colors[theme].gray100,
-              fontSize: 17
+              fontSize: 16
             }}
           >{item.name}</FontText>
         </Pressable>

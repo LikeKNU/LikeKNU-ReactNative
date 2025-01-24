@@ -1,4 +1,3 @@
-import { useHomeMessage } from '@/api/home';
 import GrayIconDark from '@/assets/icons/gray-icon-dark.svg'
 import GrayIconLight from '@/assets/icons/gray-icon-light.svg'
 import TabHeader from '@/common/components/TabHeader';
@@ -14,7 +13,6 @@ const HomeHeader = () => {
   const { theme } = useTheme();
   const router = useRouter();
   const { campus } = useCampus();
-  const { data: message } = useHomeMessage();
 
   return (
     <TabHeader>
@@ -23,10 +21,8 @@ const HomeHeader = () => {
         {campus && <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
           {campusName[campus].name}
         </FontText>}
-        <FontText style={{marginLeft: 8, fontSize: 13, color: colors[theme].gray100}} fontWeight="600">👈 캠퍼스를 변경할 수 있어요!</FontText>
-      </Pressable>
-      <Pressable style={{ paddingHorizontal: 4, paddingVertical: 4 }}>
-        <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>{message}</FontText>
+        <FontText style={{ marginLeft: 8, fontSize: 13, color: colors[theme].gray100 }} fontWeight="600">👈 캠퍼스를 변경할 수
+          있어요!</FontText>
       </Pressable>
     </TabHeader>
   );

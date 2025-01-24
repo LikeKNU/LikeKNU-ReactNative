@@ -14,7 +14,10 @@
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview"
+      "channel": "preview",
+      "env": {
+        "APP_VARIANT": "beta"
+      }
     },
     "production": {
       "channel": "production"

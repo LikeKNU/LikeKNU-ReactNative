@@ -17,14 +17,14 @@ const TabLayout = () => {
     tabBar: {
       backgroundColor: colors[theme].container,
 
-      borderTopWidth: 0.5,
-      borderLeftWidth: 0.5,
-      borderRightWidth: 0.5,
+      borderTopWidth: 1,
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
       borderLeftColor: colors[theme].gray300,
       borderRightColor: colors[theme].gray300,
       borderTopColor: colors[theme].gray300,
-      borderTopRightRadius: Platform.OS !== 'web' ? 25 : 0,
-      borderTopLeftRadius: Platform.OS !== 'web' ? 25 : 0,
+      borderTopRightRadius: 25,
+      borderTopLeftRadius: 25,
 
       paddingHorizontal: 10
     },
@@ -41,7 +41,6 @@ const TabLayout = () => {
       screenOptions={{
         tabBarStyle: styles.tabBar,
         headerShown: false,
-        tabBarIconStyle: { marginTop: 8 },
         tabBarActiveTintColor: colors[theme].contrast,
         tabBarInactiveTintColor: colors[theme].gray200
       }}>

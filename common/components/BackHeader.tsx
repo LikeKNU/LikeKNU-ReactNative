@@ -7,22 +7,24 @@ import { ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 interface BackHeaderProps {
-  title?: string;
+  title?: string | ReactNode;
   button?: ReactNode;
+  onPress?: () => void;
 }
 
-const BackHeader = ({ title, button }: BackHeaderProps) => {
+const BackHeader = ({ title, button, onPress }: BackHeaderProps) => {
   const { theme } = useTheme();
   const router = useRouter();
 
   return (
     <View style={styles.container}>
       <View style={styles.backIcon}>
-        <Pressable style={styles.backPressable} onPress={() => router.back()}>
+        <Pressable style={styles.backPressable} onPress={onPress || (() => router.back())}>
           <ArrowLeftIcon width={24} height={24} fill={colors[theme].gray100} />
         </Pressable>
       </View>
-      <FontText fontWeight="600" style={styles.title}>{title}</FontText>
+      {typeof title === 'string' ?
+        <FontText fontWeight="600" style={[styles.title, { color: colors.light.contrast }]}>{title}</FontText> : title}
       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
         {button}
         <View style={{ width: 10 }}></View>

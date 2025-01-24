@@ -2,6 +2,7 @@ import PageLayout from '@/common/components/PageLayout';
 import colors from '@/constants/colors';
 import { TaxiMatePostMessageProps } from '@/types/taxiMate';
 import { registerForPushNotificationsAsync } from '@/utils/pushNotifications';
+import * as Location from 'expo-location';
 import { usePathname, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
@@ -19,6 +20,12 @@ const TaxiMate = ({ partyId }: TaxiMateProps) => {
   const webViewRef = useRef<WebView>(null);
   const router = useRouter();
   const pathname = usePathname();
+
+  useEffect(() => {
+    Location.requestForegroundPermissionsAsync()
+      .then(() => {
+      });
+  }, []);
 
   useEffect(() => {
     const onAndroidBackPress = () => {
