@@ -5,7 +5,6 @@ import colors from '@/constants/colors';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import Toast from 'react-native-root-toast';
 
 const HomeCampusMapV2 = () => {
   const { theme } = useTheme();
@@ -13,25 +12,12 @@ const HomeCampusMapV2 = () => {
 
   return (
     <Pressable
-      style={[styles.container, { backgroundColor: colors[theme].container, opacity: 0.6 }]}
-      // onPress={() => router.navigate('/campus-map')}
-      onPress={() => Toast.show('아직 준비 중이에요! 조금만 기다려 주세요 😊', {
-        duration: Toast.durations.SHORT,
-        backgroundColor: colors[theme].gray300,
-        textColor: colors[theme].contrast,
-        shadowColor: colors[theme].shadow,
-        containerStyle: {
-          borderRadius: 8,
-          marginBottom: 70
-        },
-      })}
+      style={[styles.container, { backgroundColor: colors[theme].container }]}
+      onPress={() => router.navigate('/campus-map')}
     >
       <View style={styles.box}>
         <BlueMapIcon width={28} height={28} />
-        <View style={{ alignItems: 'center' }}>
-          <FontText fontWeight="700" style={styles.title}>캠퍼스 맵</FontText>
-          <FontText fontWeight="600" style={{ color: colors[theme].gray100, fontSize: 11 }}>준비 중</FontText>
-        </View>
+        <FontText fontWeight="700" style={styles.title}>캠퍼스 맵</FontText>
       </View>
     </Pressable>
   );

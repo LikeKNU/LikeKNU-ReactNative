@@ -31,9 +31,13 @@ export const calculateTimeRemaining = (arrivalTime: string): string => {
   const [hours, minutes] = arrivalTime.split(':').map(Number);
   const arrival = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
   const diffInMinutes = Math.round((arrival.getTime() - now.getTime()) / 60_000);
+  if (diffInMinutes < 0) {
+    return '';
+  }
   if (diffInMinutes < 1) {
     return '곧 도착';
-  } else if (diffInMinutes < 60) {
+  }
+  if (diffInMinutes < 60) {
     return `${diffInMinutes}분 후`;
   } else {
     const hours = Math.floor(diffInMinutes / 60);

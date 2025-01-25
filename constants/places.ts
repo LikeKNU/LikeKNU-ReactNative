@@ -1,9 +1,10 @@
-export const PLACES = {
-  /*BUILDING: { name: '건물', icon: },
-  DORMITORY: { name: '생활관', icon: },
-  LIBRARY: { name: '도서관', icon: },
-  CAFETERIA: { name: '식당', icon: },
-  CONVENIENCE: { name: '편의점', icon: },
-  CAFE: { name: '카페', icon: },
-  HOSPITAL: { name: '병원', icon: },*/
-}
+export const placeName = {
+  student: '건물',
+  library: '도서관',
+  dormitory: '기숙사',
+  cafeteria: '식당',
+  convenience: '편의점',
+  cafe: '카페',
+  hospital: '병원',
+  restaurant: '음식점'
+};

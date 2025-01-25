@@ -24,7 +24,7 @@ const BusTimetableView = ({ routeId }: BusTimetableProps) => {
       const arrivalTime = new Date();
       const [hours, minutes] = bus.arrivalAt!.split(':');
       arrivalTime.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0);
-      return arrivalTime > now;
+      return arrivalTime >= now;
     });
   }, [data]);
 

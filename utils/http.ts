@@ -1,7 +1,7 @@
 import { APIResponse } from '@/types/response';
 import axios, { AxiosResponse } from 'axios';
 
-export const API_URL = 'https://server.like-knu.com';
+export const API_URL = process.env.EXPO_PUBLIC_SERVER_URL;
 
 const instance = axios.create({
   baseURL: API_URL,

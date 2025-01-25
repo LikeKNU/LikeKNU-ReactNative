@@ -1,14 +1,15 @@
 import BackHeader from '@/common/components/BackHeader';
 import PageLayout from '@/common/components/PageLayout';
+import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { usePathname, useRouter } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
 import { BackHandler, Platform, StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
 import { WebViewNativeEvent } from 'react-native-webview/lib/WebViewTypes';
 
 const Library = () => {
+  const { theme } = useTheme();
   const [navigationState, setNavigationState] = useState<WebViewNativeEvent>();
   const [progress, setProgress] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -39,8 +40,7 @@ const Library = () => {
   }, [navigationState?.canGoBack, pathname]);
 
   return (
-    <PageLayout edges={['top']} style={{ backgroundColor: colors.light.container }}>
-      <StatusBar style={'dark'} />
+    <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].container }}>
       <BackHeader title="도서관" onPress={() => {
         navigationState?.url == 'https://library.kongju.ac.kr/#/' ? router.back() : webViewRef.current?.goBack();
       }} />

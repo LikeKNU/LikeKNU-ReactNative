@@ -61,4 +61,35 @@ export const campusColors = {
   cheonan: '#2C8E9A',
   singwan: '#E85239',
   yesan: '#E2981E'
-}
+};
+
+export const clubCategoryColors = {
+  academic: {
+    name: '학술',
+    color: '#F97316'
+  },
+  sports: {
+    name: '체육',
+    color: '#3B82F6'
+  },
+  art: {
+    name: '예술',
+    color: '#EAB308'
+  },
+  hobby: {
+    name: '취미',
+    color: '#A855F7'
+  },
+  religion: {
+    name: '종교',
+    color: '#06B6D4'
+  },
+  volunteer: {
+    name: '봉사',
+    color: '#EC4899'
+  },
+  performance: {
+    name: '공연',
+    color: '#10B981'
+  }
+};

@@ -4,6 +4,7 @@ import ThemeContextProvider, { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
 import useInitializeDevice from '@/utils/device';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import analytics from '@react-native-firebase/analytics';
 import { useFonts } from 'expo-font';
 import { Stack, usePathname } from 'expo-router';
@@ -57,21 +58,23 @@ const AppLayout = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider onLayout={onLayoutRootView}>
-        <SWRConfig value={{
-          provider: () => new Map(),
-          isVisible: () => true,
-          initFocus: (callback) => handleInitFocus(callback)
-        }}>
-          <RootSiblingParent>
-            <ThemeContextProvider>
-              <CampusContextProvider>
-                <FavoriteContextProvider>
-                  <Content />
-                </FavoriteContextProvider>
-              </CampusContextProvider>
-            </ThemeContextProvider>
-          </RootSiblingParent>
-        </SWRConfig>
+        <ActionSheetProvider>
+          <SWRConfig value={{
+            provider: () => new Map(),
+            isVisible: () => true,
+            initFocus: (callback) => handleInitFocus(callback)
+          }}>
+            <RootSiblingParent>
+              <ThemeContextProvider>
+                <CampusContextProvider>
+                  <FavoriteContextProvider>
+                    <Content />
+                  </FavoriteContextProvider>
+                </CampusContextProvider>
+              </ThemeContextProvider>
+            </RootSiblingParent>
+          </SWRConfig>
+        </ActionSheetProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

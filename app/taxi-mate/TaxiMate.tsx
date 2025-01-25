@@ -89,7 +89,7 @@ const TaxiMate = ({ partyId }: TaxiMateProps) => {
       <StatusBar style={'dark'} />
       <WebView
         ref={webViewRef}
-        source={{ uri: process.env.EXPO_PUBLIC_TAXI_MATE_URL as string }}
+        source={{ uri: 'https://www.taxi-mate.like-knu.com/' }}
         onNavigationStateChange={setNavigationState}
         allowsBackForwardNavigationGestures={true}
         javaScriptEnabled={true}

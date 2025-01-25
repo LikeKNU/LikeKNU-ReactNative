@@ -23,8 +23,12 @@ const BackHeader = ({ title, button, onPress }: BackHeaderProps) => {
           <ArrowLeftIcon width={24} height={24} fill={colors[theme].gray100} />
         </Pressable>
       </View>
-      {typeof title === 'string' ?
-        <FontText fontWeight="600" style={[styles.title, { color: colors.light.contrast }]}>{title}</FontText> : title}
+      {
+        typeof title === 'string' ?
+          <FontText fontWeight="600"
+                    style={[styles.title, { color: colors[theme].contrast }]}>{title}</FontText> :
+          title
+      }
       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
         {button}
         <View style={{ width: 10 }}></View>
