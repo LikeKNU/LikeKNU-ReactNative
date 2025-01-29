@@ -16,7 +16,7 @@ const BookmarkItem = ({ announcementId, isBookmarked, handleChange }: BookmarkIt
   const { theme } = useTheme();
   const { deviceId } = useDeviceId();
   const [isBookmark, setIsBookmark] = useState<boolean>(false);
-  const fill = isBookmark ? colors.blue : colors[theme].gray300;
+  const fill = isBookmark ? colors[theme].blue : colors[theme].gray300;
 
   useEffect(() => {
     setIsBookmark(isBookmarked);

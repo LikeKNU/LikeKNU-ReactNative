@@ -19,7 +19,7 @@ const ScheduleItem = ({ schedule }: ScheduleItemProps) => {
           {schedule.scheduleDate}
         </FontText>
       </View>
-      <FontText fontWeight="500" style={{ color: schedule.isToday ? colors.blue : colors[theme].contrast }}>
+      <FontText fontWeight="500" style={{ color: schedule.isToday ? colors[theme].blue : colors[theme].contrast }}>
         {schedule.scheduleContents}
       </FontText>
     </View>

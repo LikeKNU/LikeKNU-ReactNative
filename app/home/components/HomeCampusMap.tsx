@@ -11,15 +11,13 @@ const HomeCampusMap = () => {
   const router = useRouter();
 
   return (
-    <Pressable style={[styles.container, { backgroundColor: colors[theme].container, flex: 1 }]}
-               /*onPress={() => router.navigate('/campus-map')}*/>
+    <Pressable
+      style={[styles.container, { backgroundColor: colors[theme].container }]}
+      onPress={() => router.navigate('/campus-map')}
+    >
       <View style={styles.box}>
-        <View style={styles.titleContainer}>
-          <BlueMapIcon width={24} height={24} />
-          <FontText fontWeight="700" style={styles.title}>캠퍼스 맵</FontText>
-        </View>
-        {/*<ArrowRightIcon />*/}
-        <FontText style={{color: colors[theme].gray100}}>준비 중이에요 🧑🏻‍💻</FontText>
+        <BlueMapIcon width={28} height={28} />
+        <FontText fontWeight="700" style={styles.title}>캠퍼스 맵</FontText>
       </View>
     </Pressable>
   );
@@ -29,21 +27,17 @@ export default HomeCampusMap;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
-    paddingHorizontal: 16,
+    flex: 1,
+    height: 82,
+    justifyContent: 'center',
     borderRadius: 16,
     marginBottom: 10
   },
   box: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  titleContainer: {
-    flexDirection: 'row', alignItems: 'center',
-    gap: 6
+    gap: 4
   },
   title: {
-    fontSize: 18
+    fontSize: 13
   }
 });

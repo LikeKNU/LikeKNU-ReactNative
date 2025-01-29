@@ -4,10 +4,11 @@ import ThemeContextProvider, { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
 import useInitializeDevice from '@/utils/device';
+import http from '@/utils/http';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import analytics from '@react-native-firebase/analytics';
 import { useFonts } from 'expo-font';
-import { Stack, usePathname } from 'expo-router';
+import { Stack, usePathname, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 import * as Updates from 'expo-updates';
@@ -109,7 +110,22 @@ export async function checkForUpdates() {
 const Content = () => {
   const { theme } = useTheme();
   const pathname = usePathname();
+  const router = useRouter();
   useInitializeDevice();
+
+  useEffect(() => {
+    http.get('/actuator/health')
+      .then(value => {
+        if (value.status === 200) {
+          return;
+        }
+
+        router.replace('/maintenance');
+      })
+      .catch(() => {
+        router.replace('/maintenance');
+      });
+  }, []);
 
   useEffect(() => {
     requestTrackingPermissionsAsync()

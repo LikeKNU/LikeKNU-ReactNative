@@ -14,7 +14,7 @@ const CalendarItem = ({ item }: { item: ScheduleProps }) => {
         {item.scheduleDate}
       </FontText>
       <FontText fontWeight="500"
-                style={[styles.contents, { color: item.isToday ? colors.blue : colors[theme].contrast }]}>{item.scheduleContents}</FontText>
+                style={[styles.contents, { color: item.isToday ? colors[theme].blue : colors[theme].contrast }]}>{item.scheduleContents}</FontText>
     </View>
   );
 };

@@ -6,7 +6,7 @@ import { themeName, Themes } from '@/constants/theme';
 import { FlatList, Pressable, StyleSheet } from 'react-native';
 
 const ThemeSetting = () => {
-  const { userTheme, changeUserTheme } = useTheme();
+  const { userTheme, changeUserTheme, theme: selectedTheme } = useTheme();
 
   const ThemeButton = ({ theme }: { theme: Themes }) => {
     return <Pressable
@@ -14,7 +14,7 @@ const ThemeSetting = () => {
       onPress={() => changeUserTheme(theme)}
     >
       <FontText fontWeight="500" style={{ fontSize: 18 }}>{themeName[theme]}</FontText>
-      <CheckIcon width={24} height={24} fill={isSelected(theme) ? colors.blue : 'none'} />
+      <CheckIcon width={24} height={24} fill={isSelected(theme) ? colors[selectedTheme].blue : 'none'} />
     </Pressable>
   };
 

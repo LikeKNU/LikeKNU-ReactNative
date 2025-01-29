@@ -68,7 +68,7 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
         }
       />
       {!isLoaded && (
-        <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />
+        <View style={[styles.progressBar, { width: `${progress * 100}%`, backgroundColor: colors[theme].blue }]} />
       )}
       {
         url ? (
@@ -106,8 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   progressBar: {
-    height: 2,
-    backgroundColor: colors.blue,
+    height: 2
   },
   notFoundMessage: {
     textAlign: 'center',

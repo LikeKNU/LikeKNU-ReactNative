@@ -134,7 +134,7 @@ const SuggestionItem = ({ changeVisible }: SuggestionItemProps) => {
           <FontText fontWeight="600">지우기</FontText>
         </Pressable>}
         <Pressable
-          style={[styles.button, { backgroundColor: colors.blue, opacity: buttonOpacity, marginLeft: 5 }]}
+          style={[styles.button, { backgroundColor: colors[theme].blue, opacity: buttonOpacity, marginLeft: 5 }]}
           onPress={keyboardVisible ? Keyboard.dismiss : createSubmitAlert}
           disabled={!isFillText && !keyboardVisible}
         >

@@ -45,7 +45,7 @@ const Library = () => {
         navigationState?.url == 'https://library.kongju.ac.kr/#/' ? router.back() : webViewRef.current?.goBack();
       }} />
       {!isLoaded && (
-        <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />
+        <View style={[styles.progressBar, { width: `${progress * 100}%`, backgroundColor: colors[theme].blue }]} />
       )}
       <WebView
         ref={webViewRef}
@@ -72,7 +72,6 @@ export default Library;
 
 const styles = StyleSheet.create({
   progressBar: {
-    height: 2,
-    backgroundColor: colors.blue,
+    height: 2
   }
 });

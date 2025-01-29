@@ -1,25 +1,29 @@
-import ChatDotsIcon from '@/assets/icons/chat-dots.svg';
+import OpenBookIcon from '@/assets/icons/open-book.svg';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { Linking, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
-const HomeOpenChatV2 = () => {
+const HomeLibrary = () => {
   const { theme } = useTheme();
+  const router = useRouter();
 
   return (
-    <Pressable style={[styles.container, { backgroundColor: colors[theme].container }]}
-               onPress={() => Linking.openURL('https://open.kakao.com/o/stp3zoyg')}>
+    <Pressable
+      style={[styles.container, { backgroundColor: colors[theme].container }]}
+      onPress={() => router.navigate('/library')}
+    >
       <View style={styles.box}>
-        <ChatDotsIcon width={28} height={28} />
-        <FontText fontWeight="600" style={styles.title}>문의/요청</FontText>
+        <OpenBookIcon width={28} height={28} />
+        <FontText fontWeight="700" style={styles.title}>도서관</FontText>
       </View>
     </Pressable>
   );
 };
 
-export default HomeOpenChatV2;
+export default HomeLibrary;
 
 const styles = StyleSheet.create({
   container: {

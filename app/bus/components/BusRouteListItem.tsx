@@ -25,7 +25,7 @@ const BusRouteListItem = ({ onPress, origin, destination, time }: RouteListItemP
         </View>
       </View>
       <AnimatedButton onPress={onPress}>
-        <FontText fontWeight="600" style={{ color: colors[theme].gray100 }}>더보기</FontText>
+        <FontText fontWeight="600" style={{ color: colors[theme].gray100 }}>자세히</FontText>
       </AnimatedButton>
     </View>
   );

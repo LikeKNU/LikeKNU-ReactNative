@@ -29,7 +29,8 @@ const TabLayout = () => {
       paddingHorizontal: 10
     },
     label: {
-      fontSize: 10,
+      fontSize: 11,
+      fontWeight: 'bold',
       marginBottom: 4,
       marginLeft: 1
     }
@@ -49,7 +50,7 @@ const TabLayout = () => {
           <HomeIcon fill={color} width={29} height={29} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText style={[styles.label, { color: color }]}>홈</FontText>
+          <FontText fontWeight="600" style={[styles.label, { color: color }]}>홈</FontText>
         )
       }} />
       <Tabs.Screen name="announcement" options={{
@@ -57,7 +58,7 @@ const TabLayout = () => {
           <AssignmentIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText style={[styles.label, { color: color }]}>공지사항</FontText>
+          <FontText fontWeight="600" style={[styles.label, { color: color }]}>공지사항</FontText>
         )
       }} />
       <Tabs.Screen name="bus" options={{
@@ -65,7 +66,7 @@ const TabLayout = () => {
           <BusFrontIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText style={[styles.label, { color: color }]}>버스</FontText>
+          <FontText fontWeight="600" style={[styles.label, { color: color }]}>버스</FontText>
         )
       }} />
       <Tabs.Screen name="meal" options={{
@@ -73,7 +74,7 @@ const TabLayout = () => {
           <RestaurantIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText style={[styles.label, { color: color }]}>식단</FontText>
+          <FontText fontWeight="600" style={[styles.label, { color: color }]}>식단</FontText>
         )
       }} />
       <Tabs.Screen name="more" options={{
@@ -81,7 +82,7 @@ const TabLayout = () => {
           <ThreeDotsIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText style={[styles.label, { color: color }]}>더보기</FontText>
+          <FontText fontWeight="600" style={[styles.label, { color: color }]}>더보기</FontText>
         )
       }} />
     </Tabs>

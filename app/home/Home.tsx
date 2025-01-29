@@ -1,15 +1,12 @@
 import HomeAnnouncement from '@/app/home/components/HomeAnnouncement';
 import HomeBus from '@/app/home/components/HomeBus';
 import HomeCalendar from '@/app/home/components/HomeCalendar';
-import HomeCampusMapV2 from '@/app/home/components/HomeCampusMapV2';
+import HomeCampusMap from '@/app/home/components/HomeCampusMap';
 import HomeHeader from '@/app/home/components/HomeHeader';
-import HomeLibraryV2 from '@/app/home/components/HomeLibraryV2';
 import HomeMeal from '@/app/home/components/HomeMeal';
 import HomeOpenChat from '@/app/home/components/HomeOpenChat';
-import HomeOpenChatV2 from '@/app/home/components/HomeOpenChatV2';
-import HomeTaxiMateV2 from '@/app/home/components/HomeTaxiMateV2';
 import HomeUnivClub from '@/app/home/components/HomeUnivClub';
-import HomeUnivClubV2 from '@/app/home/components/HomeUnivClubV2';
+import HomeWiki from '@/app/home/components/HomeWiki';
 import HomeBannerAd from '@/common/ads/HomeBannerAd';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
@@ -25,7 +22,7 @@ import { Alert, Linking, Platform, ScrollView, StyleSheet, View } from 'react-na
 const Home = () => {
   const { theme } = useTheme();
   const router = useRouter();
-  const notificationResponseListener = useRef<Notifications.Subscription>();
+  const notificationResponseListener = useRef<Notifications.EventSubscription>();
 
   const checkAppVersion = async () => {
     const response = await fetch(`${API_URL}/api/versions`);
@@ -84,10 +81,10 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <HomeOpenChatV2 />
-          <HomeLibraryV2 />
-          <HomeUnivClubV2 />
-          <HomeCampusMapV2 />
+          <HomeOpenChat />
+          <HomeWiki />
+          <HomeUnivClub />
+          <HomeCampusMap />
         </View>
         <HomeAnnouncement />
         <HomeBus />

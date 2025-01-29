@@ -52,11 +52,11 @@ const UnivClub = () => {
         navigationState?.canGoBack ? webViewRef.current?.goBack() : router.back();
       }} />
       {!isLoaded &&
-        <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />
+        <View style={[styles.progressBar, { width: `${progress * 100}%`, backgroundColor: colors[theme].blue }]} />
       }
       {isHome &&
         <View style={styles.noticeContainer}>
-          <FontText fontWeight="600" style={styles.notice}>앞으로 동아리 정보가 계속 추가될 예정이에요</FontText>
+          <FontText fontWeight="600" style={{ color: colors[theme].blue }}>앞으로 동아리 정보가 계속 추가될 예정이에요</FontText>
           <FontText fontWeight="500" style={styles.subNotice}>동아리 연합회나 동아리장이 직접 등록해요</FontText>
         </View>
       }
@@ -85,16 +85,12 @@ export default UnivClub;
 
 const styles = StyleSheet.create({
   progressBar: {
-    height: 2,
-    backgroundColor: colors.blue,
+    height: 2
   },
   noticeContainer: {
     backgroundColor: colors.light.gray300,
     alignItems: 'center',
     paddingVertical: 8
-  },
-  notice: {
-    color: colors.blue
   },
   subNotice: {
     color: colors.light.gray100

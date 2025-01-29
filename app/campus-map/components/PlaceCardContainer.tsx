@@ -16,7 +16,6 @@ const PlaceCardContainer = ({ placeId }: PlaceCardContainerProps) => {
   const { theme } = useTheme();
   const router = useRouter();
   const placeInfo = campusMapMockData.filter(place => place.id === placeId)[0];
-  console.log(placeInfo);
 
   return (
     <Pressable

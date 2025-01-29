@@ -20,7 +20,7 @@ const UnivClubNative = () => {
     <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].container }}>
       <BackHeader title="동아리" onPress={() => router.back()} />
       <View style={[styles.noticeContainer, { backgroundColor: colors[theme].gray300 }]}>
-        <FontText fontWeight="500" style={styles.notice}>앞으로 계속 동아리 정보가 추가될 예정이에요</FontText>
+        <FontText fontWeight="500" style={{ color: colors[theme].blue }}>앞으로 계속 동아리 정보가 추가될 예정이에요</FontText>
         <FontText fontWeight="300" style={[styles.subNotice, { color: colors[theme].gray100 }]}>
           동아리 연합회나 동아리장이 직접 등록해요
         </FontText>
@@ -43,9 +43,6 @@ const styles = StyleSheet.create({
   noticeContainer: {
     alignItems: 'center',
     paddingVertical: 8
-  },
-  notice: {
-    color: colors.blue
   },
   subNotice: {
     fontSize: 13

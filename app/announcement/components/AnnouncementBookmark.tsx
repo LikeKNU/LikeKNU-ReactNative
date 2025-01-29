@@ -28,7 +28,7 @@ const AnnouncementBookmark = () => {
         :
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <FontText fontWeight="500" style={[styles.emptyMessage, { color: colors[theme].gray100 }]}>
-            북마크한 공지사항이 없어요!
+            북마크한 공지사항이 없어요
           </FontText>
         </View>
       }

@@ -1,4 +1,4 @@
-import GuitarIcon from '@/assets/icons/guitar.svg';
+import WikiBookIcon from '@/assets/icons/wiki-book.svg';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
@@ -6,24 +6,27 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-const HomeUnivClubV2 = () => {
+const HomeWiki = () => {
   const { theme } = useTheme();
   const router = useRouter();
 
   return (
     <Pressable
-      style={[styles.container, { backgroundColor: colors[theme].container }]}
-      onPress={() => router.navigate('/univ-club')}
+      style={[styles.container, { backgroundColor: colors[theme].container, opacity: .6 }]}
+      /*onPress={() => router.navigate('/wiki')}*/
     >
       <View style={styles.box}>
-        <GuitarIcon width={28} height={28} />
-        <FontText fontWeight="700" style={styles.title}>동아리</FontText>
+        <WikiBookIcon width={28} height={28} />
+        <View style={{ alignItems: 'center' }}>
+          <FontText fontWeight="700" style={styles.title}>위키</FontText>
+          <FontText fontWeight="600" style={{ fontSize: 11, color: colors[theme].gray100 }}>준비 중</FontText>
+        </View>
       </View>
     </Pressable>
   );
 };
 
-export default HomeUnivClubV2;
+export default HomeWiki;
 
 const styles = StyleSheet.create({
   container: {
