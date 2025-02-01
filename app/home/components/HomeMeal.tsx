@@ -28,7 +28,7 @@ const HomeMeal = () => {
   return (
     <View style={{ flex: 1 }}>
       <CardContainer title={<View />} style={{ height: 232 }}>
-        {!isLoading &&
+        {!isLoading && meals.length > 0 &&
           <Swiper
             index={0}
             showsButtons={false}
