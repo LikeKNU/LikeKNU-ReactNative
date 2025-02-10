@@ -57,8 +57,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    /*checkAppVersion().then(() => {
-    });*/
+    checkAppVersion().then(() => {
+    });
 
     notificationResponseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       router.replace({

@@ -3,27 +3,27 @@ import CityBusView from '@/app/bus/components/cityBus/CityBusView';
 import RefreshButton from '@/app/bus/components/cityBus/RefreshButton';
 import RouteTypeSelector from '@/app/bus/components/cityBus/RouteTypeSelector';
 import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
-import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import { routeType } from '@/constants/bus';
 import colors from '@/constants/colors';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
-import Swiper from 'react-native-swiper';
+import React, { useEffect, useState } from 'react';
+import { Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { ICarouselInstance } from 'react-native-reanimated-carousel';
+import Carousel from 'react-native-reanimated-carousel/src/components/Carousel';
 
 const CityBus = () => {
   const { theme } = useTheme();
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const swiperRef = useRef<Swiper>(null);
   const { data: outgoingData, mutate: outgoingMutate } = useCityBuses(routeType.OUTGOING);
   const { data: incomingData, mutate: incomingMutate } = useCityBuses(routeType.INCOMING);
-  const { campus } = useCampus();
   const router = useRouter();
+  const { width: screenWidth } = useWindowDimensions();
+  const carouselRef = React.useRef<ICarouselInstance>(null);
 
   useEffect(() => {
-    swiperRef.current?.scrollTo(activeIndex);
+    carouselRef.current?.scrollTo({ index: activeIndex, animated: true });
   }, [activeIndex]);
 
   const mutate = async () => {
@@ -44,19 +44,18 @@ const CityBus = () => {
           <ArrowRightIcon />
         </Pressable>
       </View>
-      <Swiper
-        ref={swiperRef}
-        showsButtons={false}
-        loop={false}
-        onIndexChanged={setActiveIndex}
-        showsPagination={false}
-      >
-        {Object.values(routeType).map(routeType => (
+      <Carousel
+        ref={carouselRef}
+        width={screenWidth}
+        data={Object.values(routeType)}
+        renderItem={({ item: routeType }) =>
           <View key={routeType.value} style={styles.page}>
             <CityBusView data={routeType.value === 'incoming' ? incomingData : outgoingData} />
-          </View>
-        ))}
-      </Swiper>
+          </View>}
+        loop={false}
+        onSnapToItem={setActiveIndex}
+        pagingEnabled={true}
+      />
       <RefreshButton mutate={mutate} focusPathname={'/bus'} style={styles.refreshButton} />
     </>
   );
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: 20
+    paddingVertical: 10
   },
   refreshButton: {
     position: 'absolute',

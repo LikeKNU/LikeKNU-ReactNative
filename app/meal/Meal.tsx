@@ -14,17 +14,19 @@ import colors from '@/constants/colors';
 import { cafeterias, Cafeterias } from '@/constants/meal';
 import { sortPinElementTop } from '@/utils/data';
 import analytics from '@react-native-firebase/analytics';
-import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import Swiper from 'react-native-swiper';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { ICarouselInstance } from 'react-native-reanimated-carousel';
+import Carousel from 'react-native-reanimated-carousel/src/components/Carousel';
 
 const Meal = () => {
   const { theme } = useTheme();
   const { campus } = useCampus();
-  const swiperRef = useRef<Swiper>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [cafeteriaList, setCafeteriaList] = useState<Cafeterias[]>([]);
   const { favoriteCafeteria, changeFavoriteCafeteria } = useFavoriteCafeteria();
+  const { width: screenWidth } = useWindowDimensions();
+  const carouselRef = React.useRef<ICarouselInstance>(null);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -36,7 +38,7 @@ const Meal = () => {
   }, [favoriteCafeteria, campus]);
 
   useEffect(() => {
-    swiperRef.current?.scrollTo(activeIndex);
+    carouselRef.current?.scrollTo({ index: activeIndex, animated: true });
     const selectCafeteria = cafeteriaList[activeIndex];
     if (campus && selectCafeteria) {
       analytics().logSelectContent({
@@ -68,19 +70,19 @@ const Meal = () => {
                         fill={favoriteCafeteria === cafeteriaList[activeIndex] ? colors.light.red : colors[theme].gray200} />
         </AnimatedPressable>
       </View>
-      <Swiper
-        ref={swiperRef}
-        showsButtons={false}
+      <Carousel
+        ref={carouselRef}
+        width={screenWidth}
+        containerStyle={{ flex: 1 }}
         loop={false}
-        onIndexChanged={setActiveIndex}
-        showsPagination={false}
-      >
-        {cafeteriaList.map(cafeteria => (
+        data={cafeteriaList}
+        renderItem={({ item: cafeteria, index }) =>
           <View key={cafeteria} style={styles.page}>
-            <MealView cafeteria={cafeteria} isActive={cafeteria === cafeteriaList[activeIndex]} />
+            <MealView cafeteria={cafeteria} isActive={index === activeIndex} />
           </View>
-        ))}
-      </Swiper>
+        }
+        onSnapToItem={(index) => setActiveIndex(index)}
+      />
     </PageLayout>
   );
 };
@@ -93,8 +95,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 10
+    paddingVertical: 10
   },
   page: {
     alignItems: 'center',

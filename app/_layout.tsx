@@ -13,7 +13,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 import * as Updates from 'expo-updates';
 import React, { useCallback, useEffect } from 'react';
-import { Alert, AppState } from 'react-native';
+import { AppState } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import mobileAds from 'react-native-google-mobile-ads';
 import { RootSiblingParent } from 'react-native-root-siblings';
@@ -91,19 +91,10 @@ export async function checkForUpdates() {
   const update = await Updates.checkForUpdateAsync();
 
   if (update.isAvailable) {
-    await Updates.fetchUpdateAsync();
-    Alert.alert(
-      '업데이트 완료 ⬆️',
-      '앱을 재시작할게요!',
-      [
-        {
-          text: '확인',
-          onPress: async () => {
-            await Updates.reloadAsync();
-          }
-        }
-      ]
-    );
+    Updates.fetchUpdateAsync()
+      .then(() => {
+        Updates.reloadAsync();
+      });
   }
 }
 
