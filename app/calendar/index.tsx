@@ -5,7 +5,6 @@ import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { useEffect } from 'react';
 import { SectionList, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -45,7 +44,7 @@ const CalendarPage = () => {
         </View>
       } />
       <SectionList
-        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: bottom }}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: bottom + 20 }}
         sections={sectionedData}
         keyExtractor={item => item.scheduleDate + item.scheduleContents}
         renderItem={({ item }) => <ScheduleItem schedule={item} />}
