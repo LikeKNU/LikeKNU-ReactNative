@@ -12,15 +12,12 @@ const HomeWiki = () => {
 
   return (
     <Pressable
-      style={[styles.container, { backgroundColor: colors[theme].container, opacity: .6 }]}
-      /*onPress={() => router.navigate('/wiki')}*/
+      style={[styles.container, { backgroundColor: colors[theme].container }]}
+      onPress={() => router.navigate('/wiki')}
     >
       <View style={styles.box}>
         <WikiBookIcon width={28} height={28} />
-        <View style={{ alignItems: 'center' }}>
-          <FontText fontWeight="700" style={styles.title}>위키</FontText>
-          <FontText fontWeight="600" style={{ fontSize: 11, color: colors[theme].gray100 }}>준비 중</FontText>
-        </View>
+        <FontText fontWeight="700" style={styles.title}>위키</FontText>
       </View>
     </Pressable>
   );
