@@ -2,13 +2,10 @@
   "expo": {
     "name": "공주대처럼",
     "slug": "like-knu",
-    "version": "3.1.0",
+    "version": "3.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "buildNumber": "71",
       "splash": {
@@ -160,7 +157,10 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/e7aa67eb-52b1-48f3-85b7-9faee242f8e8"
+      "url": "https://u.expo.dev/e7aa67eb-52b1-48f3-85b7-9faee242f8e8",
+      "assetPatternsToBeBundled": [
+        "**/*"
+      ]
     },
     "newArchEnabled": true
   }

@@ -1,14 +1,14 @@
 import BookmarkItem from '@/app/announcement/components/BookmarkItem';
 import ShareIcon from '@/assets/icons/arrow-up-from-bracket.svg';
+import AnimatedPressable from '@/common/components/AnimatedPressable';
 import BackHeader from '@/common/components/BackHeader';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import * as Linking from 'expo-linking';
 import { usePathname, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { BackHandler, Platform, Share, StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
 import { WebViewNativeEvent } from 'react-native-webview/lib/WebViewTypes';
 
@@ -28,8 +28,10 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
   const router = useRouter();
   const pathname = usePathname();
 
-  const openExternalBrowser = () => {
-    Linking.openURL(url!);
+  const sharing = () => {
+    Share.share({ title: title, url: url! })
+      .then(() => {
+      });
   };
 
   useEffect(() => {
@@ -60,9 +62,10 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
         title={title}
         button={
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Pressable style={{ padding: 4, marginRight: 8 }} onPress={openExternalBrowser}>
+            <AnimatedPressable animatedViewStyle={{ marginRight: 8, borderRadius: 8 }} style={{ padding: 4 }}
+                               onPress={sharing}>
               <ShareIcon width={26} height={26} fill={colors[theme].gray200} />
-            </Pressable>
+            </AnimatedPressable>
             <BookmarkItem announcementId={id} isBookmarked={isBookmarked} />
           </View>
         }

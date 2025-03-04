@@ -1,7 +1,6 @@
 import BackHeader from '@/common/components/BackHeader';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
-import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { usePathname, useRouter } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
@@ -54,12 +53,12 @@ const UnivClub = () => {
       {!isLoaded &&
         <View style={[styles.progressBar, { width: `${progress * 100}%`, backgroundColor: colors[theme].blue }]} />
       }
-      {isHome &&
+      {/*{isHome &&
         <View style={styles.noticeContainer}>
           <FontText fontWeight="600" style={{ color: colors[theme].blue }}>앞으로 동아리 정보가 계속 추가될 예정이에요</FontText>
           <FontText fontWeight="500" style={styles.subNotice}>동아리 연합회나 동아리장이 직접 등록해요</FontText>
         </View>
-      }
+      }*/}
       <WebView
         ref={webViewRef}
         source={{ uri: 'https://univ-club.vercel.app/' }}

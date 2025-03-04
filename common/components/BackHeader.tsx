@@ -19,7 +19,13 @@ const BackHeader = ({ title, button, onPress }: BackHeaderProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.backIcon}>
-        <Pressable style={styles.backPressable} onPress={onPress || (() => router.back())}>
+        <Pressable style={styles.backPressable} onPress={onPress || (() => {
+          if (router.canGoBack()) {
+            router.back();
+            return;
+          }
+          router.replace('/');
+        })}>
           <ArrowLeftIcon width={24} height={24} fill={colors[theme].gray100} />
         </Pressable>
       </View>

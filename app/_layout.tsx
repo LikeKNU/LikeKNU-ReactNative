@@ -32,7 +32,7 @@ const AppLayout = () => {
 
       setTimeout(async () => {
         await SplashScreen.hideAsync();
-      }, 1000);
+      }, 800);
     }
   }, [fontsLoaded, fontError]);
 
