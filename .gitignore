@@ -44,3 +44,5 @@ secrets/
 
 ios/
 android/
+
+eas.json

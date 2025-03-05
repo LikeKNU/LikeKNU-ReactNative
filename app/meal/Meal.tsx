@@ -1,3 +1,4 @@
+import { useCafeterias } from '@/api/meal';
 import CafeteriasSelector from '@/app/meal/components/CafeteriasSelector';
 import MealView from '@/app/meal/components/MealView';
 import PinAngleIcon from '@/assets/icons/pin-angle.svg';
@@ -11,7 +12,7 @@ import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import { campusName } from '@/constants/campus';
 import colors from '@/constants/colors';
-import { cafeterias, Cafeterias } from '@/constants/meal';
+import { CafeteriaProps } from '@/types/mealTypes';
 import { sortPinElementTop } from '@/utils/data';
 import analytics from '@react-native-firebase/analytics';
 import React, { useEffect, useState } from 'react';
@@ -23,19 +24,20 @@ const Meal = () => {
   const { theme } = useTheme();
   const { campus } = useCampus();
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [cafeteriaList, setCafeteriaList] = useState<Cafeterias[]>([]);
+  const [cafeteriaList, setCafeteriaList] = useState<CafeteriaProps[]>([]);
   const { favoriteCafeteria, changeFavoriteCafeteria } = useFavoriteCafeteria();
+  const { data: cafeterias } = useCafeterias();
   const { width: screenWidth } = useWindowDimensions();
   const carouselRef = React.useRef<ICarouselInstance>(null);
 
   useEffect(() => {
     setActiveIndex(0);
 
-    if (campus) {
-      setCafeteriaList(favoriteCafeteria ? sortPinElementTop<Cafeterias>(cafeterias[campus], cafeteria => cafeteria === favoriteCafeteria)
-        : cafeterias[campus]);
+    if (campus && cafeterias) {
+      setCafeteriaList(favoriteCafeteria ? sortPinElementTop<CafeteriaProps>(cafeterias, cafeteria => cafeteria.cafeteriaId === favoriteCafeteria)
+        : cafeterias);
     }
-  }, [favoriteCafeteria, campus]);
+  }, [favoriteCafeteria, campus, cafeterias]);
 
   useEffect(() => {
     carouselRef.current?.scrollTo({ index: activeIndex, animated: true });
@@ -59,16 +61,20 @@ const Meal = () => {
       </TabHeader>
       <MealBannerAd />
       <View style={styles.header}>
-        <CafeteriasSelector
-          cafeteriaList={cafeteriaList}
-          activeIndex={activeIndex}
-          handleOnPress={changeCafeteria}
-        />
-        <AnimatedPressable style={{ padding: 4 }} animatedViewStyle={{ borderRadius: 8 }}
-                           onPress={() => changeFavoriteCafeteria(cafeteriaList[activeIndex])}>
-          <PinAngleIcon width={26} height={26}
-                        fill={favoriteCafeteria === cafeteriaList[activeIndex] ? colors.light.red : colors[theme].gray200} />
-        </AnimatedPressable>
+        {cafeteriaList && cafeteriaList.length > 0 &&
+          <>
+            <CafeteriasSelector
+              cafeteriaList={cafeteriaList}
+              activeIndex={activeIndex}
+              handleOnPress={changeCafeteria}
+            />
+            <AnimatedPressable style={{ padding: 4 }} animatedViewStyle={{ borderRadius: 8 }}
+                               onPress={() => changeFavoriteCafeteria(cafeteriaList[activeIndex].cafeteriaId)}>
+              <PinAngleIcon width={26} height={26}
+                            fill={favoriteCafeteria === cafeteriaList[activeIndex].cafeteriaId ? colors.light.red : colors[theme].gray200} />
+            </AnimatedPressable>
+          </>
+        }
       </View>
       <Carousel
         ref={carouselRef}
@@ -77,7 +83,7 @@ const Meal = () => {
         loop={false}
         data={cafeteriaList}
         renderItem={({ item: cafeteria, index }) =>
-          <View key={cafeteria} style={styles.page}>
+          <View key={cafeteria.cafeteriaId} style={styles.page}>
             <MealView cafeteria={cafeteria} isActive={index === activeIndex} />
           </View>
         }

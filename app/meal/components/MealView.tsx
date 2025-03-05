@@ -4,14 +4,13 @@ import MealItem from '@/app/meal/components/MealItem';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
-import { Cafeterias } from '@/constants/meal';
-import { MenuProps } from '@/types/mealTypes';
+import { CafeteriaProps, MenuProps } from '@/types/mealTypes';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
 
 export interface MealViewProps {
-  cafeteria: Cafeterias,
+  cafeteria: CafeteriaProps,
   isActive: boolean
 }
 

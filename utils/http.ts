@@ -1,8 +1,9 @@
 import { APIResponse } from '@/types/response';
 import { getData } from '@/utils/storage';
 import axios, { AxiosResponse } from 'axios';
+import Constants from 'expo-constants';
 
-export const API_URL = process.env.EXPO_PUBLIC_SERVER_URL;
+export const API_URL = Constants.expoConfig?.extra?.apiUrl;
 
 const instance = axios.create({
   baseURL: API_URL,

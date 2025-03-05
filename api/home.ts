@@ -37,7 +37,7 @@ export const useHomeMeal = () => {
     }
   };
 
-  return useSWR(['/api/main/menu', campus], ([uri, campus]) => getHomeMeals(uri, campus));
+  return useSWR(['/api/v2/main/menus', campus], ([uri, campus]) => getHomeMeals(uri, campus));
 };
 
 export const useHomeCalendar = () => {

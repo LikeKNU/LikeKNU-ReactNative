@@ -29,7 +29,7 @@ const WebViewPage = ({ id, url, title, isBookmarked }: AnnouncementViewProps) =>
   const pathname = usePathname();
 
   const sharing = () => {
-    Share.share({ title: title, url: url! })
+    Share.share({ title: title, url: url!, message: url! })
       .then(() => {
       });
   };

@@ -1,7 +1,6 @@
 import { useCampus } from '@/common/contexts/CampusContext';
 import { Campuses, campusName } from '@/constants/campus';
-import { cafeterias, Cafeterias } from '@/constants/meal';
-import { MealProps } from '@/types/mealTypes';
+import { CafeteriaProps, MealProps } from '@/types/mealTypes';
 import http, { extractBodyFromResponse } from '@/utils/http';
 import useSWR, { SWRConfiguration } from 'swr';
 
@@ -9,13 +8,27 @@ interface UseMealsOptions extends SWRConfiguration {
   enabled?: boolean;
 }
 
-export const useMeals = (cafeteria: Cafeterias, options: UseMealsOptions = {}) => {
+export const useCafeterias = () => {
   const { campus } = useCampus();
-  const getMeals = async (uri: string, campus: Campuses | null, cafeteria: Cafeterias) => {
-    if (campus && cafeterias[campus].includes(cafeteria)) {
+  const getCafeterias = async (uri: string, campus: Campuses | null) => {
+    if (campus) {
+      const response = await http.getWithParams<CafeteriaProps[]>(uri, {
+        campus: campusName[campus].value
+      });
+      return extractBodyFromResponse<CafeteriaProps[]>(response) ?? [];
+    }
+  };
+
+  return useSWR(['/api/v2/menus/cafeterias', campus], ([uri, campus]) => getCafeterias(uri, campus));
+};
+
+export const useMeals = (cafeteria: CafeteriaProps, options: UseMealsOptions = {}) => {
+  const { campus } = useCampus();
+  const getMeals = async (uri: string, campus: Campuses | null, cafeteria: CafeteriaProps) => {
+    if (campus && cafeteria) {
       const response = await http.getWithParams<MealProps[]>(uri, {
         campus: campusName[campus].value,
-        cafeteriaName: cafeteria
+        cafeteriaId: cafeteria.cafeteriaId
       });
       return extractBodyFromResponse<MealProps[]>(response) ?? [];
     }
@@ -23,5 +36,5 @@ export const useMeals = (cafeteria: Cafeterias, options: UseMealsOptions = {}) =
 
   const shouldFetch = options.enabled !== false;
 
-  return useSWR(shouldFetch ? ['/api/menus', campus, cafeteria] : null, ([uri, campus, cafeteria]) => getMeals(uri, campus, cafeteria));
+  return useSWR(shouldFetch ? ['/api/v2/menus', campus, cafeteria] : null, ([uri, campus, cafeteria]) => getMeals(uri, campus, cafeteria));
 };

@@ -1,39 +1,36 @@
-import { Cafeterias } from '@/constants/meal';
 import { getData, removeData, storeData } from '@/utils/storage';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 export interface FavoriteContextProviderProps {
-  favoriteCafeteria: Cafeterias | null;
-  changeFavoriteCafeteria: (arg1: Cafeterias) => void;
+  favoriteCafeteria: string | null;
+  changeFavoriteCafeteria: (arg1: string) => void;
 }
 
 const FavoriteContext = createContext<FavoriteContextProviderProps | null>(null);
 
 const FavoriteContextProvider = ({ children }: PropsWithChildren) => {
-  const [favoriteCafeteria, setFavoriteCafeteria] = useState<Cafeterias | null>(null);
+  const [favoriteCafeteria, setFavoriteCafeteria] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchFavorite = async () => {
       const storedFavorite = await getData('favoriteCafeteria');
       if (storedFavorite) {
-        const find = Object.values<Cafeterias>(Cafeterias)
-          .find(value => value === storedFavorite);
-        setFavoriteCafeteria(find ?? null);
+        setFavoriteCafeteria(storedFavorite ?? null);
       }
     };
 
     fetchFavorite();
   }, [favoriteCafeteria]);
 
-  const changeFavoriteCafeteria = (cafeteria: Cafeterias) => {
-    if (favoriteCafeteria === cafeteria) {
+  const changeFavoriteCafeteria = (cafeteriaId: string) => {
+    if (favoriteCafeteria === cafeteriaId) {
       removeData('favoriteCafeteria');
       setFavoriteCafeteria(null);
       return;
     }
 
-    storeData('favoriteCafeteria', cafeteria);
-    setFavoriteCafeteria(cafeteria);
+    storeData('favoriteCafeteria', cafeteriaId);
+    setFavoriteCafeteria(cafeteriaId);
   };
 
   const contextValue = { favoriteCafeteria, changeFavoriteCafeteria };

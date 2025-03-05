@@ -14,13 +14,13 @@ import Swiper from 'react-native-swiper';
 const HomeMeal = () => {
   const { theme } = useTheme();
   const { campus } = useCampus();
-  const { data, isLoading, error } = useHomeMeal();
+  const { data, isLoading } = useHomeMeal();
   const [meals, setMeals] = useState<HomeMealProps[]>([]);
   const { favoriteCafeteria } = useFavoriteCafeteria();
 
   useEffect(() => {
     if (data) {
-      favoriteCafeteria ? setMeals(sortPinElementTop(data, meal => meal.cafeteriaName === favoriteCafeteria))
+      favoriteCafeteria ? setMeals(sortPinElementTop(data, meal => meal.cafeteriaId === favoriteCafeteria))
         : setMeals(data);
     }
   }, [data, favoriteCafeteria]);

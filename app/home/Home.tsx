@@ -32,7 +32,12 @@ const Home = () => {
     const [newMajor, newMinor] = version.split('.').map(Number);
     const [currentMajor, currentMinor] = currentVersion!.split('.').map(Number);
 
-    if (version && currentVersion && (newMajor > currentMajor || newMinor > currentMinor)) {
+    const isUpdatable = () => {
+      return version && currentVersion && (newMajor > currentMajor
+        || (newMajor == currentMajor && newMinor > currentMinor));
+    };
+
+    if (isUpdatable()) {
       Alert.alert(
         '업데이트 ⬆️',
         '앱을 새로운 버전으로 업데이트 해주세요!',
