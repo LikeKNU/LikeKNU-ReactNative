@@ -1,9 +1,12 @@
 import BackHeader from '@/common/components/BackHeader';
+import CampusSwitch from '@/common/components/CampusSwitch';
 import PageLayout from '@/common/components/PageLayout';
+import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
+import { Campuses } from '@/constants/campus';
 import colors from '@/constants/colors';
 import { usePathname, useRouter } from 'expo-router';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BackHandler, Platform, StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
 import { WebViewNativeEvent } from 'react-native-webview/lib/WebViewTypes';
@@ -17,10 +20,13 @@ const UnivClub = () => {
   const webViewRef = useRef<WebView>(null);
   const router = useRouter();
   const pathname = usePathname();
+  const { campus } = useCampus();
+  const [selectedCampus, setSelectedCampus] = useState<Campuses | null>(campus);
+  const [webViewUrl, setWebViewUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const onAndroidBackPress = () => {
-      if (!navigationState?.canGoBack) {
+      if (!navigationState?.canGoBack || isHome) {
         router.back();
         return true;
       }
@@ -40,16 +46,32 @@ const UnivClub = () => {
     }
   }, [navigationState?.canGoBack, pathname]);
 
+  useEffect(() => {
+    if (selectedCampus) {
+      const newUrl = `https://univ-club.vercel.app/?campus=${selectedCampus}`;
+      setWebViewUrl(newUrl);
+      return;
+    }
+
+    setWebViewUrl('https://univ-club.vercel.app/');
+  }, [selectedCampus]);
+
   const handleNavigationStateChange = (event: WebViewNativeEvent) => {
     setNavigationState(event);
-    setIsHome(event.url === 'https://univ-club.vercel.app/');
+    setIsHome(event.url === webViewUrl);
+
+    setIsHome(event.url.split('?')[0] === 'https://univ-club.vercel.app/');
   };
 
   return (
     <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].container }}>
-      <BackHeader title="동아리" onPress={() => {
-        navigationState?.canGoBack ? webViewRef.current?.goBack() : router.back();
-      }} />
+      <BackHeader
+        title="동아리"
+        onPress={() => {
+          isHome ? router.back() : webViewRef.current?.goBack();
+        }}
+        button={isHome && <CampusSwitch handleSelectCampus={setSelectedCampus} containAll={true} />}
+      />
       {!isLoaded &&
         <View style={[styles.progressBar, { width: `${progress * 100}%`, backgroundColor: colors[theme].blue }]} />
       }
@@ -59,9 +81,9 @@ const UnivClub = () => {
           <FontText fontWeight="500" style={styles.subNotice}>동아리 연합회나 동아리장이 직접 등록해요</FontText>
         </View>
       }*/}
-      <WebView
+      {webViewUrl && <WebView
         ref={webViewRef}
-        source={{ uri: 'https://univ-club.vercel.app/' }}
+        source={{ uri: webViewUrl! }}
         onNavigationStateChange={handleNavigationStateChange}
         allowsBackForwardNavigationGestures={true}
         javaScriptEnabled={true}
@@ -76,6 +98,7 @@ const UnivClub = () => {
         }}
         onLoadStart={() => setIsLoaded(false)}
       />
+      }
     </PageLayout>
   );
 };

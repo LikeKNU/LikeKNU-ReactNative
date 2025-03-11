@@ -7,12 +7,15 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { Pressable, StyleSheet } from 'react-native';
 
 export interface CampusSwitchProps {
-  handleSelectCampus: (campus: Campuses) => void;
+  handleSelectCampus: (campus: Campuses | null) => void;
+  containAll?: boolean;
 }
 
-const CampusSwitch = ({ handleSelectCampus }: CampusSwitchProps) => {
+const CampusSwitch = ({ handleSelectCampus, containAll }: CampusSwitchProps) => {
   const { theme } = useTheme();
   const { showActionSheetWithOptions } = useActionSheet();
+
+  const size = containAll ? Object.values(Campuses).length + 1 : Object.values(Campuses).length;
 
   return (
     <Pressable
@@ -21,11 +24,20 @@ const CampusSwitch = ({ handleSelectCampus }: CampusSwitchProps) => {
         showActionSheetWithOptions({
           title: '캠퍼스를 선택하세요',
           options: Object.values(Campuses).map(campus => campusName[campus].name)
+            .concat(containAll ? ['전체'] : [])
             .concat(['닫기']),
-          cancelButtonIndex: Object.values(Campuses).length,
+          cancelButtonIndex: containAll ? Object.values(Campuses).length + 1 : Object.values(Campuses).length,
           cancelButtonTintColor: colors[theme].red
         }, index => {
-          if (index === Object.values(Campuses).length) return;
+          if (index && index >= size) {
+            return;
+          }
+
+          if (containAll && index === size - 1) {
+            handleSelectCampus(null);
+            return;
+          }
+
           handleSelectCampus(Object.values(Campuses)[index!]);
         });
       }}

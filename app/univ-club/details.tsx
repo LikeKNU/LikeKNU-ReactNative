@@ -1,13 +1,17 @@
 import { useClubDetails } from '@/api/univClub';
 import BackHeader from '@/common/components/BackHeader';
+import CampusSwitch from '@/common/components/CampusSwitch';
 import PageLayout from '@/common/components/PageLayout';
+import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
+import { Campuses } from '@/constants/campus';
 import colors from '@/constants/colors';
 import { Club } from '@/types/univClubTypes';
 import { findCampusColor, findClubCategoryColor } from '@/utils/color';
 import { Image } from 'expo-image';
 import { useLocalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 const UnivClubDetailsPage = () => {
@@ -37,16 +41,14 @@ const UnivClubDetailsPage = () => {
                 <FontText fontWeight="600" style={{ fontSize: 16, color: colors[theme].gray100 }}>{data.tag}</FontText>
               </View>
             </View>
-            <View style={{ flex: 3, alignItems: 'flex-end', justifyContent: 'center' }}>
-              <View style={{
-                backgroundColor: colors[theme].gray300,
-                paddingVertical: 10,
-                paddingHorizontal: 16,
-                borderRadius: 8
-              }}>
-                <FontText fontWeight="600"
-                          style={{ fontSize: 15, color: findCampusColor(data.campus) }}>{data.campus}</FontText>
-              </View>
+            <View style={{
+              backgroundColor: colors[theme].gray300,
+              paddingVertical: 10,
+              paddingHorizontal: 16,
+              borderRadius: 8
+            }}>
+              <FontText fontWeight="600"
+                        style={{ fontSize: 15, color: findCampusColor(data.campus) }}>{data.campus}</FontText>
             </View>
           </>
         }

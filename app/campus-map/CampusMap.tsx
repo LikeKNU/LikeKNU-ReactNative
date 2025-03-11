@@ -1,8 +1,8 @@
 import CampusMapView from '@/app/campus-map/components/CampusMapView';
-import CampusSwitch from '@/app/campus-map/components/CampusSwitch';
 import MarkerFilter from '@/app/campus-map/components/MarkerFilter';
 import PlaceCardContainer from '@/app/campus-map/components/PlaceCardContainer';
 import BackHeader from '@/common/components/BackHeader';
+import CampusSwitch from '@/common/components/CampusSwitch';
 import PageLayout from '@/common/components/PageLayout';
 import FontText from '@/common/text/FontText';
 import { Campuses, campusName } from '@/constants/campus';

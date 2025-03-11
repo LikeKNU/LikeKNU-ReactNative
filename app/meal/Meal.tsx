@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: 10
+    paddingVertical: 10,
+    gap: 12
   },
   page: {
     alignItems: 'center',
