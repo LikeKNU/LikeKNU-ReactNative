@@ -20,6 +20,12 @@ const MenusItem = ({ menus, onLayout }: MenusItemProps) => {
 
     leftMenu = menuCorner[0].split(' ');
     rightMenu = menuCorner[1].split(' ');
+  } else if (menus && menus.includes('B:')) {
+    const menuCorner = menus.split('B:');
+    menuCorner[1] = 'B:'.concat(menuCorner[1]);
+
+    leftMenu = menuCorner[0].split(' ');
+    rightMenu = menuCorner[1].split(' ');
   } else {
     const menuList: string[] = menus ? menus.split(' ') : [];
     const centerPoint = Math.ceil(menuList.length / 2);
