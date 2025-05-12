@@ -10,11 +10,9 @@ import TabTitle from '@/common/components/TabTitle';
 import { useCampus } from '@/common/contexts/CampusContext';
 import { useFavoriteCafeteria } from '@/common/contexts/FavoriteContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
-import { campusName } from '@/constants/campus';
 import colors from '@/constants/colors';
 import { CafeteriaProps } from '@/types/mealTypes';
 import { sortPinElementTop } from '@/utils/data';
-import analytics from '@react-native-firebase/analytics';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { ICarouselInstance } from 'react-native-reanimated-carousel';
@@ -41,13 +39,6 @@ const Meal = () => {
 
   useEffect(() => {
     carouselRef.current?.scrollTo({ index: activeIndex, animated: true });
-    const selectCafeteria = cafeteriaList[activeIndex];
-    if (campus && selectCafeteria) {
-      analytics().logSelectContent({
-        content_type: 'cafeteria',
-        item_id: `${campusName[campus].name} ${selectCafeteria}`
-      });
-    }
   }, [activeIndex]);
 
   const changeCafeteria = (index: number) => {
