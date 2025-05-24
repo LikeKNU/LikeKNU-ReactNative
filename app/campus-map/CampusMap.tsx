@@ -15,7 +15,7 @@ import { StyleSheet, View } from 'react-native';
 
 const CampusMap = () => {
   const data = campusMapMockData;
-  const [selectedCampus, setSelectedCampus] = useState<Campuses>(Campuses.CHEONAN);
+  const [selectedCampus, setSelectedCampus] = useState<Campuses | null>(Campuses.CHEONAN);
   const [filter, setFilter] = useState<PlaceTypes | null>(null);
   const [selectedMarkerId, setSelectedMarkerId] = useState<number | null>(null);
   const [places, setPlaces] = useState<Place[]>(data);
@@ -44,8 +44,8 @@ const CampusMap = () => {
       <BackHeader title={
         <FontText fontWeight="600" style={{
           fontSize: 20,
-          color: campusColors[selectedCampus]
-        }}>{campusName[selectedCampus].name}</FontText>
+          color: campusColors[selectedCampus!]
+        }}>{campusName[selectedCampus!].name}</FontText>
       } button={<CampusSwitch handleSelectCampus={setSelectedCampus} />} />
       <View style={styles.noticeContainer}>
         <FontText fontWeight="600" style={styles.notice}>아직 개발 중인 서비스에요</FontText>
@@ -55,7 +55,7 @@ const CampusMap = () => {
         {!selectedMarkerId && <MarkerFilter filter={filter} setFilter={setFilter} />}
         <CampusMapView
           places={renderedPlaces}
-          selectedCampus={selectedCampus}
+          selectedCampus={selectedCampus!}
           filter={filter}
           selectedMarkerId={selectedMarkerId}
           handleTapMarker={setSelectedMarkerId}

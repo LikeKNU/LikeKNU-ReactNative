@@ -23,7 +23,7 @@ const ShuttleBusView = ({ shuttleId, note }: ShuttleBusViewProps) => {
         contentContainerStyle={styles.contentContainer}
         data={data}
         renderItem={({ item }) => <ShuttleBusItem shuttleBus={item} />}
-        keyExtractor={item => item.busName}
+        keyExtractor={item => item.shuttleBusId}
         showsVerticalScrollIndicator={false}
       />
     </>

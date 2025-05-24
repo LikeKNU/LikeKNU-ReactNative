@@ -22,7 +22,7 @@ import { Alert, Linking, Platform, ScrollView, StyleSheet, View } from 'react-na
 const Home = () => {
   const { theme } = useTheme();
   const router = useRouter();
-  const notificationResponseListener = useRef<Notifications.EventSubscription>();
+  const notificationResponseListener = useRef<Notifications.EventSubscription>(null);
 
   const checkAppVersion = async () => {
     const response = await fetch(`${API_URL}/api/versions`);
@@ -68,12 +68,12 @@ const Home = () => {
     notificationResponseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       router.replace({
         pathname: '/taxi-mate',
-        params: { partyId: response.notification.request.content.data.partyId }
+        params: { partyId: response.notification.request.content.data.partyId as string }
       });
     });
 
     return () => {
-      notificationResponseListener.current && Notifications.removeNotificationSubscription(notificationResponseListener.current);
+      notificationResponseListener.current && notificationResponseListener.current.remove();
     };
   }, []);
 
@@ -87,9 +87,9 @@ const Home = () => {
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
           <HomeOpenChat />
-          <HomeWiki />
+          {/*<HomeWiki />*/}
           <HomeUnivClub />
-          <HomeCampusMap />
+          {/*<HomeCampusMap />*/}
         </View>
         <HomeAnnouncement />
         <HomeBus />

@@ -11,11 +11,11 @@ import { usePathname } from 'expo-router';
 import { useEffect, useState } from 'react';
 
 const Bus = () => {
-  const [busType, setBusType] = useState<ValueNameType>(buses.CITY_BUS);
+  const [busType, setBusType] = useState<ValueNameType>(buses.SHUTTLE_BUS);
   const pathname = usePathname();
 
   useEffect(() => {
-    setBusType(buses.CITY_BUS);
+    setBusType(buses.SHUTTLE_BUS);
   }, [pathname]);
 
   return (
@@ -29,8 +29,8 @@ const Bus = () => {
         tabItems={Object.values(buses).map(value => value)}
       />
       <BusBannerAd />
-      {busType === buses.CITY_BUS && <CityBus />}
       {busType === buses.SHUTTLE_BUS && <ShuttleBus />}
+      {busType === buses.CITY_BUS && <CityBus />}
     </PageLayout>
   );
 };

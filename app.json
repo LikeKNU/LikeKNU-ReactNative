@@ -2,12 +2,12 @@
   "expo": {
     "name": "공주대처럼",
     "slug": "like-knu",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "buildNumber": "75",
+      "buildNumber": "80",
       "splash": {
         "image": "./assets/splash.png",
         "backgroundColor": "#FFFFFF",
@@ -32,7 +32,7 @@
       "appStoreUrl": "https://apps.apple.com/kr/app/%EA%B3%B5%EC%A3%BC%EB%8C%80%EC%B2%98%EB%9F%BC/id6499512208"
     },
     "android": {
-      "versionCode": 75,
+      "versionCode": 80,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -140,7 +140,7 @@
       [
         "@mj-studio/react-native-naver-map",
         {
-          "client_id": "pe2k6cam8k"
+          "client_id": "clidktcjhe"
         }
       ]
     ],
