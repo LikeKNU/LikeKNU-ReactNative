@@ -73,7 +73,7 @@ const BusArrivalTimeListItem = ({ arrivalBus, isNext }: BusArrivalTimeListItemPr
         </FontText>
       </View>
       {isNext && (
-        <FontText fontWeight="600" style={{ color: colors[theme].red }}>
+        <FontText fontWeight="600" style={{ color: colors[theme].blue }}>
           다음 버스
         </FontText>
       )}

@@ -1,8 +1,9 @@
 import Route from '@/app/bus/components/Route';
 import AnimatedButton from '@/common/components/AnimatedButton';
+import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
-import colors from '@/constants/colors';
+import colors, { campusColors } from '@/constants/colors';
 import { StyleSheet, View } from 'react-native';
 
 interface RouteListItemProps {
@@ -14,6 +15,7 @@ interface RouteListItemProps {
 
 const BusRouteListItem = ({ onPress, origin, destination, time }: RouteListItemProps) => {
   const { theme } = useTheme();
+  const { campus } = useCampus();
 
   return (
     <View style={[styles.container, { borderBottomColor: colors[theme].gray300 }]}>
@@ -21,7 +23,7 @@ const BusRouteListItem = ({ onPress, origin, destination, time }: RouteListItemP
         <Route origin={origin} destination={destination} />
         <View style={styles.departureTimeContainer}>
           <FontText style={{ color: colors[theme].gray100 }}>{'다음 버스: '}</FontText>
-          <FontText style={{ color: colors[theme].red }}>{(!time || time === '') ? '없음' : time}</FontText>
+          <FontText style={{ color: campusColors[campus!] }}>{(!time || time === '') ? '없음' : time}</FontText>
         </View>
       </View>
       <AnimatedButton onPress={onPress}>

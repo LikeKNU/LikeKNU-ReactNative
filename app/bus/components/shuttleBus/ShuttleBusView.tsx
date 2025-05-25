@@ -18,7 +18,7 @@ const ShuttleBusView = ({ shuttleId, note }: ShuttleBusViewProps) => {
 
   return (
     <>
-      {note && <FontText style={[styles.note, { color: colors[theme].red }]}>{note}</FontText>}
+      {note && <FontText style={[styles.note, { color: colors[theme].blue }]}>{note}</FontText>}
       <BottomSheetFlatList
         contentContainerStyle={styles.contentContainer}
         data={data}

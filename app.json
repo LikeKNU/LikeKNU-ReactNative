@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "buildNumber": "81",
+      "buildNumber": "82",
       "splash": {
         "image": "./assets/splash.png",
         "backgroundColor": "#FFFFFF",
@@ -32,7 +32,7 @@
       "appStoreUrl": "https://apps.apple.com/kr/app/%EA%B3%B5%EC%A3%BC%EB%8C%80%EC%B2%98%EB%9F%BC/id6499512208"
     },
     "android": {
-      "versionCode": 81,
+      "versionCode": 82,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
