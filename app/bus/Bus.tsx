@@ -7,16 +7,10 @@ import TabTitle from '@/common/components/TabTitle';
 import TopTabs from '@/common/components/TopTabs';
 import { buses } from '@/constants/bus';
 import { ValueNameType } from '@/types/common';
-import { usePathname } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Bus = () => {
   const [busType, setBusType] = useState<ValueNameType>(buses.SHUTTLE_BUS);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    setBusType(buses.SHUTTLE_BUS);
-  }, [pathname]);
 
   return (
     <PageLayout edges={['top']}>
