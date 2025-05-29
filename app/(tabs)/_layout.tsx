@@ -74,7 +74,7 @@ const TabLayout = () => {
           <RestaurantIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="600" style={[styles.label, { color: color }]}>식단</FontText>
+          <FontText fontWeight="600" style={[styles.label, { color: color }]}>식당메뉴</FontText>
         )
       }} />
       <Tabs.Screen name="more" options={{
