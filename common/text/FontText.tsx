@@ -36,7 +36,7 @@ const FontText: FunctionComponent<CustomTextProps> = ({ fontWeight, style, ...pr
         return fontName.medium;
       case '600':
         return fontName.semiBold;
-      case '700' || 'bold':
+      case '700':
         return fontName.bold;
       case '800':
         return fontName.extraBold;

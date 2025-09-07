@@ -12,9 +12,19 @@ const instance = axios.create({
 instance.interceptors.response.use(
   (res) => res,
   (error) => {
+    console.error('=== AXIOS ERROR DEBUG ===');
+    console.error('Error message:', error.message);
+    console.error('Error code:', error.code);
+    console.error('Error request:', error.request);
+    console.error('Error response:', error.response);
+    console.error('Error config:', error.config);
+    console.error('Network error check:', error.message === 'Network Error');
+    console.error('========================');
+
     console.error(
-      `${error.config.method.toUpperCase()}:${error.config.url} Error : TIME(${new Date()})\n\n${error}`,
+      `${error.config?.method?.toUpperCase()}:${error.config?.url} Error : TIME(${new Date()})\n\n${error}`,
     );
+    return Promise.reject(error);
   },
 );
 

@@ -36,7 +36,7 @@ const Wiki = () => {
   const [selectedContents, setSelectedContents] = useState<(Content[] | null)>(null);
   const buttonSlideAnim = useRef(new Animated.Value(0)).current;
   const [isButtonVisible, setIsButtonVisible] = useState<boolean>(true);
-  const buttonTimeoutRef = useRef<NodeJS.Timeout>();
+  const buttonTimeoutRef = useRef<NodeJS.Timeout>(null);
   const [isFirstTouch, setIsFirstTouch] = useState<boolean>(true);
 
   const toggleCategory = (identifier: string) => {

@@ -50,7 +50,7 @@ const TabLayout = () => {
           <HomeIcon fill={color} width={29} height={29} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="600" style={[styles.label, { color: color }]}>홈</FontText>
+          <FontText style={[styles.label, { color: color }]}>홈</FontText>
         )
       }} />
       <Tabs.Screen name="announcement" options={{
@@ -58,7 +58,7 @@ const TabLayout = () => {
           <AssignmentIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="600" style={[styles.label, { color: color }]}>공지사항</FontText>
+          <FontText style={[styles.label, { color: color }]}>공지사항</FontText>
         )
       }} />
       <Tabs.Screen name="bus" options={{
@@ -66,7 +66,7 @@ const TabLayout = () => {
           <BusFrontIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="600" style={[styles.label, { color: color }]}>버스</FontText>
+          <FontText style={[styles.label, { color: color }]}>버스</FontText>
         )
       }} />
       <Tabs.Screen name="meal" options={{
@@ -74,7 +74,7 @@ const TabLayout = () => {
           <RestaurantIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="600" style={[styles.label, { color: color }]}>식당메뉴</FontText>
+          <FontText style={[styles.label, { color: color }]}>식당메뉴</FontText>
         )
       }} />
       <Tabs.Screen name="more" options={{
@@ -82,7 +82,7 @@ const TabLayout = () => {
           <ThreeDotsIcon fill={color} width={26} height={26} />
         ),
         tabBarLabel: ({ color }) => (
-          <FontText fontWeight="600" style={[styles.label, { color: color }]}>더보기</FontText>
+          <FontText style={[styles.label, { color: color }]}>더보기</FontText>
         )
       }} />
     </Tabs>

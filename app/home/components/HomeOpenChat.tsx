@@ -24,18 +24,18 @@ export default HomeOpenChat;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 72,
-    justifyContent: 'center',
+    height: 82,
     alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 16,
     marginBottom: 10
   },
   box: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    gap: 8
+    gap: 4
   },
   title: {
-    fontSize: 18
+    fontSize: 14
   }
 });

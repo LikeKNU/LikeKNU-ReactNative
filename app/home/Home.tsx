@@ -1,12 +1,11 @@
 import HomeAnnouncement from '@/app/home/components/HomeAnnouncement';
 import HomeBus from '@/app/home/components/HomeBus';
 import HomeCalendar from '@/app/home/components/HomeCalendar';
-import HomeCampusMap from '@/app/home/components/HomeCampusMap';
 import HomeHeader from '@/app/home/components/HomeHeader';
 import HomeMeal from '@/app/home/components/HomeMeal';
 import HomeOpenChat from '@/app/home/components/HomeOpenChat';
+import HomeRestaurantMap from '@/app/home/components/HomeRestaurantMap';
 import HomeUnivClub from '@/app/home/components/HomeUnivClub';
-import HomeWiki from '@/app/home/components/HomeWiki';
 import HomeBannerAd from '@/common/ads/HomeBannerAd';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
@@ -90,6 +89,7 @@ const Home = () => {
           {/*<HomeWiki />*/}
           <HomeUnivClub />
           {/*<HomeCampusMap />*/}
+          <HomeRestaurantMap />
         </View>
         <HomeAnnouncement />
         <HomeBus />

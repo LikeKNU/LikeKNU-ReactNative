@@ -2,17 +2,21 @@
   "expo": {
     "name": "공주대처럼",
     "slug": "like-knu",
-    "version": "3.2.1",
+    "version": "4.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon-light-v2.png",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "buildNumber": "82",
+      "icon": {
+        "light": "./assets/icon-light-v2.png",
+        "dark": "./assets/icon-dark-v2.png"
+      },
+      "buildNumber": "86",
       "splash": {
-        "image": "./assets/splash.png",
+        "image": "./assets/splash-light-v2.png",
         "backgroundColor": "#FFFFFF",
         "dark": {
-          "image": "./assets/splash-dark.png",
+          "image": "./assets/splash-dark-v2.png",
           "resizeMode": "contain",
           "backgroundColor": "#101012"
         }
@@ -32,16 +36,16 @@
       "appStoreUrl": "https://apps.apple.com/kr/app/%EA%B3%B5%EC%A3%BC%EB%8C%80%EC%B2%98%EB%9F%BC/id6499512208"
     },
     "android": {
-      "versionCode": 82,
+      "versionCode": 86,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon-v2.png",
         "backgroundColor": "#FFFFFF"
       },
       "splash": {
-        "image": "./assets/splash-android.png",
+        "image": "./assets/splash-android-light-v2.png",
         "backgroundColor": "#FFFFFF",
         "dark": {
-          "image": "./assets/splash-android-dark.png",
+          "image": "./assets/splash-android-dark-v2.png",
           "resizeMode": "contain",
           "backgroundColor": "#101012"
         }

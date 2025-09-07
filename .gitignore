@@ -47,3 +47,5 @@ ios/
 android/
 
 eas.json
+
+.serena/
