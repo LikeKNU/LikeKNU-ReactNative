@@ -1,11 +1,21 @@
+import AdPage from '@/app/announcement/components/AdPage';
 import WebViewPage from '@/app/announcement/components/WebViewPage';
 import { useLocalSearchParams } from 'expo-router';
 
 const AnnouncementDetailsPage = () => {
-  const { url, id, isBookmark } = useLocalSearchParams<{ url: string; id: string; isBookmark: string; }>();
+  const { url, id, isBookmark, isAd } = useLocalSearchParams<{
+    url: string;
+    id: string;
+    isBookmark: string;
+    isAd: string;
+  }>();
   const isBookmarked = isBookmark === 'true';
+  const isAdAnnouncement = isAd === 'true';
 
-  return <WebViewPage title="공지사항" url={url} id={id!} isBookmarked={isBookmarked} />
+  return (
+    isAdAnnouncement ? <AdPage id={id} />
+      : <WebViewPage title="공지사항" url={url} id={id!} isBookmarked={isBookmarked} />
+  );
 };
 
 export default AnnouncementDetailsPage;

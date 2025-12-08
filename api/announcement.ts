@@ -1,6 +1,6 @@
 import { useCampus } from '@/common/contexts/CampusContext';
 import { campusName } from '@/constants/campus';
-import { AnnouncementProps } from '@/types/announcementType';
+import { AdAnnouncementProps, AnnouncementProps } from '@/types/announcementType';
 import { useDeviceId } from '@/utils/device';
 import http, { extractBodyFromResponse, extractMessageFromResponse } from '@/utils/http';
 import useSWR from 'swr';
@@ -24,6 +24,24 @@ export const useAnnouncements = (category: string) => {
   };
 
   return useSWRInfinite(getKey, getAnnouncements, { initialSize: 1, revalidateFirstPage: false });
+};
+
+export const useAdAnnouncements = () => {
+  const getAdAnnouncements = async (uri: string) => {
+    const response = await http.get<AnnouncementProps[]>(uri);
+    return extractBodyFromResponse<AnnouncementProps[]>(response) ?? [];
+  };
+
+  return useSWR(['/api/announcements/ad'], ([uri]) => getAdAnnouncements(uri));
+};
+
+export const useAdAnnouncement = (id: string) => {
+  const getAdAnnouncement = async (uri: string) => {
+    const response = await http.get<AdAnnouncementProps>(uri);
+    return extractBodyFromResponse<AdAnnouncementProps>(response);
+  };
+
+  return useSWR([`/api/announcements/ad/${id}`], ([uri]) => getAdAnnouncement(uri));
 };
 
 export const useAnnouncementsSearch = (keyword: string) => {

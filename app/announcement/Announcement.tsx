@@ -1,4 +1,4 @@
-import { useAnnouncements } from '@/api/announcement';
+import { useAdAnnouncements, useAnnouncements } from '@/api/announcement';
 import BookmarkIcon from '@/assets/icons/bookmark-fill.svg';
 import SearchIcon from '@/assets/icons/search.svg';
 import AnnouncementBannerAd from '@/common/ads/AnnouncementBannerAd';
@@ -15,23 +15,34 @@ import { AnnouncementProps } from '@/types/announcementType';
 import { ValueNameType } from '@/types/common';
 import { flatMapRemoveDuplicate } from '@/utils/data';
 import { usePathname, useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const Announcement = () => {
   const [category, setCategory] = useState<ValueNameType>(categories.STUDENT_NEWS);
   const {
-    data,
+    data: announcementsResponse,
     size,
     setSize,
     isLoading,
     isValidating,
     mutate
   } = useAnnouncements(category.value);
+  const {
+    data: adAnnouncementsResponse,
+    isLoading: isAdLoading,
+    isValidating: isAdValidating,
+    mutate: adMutate
+  } = useAdAnnouncements();
   const { theme } = useTheme();
   const router = useRouter();
-  const announcements = flatMapRemoveDuplicate<AnnouncementProps[]>(data);
+  const announcements = flatMapRemoveDuplicate<AnnouncementProps[]>(announcementsResponse);
+  const adAnnouncements = adAnnouncementsResponse ?? [];
   const pathname = usePathname();
+
+  const combinedAnnouncements = useMemo(() => {
+    return [...adAnnouncements, ...announcements];
+  }, [adAnnouncements, announcements]);
 
   useEffect(() => {
     if (pathname === '/announcement') {
@@ -73,11 +84,12 @@ const Announcement = () => {
       />
       <AnnouncementBannerAd />
       <InfiniteScrollView
-        data={announcements}
+        data={combinedAnnouncements}
         handleEndReached={loadMore}
-        isValidating={isValidating}
-        isLoading={isLoading}
+        isValidating={isValidating || isAdValidating}
+        isLoading={isLoading || isAdLoading}
         mutate={mutate}
+        adMutate={adMutate}
         resetDependency={category}
       />
     </PageLayout>

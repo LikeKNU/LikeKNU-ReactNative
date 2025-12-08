@@ -10,7 +10,8 @@ interface InfiniteScrollViewProps {
   isValidating: boolean;
   isLoading: boolean;
   resetDependency?: any;
-  mutate?: any;
+  mutate: () => void;
+  adMutate?: () => void;
 }
 
 const InfiniteScrollView = ({
@@ -19,7 +20,8 @@ const InfiniteScrollView = ({
                               isValidating,
                               resetDependency,
                               isLoading,
-                              mutate
+                              mutate,
+                              adMutate
                             }: InfiniteScrollViewProps) => {
   const { theme } = useTheme();
   const contentRef = useRef<FlatList>(null);
@@ -54,7 +56,12 @@ const InfiniteScrollView = ({
         <RefreshControl
           tintColor={colors[theme].gray100}
           refreshing={isLoading}
-          onRefresh={mutate}
+          onRefresh={() => {
+            mutate();
+            if (adMutate) {
+              adMutate();
+            }
+          }}
         />
       }
     />

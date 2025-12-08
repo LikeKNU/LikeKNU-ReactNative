@@ -34,7 +34,8 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
       params: {
         url: announcement.announcementUrl,
         id: announcement.announcementId,
-        isBookmark: String(isBookmark)
+        isBookmark: String(isBookmark),
+        isAd: String(announcement.isAd),
       }
     });
   };
@@ -54,18 +55,36 @@ const AnnouncementItem = ({ announcement }: { announcement: AnnouncementProps })
           {announcement.announcementTitle}
         </FontText>
         <View style={styles.additionalContainer}>
-          <FontText style={[{ color: colors[theme].gray100 }, styles.additional]}>
-            {announcement.announcementTag + ' | ' + announcement.announcementDate}
-          </FontText>
-          {isToday && <DotIcon fill={colors[theme].red} width={14} height={14} />}
+          {announcement.isAd ?
+            <>
+              <FontText style={[{ color: colors[theme].gray100 }, styles.additional]}>
+                {announcement.subTitle}
+              </FontText>
+            </>
+            : <>
+              <FontText style={[{ color: colors[theme].gray100 }, styles.additional]}>
+                {announcement.announcementTag + ' | ' + announcement.announcementDate}
+              </FontText>
+              {isToday && <DotIcon fill={colors[theme].red} width={14} height={14} />}
+            </>
+          }
         </View>
       </View>
       <View style={{ flex: 1, alignItems: 'flex-end' }}>
-        <BookmarkItem
-          announcementId={announcement.announcementId}
-          isBookmarked={isBookmark}
-          handleChange={handleChangeBookmark}
-        />
+        {announcement.isAd ?
+          <FontText fontWeight="500"
+                    style={{
+                      fontSize: 12,
+                      paddingRight: 6,
+                      paddingTop: 2,
+                      color: colors[theme].gray200
+                    }}>광고</FontText>
+          : <BookmarkItem
+            announcementId={announcement.announcementId}
+            isBookmarked={isBookmark}
+            handleChange={handleChangeBookmark}
+          />
+        }
       </View>
     </AnimatedPressable>
   );
