@@ -141,6 +141,7 @@ const Content = () => {
       contentStyle: { backgroundColor: colors[theme][pathname === '/' ? 'background' : 'container'] }
     }}>
       <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="restaurant-map/index" options={{ presentation: 'containedModal', headerShown: false }} />
     </Stack>
   );
 };

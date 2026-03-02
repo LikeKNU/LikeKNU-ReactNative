@@ -12,15 +12,13 @@ const HomeRestaurantMap = () => {
 
   return (
     <Pressable
-      style={[styles.container, { backgroundColor: colors[theme].container, opacity: 0.6 }]}
-      onPress={() => router.navigate('/restaurant-map')}
-      disabled={true}
+      style={[styles.container, { backgroundColor: colors[theme].container }]}
+      onPress={() => router.push('/restaurant-map')}
     >
       <View style={styles.box}>
         <MapIcon width={28} height={28} />
         <View style={{ alignItems: 'center' }}>
           <FontText fontWeight="600" style={styles.title}>맛집지도</FontText>
-          <FontText fontWeight="500" style={{ color: colors[theme].gray100, fontSize: 10 }}>준비 중</FontText>
         </View>
       </View>
     </Pressable>
@@ -41,7 +39,7 @@ const styles = StyleSheet.create({
   box: {
     flexDirection: 'column',
     alignItems: 'center',
-    gap: 4
+    gap: 6
   },
   title: {
     fontSize: 14
