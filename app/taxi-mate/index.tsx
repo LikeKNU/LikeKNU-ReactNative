@@ -13,7 +13,8 @@ const TaxiMatePage = () => {
 
     Notifications.setNotificationHandler({
       handleNotification: async () => ({
-        shouldShowAlert: false,
+        shouldShowBanner: false,
+        shouldShowList: false,
         shouldPlaySound: false,
         shouldSetBadge: false,
       })
@@ -22,7 +23,8 @@ const TaxiMatePage = () => {
     return () => {
       Notifications.setNotificationHandler({
         handleNotification: async () => ({
-          shouldShowAlert: true,
+          shouldShowBanner: true,
+          shouldShowList: true,
           shouldPlaySound: true,
           shouldSetBadge: true,
         })

@@ -1,6 +1,7 @@
 import CloseButton from '@/common/components/CloseButton';
 import CloseHeader from '@/common/components/CloseHeader';
 import PageLayout from '@/common/components/PageLayout';
+import { useCampus } from '@/common/contexts/CampusContext';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { usePathname, useRouter } from 'expo-router';
@@ -19,12 +20,18 @@ const RestaurantMap = () => {
   const webViewRef = useRef<WebView>(null);
   const router = useRouter();
   const pathname = usePathname();
+  const { campus } = useCampus();
   const [webViewUrl, setWebViewUrl] = useState<string | null>(null);
   const { bottom } = useSafeAreaInsets();
 
   useEffect(() => {
-    setWebViewUrl('https://knu-matzip.vercel.app/');
-  }, []);
+    if (campus) {
+      setWebViewUrl(`https://knu-matzip.vercel.app/?campus=${campus?.toUpperCase()}`);
+      return;
+    }
+
+    setWebViewUrl('https://knu-matzip.vercel.app');
+  }, [campus]);
 
   useEffect(() => {
     const onAndroidBackPress = () => {
