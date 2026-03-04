@@ -3,12 +3,13 @@
     "name": "공주대처럼",
     "slug": "like-knu",
     "version": "5.0.0",
+    "platforms": ["ios", "android"],
     "orientation": "portrait",
     "icon": "./assets/icon-light-v2.png",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/icon-ios-v2.icon",
-      "buildNumber": "95",
+      "buildNumber": "96",
       "splash": {
         "image": "./assets/splash-light-v2.png",
         "backgroundColor": "#FFFFFF",
@@ -34,7 +35,7 @@
       "appStoreUrl": "https://apps.apple.com/kr/app/%EA%B3%B5%EC%A3%BC%EB%8C%80%EC%B2%98%EB%9F%BC/id6499512208"
     },
     "android": {
-      "versionCode": 95,
+      "versionCode": 96,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon-v2.png",
         "backgroundColor": "#FFFFFF"

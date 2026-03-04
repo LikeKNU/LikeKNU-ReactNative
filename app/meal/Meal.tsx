@@ -35,6 +35,7 @@ const Meal = () => {
 
   useEffect(() => {
     setActiveIndex(0);
+    carouselRef.current?.scrollTo({ index: 0, animated: false });
 
     if (campus && cafeterias) {
       setCafeteriaList(favoriteCafeteria ? sortPinElementTop<CafeteriaProps>(cafeterias, cafeteria => cafeteria.cafeteriaId === favoriteCafeteria)
@@ -42,12 +43,9 @@ const Meal = () => {
     }
   }, [favoriteCafeteria, campus, cafeterias]);
 
-  useEffect(() => {
-    carouselRef.current?.scrollTo({ index: activeIndex, animated: true });
-  }, [activeIndex]);
-
   const changeCafeteria = (index: number) => {
     setActiveIndex(index);
+    carouselRef.current?.scrollTo({ index, animated: true });
   };
 
   const reportDataStrange = () => {
@@ -124,7 +122,7 @@ const Meal = () => {
       </TabHeader>
       <MealBannerAd />
       <View style={styles.header}>
-        {cafeteriaList && cafeteriaList.length > 0 &&
+        {cafeteriaList && cafeteriaList.length > 0 && cafeteriaList[activeIndex] &&
           <>
             <CafeteriasSelector
               cafeteriaList={cafeteriaList}
@@ -144,13 +142,13 @@ const Meal = () => {
         width={screenWidth}
         containerStyle={{ flex: 1 }}
         loop={false}
+        enabled={false}
         data={cafeteriaList}
         renderItem={({ item: cafeteria, index }) =>
           <View key={cafeteria.cafeteriaId} style={styles.page}>
             <MealView cafeteria={cafeteria} isActive={index === activeIndex} />
           </View>
         }
-        onSnapToItem={(index) => setActiveIndex(index)}
       />
     </PageLayout>
   );

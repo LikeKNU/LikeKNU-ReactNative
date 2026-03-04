@@ -20,7 +20,7 @@ const FavoriteContextProvider = ({ children }: PropsWithChildren) => {
     };
 
     fetchFavorite();
-  }, [favoriteCafeteria]);
+  }, []);
 
   const changeFavoriteCafeteria = (cafeteriaId: string) => {
     if (favoriteCafeteria === cafeteriaId) {
