@@ -6,7 +6,7 @@ import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { usePathname, useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
-import { BackHandler, Platform, StyleSheet, View } from 'react-native';
+import { Linking, BackHandler, Platform, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 import { WebViewNativeEvent } from 'react-native-webview/lib/WebViewTypes';
@@ -83,6 +83,19 @@ const RestaurantMap = () => {
           setProgress(nativeEvent.progress);
           if (nativeEvent.progress === 1) {
             setIsLoaded(true);
+          }
+        }}
+        onMessage={(event) => {
+          try {
+            const data = JSON.parse(event.nativeEvent.data)
+            if (data.type === 'OPEN_DEEP_LINK') {
+              Linking.openURL(data.url).catch(() => {
+                if (data.fallbackUrl) {
+                  Linking.openURL(data.fallbackUrl)                                                                                                                                        }
+              })
+            }
+          } catch (e) {
+            console.error('Failed to parse message:', e)
           }
         }}
         onLoadStart={() => setIsLoaded(false)}
