@@ -49,3 +49,7 @@ android/
 eas.json
 
 .serena/
+
+CLAUDE.md
+GEMINI.md
+AGENTS.md

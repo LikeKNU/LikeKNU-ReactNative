@@ -7,6 +7,7 @@ import HomeOpenChat from '@/app/home/components/HomeOpenChat';
 import HomeRestaurantMap from '@/app/home/components/HomeRestaurantMap';
 import HomeUnivClub from '@/app/home/components/HomeUnivClub';
 import HomeBannerAd from '@/common/ads/HomeBannerAd';
+import HomeNativeAdCard from '@/common/ads/HomeNativeAdCard';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
@@ -92,6 +93,7 @@ const Home = () => {
           <HomeRestaurantMap />
         </View>
         <HomeAnnouncement />
+        <HomeNativeAdCard />
         <HomeBus />
         <View style={{ flexDirection: 'row', marginTop: 10, gap: 10 }}>
           <HomeMeal />
