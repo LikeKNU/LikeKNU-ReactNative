@@ -80,7 +80,7 @@ const Home = () => {
   return (
     <PageLayout edges={['top']} style={{ backgroundColor: colors[theme].background }}>
       <HomeHeader />
-      <HomeBannerAd />
+      {/*<HomeBannerAd />*/}
       <ScrollView
         contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}

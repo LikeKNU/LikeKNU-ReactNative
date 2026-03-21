@@ -7,7 +7,7 @@ import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { FlatList, Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 const HomeCalendar = () => {
   const { data } = useHomeCalendar();
@@ -26,7 +26,9 @@ const HomeCalendar = () => {
           }
           style={{ height: 232 }}
         >
-          {data && data.length > 0 ? (
+          {data === undefined ? (
+            <ActivityIndicator style={{ flex: 1 }} />
+          ) : data && data.length > 0 ? (
             <FlatList
               scrollEnabled={false}
               data={data}

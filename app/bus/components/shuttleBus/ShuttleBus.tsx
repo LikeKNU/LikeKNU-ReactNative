@@ -11,7 +11,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import analytics from '@react-native-firebase/analytics';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { FlatList, RefreshControl, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet } from 'react-native';
 
 const ShuttleBus = () => {
   const { theme } = useTheme();
@@ -55,6 +55,7 @@ const ShuttleBus = () => {
           />}
         keyExtractor={item => item.shuttleId}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={data === undefined ? <ActivityIndicator style={{ paddingVertical: 40 }} /> : null}
         refreshControl={
           <RefreshControl
             tintColor={colors[theme].gray100}

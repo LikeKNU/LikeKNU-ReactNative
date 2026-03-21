@@ -4,7 +4,7 @@ import FontText from '@/common/text/FontText';
 import { HomeAnnouncementProps } from '@/types/homeType';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { FlatList, Pressable, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, StyleSheet } from 'react-native';
 
 const HomeAnnouncement = () => {
   const { data } = useHomeAnnouncements();
@@ -24,12 +24,16 @@ const HomeAnnouncement = () => {
   return (
     <Pressable onPress={() => router.navigate('/announcement')}>
       <CardContainer title="공지사항">
-        <FlatList
-          scrollEnabled={false}
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.announcementId}
-        />
+        {data === undefined ? (
+          <ActivityIndicator style={{ paddingVertical: 20 }} />
+        ) : (
+          <FlatList
+            scrollEnabled={false}
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.announcementId}
+          />
+        )}
       </CardContainer>
     </Pressable>
   );

@@ -8,7 +8,7 @@ import { CityBusRouteProps } from '@/types/busTypes';
 import { calculateTimeRemaining } from '@/utils/date';
 import { useRouter } from 'expo-router';
 import React, { useCallback } from 'react';
-import { FlatList, RefreshControl, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet } from 'react-native';
 
 const CityBusTimetablePage = () => {
   const router = useRouter();
@@ -40,6 +40,7 @@ const CityBusTimetablePage = () => {
         renderItem={({ item }) => busRouteListItem(item)}
         keyExtractor={item => item.routeId!}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={data === undefined ? <ActivityIndicator style={{ paddingVertical: 40 }} /> : null}
         refreshControl={
           <RefreshControl
             tintColor={colors[theme].gray100}

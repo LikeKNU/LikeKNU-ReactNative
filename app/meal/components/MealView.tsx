@@ -7,7 +7,7 @@ import colors from '@/constants/colors';
 import { CafeteriaProps, MenuProps } from '@/types/mealTypes';
 import { useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
 
 export interface MealViewProps {
   cafeteria: CafeteriaProps,
@@ -63,13 +63,15 @@ const MealView = ({ cafeteria, isActive }: MealViewProps) => {
         active={dateIndex}
         handleChangeDate={handleChangeDate}
       />
-      {meals.length === 0 ?
+      {data === undefined ? (
+        <ActivityIndicator style={{ flex: 1 }} />
+      ) : meals.length === 0 ? (
         <View style={styles.emptyMessage}>
           <FontText fontWeight="500" style={{ color: colors[theme].gray100 }}>
             운영하지 않는 날이에요
           </FontText>
         </View>
-        : <MealItemList meals={meals} />}
+      ) : <MealItemList meals={meals} />}
     </View>
   );
 };

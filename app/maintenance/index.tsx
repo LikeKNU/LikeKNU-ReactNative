@@ -16,7 +16,7 @@ const MaintenancePage = () => {
         <CautionIcon width={80} height={80} />
         <FontText fontWeight="700" style={{ fontSize: 20, marginTop: 12 }}> 서비스를 점검 중이에요</FontText>
         <FontText fontWeight="500" style={{ color: colors[theme].gray100, fontSize: 18, marginTop: 4 }}>
-          조금만 기다려주세요 🙇🏻‍♂️
+          잠시 후 다시 시도해 주세요 🙇🏻‍♂️
         </FontText>
       </View>
     </PageLayout>

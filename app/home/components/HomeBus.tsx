@@ -4,7 +4,7 @@ import HomeBusItem from '@/app/home/components/HomeBusItem';
 import CardContainer from '@/common/components/CardContainer';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { FlatList, Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 const HomeBus = () => {
   const { data, mutate } = useHomeBuses();
@@ -13,19 +13,23 @@ const HomeBus = () => {
   return (
     <Pressable style={styles.container} onPress={() => router.navigate('/bus')}>
       <CardContainer title="버스" style={{ paddingBottom: 4 }}>
-        <View style={{ flexDirection: 'row' }}>
-          <FlatList
-            scrollEnabled={false}
-            data={data}
-            renderItem={
-              ({ item }) => <HomeBusItem bus={item} />
-            }
-            keyExtractor={(item) => item.routeId}
-          />
-          <View style={{ justifyContent: 'flex-end', paddingBottom: 10 }}>
-            <RefreshButton mutate={mutate} focusPathname={'/'} />
+        {data === undefined ? (
+          <ActivityIndicator style={{ paddingVertical: 20 }} />
+        ) : (
+          <View style={{ flexDirection: 'row' }}>
+            <FlatList
+              scrollEnabled={false}
+              data={data}
+              renderItem={
+                ({ item }) => <HomeBusItem bus={item} />
+              }
+              keyExtractor={(item) => item.routeId}
+            />
+            <View style={{ justifyContent: 'flex-end', paddingBottom: 10 }}>
+              <RefreshButton mutate={mutate} focusPathname={'/'} />
+            </View>
           </View>
-        </View>
+        )}
       </CardContainer>
     </Pressable>
   );

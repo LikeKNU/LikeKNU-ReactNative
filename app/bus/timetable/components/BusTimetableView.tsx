@@ -7,7 +7,7 @@ import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
 import React, { useEffect, useMemo, useRef } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
 
 export interface BusTimetableProps {
   routeId: string;
@@ -63,11 +63,13 @@ const BusTimetableView = ({ routeId }: BusTimetableProps) => {
           <FontText style={styles.suffix}>정류장</FontText>
         </View>
       </View>
-      {data && data.buses && data.buses.length !== 0 ?
+      {data === undefined ? (
+        <ActivityIndicator style={{ flex: 1 }} />
+      ) : data.buses && data.buses.length !== 0 ? (
         <FlatList
           ref={flatListRef}
           contentContainerStyle={styles.contentContainer}
-          data={data && data.buses}
+          data={data.buses}
           renderItem={({ item, index }) =>
             <BusArrivalTimeListItem
               arrivalBus={item}
@@ -76,13 +78,14 @@ const BusTimetableView = ({ routeId }: BusTimetableProps) => {
           keyExtractor={item => `${item.busNumber} + ${item.arrivalAt}`}
           showsVerticalScrollIndicator={false}
           getItemLayout={getItemLayout}
-        /> :
+        />
+      ) : (
         <View style={{ flex: 1, alignItems: 'center', top: '30%' }}>
           <FontText fontWeight="500" style={{ fontSize: 15, color: colors[theme].gray100 }}>
             도착 예정인 버스가 없어요
           </FontText>
         </View>
-      }
+      )}
     </PageLayout>
   );
 };

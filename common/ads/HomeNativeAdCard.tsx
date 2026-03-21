@@ -8,6 +8,7 @@ import {
   NativeAdView,
   NativeAsset,
   NativeAssetType,
+  NativeMediaView,
   TestIds,
 } from 'react-native-google-mobile-ads';
 
@@ -24,7 +25,7 @@ const HomeNativeAdCard = () => {
     let loadedAd: NativeAd | null = null;
 
     NativeAd.createForAdRequest(unitId, {
-      adChoicesPlacement: NativeAdChoicesPlacement.BOTTOM_RIGHT
+      adChoicesPlacement: NativeAdChoicesPlacement.BOTTOM_RIGHT,
     })
       .then((ad) => {
         if (isMounted) {
@@ -74,6 +75,10 @@ const HomeNativeAdCard = () => {
             <Text style={[styles.adBadge, { color: colors[theme].gray200 }]}>광고</Text>
           </View>
         </View>
+        <NativeMediaView
+          resizeMode="cover"
+          style={styles.media}
+        />
       </NativeAdView>
     </View>
   );
@@ -108,6 +113,13 @@ const styles = StyleSheet.create({
   body: {
     fontSize: 13,
     marginTop: 4,
+  },
+  media: {
+    width: '100%',
+    borderRadius: 8,
+    maxHeight: 230,
+    marginTop: 12,
+    alignSelf: 'center',
   },
   adBadgeContainer: {
     marginLeft: 8,

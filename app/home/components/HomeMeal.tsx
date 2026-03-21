@@ -8,13 +8,13 @@ import colors, { campusColors } from '@/constants/colors';
 import { HomeMealProps } from '@/types/homeType';
 import { sortPinElementTop } from '@/utils/data';
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import Swiper from 'react-native-swiper';
 
 const HomeMeal = () => {
   const { theme } = useTheme();
   const { campus } = useCampus();
-  const { data, isLoading } = useHomeMeal();
+  const { data } = useHomeMeal();
   const [meals, setMeals] = useState<HomeMealProps[]>([]);
   const { favoriteCafeteria } = useFavoriteCafeteria();
 
@@ -28,7 +28,9 @@ const HomeMeal = () => {
   return (
     <View style={{ flex: 1 }}>
       <CardContainer title={<View />} style={{ height: 232 }}>
-        {!isLoading && meals.length > 0 &&
+        {data === undefined ? (
+          <ActivityIndicator style={{ flex: 1 }} />
+        ) : meals.length > 0 &&
           <Swiper
             index={0}
             showsButtons={false}

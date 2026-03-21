@@ -16,8 +16,8 @@ import Carousel from 'react-native-reanimated-carousel/src/components/Carousel';
 const CityBus = () => {
   const { theme } = useTheme();
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const { data: outgoingData, mutate: outgoingMutate } = useCityBuses(routeType.OUTGOING);
-  const { data: incomingData, mutate: incomingMutate } = useCityBuses(routeType.INCOMING);
+  const { data: outgoingData, isLoading: outgoingLoading, mutate: outgoingMutate } = useCityBuses(routeType.OUTGOING);
+  const { data: incomingData, isLoading: incomingLoading, mutate: incomingMutate } = useCityBuses(routeType.INCOMING);
   const router = useRouter();
   const { width: screenWidth } = useWindowDimensions();
   const carouselRef = React.useRef<ICarouselInstance>(null);
@@ -50,7 +50,10 @@ const CityBus = () => {
         data={Object.values(routeType)}
         renderItem={({ item: routeType }) =>
           <View key={routeType.value} style={styles.page}>
-            <CityBusView data={routeType.value === 'incoming' ? incomingData : outgoingData} />
+            <CityBusView
+              data={routeType.value === 'incoming' ? incomingData : outgoingData}
+              isLoading={routeType.value === 'incoming' ? incomingLoading : outgoingLoading}
+            />
           </View>}
         loop={false}
         onSnapToItem={setActiveIndex}
