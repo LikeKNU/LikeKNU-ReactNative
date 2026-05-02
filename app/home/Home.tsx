@@ -1,4 +1,5 @@
 import HomeAnnouncement from '@/app/home/components/HomeAnnouncement';
+import HomeBanner from '@/app/home/components/HomeBanner';
 import HomeBus from '@/app/home/components/HomeBus';
 import HomeCalendar from '@/app/home/components/HomeCalendar';
 import HomeHeader from '@/app/home/components/HomeHeader';
@@ -69,6 +70,7 @@ const Home = () => {
         contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
+        <HomeBanner />
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
           <HomeOpenChat />
           {/*<HomeWiki />*/}

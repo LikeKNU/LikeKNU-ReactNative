@@ -24,3 +24,11 @@ export interface HomeMealProps {
 export interface HomeCalendarProps extends ScheduleProps {
   today: boolean;
 }
+
+export interface HomeBannerProps {
+  bannerId: number;
+  title: string;
+  body: string;
+  linkPath: string | null;
+  minAppVersion: string | null;
+}

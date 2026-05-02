@@ -6,6 +6,7 @@ import TabHeader from '@/common/components/TabHeader';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import FontText from '@/common/text/FontText';
 import colors from '@/constants/colors';
+import * as Application from 'expo-application';
 import { StyleSheet, View } from 'react-native';
 
 const More = () => {
@@ -24,16 +25,9 @@ const More = () => {
         <ThemeSetting />
         <FontText fontWeight="600" style={[styles.settingTitle, { color: colors[theme].gray100 }]}>알림</FontText>
         <NotificationSetting />
-        <View style={{ alignItems: 'center', marginTop: 20 }}>
-          <FontText style={{ fontSize: 15, color: colors[theme].gray100 }}>문의나 건의사항, 오류제보는 홈에 있는</FontText>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <FontText fontWeight="600" style={{ fontSize: 15, color: colors[theme].gray100 }}>
-              문의/요청(1:1 오픈채팅방)
-            </FontText>
-            <FontText style={{ fontSize: 15, color: colors[theme].gray100 }}>을 통해</FontText>
-          </View>
-          <FontText style={{ fontSize: 15, color: colors[theme].gray100 }}>편하게 전달해주세요!😋</FontText>
-        </View>
+        <FontText style={[styles.version, { color: colors[theme].gray200 }]}>
+          버전 {Application.nativeApplicationVersion}
+        </FontText>
       </View>
     </PageLayout>
   );
@@ -51,5 +45,10 @@ const styles = StyleSheet.create({
   },
   settingTitle: {
     fontSize: 18
+  },
+  version: {
+    fontSize: 13,
+    textAlign: 'center',
+    marginTop: 10
   }
 });

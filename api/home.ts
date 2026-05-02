@@ -1,6 +1,6 @@
 import { useCampus } from '@/common/contexts/CampusContext';
 import { Campuses, campusName } from '@/constants/campus';
-import { HomeAnnouncementProps, HomeBusProps, HomeCalendarProps, HomeMealProps } from '@/types/homeType';
+import { HomeAnnouncementProps, HomeBannerProps, HomeBusProps, HomeCalendarProps, HomeMealProps } from '@/types/homeType';
 import http, { extractBodyFromResponse, extractMessageFromResponse } from '@/utils/http';
 import useSWR from 'swr';
 
@@ -56,4 +56,13 @@ export const useHomeMessage = () => {
   };
 
   return useSWR('/api/main/messages', getHomeMessage);
+};
+
+export const useHomeBanners = () => {
+  const getHomeBanners = async (uri: string) => {
+    const response = await http.get<HomeBannerProps[]>(uri);
+    return extractBodyFromResponse<HomeBannerProps[]>(response) ?? [];
+  };
+
+  return useSWR('/api/main/banners', getHomeBanners);
 };
