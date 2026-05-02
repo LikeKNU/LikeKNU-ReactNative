@@ -3,6 +3,22 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { Alert, Linking, Platform } from 'react-native';
 
+// 포그라운드 푸시 표시 정책: data.type 별로 분기 가능. 기본은 모두 표시.
+const SILENT_TYPES = new Set<string>([]);
+
+Notifications.setNotificationHandler({
+  handleNotification: async (notification) => {
+    const data = notification.request.content.data as { type?: string } | undefined;
+    const silent = data?.type ? SILENT_TYPES.has(data.type) : false;
+    return {
+      shouldShowBanner: !silent,
+      shouldShowList: !silent,
+      shouldPlaySound: !silent,
+      shouldSetBadge: false
+    };
+  }
+});
+
 export const registerForPushNotificationsAsync = async () => {
   if (Platform.OS === 'android') {
     Notifications.setNotificationChannelAsync('default', {

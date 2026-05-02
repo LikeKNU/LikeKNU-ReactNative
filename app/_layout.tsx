@@ -5,9 +5,11 @@ import colors from '@/constants/colors';
 import Fonts from '@/constants/fonts';
 import useInitializeDevice from '@/utils/device';
 import http from '@/utils/http';
+import '@/utils/pushNotifications';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import analytics from '@react-native-firebase/analytics';
 import { useFonts } from 'expo-font';
+import * as Notifications from 'expo-notifications';
 import { Stack, usePathname, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
@@ -134,6 +136,32 @@ const Content = () => {
     }).then(() => {
     });
   }, [pathname]);
+
+  useEffect(() => {
+    const handleResponse = (response: Notifications.NotificationResponse) => {
+      const data = response.notification.request.content.data as { url?: string } | undefined;
+      if (data?.url) {
+        router.push({
+          pathname: '/announcement/details',
+          params: {
+            url: data.url,
+            id: '',
+            isBookmark: 'false',
+            isAd: 'false'
+          }
+        });
+      } else {
+        router.push('/notification');
+      }
+    };
+
+    Notifications.getLastNotificationResponseAsync().then((response) => {
+      if (response) handleResponse(response);
+    });
+
+    const subscription = Notifications.addNotificationResponseReceivedListener(handleResponse);
+    return () => subscription.remove();
+  }, []);
 
   return (
     <Stack screenOptions={{

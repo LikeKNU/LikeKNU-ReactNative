@@ -6,23 +6,18 @@ import HomeMeal from '@/app/home/components/HomeMeal';
 import HomeOpenChat from '@/app/home/components/HomeOpenChat';
 import HomeRestaurantMap from '@/app/home/components/HomeRestaurantMap';
 import HomeUnivClub from '@/app/home/components/HomeUnivClub';
-import HomeBannerAd from '@/common/ads/HomeBannerAd';
 import HomeNativeAdCard from '@/common/ads/HomeNativeAdCard';
 import PageLayout from '@/common/components/PageLayout';
 import { useTheme } from '@/common/contexts/ThemeContext';
 import colors from '@/constants/colors';
 import { API_URL } from '@/utils/http';
 import * as Application from 'expo-application';
-import * as Notifications from 'expo-notifications';
-import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Alert, Linking, Platform, ScrollView, StyleSheet, View } from 'react-native';
 
 const Home = () => {
   const { theme } = useTheme();
-  const router = useRouter();
-  const notificationResponseListener = useRef<Notifications.EventSubscription>(null);
 
   const checkAppVersion = async () => {
     const response = await fetch(`${API_URL}/api/versions`);
@@ -64,17 +59,6 @@ const Home = () => {
   useEffect(() => {
     checkAppVersion().then(() => {
     });
-
-    notificationResponseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      router.replace({
-        pathname: '/taxi-mate',
-        params: { partyId: response.notification.request.content.data.partyId as string }
-      });
-    });
-
-    return () => {
-      notificationResponseListener.current && notificationResponseListener.current.remove();
-    };
   }, []);
 
   return (

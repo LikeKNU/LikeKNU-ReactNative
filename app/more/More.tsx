@@ -1,4 +1,5 @@
 import CampusSetting from '@/app/more/components/CampusSetting';
+import NotificationSetting from '@/app/more/components/NotificationSetting';
 import ThemeSetting from '@/app/more/components/ThemeSetting';
 import PageLayout from '@/common/components/PageLayout';
 import TabHeader from '@/common/components/TabHeader';
@@ -21,6 +22,8 @@ const More = () => {
         <CampusSetting />
         <FontText fontWeight="600" style={[styles.settingTitle, { color: colors[theme].gray100 }]}>화면 테마</FontText>
         <ThemeSetting />
+        <FontText fontWeight="600" style={[styles.settingTitle, { color: colors[theme].gray100 }]}>알림</FontText>
+        <NotificationSetting />
         <View style={{ alignItems: 'center', marginTop: 20 }}>
           <FontText style={{ fontSize: 15, color: colors[theme].gray100 }}>문의나 건의사항, 오류제보는 홈에 있는</FontText>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>

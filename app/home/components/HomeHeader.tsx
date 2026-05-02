@@ -1,3 +1,4 @@
+import BellIcon from '@/assets/icons/bell.svg';
 import GrayIconDark from '@/assets/icons/gray-icon-dark.svg'
 import GrayIconLight from '@/assets/icons/gray-icon-light.svg'
 import TabHeader from '@/common/components/TabHeader';
@@ -21,8 +22,9 @@ const HomeHeader = () => {
         {campus && <FontText fontWeight="700" style={[styles.campus, { color: campusColors[campus] }]}>
           {campusName[campus].name}
         </FontText>}
-        <FontText style={{ marginLeft: 8, fontSize: 13, color: colors[theme].gray100 }} fontWeight="600">👈 캠퍼스를 변경할 수
-          있어요!</FontText>
+      </Pressable>
+      <Pressable style={styles.bellPressable} onPress={() => router.push('/notification')}>
+        <BellIcon width={22} height={22} fill={colors[theme].gray200} />
       </Pressable>
     </TabHeader>
   );
@@ -39,11 +41,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginLeft: -2
   },
-  menuIcons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-
-    paddingHorizontal: 4
+  bellPressable: {
+    padding: 8
   }
 });
