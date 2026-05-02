@@ -1,10 +1,14 @@
 import { useCampus } from '@/common/contexts/CampusContext';
 import { Campuses, campusName } from '@/constants/campus';
-import { CafeteriaProps, MealProps } from '@/types/mealTypes';
+import { CafeteriaProps, MealProps, MenuRatingProps } from '@/types/mealTypes';
 import http, { extractBodyFromResponse } from '@/utils/http';
 import useSWR, { SWRConfiguration } from 'swr';
 
 interface UseMealsOptions extends SWRConfiguration {
+  enabled?: boolean;
+}
+
+interface UseMenuRatingOptions extends SWRConfiguration {
   enabled?: boolean;
 }
 
@@ -37,4 +41,25 @@ export const useMeals = (cafeteria: CafeteriaProps, options: UseMealsOptions = {
   const shouldFetch = options.enabled !== false;
 
   return useSWR(shouldFetch ? ['/api/v2/menus', campus, cafeteria] : null, ([uri, campus, cafeteria]) => getMeals(uri, campus, cafeteria));
+};
+
+export const useMenuRating = (menuId: string | null, deviceId: string | null, options: UseMenuRatingOptions = {}) => {
+  const getRating = async (uri: string, deviceId: string) => {
+    const response = await http.getWithParams<MenuRatingProps>(uri, { deviceId });
+    return extractBodyFromResponse<MenuRatingProps>(response) ?? null;
+  };
+
+  const shouldFetch = options.enabled !== false && !!menuId && !!deviceId;
+  return useSWR(
+    shouldFetch ? [`/api/v2/menus/${menuId}/rating`, deviceId] : null,
+    ([uri, deviceId]) => getRating(uri, deviceId!)
+  );
+};
+
+export const updateMenuRating = async (menuId: string, deviceId: string, rating: number) => {
+  const response = await http.put<MenuRatingProps, { deviceId: string; rating: number }>(
+    `/api/v2/menus/${menuId}/rating`,
+    { deviceId, rating }
+  );
+  return extractBodyFromResponse<MenuRatingProps>(response);
 };

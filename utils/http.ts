@@ -61,10 +61,10 @@ const http = {
     return instance.post<APIResponse<T>, D>(uri, data, { params: params });
   },
   put: <T, D>(uri: string, data?: D) => {
-    return instance.put<APIResponse<T>, D>(uri, data);
+    return instance.put<APIResponse<T>>(uri, data);
   },
   putWithParams: <T, D>(uri: string, data?: D, params?: any) => {
-    return instance.put<APIResponse<T>, D>(uri, data, { params: params });
+    return instance.put<APIResponse<T>>(uri, data, { params: params });
   },
   delete: <T>(uri: string) => {
     return instance.delete<APIResponse<T>>(uri);

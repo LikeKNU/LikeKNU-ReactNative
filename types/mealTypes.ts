@@ -27,3 +27,9 @@ export interface CafeteriaProps {
   cafeteriaId: string;
   cafeteriaName: string;
 }
+
+export interface MenuRatingProps {
+  averageRating: number;
+  ratingCount: number;
+  ownRating: number | null;
+}

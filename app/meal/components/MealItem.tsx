@@ -1,4 +1,5 @@
 import MealTypeItem from '@/app/meal/components/MealTypeItem';
+import MenuRating from '@/app/meal/components/MenuRating';
 import MenusItem from '@/app/meal/components/MenusItem';
 import OperatingTimeItem from '@/app/meal/components/OperatingTimeItem';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg';
@@ -38,9 +39,10 @@ const MealItem = ({ menu, isToday }: { menu: MenuProps, isToday: boolean }) => {
   };
 
   const closedHeight = Platform.OS === 'ios' ? 52 : 53;
+  const expandedHeight = contentHeight + closedHeight + 16;
   const interpolatedHeight = animatedHeight.interpolate({
     inputRange: [0, 0.99, 1],
-    outputRange: [closedHeight, contentHeight + closedHeight + 16, 220]
+    outputRange: [closedHeight, expandedHeight, expandedHeight]
   });
 
   return (
@@ -55,7 +57,10 @@ const MealItem = ({ menu, isToday }: { menu: MenuProps, isToday: boolean }) => {
         </View>
         <ArrowDownIcon width={24} height={24} fill={colors[theme].gray200} />
       </Pressable>
-      <MenusItem onLayout={onContentLayout} menus={menu.menus} />
+      <View onLayout={onContentLayout}>
+        <MenusItem menus={menu.menus} />
+        {menu.menuId && <MenuRating menuId={menu.menuId} />}
+      </View>
     </Animated.View>
   );
 };
