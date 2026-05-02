@@ -118,6 +118,8 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 8,
     maxHeight: 230,
+    minHeight: 130,
+    minWidth: 130,
     marginTop: 12,
     alignSelf: 'center',
   },
